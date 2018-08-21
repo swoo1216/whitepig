@@ -13,9 +13,9 @@
 }
 
 #wrapper {
-	margin: auto;
 	width: 100%;
 	height: 100%;
+	margin: auto;
 }
 
 #header {
@@ -36,15 +36,17 @@
 }
 
 #content {
-	padding-top: 50px;
-	height: 100%;
+	padding-top: 50px; height : 100%;
 	width: 70%;
+	height: 100%;
 }
-#extra{
+
+#extra {
 	height: 100%;
 	width: 15%;
 }
-table{
+
+table {
 	width: 100%;
 	text-align: center;
 	font-size: 30px;
@@ -60,7 +62,7 @@ table{
 			<div id="nav"></div>
 			<div id="content">
 				<table>
-					<tr style="background-color:#ffccf2">
+					<tr style="background-color: #ffccf2">
 						<th width="10%">번호</th>
 						<th width="10%">아이디</th>
 						<th width="60%">제목</th>
@@ -88,8 +90,7 @@ table{
 				</table>
 				<button type="button" onclick="location.href = 'ginsert.jsp';">글쓰기</button>
 			</div>
-			<div id="extra">
-			</div>
+			<div id="extra"></div>
 		</div>
 	</div>
 
