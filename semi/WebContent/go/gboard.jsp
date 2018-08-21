@@ -12,53 +12,44 @@
 	padding: 0px;
 }
 
-@font-face {
-	font-family: 'NanumGothic';
-	src: url('images/NanumGothic.eot');
-	src: url('images/NanumGothic.eot?#iefix') format('embedded-opentype'),
-		url('images/NanumGothic.woff') format('woff'),
-		url('images/NanumGothic.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
-
-body {
-	font-family: 'NanumGothic';
-}
-
 #wrapper {
 	width: 100%;
-	height: 100%;
 	margin: auto;
 }
 
 #header {
 	background-color: #ffb3b3;
 	width: 100%;
-	height: 60px;
+	height: 5%;
 }
 
 #center {
 	width: 100%;
-	height: 800px;
+	height: 95%;
 	display: flex;
 }
 
 #nav {
+	background-color: #ffe6e6;
 	height: 100%;
 	width: 15%;
 }
 
 #content {
-	padding-top: 50px;
+	padding-top: 5%;
 	height: 100%;
 	width: 70%;
-	height: 100%;
+	height: 95%;
 }
 
 #extra {
-	height: 100%;
+	padding-top: 2%;
+	height: 98%;
 	width: 15%;
+}
+#gtable{
+	width: 90%;
+	margin: auto;
 }
 
 table {
@@ -67,6 +58,8 @@ table {
 	border-spacing: 0px;
 	border-style: none;
 	padding: 0px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 td, th {
@@ -75,35 +68,60 @@ td, th {
 	padding: 5px;
 	text-align: center;
 }
-th{
+
+th {
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
 }
-td{
+
+td {
 	border-bottom: 1px solid black;
 }
-a{
+
+a {
 	text-decoration: none;
 	color: black;
 }
+
+button {
+	border: none;
+	background-color: #ff6666;
+	color: white;
+	text-align: center;
+	padding: 10px 10px 10px 10px;
+	float: right;
+	margin-top: 5px;
+	cursor: pointer;
+}
+button:hover{
+	background-color: #ff8080;
+}
 </style>
 <script type="text/javascript">
-	window.onload = function(){
+	window.onload = function() {
+		console.log("window.innerHeight", window.innerHeight);
+		var size = window.innerHeight || document.body.clientHeight;
+		document.getElementById("wrapper").style.height = size + "px";
 		var tr = document.getElementsByTagName("tr");
-		
-		for(var i in tr){
-			console.log(tr);
-			console.log(tr[i]);
-			console.log(i);
-			if(i == 0)
+
+		for (var i = 0; i < tr.length; i++) {
+			if (i == 0)
 				continue;
-			tr[i].addEventListener("mouseover", function(){
+			tr[i].addEventListener("mouseover", function() {
 				this.style.backgroundColor = "#ffe6e6";
 			}, false);
-			
-			tr[i].addEventListener("mouseout", function(){
+
+			tr[i].addEventListener("mouseout", function() {
 				this.style.backgroundColor = "white";
 			}, false);
+
+			//var children = tr[i].children;
+
+			//for (var j = 0; j < children.length; j++) {
+			//	children[j].addEventListener("mouseover", function(){
+			//		this.style.cursor = "pointer";
+			//	}, false);
+			//}
 		}
 	}
 </script>
@@ -113,45 +131,42 @@ a{
 		<div id="center">
 			<div id="nav"></div>
 			<div id="content">
-				<table>
-					<tr>
-						<th width="8%">번호</th>
-						<th width="58%">제목</th>
-						<th width="10%">글쓴이</th>
-						<th width="8%">날짜</th>
-						<th width="8%">조회</th>
-						<th width="8%">추천</th>
-					</tr>
-					<c:choose>
-						<c:when test="${empty list}">
-							<tr>
-								<td colspan="5">게시물이 존재 하지 않아 하나 좀 써봐</td>
-							</tr>
-						</c:when>
-						<c:otherwise>
-							<c:forEach var="vo" items="${list}">
+				<div id="gtable">
+					<table>
+						<tr>
+							<th width="7%">번호</th>
+							<th width="59%">제목</th>
+							<th width="10%">글쓴이</th>
+							<th width="10%">날짜</th>
+							<th width="7%">조회</th>
+							<th width="7%">추천</th>
+						</tr>
+						<c:choose>
+							<c:when test="${empty list}">
 								<tr>
-									<td>${vo.bNum}</td>
-									<td style="text-align: left;">
-										<a href="">${vo.title}</a>
-									</td>
-									<td>${vo.nic}</td>
-									<td>${vo.regdate}</td>
-									<td>${vo.hit}</td>
-									<td>${vo.recomm}</td>
+									<td colspan="5">게시물이 존재 하지 않아 하나 좀 써봐</td>
 								</tr>
-							</c:forEach>
-						</c:otherwise>
-					</c:choose>
-				</table>
-				
-				
-				
-				
-				
-				<button type="button" onclick="location.href = 'ginsert.jsp';">글쓰기</button>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="vo" items="${list}">
+									<tr>
+										<td>${vo.bNum}</td>
+										<td style="text-align: left;"><a href="">${vo.title}</a>&nbsp;[0]</td>
+										<td>${vo.nic}</td>
+										<td>${vo.regdate}</td>
+										<td>${vo.hit}</td>
+										<td>${vo.recomm}</td>
+									</tr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+					</table>
+					<button type="button" onclick="location.href = 'ginsert.jsp';">글쓰기</button>
+				</div>
 			</div>
-			<div id="extra"></div>
+			<div id="extra">
+				<img src="../ad1.jpg" alt="ad">
+			</div>
 		</div>
 	</div>
 
