@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import pp.lol.dao.LoLBoardDao;
 @WebServlet("/list.do")
 public class ListController extends HttpServlet
 {
