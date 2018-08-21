@@ -83,7 +83,7 @@ public class GboardDao {
 			pstmt.setInt(1, getMaxNum() + 1);
 			pstmt.setString(2, vo.getTitle());
 			pstmt.setString(3, vo.getContent());
-			pstmt.setString(4, vo.getId());
+			pstmt.setString(4, vo.getNic());
 
 			return pstmt.executeUpdate();
 		} catch (SQLException se) {
@@ -214,7 +214,7 @@ public class GboardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select * from gboard";
+		String sql = "select gb.*, gu.nic from gboard gb join guser gu on gb.id = gu.id";
 
 		try {
 			conn = DBConnection.conn();
@@ -227,10 +227,10 @@ public class GboardDao {
 				String content = rs.getString("content");
 				int hit = rs.getInt("hit");
 				int recomm = rs.getInt("recomm");
-				String id = rs.getString("id");
+				String nic = rs.getString("nic");
 				Date regdate = rs.getDate("regdate");
 
-				list.add(new GboardVo(bNum, title, content, hit, recomm, id, regdate));
+				list.add(new GboardVo(bNum, title, content, hit, recomm, nic, regdate));
 			}
 			return list;
 		} catch (SQLException se) {

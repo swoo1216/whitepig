@@ -17,7 +17,17 @@ public class ListController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		int bottomPage;
+		int listCount;
+		
+		
+		
 		ArrayList<GboardVo> list = GboardDao.getInstance().list();
+		
+		
+		
+		
+		int pageCount = GboardDao.getInstance().getCount();
 
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/go/gboard.jsp").forward(request, response);;
