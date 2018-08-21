@@ -10,10 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pp.lol.dao.LoLBoardDao;
-<<<<<<< HEAD
 import pp.lol.vo.LoLBoardVo;
-=======
->>>>>>> refs/remotes/origin/master
 @WebServlet("/list.do")
 public class ListController extends HttpServlet
 {
