@@ -36,6 +36,7 @@
 }
 
 #content {
+	padding-top: 50px;
 	height: 100%;
 	width: 70%;
 }
@@ -46,6 +47,7 @@
 table{
 	width: 100%;
 	text-align: center;
+	font-size: 30px;
 }
 </style>
 <script type="text/javascript">
@@ -58,12 +60,12 @@ table{
 			<div id="nav"></div>
 			<div id="content">
 				<table>
-					<tr>
-						<th width="10%">글번호</th>
-						<th width="10%">작성자</th>
+					<tr style="background-color:#ffccf2">
+						<th width="10%">번호</th>
+						<th width="10%">아이디</th>
 						<th width="60%">제목</th>
-						<th width="10%">조회수</th>
-						<th width="10%">추천수</th>
+						<th width="10%">조회</th>
+						<th width="10%">추천</th>
 					</tr>
 					<c:choose>
 						<c:when test="${empty list }">
