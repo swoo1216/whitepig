@@ -81,7 +81,7 @@ public class GboardDao {
 		try {
 			conn = DBConnection.conn();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, vo.getbNum());
+			pstmt.setInt(1, getMaxNum());
 			pstmt.setString(2, vo.getTitle());
 			pstmt.setString(3, vo.getContent());
 			pstmt.setString(4, vo.getId());
@@ -161,14 +161,19 @@ public class GboardDao {
 	public int delete(int bNum) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		
+
 		String sql = "delete from gboard where bnum = ?";
-		
+
 		try {
-			
-		}catch(SQLException se) {
+			conn = DBConnection.conn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bNum);
+
+			return pstmt.executeUpdate();
+		} catch (SQLException se) {
 			se.getStackTrace();
-		}finally {
+			return -1;
+		} finally {
 			DBConnection.close(null, pstmt, conn);
 		}
 	}
