@@ -15,6 +15,7 @@ public class LoginController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 

@@ -37,7 +37,7 @@ public class GuserDao {
 				return true;
 			}
 		} catch (SQLException se) {
-			se.getStackTrace();
+			System.out.println(se.getMessage());
 		} finally {
 			DBConnection.close(rs, pstmt, conn);
 		}

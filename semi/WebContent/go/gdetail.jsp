@@ -33,6 +33,21 @@
 	background-color: #ffe6e6;
 	height: 100%;
 	width: 15%;
+	display: flex;
+	flex-direction: column;
+}
+
+#title{
+	font-size: 40px;
+	text-align: center;
+	height: 30%;
+	width: 100%;
+	border-bottom: 1px solid white;
+}
+.navButton{
+	margin: 0px;
+	font-size: 20px;
+	border-top: 1px solid white;
 }
 
 #content {
@@ -67,7 +82,6 @@ td, th {
 	border-spacing: 0px;
 	border-style: none;
 	padding: 5px;
-	text-align: center;
 }
 
 th {
@@ -103,67 +117,53 @@ button:hover {
 	window.onload = function() {
 		var size = window.innerHeight || document.body.clientHeight;
 		document.getElementById("wrapper").style.height = size + "px";
-		var tr = document.getElementsByTagName("tr");
-
-		for (var i = 0; i < tr.length; i++) {
-			if (i == 0)
-				continue;
-			tr[i].addEventListener("mouseover", function() {
-				this.style.backgroundColor = "#ffe6e6";
-			}, false);
-
-			tr[i].addEventListener("mouseout", function() {
-				this.style.backgroundColor = "white";
-			}, false);
-
-			//var children = tr[i].children;
-
-			//for (var j = 0; j < children.length; j++) {
-			//	children[j].addEventListener("mouseover", function(){
-			//		this.style.cursor = "pointer";
-			//	}, false);
-			//}
-		}
 	}
 </script>
 <body>
 	<div id="wrapper">
 		<div id="header"></div>
 		<div id="center">
-			<div id="nav"></div>
+			<div id="nav">
+				<div id="title">
+					pants				
+				</div>
+				<button class="navButton">기동아</button>
+				<button class="navButton">넌이제</button>
+				<button class="navButton">디디디</button>
+				<button class="navButton">자자자</button>
+				<button class="navButton">이이이</button>
+				<button class="navButton" style="border-bottom:1px solid white;">너너너</button>
+			</div>
 			<div id="content">
 				<div id="gtable">
 					<table>
 						<tr>
-							<th width="7%">번호</th>
-							<th width="59%">제목</th>
-							<th width="10%">글쓴이</th>
-							<th width="10%">날짜</th>
-							<th width="7%">조회</th>
-							<th width="7%">추천</th>
+							<td width="8%">제목</td>
+							<td>${vo.title}</td>
 						</tr>
-						<c:choose>
-							<c:when test="${empty list}">
-								<tr>
-									<td colspan="5">게시물이 존재 하지 않아 하나 좀 써봐</td>
-								</tr>
-							</c:when>
-							<c:otherwise>
-								<c:forEach var="vo" items="${list}">
-									<tr>
-										<td>${vo.bNum}</td>
-										<td style="text-align: left;">
-											<a href="<c:url value='gdetail.do?bNum=${vo.bNum}'/>">${vo.title}</a> &nbsp;[0]</td>
-										<td>${vo.nic}</td>
-										<td>${vo.regdate}</td>
-										<td>${vo.hit}</td>
-										<td>${vo.recomm}</td>
-									</tr>
-								</c:forEach>
-							</c:otherwise>
-						</c:choose>
+						<tr>
+							<td>글쓴이</td>
+							<td>${vo.nic} | 조회 ${vo.hit} | 작성일 ${vo.regdate} | 댓글</td>
+						</tr>
+						<tr>
+							<td height="500px" colspan="2" style="text-align: left; vertical-align: top;">${vo.content}</td>
+						</tr>
 					</table>
-					<button type="button" onclick="location.href = 'ginsert.jsp';">글쓰기</button>
+					<div id="insertComment">
+						<table>
+							<tr>
+								<td colspan="3">${vo.nic}</td>
+							</tr>
+							<tr>
+								<td width="10%">댓글</td>
+								<td width="70%">
+									<textarea rows="5" cols="100" name="comment"></textarea>
+								</td>
+								<td width="20%"><button type="button" onclick="">뭐하지</button></td>
+							</tr>
+						</table>
+					</div>
+					
 				</div>
 			</div>
 			<div id="extra">
