@@ -20,7 +20,6 @@ public class GboardDao {
 	public static GboardDao getInstance() {
 		if (instance == null)
 			instance = new GboardDao();
-
 		return instance;
 	}
 
@@ -39,7 +38,7 @@ public class GboardDao {
 				return rs.getInt("mNum");
 			}
 
-			return 1;
+			return 0;
 		} catch (SQLException se) {
 			se.getStackTrace();
 			return -1;
@@ -81,7 +80,7 @@ public class GboardDao {
 		try {
 			conn = DBConnection.conn();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, getMaxNum());
+			pstmt.setInt(1, getMaxNum() + 1);
 			pstmt.setString(2, vo.getTitle());
 			pstmt.setString(3, vo.getContent());
 			pstmt.setString(4, vo.getId());
