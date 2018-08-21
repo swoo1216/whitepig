@@ -8,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import pp.lol.dao.LoLBoardDao;
+import pp.lol.vo.LoLBoardVo;
 @WebServlet("/list.do")
 public class ListController extends HttpServlet
 {
@@ -23,6 +26,6 @@ public class ListController extends HttpServlet
 		int startRow=(pageNum-1)*5+1;
 		int endRow=startRow+4;
 		LoLBoardDao dao=new LoLBoardDao();
-		ArrayList<LoLBoardVo> list=dao.list(startRow,endRow);
+		//ArrayList<LoLBoardVo> list=dao.list(startRow,endRow);
 	}
 }

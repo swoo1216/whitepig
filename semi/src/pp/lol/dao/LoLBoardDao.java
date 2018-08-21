@@ -65,6 +65,7 @@ public class LoLBoardDao
 		catch(SQLException se)
 		{
 			System.out.println(se.getMessage());
+			return -1;
 		}
 		finally
 		{
