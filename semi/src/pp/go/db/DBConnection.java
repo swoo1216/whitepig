@@ -38,7 +38,7 @@ public class DBConnection {
 			if (conn != null)
 				conn.close();
 		} catch (SQLException se) {
-			se.getStackTrace();
+			System.out.println(se.getMessage());
 		}
 	}
 }
