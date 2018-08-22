@@ -33,8 +33,9 @@ public class InvenController extends HttpServlet{
 		String tier=iv.getTier();
 		
 		GuserDao dao1=GuserDao.getInstance();
-		//GuserVo vo1=new GuserVo(id, pwd, email, nic, clss, num, point);
-		//dao1.update(vo1);
+		GuserVo vo1=dao1.select(id);
+		
+		dao1.update(vo1);
 		InvenVo vo=new InvenVo(0, id, num, name, type, tier, price, null);
 		InvenDao dao=InvenDao.getInstance();
 		dao.insert(vo);
