@@ -56,20 +56,37 @@ td {
 					var nic = j[4].nic;
 					var bNum = j[5].bNum;
 					var date = j[6].date;
-					var td1 = document.createElement("td")
-					td1.width = '5%';
-					comments.appendChild(td1);
+					
+					var text1 = document.createTextNode(nic);
+					var span1 = document.createElement("span");
+					span1.appendChild(text1);
+					span1.style.width = "5%";
+					comments.appendChild(span1);
+					
+					var text2 = document.createTextNode(content);
+					var span2 = document.createElement("span");
+					span2.appendChild(text2);
+					span2.style.width = "80%";
+					comments.appendChild(span2);
+					
+					var text3 = document.createTextNode(recomm);
+					var span3 = document.createElement("span");
+					span3.appendChild(text3);
+					span3.style.width = "5%";
+					comments.appendChild(span3);
+					
+					var text4 = document.createTextNode(date);
+					var span4 = document.createElement("span");
+					span4.appendChild(text4);
+					span4.style.width = "5%";
+					comments.appendChild(span4);
+					comments.appendChild(document.createTextNode("\\r\\n"));
 					
 					
-					
-					
-					
-					
-					
-					comments.innerHTML += "<td width='5%'>" + nic + "</td>"
-							+ "<td width='80%'>" + content + "</td>"
-							+ "<td width='5%''>" + recomm + "</td>"
-							+ "<td width='10%''>" + date + "</td>";
+					//comments.innerHTML += "<td width='5%'>" + nic + "</td>"
+					//		+ "<td width='80%'>" + content + "</td>"
+					//		+ "<td width='5%''>" + recomm + "</td>"
+					//		+ "<td width='10%''>" + date + "</td>";
 				}
 
 				console.log("inner", comments.innerHTML);
