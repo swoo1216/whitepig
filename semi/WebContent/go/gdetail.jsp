@@ -22,20 +22,6 @@ th {
 td {
 	border-bottom: 1px solid black;
 }
-
-#title {
-	font-size: 40px;
-	text-align: center;
-	height: 30%;
-	width: 100%;
-	border-bottom: 1px solid white;
-}
-
-.navButton {
-	margin: 0px;
-	font-size: 20px;
-	border-top: 1px solid white;
-}
 </style>
 <script type="text/javascript">
 	window.onload = function() {
@@ -70,7 +56,7 @@ td {
 						</tr>
 						<tr>
 							<td>글쓴이</td>
-							<td>${vo.nic}|조회 ${vo.hit} | 작성일 ${vo.regdate} | 댓글</td>
+							<td>${vo.nic} | 조회 ${vo.hit} | 작성일 ${vo.regdate} | 댓글</td>
 						</tr>
 						<tr>
 							<td height="500px" colspan="2"
@@ -87,7 +73,7 @@ td {
 								<td width="10%">댓글</td>
 								<td width="70%"><textarea rows="5" cols="100"
 										name="comment"></textarea></td>
-								<td width="20%"><button type="button" onclick="">뭐하지</button></td>
+								<td width="20%"><button type="button" onclick="">작성</button></td>
 							</tr>
 						</table>
 					</div>

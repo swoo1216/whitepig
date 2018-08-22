@@ -56,7 +56,9 @@ td {
 	<div id="wrapper">
 		<div id="header"></div>
 		<div id="center">
-			<div id="nav"></div>
+			<div id="nav">
+				
+			</div>
 			<div id="content">
 				<div id="gtable">
 					<table>
