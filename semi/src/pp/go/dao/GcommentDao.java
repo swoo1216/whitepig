@@ -74,16 +74,15 @@ public class GcommentDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
-		String sql = "insert into gcomment values(?, ?, ?, ?, ?, sysdate)";
+		String sql = "insert into gcomment values(?, ?, 0, ?, ?, sysdate)";
 
 		try {
 			conn = DBConnection.conn();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, getMaxNum() + 1);
 			pstmt.setString(2, vo.getContent());
-			pstmt.setInt(3, vo.getRecomm());
-			pstmt.setString(4, vo.getId());
-			pstmt.setInt(5, vo.getbNum());
+			pstmt.setString(3, vo.getId());
+			pstmt.setInt(4, vo.getbNum());
 
 			return pstmt.executeUpdate();
 		} catch (SQLException se) {
@@ -94,27 +93,27 @@ public class GcommentDao {
 		}
 	}
 
-	public ArrayList<GcommentVo> list() {
+	public ArrayList<GcommentVo> list(int bNum) {
 		ArrayList<GcommentVo> list = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select * from gcomment order by cnum desc";
+		String sql = "select * from gcomment  where bNum = ? order by cnum desc";
 
 		try {
 			conn = DBConnection.conn();
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bNum);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				int rNum = rs.getInt("rNum");
+				int cNum = rs.getInt("cNum");
 				String content = rs.getString("content");
 				int recomm = rs.getInt("recomm");
 				String id = rs.getString("id");
-				int bNum = rs.getInt("bNum");
 				Date regdate = rs.getDate("regdate");
 
-				list.add(new GcommentVo(rNum, content, recomm, id, bNum, regdate));
+				list.add(new GcommentVo(cNum, content, recomm, id, bNum, regdate));
 			}
 			return list;
 		} catch (SQLException se) {

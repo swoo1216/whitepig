@@ -31,6 +31,30 @@ td {
 	function golist() {
 		location.href = "gboard.do";
 	}
+	function insertComment() {
+		location.href = "gcinsert.do";
+	}
+
+	function getList() {
+		var id = document.commentFrm.id.value;
+		var bNum = document.commentFrm.bNum.value;
+		var content = document.commentFrm.content.value;
+		
+		console.log("id, bNum, content", id, bNum, content);
+		xhr = new XMLHttpRequest();
+		console.log("xhr", xhr);
+		xhr.onreadystatechange = function() {
+			console.log("들었어");
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var text = xhr.responseText;
+				console.log("text", text);
+			}
+		}
+		xhr.open("POST", "gcinsert.do", true);
+		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		console.log("ddd");
+		xhr.send("id=" + id + "&bNum=" + bNum + "&content=" + content);
+	}
 </script>
 <title></title>
 </head>
@@ -56,7 +80,7 @@ td {
 						</tr>
 						<tr>
 							<td>글쓴이</td>
-							<td>${vo.nic} | 조회 ${vo.hit} | 작성일 ${vo.regdate} | 댓글</td>
+							<td>${vo.nic}|조회${vo.hit}| 작성일 ${vo.regdate} | 댓글</td>
 						</tr>
 						<tr>
 							<td height="500px" colspan="2"
@@ -64,18 +88,34 @@ td {
 						</tr>
 					</table>
 					<button type="button" onclick="golist()">목록</button>
+					<div id="comments">
+						<c:forEach var="vo" items="${gclist}">
+							<table>
+								<tr>
+									<td width="5%">${vo.id}</td>
+									<td width="80%">${vo.content}</td>
+									<td width="5%">${vo.recomm}</td>
+									<td width="10%">${vo.regdate}</td>
+								</tr>
+							</table>
+						</c:forEach>
+					</div>
 					<div id="insertComment">
-						<table>
-							<tr>
-								<td colspan="3">${vo.nic}</td>
-							</tr>
-							<tr>
-								<td width="10%">댓글</td>
-								<td width="70%"><textarea rows="5" cols="100"
-										name="comment"></textarea></td>
-								<td width="20%"><button type="button" onclick="">작성</button></td>
-							</tr>
-						</table>
+						<form method="post" action="gcinsert.do" name="commentFrm">
+							<table>
+								<tr>
+									<td colspan="3">${vo.nic}</td>
+								</tr>
+								<tr>
+									<td width="10%">댓글</td>
+									<td width="70%"><textarea rows="5" cols="100"
+											name="content"></textarea></td>
+									<td width="20%"><button type="button" onclick="getList()">작성</button></td>
+								</tr>
+							</table>
+							<input type="hidden" name="id" value="${sessionScope.id}">
+							<input type="hidden" name="bNum" value="${vo.bNum}">
+						</form>
 					</div>
 				</div>
 			</div>

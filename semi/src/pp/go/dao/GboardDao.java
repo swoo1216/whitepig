@@ -52,7 +52,7 @@ public class GboardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select NVL(count(bnum), 0) cNum from gboard";
+		String sql = "select NVL(count(bnum), 0) cnt from gboard";
 
 		try {
 			conn = DBConnection.conn();
@@ -60,7 +60,7 @@ public class GboardDao {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				return rs.getInt("cNum");
+				return rs.getInt("cnt");
 			}
 			return 0;
 		} catch (SQLException se) {
@@ -214,7 +214,7 @@ public class GboardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select gb.*, gu.nic nic from gboard gb join guser gu on gb.id = gu.id  order by cnum desc";
+		String sql = "select gb.*, gu.nic nic from gboard gb join guser gu on gb.id = gu.id  order by bnum desc";
 
 		try {
 			conn = DBConnection.conn();
