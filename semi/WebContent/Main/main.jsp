@@ -39,7 +39,7 @@
 	      	<div class="w3-center"><br>
 	        	<span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
 	      	</div>	
-	      	<form class="w3-container" action="join.do">
+	      	<form class="w3-container" action="/semi/Main/join.do" method="post">
 	        	<div class="w3-section">
 		          	<label><b>Username</b></label>
 		         	<input class="w3-input w3-border" type="text" placeholder="Enter Username" name="id" required>

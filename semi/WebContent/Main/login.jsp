@@ -8,8 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>회원로그인</h2>
-<form method="post" action="/semi/SW/loginOk.jsp">
+<h2>로그인</h2>
+<form method="post" action="<%=request.getContextPath()%>/mlogin.do">
 	<div class="w3-section">
 	  	<input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="아이디" name="id" required>
 	   	<input class="w3-input w3-border" type="password" placeholder="비밀번호" name="pwd" required>

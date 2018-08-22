@@ -11,7 +11,7 @@
 <body>
     <div id="mainForm">
         <h4>회원가입</h4>
-        <form action="join.do" method="post">
+        <form action="<%=request.getContextPath()%>/mjoin.do" method="post">
                <div class="w3-section">
 	         	<input class="w3-input w3-border" type="text" placeholder="아이디" name="id" required>
 	          	<input class="w3-input w3-border" type="password" placeholder="비밀번호" name="pwd" required>
