@@ -45,7 +45,7 @@ public class MainDao
 		try
 		{
 			con=DBConnection.conn();
-			String sql = "select * from cuser where id=? pwd=?";
+			String sql = "select * from cuser where id=? and pwd=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, pwd);

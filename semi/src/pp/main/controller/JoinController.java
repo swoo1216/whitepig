@@ -1,9 +1,6 @@
 package pp.main.controller;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pp.go.db.DBConnection;
 import pp.main.dao.MainDao;
 import pp.main.vo.MainVo;
 
@@ -41,6 +37,6 @@ public class JoinController extends HttpServlet
 		{
 			request.setAttribute("code", "fail");
 		}
-		request.getRequestDispatcher("/Main/result.jsp").forward(request, response);
+		request.getRequestDispatcher("/main.jsp").forward(request, response);
 	}
 }

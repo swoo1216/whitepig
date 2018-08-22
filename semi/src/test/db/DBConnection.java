@@ -33,6 +33,4 @@ public class DBConnection {
 			System.out.println(se.getMessage());
 		}
 	}
-
-
 }

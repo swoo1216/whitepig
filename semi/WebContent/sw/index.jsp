@@ -9,7 +9,7 @@
 </head>
 <body>
 커뮤니티	
-	<a href="/semi/SW/insert.jsp">글쓰기</a><br>
+	<a href="/semi/sw/insert.jsp">글쓰기</a><br>
 	<a href="new.jsp">최신순</a>
 	<a href="rmd.jsp">추천순</a>
 	<a href="cmt.jsp">댓글순</a>

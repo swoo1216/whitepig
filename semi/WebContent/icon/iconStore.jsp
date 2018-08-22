@@ -37,7 +37,7 @@
 					"<div class='w3-container w3-margin'>"+
 					"<img src='poke/"+json.list[i]+".gif' style='width: 80px'>"+
 					"<button class='w3-btn w3-round w3-ripple w3-teal w3-margin'"+
-					"onclick='document.getElementById('check').style.display='block' title='구매'><i class='fa fa-money fa-lg'></i></button>"+
+					"onclick='check("+json.list[i]+")' title='구매'><i class='fa fa-money fa-lg'></i></button>"+
 					"<button class='w3-btn w3-round w3-rip w3-teal'"+
 						"onclick='removeWish("+json.list[i]+")' title='삭제'>"+
 						"<i class='fa fa-close'></i></button></div>"
@@ -142,7 +142,7 @@
 							</div>
 							<p>
 								<button class="w3-btn w3-round w3-ripple w3-teal"
-									onclick="check()" title="구매">
+									onclick="check(${vo.num})" title="구매">
 									<i class="fa fa-money fa-lg"></i>
 								</button>
 								<button class="w3-btn w3-round w3-ripple w3-teal"
@@ -172,7 +172,10 @@
 						<h2>구매</h2>
 				</header>
 				<div class="w3-container">
+				<form action="checkOut.do" method="get">
+					<input type="hidden" id="cart" name="num" value="">
 					<button class="w3-button">구매</button>
+				</form>
 				</div>
 			</div>
 		</div>
@@ -254,8 +257,10 @@
 				return;
 			}
 		}
-		function check() {
+		function check(num) {
 			document.getElementById('check').style.display='block';
+			document.getElementById("cart").value = num;
+			
 		}
 	</script>
 </body>
