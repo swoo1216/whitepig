@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import pp.go.dao.GuserDao;
+import pp.go.vo.GuserVo;
 import pp.icon.dao.IconDao;
 import pp.icon.vo.IconVo;
 import pp.inven.dao.InvenDao;
@@ -22,8 +23,6 @@ public class InvenController extends HttpServlet{
 		HttpSession session=req.getSession();
 		String id=(String)session.getAttribute("id");
 		
-		GuserDao dao1=GuserDao.getInstance();
-	
 		
 		IconDao dao2=IconDao.getInstance();
 		IconVo iv=dao2.select(num);
@@ -33,6 +32,9 @@ public class InvenController extends HttpServlet{
 		String type=iv.getType();
 		String tier=iv.getTier();
 		
+		GuserDao dao1=GuserDao.getInstance();
+		//GuserVo vo1=new GuserVo(id, pwd, email, nic, clss, num, point);
+		//dao1.update(vo1);
 		InvenVo vo=new InvenVo(0, id, num, name, type, tier, price, null);
 		InvenDao dao=InvenDao.getInstance();
 		dao.insert(vo);
