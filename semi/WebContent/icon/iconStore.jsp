@@ -165,10 +165,11 @@
 
 		<!-- 구매 modal -->
 		<div class="w3-modal" id="check">
-			<div class="w3-modal-content w3-animate-zoom" style="width: 400px;margin-top: 100px;">
+			<div class="w3-modal-content w3-animate-zoom w3-card-4" style="width: 400px;margin-top: 100px;">
 				<header class="w3-container w3-teal">
 					<span onclick="document.getElementById('check').style.display='none'" 
-						class="w3-button w3-large w3-display-topright">&times;</span>
+						class="w3-btn w3-round w3-ripple w3-display-topright"><i
+								class="fa fa-close"></i></span>
 						<h2>구매</h2>
 				</header>
 				<div class="w3-container">
@@ -243,6 +244,28 @@
 		<h5>Footer</h5>
 		<p>Footer information goes here</p>
 	</footer>
+	
+	<!-- 에러 modal -->
+	<div id="err" class="w3-modal">
+		<div class="w3-modal-content w3-animate-opacity w3-card-4" style="width: 400px;margin-top: 100px;">
+			<header class="w3-container w3-teal">
+				<span onclick="document.getElementById('err').style.display='none'"
+					class="w3-btn w3-round w3-ripple w3-display-topright"><i
+								class="fa fa-close"></i></span>
+					<h2>에러</h2>
+			</header>
+			<div class="w3-container">
+				<p>포인트 부족</p>
+			</div>
+		</div>
+	</div>
+	
+	<c:if test="${err!=null }">
+		<script type="text/javascript">
+			document.getElementById("err").style.display='block';
+		</script>
+	</c:if>
+	
 	<script type="text/javascript">
 		function openRightMenu() {
 			document.getElementById("rightMenu").style.display = "block";

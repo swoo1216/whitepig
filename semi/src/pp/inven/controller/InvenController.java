@@ -43,7 +43,14 @@ public class InvenController extends HttpServlet{
 		String clss=vo1.getClss();
 		int point=vo1.getPoint();
 		
-		GuserVo gv=new GuserVo(id, pwd, email, nic, clss, num, point-price);
+		if(point<price) {
+			req.setAttribute("err", "fail");
+			req.getRequestDispatcher("/icon/list.do").forward(req, resp);
+		}else {
+		
+		int pay=point-price;
+		
+		GuserVo gv=new GuserVo(id, pwd, email, nic, clss, num, pay);
 		
 		dao1.update(gv);
 		
@@ -53,5 +60,6 @@ public class InvenController extends HttpServlet{
 		
 		
 		resp.sendRedirect("list.do");
+		}
 	}
 }
