@@ -7,9 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import pp.icon.dao.IconDao;
+import pp.go.db.DBConnection;
 import pp.inven.vo.InvenVo;
-import test.db.DBConnection;
+
 
 public class InvenDao {
 	private static InvenDao instance=new InvenDao();
