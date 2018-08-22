@@ -9,7 +9,7 @@ CREATE TABLE GUSER(
 	POINT NUMBER(10)
 );
 
-INSERT INTO GUSER VALUES('aaa', '123', 'aaa@aaa.com', 'micheal', null, 0);
+INSERT INTO GUSER VALUES('aaa', '123', 'aaa@aaa.com', 'Alvin', null, 0);
 
 --BOARD
 DROP TABLE GBOARD;

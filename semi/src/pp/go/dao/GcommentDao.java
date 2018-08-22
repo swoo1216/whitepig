@@ -99,7 +99,7 @@ public class GcommentDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select * from gcomment  where bNum = ? order by cnum desc";
+		String sql = "select gc.*, gu.nic nic from gcomment gc join guser gu on gc.id=gu.id  where bNum = ? order by cnum desc";
 
 		try {
 			conn = DBConnection.conn();
@@ -111,9 +111,10 @@ public class GcommentDao {
 				String content = rs.getString("content");
 				int recomm = rs.getInt("recomm");
 				String id = rs.getString("id");
+				String nic = rs.getString("nic");
 				Date regdate = rs.getDate("regdate");
 
-				list.add(new GcommentVo(cNum, content, recomm, id, bNum, regdate));
+				list.add(new GcommentVo(cNum, content, recomm, id, nic, bNum, regdate));
 			}
 			return list;
 		} catch (SQLException se) {

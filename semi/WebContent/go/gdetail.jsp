@@ -39,19 +39,62 @@ td {
 		var id = document.commentFrm.id.value;
 		var bNum = document.commentFrm.bNum.value;
 		var content = document.commentFrm.content.value;
-		
-		console.log("id, bNum, content", id, bNum, content);
+
 		xhr = new XMLHttpRequest();
-		console.log("xhr", xhr);
 		xhr.onreadystatechange = function() {
-			console.log("들었어");
-			if(xhr.readyState == 4 && xhr.status == 200){
+			if (xhr.readyState == 4 && xhr.status == 200) {
 				var text = xhr.responseText;
-				console.log("text", text);
+				var json = JSON.parse(text);
+				var comments = document.getElementById("comments");
+				comments.innerHTML = "";
+				for (var i in json) {
+					var j = json[i];
+					var cNum = j[0].cNum;
+					var content = j[1].content;
+					var recomm = j[2].recomm;
+					var id = j[3].id;
+					var nic = j[4].nic;
+					var bNum = j[5].bNum;
+					var date = j[6].date;
+					
+					var text1 = document.createTextNode(nic);
+					var span1 = document.createElement("span");
+					span1.appendChild(text1);
+					span1.style.width = "5%";
+					comments.appendChild(span1);
+					
+					var text2 = document.createTextNode(content);
+					var span2 = document.createElement("span");
+					span2.appendChild(text2);
+					span2.style.width = "80%";
+					comments.appendChild(span2);
+					
+					var text3 = document.createTextNode(recomm);
+					var span3 = document.createElement("span");
+					span3.appendChild(text3);
+					span3.style.width = "5%";
+					comments.appendChild(span3);
+					
+					var text4 = document.createTextNode(date);
+					var span4 = document.createElement("span");
+					span4.appendChild(text4);
+					span4.style.width = "5%";
+					comments.appendChild(span4);
+					comments.appendChild(document.createTextNode("\\r\\n"));
+					
+					
+					//comments.innerHTML += "<td width='5%'>" + nic + "</td>"
+					//		+ "<td width='80%'>" + content + "</td>"
+					//		+ "<td width='5%''>" + recomm + "</td>"
+					//		+ "<td width='10%''>" + date + "</td>";
+				}
+
+				console.log("inner", comments.innerHTML);
 			}
 		}
 		xhr.open("POST", "gcinsert.do", true);
-		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr.setRequestHeader("Content-type",
+				"application/x-www-form-urlencoded");
 		console.log("ddd");
 		xhr.send("id=" + id + "&bNum=" + bNum + "&content=" + content);
 	}
@@ -80,7 +123,7 @@ td {
 						</tr>
 						<tr>
 							<td>글쓴이</td>
-							<td>${vo.nic}|조회${vo.hit}| 작성일 ${vo.regdate} | 댓글</td>
+							<td>${vo.nic}| 조회${vo.hit} | 작성일 ${vo.regdate} | 댓글</td>
 						</tr>
 						<tr>
 							<td height="500px" colspan="2"
@@ -92,7 +135,7 @@ td {
 						<c:forEach var="vo" items="${gclist}">
 							<table>
 								<tr>
-									<td width="5%">${vo.id}</td>
+									<td width="5%">${vo.nic}</td>
 									<td width="80%">${vo.content}</td>
 									<td width="5%">${vo.recomm}</td>
 									<td width="10%">${vo.regdate}</td>

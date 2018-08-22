@@ -66,4 +66,38 @@ public class GuserDao {
 			DBConnection.close(null, pstmt, conn);
 		}
 	}
+
+	public GuserVo select(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		GuserVo vo = null;
+
+		String sql = "select * from guser where id = ?";
+
+		try {
+			conn = DBConnection.conn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				String pwd = rs.getString("pwd");
+				String email = rs.getString("email");
+				String nic = rs.getString("nic");
+				String clss = rs.getString("clss");
+				int num = rs.getInt("num");
+				int point = rs.getInt("point");
+
+				vo = new GuserVo(id, pwd, email, nic, clss, num, point);
+			}
+			return vo;
+		} catch (SQLException se) {
+			System.out.println(se.getMessage());
+			return null;
+		} finally {
+			DBConnection.close(rs, pstmt, conn);
+		}
+	}
+
 }
