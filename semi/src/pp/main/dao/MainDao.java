@@ -63,4 +63,71 @@ public class MainDao
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
+	public String findid(String email)
+	{
+		Connection con=null;
+		PreparedStatement	pstmt=null;
+		ResultSet rs= null;
+		try
+		{
+			con=DBConnection.conn();
+			String sql=" select id from cuser where email=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			System.out.println(sql);
+			rs =pstmt.executeQuery();
+			if(rs.next())
+			{
+				String id=rs.getString("id");
+				return id;
+			}
+			else
+			{
+				return null;
+			}
+		}
+		catch(SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return null;
+		}
+		finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+	}
+	public String findpwd(String id,String email)
+	{
+		Connection con=null;
+		PreparedStatement	pstmt=null;
+		ResultSet rs= null;
+		try
+		{
+			con=DBConnection.conn();
+			String sql=" select pwd from cuser where id=? and email=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, email);
+			System.out.println(sql);
+			rs =pstmt.executeQuery();
+			if(rs.next())
+			{
+				String pwd=rs.getString("pwd");
+				return pwd;
+			}
+			else
+			{
+				return null;
+			}
+		}
+		catch(SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return null;
+		}
+		finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+	}
 }

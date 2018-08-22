@@ -89,8 +89,8 @@ a:hover{
 		if(id==null)
 		{
 	%>
-			<button onclick="location.href='/semi/Main/login.jsp'" style="background-color: pink;">로 그 인</button>
-			<button onclick="location.href='/semi/Main/join.jsp'" style="background-color: pink;">회원가입</button>
+			<button onclick="location.href='/semi/main/login.jsp'" style="background-color: pink;">로 그 인</button>
+			<button onclick="location.href='/semi/main/join.jsp'" style="background-color: pink;">회원가입</button>
 	<%
 		}
 		else
@@ -135,6 +135,7 @@ a:hover{
 		alert('회원가입실패');
 		</script>
 	</c:when>
+<%-- 
 	<c:when test="${requestScope.code=='success1'}">
 		<script type="text/javascript">
 		alert('로그인성공');
@@ -148,6 +149,27 @@ a:hover{
 	<c:when test="${requestScope.code=='logout'}">
 		<script type="text/javascript">
 		alert('로그아웃 하셨습니다.');
+		</script>
+	</c:when>
+--%>
+	<c:when test="${requestScope.code=='esuccess'}">
+		<script type="text/javascript">
+		alert('당신의 아이디는' + ${id}+'입니다.');
+		</script>
+	</c:when>
+	<c:when test="${requestScope.code=='efail'}">
+		<script type="text/javascript">
+		alert('등록되지 않은 이메일입니다.');
+		</script>
+	</c:when>
+	<c:when test="${requestScope.code=='psuccess'}">
+		<script type="text/javascript">
+		alert('당신의 비밀번호는' + ${pwd}+'입니다.');
+		</script>
+	</c:when>
+	<c:when test="${requestScope.code=='pfail'}">
+		<script type="text/javascript">
+		alert('등록되지 않은 아이디 또는 이메일입니다.');
 		</script>
 	</c:when>
 </c:choose>
