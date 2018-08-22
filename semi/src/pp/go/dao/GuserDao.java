@@ -66,4 +66,29 @@ public class GuserDao {
 			DBConnection.close(null, pstmt, conn);
 		}
 	}
+
+	public int getPoint(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select point from guser where id = ?";
+
+		try {
+			conn = DBConnection.conn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				return rs.getInt("point");
+			}
+			return 0;
+		} catch (SQLException se) {
+			System.out.println(se.getMessage());
+			return -1;
+		} finally {
+			DBConnection.close(rs, pstmt, conn);
+		}
+	}
 }

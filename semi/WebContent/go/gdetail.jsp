@@ -48,6 +48,8 @@ td {
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var text = xhr.responseText;
 				console.log("text", text);
+				var json = JSON.parse(text);
+				console.log("JSON", json);
 			}
 		}
 		xhr.open("POST", "gcinsert.do", true);
