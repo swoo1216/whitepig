@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import pp.go.dao.GuserDao;
+import pp.icon.dao.IconDao;
+import pp.icon.vo.IconVo;
 import pp.inven.dao.InvenDao;
 import pp.inven.vo.InvenVo;
 @WebServlet("/icon/checkOut.do")
@@ -18,9 +21,22 @@ public class InvenController extends HttpServlet{
 		int num=Integer.parseInt(req.getParameter("num"));
 		HttpSession session=req.getSession();
 		String id=(String)session.getAttribute("id");
-//		
-//		InvenVo vo=new InvenVo(inum, id, num, name, type, tier, price, regdate);
-//		InvenDao dao=InvenDao.getInstance();
+		
+		GuserDao dao1=GuserDao.getInstance();
+	
+		
+		IconDao dao2=IconDao.getInstance();
+		IconVo iv=dao2.select(num);
+		
+		String name=iv.getName();
+		int price=iv.getPrice();
+		String type=iv.getType();
+		String tier=iv.getTier();
+		
+		InvenVo vo=new InvenVo(0, id, num, name, type, tier, price, null);
+		InvenDao dao=InvenDao.getInstance();
+		dao.insert(vo);
+		
 		
 	}
 }

@@ -172,7 +172,10 @@
 						<h2>구매</h2>
 				</header>
 				<div class="w3-container">
+				<form action="checkOut.do" method="get">
+					<input type="hidden" id="cart" name="num" value="">
 					<button class="w3-button">구매</button>
+				</form>
 				</div>
 			</div>
 		</div>
@@ -256,6 +259,8 @@
 		}
 		function check(num) {
 			document.getElementById('check').style.display='block';
+			document.getElementById("cart").value = num;
+			
 		}
 	</script>
 </body>

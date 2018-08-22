@@ -15,7 +15,7 @@ import pp.go.db.DBConnection;
 import pp.main.dao.MainDao;
 import pp.main.vo.MainVo;
 
-@WebServlet("mjoin.do")
+@WebServlet("/mjoin.do")
 public class JoinController extends HttpServlet
 {
 	@Override
