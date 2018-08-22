@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import pp.lol.dao.LoLBoardDao;
 import pp.lol.vo.LoLBoardVo;
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
 @WebServlet("/list.do")
 public class ListController extends HttpServlet
 {
@@ -26,6 +30,22 @@ public class ListController extends HttpServlet
 		int startRow=(pageNum-1)*5+1;
 		int endRow=startRow+4;
 		LoLBoardDao dao=new LoLBoardDao();
-		//ArrayList<LoLBoardVo> list=dao.list(startRow,endRow);
+		ArrayList<LoLBoardVo> list=dao.list(startRow,endRow);
+		//전체패이지갯수구하기
+		int pageCount=(int)Math.ceil(dao.getCount()/5.0);
+		//시작페이지번호
+		int startPage=((pageNum-1)/4*4)+1;
+		//끝페이지번호
+		int endPage=startPage+3;
+		if(endPage>pageCount)
+		{
+			endPage=pageCount;
+		}
+		request.setAttribute("list", list);
+		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("pageNum", pageNum);
+		request.getRequestDispatcher("/SW/index.jsp").forward(request, response);
 	}
 }

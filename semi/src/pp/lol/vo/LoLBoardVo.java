@@ -1,29 +1,29 @@
 package pp.lol.vo;
 
-import java.util.Date;
-
 public class LoLBoardVo
 {
 	private int bnum;
 	private String title;
 	private String content;
+	private int reply;
+	private int recomm;
 	private int hit;
-	private int number;
-	private Date regdate;
 	private String id;
+	private String regdate;
 	
 	public LoLBoardVo() {}
 
-	public LoLBoardVo(int bnum, String title, String content, int hit, int number, Date regdate, String id)
+	public LoLBoardVo(int bnum, String title, String content, int reply, int recomm, int hit, String id, String regdate)
 	{
 		super();
 		this.bnum = bnum;
 		this.title = title;
 		this.content = content;
+		this.reply = reply;
+		this.recomm = recomm;
 		this.hit = hit;
-		this.number = number;
-		this.regdate = regdate;
 		this.id = id;
+		this.regdate = regdate;
 	}
 
 	public int getBnum()
@@ -56,6 +56,26 @@ public class LoLBoardVo
 		this.content = content;
 	}
 
+	public int getReply()
+	{
+		return reply;
+	}
+
+	public void setReply(int reply)
+	{
+		this.reply = reply;
+	}
+
+	public int getRecomm()
+	{
+		return recomm;
+	}
+
+	public void setRecomm(int recomm)
+	{
+		this.recomm = recomm;
+	}
+
 	public int getHit()
 	{
 		return hit;
@@ -64,26 +84,6 @@ public class LoLBoardVo
 	public void setHit(int hit)
 	{
 		this.hit = hit;
-	}
-
-	public int getNumber()
-	{
-		return number;
-	}
-
-	public void setNumber(int number)
-	{
-		this.number = number;
-	}
-
-	public Date getRegdate()
-	{
-		return regdate;
-	}
-
-	public void setRegdate(Date regdate)
-	{
-		this.regdate = regdate;
 	}
 
 	public String getId()
@@ -96,12 +96,21 @@ public class LoLBoardVo
 		this.id = id;
 	}
 
+	public String getregdate()
+	{
+		return regdate;
+	}
+
+	public void setregdate(String regdate)
+	{
+		this.regdate = regdate;
+	}
+
 	@Override
 	public String toString()
 	{
-		return "LoLBoardVo [bnum=" + bnum + ", title=" + title + ", content=" + content + ", hit=" + hit + ", number="
-				+ number + ", regdate=" + regdate + ", id=" + id + "]";
+		return "LoLBoardVo [bnum=" + bnum + ", title=" + title + ", content=" + content + ", reply=" + reply
+				+ ", recomm=" + recomm + ", hit=" + hit + ", id=" + id + ", regdate=" + regdate + "]";
 	}
+
 }
-
-
