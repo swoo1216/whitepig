@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,14 +8,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-커뮤니티	
-	<a href="insert.jsp">글쓰기</a><br>
-	<a href="new.jsp">최신순</a>
-	<a href="rmd.jsp">추천순</a>
-	<a href="cmt.jsp">댓글순</a>
-	<a href="hit.jsp">조회순</a>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="text">검색
-	<div></div>
+<c:choose>
+	<c:when test="${requestScope.code=='success'}">
+		<h2>글등록성공</h2>
+		<a href="/SW/list.do">첫페이지로</a>
+	</c:when>
+	<c:otherwise>
+		<h2>글등록실패</h2>
+		<a href="/SW/list.do">첫페이지로</a>
+	</c:otherwise>
+</c:choose>
 </body>
 </html>
