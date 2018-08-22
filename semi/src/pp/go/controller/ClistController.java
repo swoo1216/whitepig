@@ -33,7 +33,7 @@ public class ClistController extends HttpServlet {
 		JSONObject obj = new JSONObject();
 		for (GcommentVo vo : list) {
 			int cNum = vo.getcNum();
-			String content = vo.getContent();
+			String content = vo.getContent().replaceAll("<br>", "\\n");
 			int recomm = vo.getRecomm();
 			String id = vo.getId();
 			String nic = vo.getNic();

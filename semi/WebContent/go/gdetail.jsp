@@ -79,6 +79,7 @@ td {
 					
 					var text1 = document.createTextNode(nic);
 					var text2 = document.createTextNode(content);
+					console.log(text2);
 					var text3 = document.createTextNode(recomm);
 					var text4 = document.createTextNode(date);
 					
