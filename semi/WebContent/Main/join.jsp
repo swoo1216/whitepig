@@ -4,45 +4,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="../../css/top_style.css" />
-<link rel="stylesheet" href="../../css/footer_style.css" />
-<link rel="stylesheet" href="../../css/style.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <title>Insert title here</title>
 </head>
 <body>
     <div id="mainForm">
         <h4>회원가입</h4>
         <form action="join.do" method="post">
-            <table class="joinForm">
-                <tr>
-                    <th colspan="2">회원가입</th>
-                </tr>
-                <tr>
-                    <th>아이디</th>
-                    <td><input type="text" name="id" ></td>
-                </tr>
-                <tr>
-                    <th>비밀번호</th>
-                    <td><input type="text" name="pwd" ></td>
-                </tr>
-                <tr>
-                    <th>비밀번호확인</th>
-                    <td><input type="text"></td>
-                </tr>
-                <tr>
-                    <th>이메일</th>
-                    <td><input type="text" name="email" ></td>
-                </tr>
-                 <tr>
-                    <th>별명</th>
-                    <td><input type="text" name="nic" ></td>
-                </tr>
-                <tr>
-                    <th colspan="2"><input type="submit" value="가입">
-                        <input type="button"  value="취소" onclick="location.href='/semi/index.html'"></th>
-                        
-                </tr>
-            </table>
+               <div class="w3-section">
+	         	<input class="w3-input w3-border" type="text" placeholder="아이디" name="id" required>
+	          	<input class="w3-input w3-border" type="password" placeholder="비밀번호" name="pwd" required>
+	          	<input class="w3-input w3-border" type="password" placeholder="비밀번호확인" required>
+	          	<input class="w3-input w3-border" type="text" placeholder="이메일" name="email" required>
+	          	<input class="w3-input w3-border" type="text" placeholder="닉네임" name="nic" required>
+	          	<button class="w3-button w3-block w3-pink w3-section w3-padding" type="submit">회원가입</button>
+        	</div>
         </form>
     </div>
 </body>
