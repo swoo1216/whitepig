@@ -3,31 +3,31 @@ package pp.go.vo;
 import java.sql.Date;
 
 public class GcommentVo {
-	private int rnum;
+	private int rNum;
 	private String content;
 	private int recomm;
 	private String id;
-	private int bnum;
+	private int bNum;
 	private Date regdate;
 
 	public GcommentVo() {
 	}
 
-	public GcommentVo(int rnum, String content, int recomm, String id, int bnum, Date regdate) {
-		this.rnum = rnum;
+	public GcommentVo(int rNum, String content, int recomm, String id, int bNum, Date regdate) {
+		this.rNum = rNum;
 		this.content = content;
 		this.recomm = recomm;
 		this.id = id;
-		this.bnum = bnum;
+		this.bNum = bNum;
 		this.regdate = regdate;
 	}
 
-	public int getRnum() {
-		return rnum;
+	public int getrNum() {
+		return rNum;
 	}
 
-	public void setRnum(int rnum) {
-		this.rnum = rnum;
+	public void setrNum(int rNum) {
+		this.rNum = rNum;
 	}
 
 	public String getContent() {
@@ -54,12 +54,12 @@ public class GcommentVo {
 		this.id = id;
 	}
 
-	public int getBnum() {
-		return bnum;
+	public int getbNum() {
+		return bNum;
 	}
 
-	public void setBnum(int bnum) {
-		this.bnum = bnum;
+	public void setbNum(int bNum) {
+		this.bNum = bNum;
 	}
 
 	public Date getRegdate() {

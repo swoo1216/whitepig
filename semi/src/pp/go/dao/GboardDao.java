@@ -214,7 +214,7 @@ public class GboardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select gb.*, gu.nic nic from gboard gb join guser gu on gb.id = gu.id";
+		String sql = "select gb.*, gu.nic nic from gboard gb join guser gu on gb.id = gu.id  order by cnum desc";
 
 		try {
 			conn = DBConnection.conn();
