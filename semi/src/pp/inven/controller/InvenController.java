@@ -51,6 +51,7 @@ public class InvenController extends HttpServlet{
 		InvenDao dao=InvenDao.getInstance();
 		dao.insert(vo);
 		
+		
 		resp.sendRedirect("list.do");
 	}
 }
