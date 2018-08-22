@@ -8,6 +8,6 @@
 </head>
 <body>
 <h2>회원로그인</h2>
-<form method="post" action="
+<form method="post" action="#">
 </body>
 </html>
