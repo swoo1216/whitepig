@@ -19,6 +19,8 @@ public class BdetailController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		//게시물 보기
 		request.setCharacterEncoding("UTF-8");
 		String sbNum = request.getParameter("bNum");
 

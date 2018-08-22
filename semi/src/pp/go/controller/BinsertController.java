@@ -17,7 +17,7 @@ public class BinsertController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		//게시물 추가
 		request.setCharacterEncoding("UTF-8");
 		GboardVo vo = null;
 		String title = request.getParameter("title");

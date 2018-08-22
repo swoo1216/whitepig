@@ -18,7 +18,7 @@ public class CinsertController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-
+		//´ñ±Û ´Þ±â
 		String sbNum = request.getParameter("bNum");
 		int bNum = 0;
 		String content = "";

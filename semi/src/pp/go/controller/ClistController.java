@@ -26,7 +26,7 @@ public class ClistController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// 주석
+		// 댓글 불러오기
 		String sbNum = request.getParameter("bNum");
 		ArrayList<GcommentVo> list = GcommentDao.getInstance().list(Integer.parseInt(sbNum));
 		int i = 0;
