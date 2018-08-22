@@ -37,7 +37,7 @@
 					"<div class='w3-container w3-margin'>"+
 					"<img src='poke/"+json.list[i]+".gif' style='width: 80px'>"+
 					"<button class='w3-btn w3-round w3-ripple w3-teal w3-margin'"+
-					"onclick='location=" + "\""+ "checkOut.do?num='+json.list[i]+'" + "\""+ "title='구매'><i class='fa fa-money fa-lg'></i></button>"+
+					"onclick='document.getElementById('check').style.display='block' title='구매'><i class='fa fa-money fa-lg'></i></button>"+
 					"<button class='w3-btn w3-round w3-rip w3-teal'"+
 						"onclick='removeWish("+json.list[i]+")' title='삭제'>"+
 						"<i class='fa fa-close'></i></button></div>"
@@ -74,7 +74,7 @@
 			<div class="w3-container w3-margin">
 				<img src="poke/${list }.gif" style="width: 80px">
 				<button class="w3-btn w3-round w3-ripple w3-teal w3-margin"
-					onclick="location='checkOut.do?num=${list}'" title="구매">
+					onclick="document.getElementById('check').style.display='block'" title="구매">
 					<i class="fa fa-money fa-lg"></i>
 				</button>
 				<button class="w3-btn w3-round w3-rip w3-teal"
@@ -119,7 +119,7 @@
 					class="w3-hover-opacity w3-margin" id="img"
 					onclick="document.getElementById('icon${ status.count }').style.display='block';"
 					title="${vo.name }">
-
+					
 
 				<div id="icon${ status.count }" class="w3-modal">
 					<div class="w3-modal-content w3-animate-top w3-card-4">
@@ -142,7 +142,7 @@
 							</div>
 							<p>
 								<button class="w3-btn w3-round w3-ripple w3-teal"
-									onclick="location='checkOut.do?num=${vo.num}'" title="구매">
+									onclick="check()" title="구매">
 									<i class="fa fa-money fa-lg"></i>
 								</button>
 								<button class="w3-btn w3-round w3-ripple w3-teal"
@@ -162,6 +162,20 @@
 					</c:when>
 				</c:choose>
 			</c:forEach>
+
+		<!-- 구매 modal -->
+		<div class="w3-modal" id="check">
+			<div class="w3-modal-content w3-animate-zoom" style="width: 400px;margin-top: 100px;">
+				<header class="w3-container w3-teal">
+					<span onclick="document.getElementById('check').style.display='none'" 
+						class="w3-button w3-large w3-display-topright">&times;</span>
+						<h2>구매</h2>
+				</header>
+				<div class="w3-container">
+					<button class="w3-button">구매</button>
+				</div>
+			</div>
+		</div>
 
 
 		</div>
@@ -239,6 +253,9 @@
 				e.target.style.display = "none";
 				return;
 			}
+		}
+		function check() {
+			document.getElementById('check').style.display='block';
 		}
 	</script>
 </body>

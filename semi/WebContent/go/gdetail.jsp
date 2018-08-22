@@ -1,83 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title></title>
-</head>
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/go_frm.css">
 <style type="text/css">
-* {
-	margin: 0px;
-	padding: 0px;
-}
-
-#wrapper {
-	width: 100%;
-	margin: auto;
-}
-
-#header {
-	background-color: #ffb3b3;
-	width: 100%;
-	height: 5%;
-}
-
-#center {
-	width: 100%;
-	height: 95%;
-	display: flex;
-}
-
-#nav {
-	background-color: #ffe6e6;
-	height: 100%;
-	width: 15%;
-	display: flex;
-	flex-direction: column;
-}
-
-#title{
-	font-size: 40px;
-	text-align: center;
-	height: 30%;
-	width: 100%;
-	border-bottom: 1px solid white;
-}
-.navButton{
-	margin: 0px;
-	font-size: 20px;
-	border-top: 1px solid white;
-}
-
-#content {
-	padding-top: 5%;
-	height: 100%;
-	width: 70%;
-	height: 95%;
-}
-
-#extra {
-	padding-top: 2%;
-	height: 98%;
-	width: 15%;
-}
-
-#gtable {
-	width: 90%;
-	margin: auto;
-}
-
-table {
-	width: 100%;
-	vertical-align: middle;
-	border-spacing: 0px;
-	border-style: none;
-	padding: 0px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
 td, th {
 	border-spacing: 0px;
 	border-style: none;
@@ -92,47 +22,54 @@ th {
 td {
 	border-bottom: 1px solid black;
 }
-
-a {
-	text-decoration: none;
-	color: black;
-}
-
-button {
-	border: none;
-	background-color: #ff6666;
-	color: white;
-	text-align: center;
-	padding: 10px 10px 10px 10px;
-	float: right;
-	margin-top: 5px;
-	cursor: pointer;
-}
-
-button:hover {
-	background-color: #ff8080;
-}
 </style>
 <script type="text/javascript">
 	window.onload = function() {
 		var size = window.innerHeight || document.body.clientHeight;
 		document.getElementById("wrapper").style.height = size + "px";
 	}
+	function golist() {
+		location.href = "gboard.do";
+	}
+	function insertComment() {
+		location.href = "gcinsert.do";
+	}
+
+	function getList() {
+		var id = document.commentFrm.id.value;
+		var bNum = document.commentFrm.bNum.value;
+		var content = document.commentFrm.content.value;
+		
+		console.log("id, bNum, content", id, bNum, content);
+		xhr = new XMLHttpRequest();
+		console.log("xhr", xhr);
+		xhr.onreadystatechange = function() {
+			console.log("들었어");
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var text = xhr.responseText;
+				console.log("text", text);
+			}
+		}
+		xhr.open("POST", "gcinsert.do", true);
+		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		console.log("ddd");
+		xhr.send("id=" + id + "&bNum=" + bNum + "&content=" + content);
+	}
 </script>
+<title></title>
+</head>
 <body>
 	<div id="wrapper">
 		<div id="header"></div>
 		<div id="center">
 			<div id="nav">
-				<div id="title">
-					pants				
-				</div>
+				<div id="title">pants</div>
 				<button class="navButton">기동아</button>
 				<button class="navButton">넌이제</button>
 				<button class="navButton">디디디</button>
 				<button class="navButton">자자자</button>
 				<button class="navButton">이이이</button>
-				<button class="navButton" style="border-bottom:1px solid white;">너너너</button>
+				<button class="navButton" style="border-bottom: 1px solid white;">너너너</button>
 			</div>
 			<div id="content">
 				<div id="gtable">
@@ -143,27 +80,43 @@ button:hover {
 						</tr>
 						<tr>
 							<td>글쓴이</td>
-							<td>${vo.nic} | 조회 ${vo.hit} | 작성일 ${vo.regdate} | 댓글</td>
+							<td>${vo.nic}|조회${vo.hit}| 작성일 ${vo.regdate} | 댓글</td>
 						</tr>
 						<tr>
-							<td height="500px" colspan="2" style="text-align: left; vertical-align: top;">${vo.content}</td>
+							<td height="500px" colspan="2"
+								style="text-align: left; vertical-align: top;">${vo.content}</td>
 						</tr>
 					</table>
-					<div id="insertComment">
-						<table>
-							<tr>
-								<td colspan="3">${vo.nic}</td>
-							</tr>
-							<tr>
-								<td width="10%">댓글</td>
-								<td width="70%">
-									<textarea rows="5" cols="100" name="comment"></textarea>
-								</td>
-								<td width="20%"><button type="button" onclick="">뭐하지</button></td>
-							</tr>
-						</table>
+					<button type="button" onclick="golist()">목록</button>
+					<div id="comments">
+						<c:forEach var="vo" items="${gclist}">
+							<table>
+								<tr>
+									<td width="5%">${vo.id}</td>
+									<td width="80%">${vo.content}</td>
+									<td width="5%">${vo.recomm}</td>
+									<td width="10%">${vo.regdate}</td>
+								</tr>
+							</table>
+						</c:forEach>
 					</div>
-					
+					<div id="insertComment">
+						<form method="post" action="gcinsert.do" name="commentFrm">
+							<table>
+								<tr>
+									<td colspan="3">${vo.nic}</td>
+								</tr>
+								<tr>
+									<td width="10%">댓글</td>
+									<td width="70%"><textarea rows="5" cols="100"
+											name="content"></textarea></td>
+									<td width="20%"><button type="button" onclick="getList()">작성</button></td>
+								</tr>
+							</table>
+							<input type="hidden" name="id" value="${sessionScope.id}">
+							<input type="hidden" name="bNum" value="${vo.bNum}">
+						</form>
+					</div>
 				</div>
 			</div>
 			<div id="extra">

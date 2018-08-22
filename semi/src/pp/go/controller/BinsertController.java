@@ -13,7 +13,7 @@ import pp.go.dao.GboardDao;
 import pp.go.vo.GboardVo;
 
 @WebServlet("/go/ginsert.do")
-public class InsertController extends HttpServlet {
+public class BinsertController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
