@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import pp.lol.dao.LoLBoardDao;
 import pp.lol.vo.LoLBoardVo;
-@WebServlet("/list.do")
+@WebServlet("/SW/list.do")
 public class ListController extends HttpServlet
 {
 	@Override

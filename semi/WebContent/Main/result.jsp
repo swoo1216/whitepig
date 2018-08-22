@@ -11,11 +11,11 @@
 <c:choose>
 	<c:when test="${requestScope.code=='success'}">
 		<h2>회원가입성공</h2>
-		<a href="/semi/Main/join.jsp">첫페이지로</a>
+		<a href="/semi/index.html">첫페이지로</a>
 	</c:when>
 	<c:otherwise>
 		<h2>회원가입실패</h2>
-		<a href="/semi/Main/join.jsp">첫페이지로</a>
+		<a href="/semi/index.html">첫페이지로</a>
 	</c:otherwise>
 </c:choose>
 </body>

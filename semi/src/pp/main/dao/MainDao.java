@@ -2,6 +2,7 @@ package pp.main.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import pp.main.vo.MainVo;
@@ -33,7 +34,33 @@ public class MainDao
 		}
 		finally
 		{
-			test.db.DBConnection.close(null, pstmt, con);
+			DBConnection.close(null, pstmt, con);
+		}
+	}
+	public int login(String id, String pwd)
+	{
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try
+		{
+			con=DBConnection.conn();
+			String sql = "select * from cuser where id=? pwd=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pwd);
+			System.out.println(sql);
+			int n = pstmt.executeUpdate();
+			return n;
+		}
+		catch(SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return -1;
+		}
+		finally
+		{
+			DBConnection.close(rs, pstmt, con);
 		}
 	}
 }
