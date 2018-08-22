@@ -74,7 +74,7 @@
 			<div class="w3-container w3-margin">
 				<img src="poke/${list }.gif" style="width: 80px">
 				<button class="w3-btn w3-round w3-ripple w3-teal w3-margin"
-					onclick="document.getElementById('check').style.display='block'" title="구매">
+					onclick="check(${list})" title="구매">
 					<i class="fa fa-money fa-lg"></i>
 				</button>
 				<button class="w3-btn w3-round w3-rip w3-teal"

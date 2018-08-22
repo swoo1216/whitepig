@@ -33,13 +33,24 @@ public class InvenController extends HttpServlet{
 		String tier=iv.getTier();
 		
 		GuserDao dao1=GuserDao.getInstance();
+	
 		GuserVo vo1=dao1.select(id);
 		
-		dao1.update(vo1);
+		String pwd=vo1.getPwd();
+		
+		String email=vo1.getEmail();
+		String nic=vo1.getNic();
+		String clss=vo1.getClss();
+		int point=vo1.getPoint();
+		
+		GuserVo gv=new GuserVo(id, pwd, email, nic, clss, num, point-price);
+		
+		dao1.update(gv);
+		
 		InvenVo vo=new InvenVo(0, id, num, name, type, tier, price, null);
 		InvenDao dao=InvenDao.getInstance();
 		dao.insert(vo);
 		
-		
+		resp.sendRedirect("list.do");
 	}
 }
