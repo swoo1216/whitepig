@@ -15,7 +15,7 @@ import pp.go.db.DBConnection;
 import pp.main.dao.MainDao;
 import pp.main.vo.MainVo;
 
-@WebServlet("mjoin.do")
+@WebServlet("/mjoin.do")
 public class JoinController extends HttpServlet
 {
 	@Override
@@ -41,6 +41,6 @@ public class JoinController extends HttpServlet
 		{
 			request.setAttribute("code", "fail");
 		}
-		request.getRequestDispatcher("/Main/result.jsp").forward(request, response);
+		request.getRequestDispatcher("/main.jsp").forward(request, response);
 	}
 }
