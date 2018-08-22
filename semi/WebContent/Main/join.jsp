@@ -24,9 +24,10 @@
                 <tr>
                     <th>비밀번호</th>
                     <td><input type="text" name="pwd" ></td>
-                </tr><tr>
+                </tr>
+                <tr>
                     <th>비밀번호확인</th>
-                    <td><input type="text" name="pwd" ></td>
+                    <td><input type="text"></td>
                 </tr>
                 <tr>
                     <th>이메일</th>
@@ -38,7 +39,7 @@
                 </tr>
                 <tr>
                     <th colspan="2"><input type="submit" value="가입">
-                        <input type="button"  value="취소" ></th>
+                        <input type="button"  value="취소" onclick="location.href='/semi/index.html'"></th>
                         
                 </tr>
             </table>
