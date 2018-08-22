@@ -3,10 +3,6 @@
 <context>
 	<Resource name="jdbc/myoracle" auth="Container"
 		type="javax.sql.DataSource" driverClassName="oracle.jdbc.OracleDriver"
-<<<<<<< HEAD
 		url="jdbc:oracle:thin:@192.168.0.10:1521:xe" username="scott"
-=======
-		url="jdbc:oracle:thin:@localhost:1521:xe" username="scott"
->>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
 		password="tiger" maxTotal="20" maxIdle="10" maxWaitMillis="-1" />
 </context>
