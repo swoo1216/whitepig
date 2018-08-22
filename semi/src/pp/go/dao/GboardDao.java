@@ -20,7 +20,6 @@ public class GboardDao {
 	public static GboardDao getInstance() {
 		if (instance == null)
 			instance = new GboardDao();
-
 		return instance;
 	}
 
@@ -39,9 +38,9 @@ public class GboardDao {
 				return rs.getInt("mNum");
 			}
 
-			return 1;
+			return 0;
 		} catch (SQLException se) {
-			se.getStackTrace();
+			System.out.println(se.getMessage());
 			return -1;
 		} finally {
 			DBConnection.close(rs, pstmt, conn);
@@ -53,7 +52,7 @@ public class GboardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select NVL(cnt(bnum), 0) cNum from gboard";
+		String sql = "select NVL(count(bnum), 0) cNum from gboard";
 
 		try {
 			conn = DBConnection.conn();
@@ -65,7 +64,7 @@ public class GboardDao {
 			}
 			return 0;
 		} catch (SQLException se) {
-			se.getStackTrace();
+			System.out.println(se.getMessage());
 			return -1;
 		} finally {
 			DBConnection.close(rs, pstmt, conn);
@@ -81,14 +80,14 @@ public class GboardDao {
 		try {
 			conn = DBConnection.conn();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, getMaxNum());
+			pstmt.setInt(1, getMaxNum() + 1);
 			pstmt.setString(2, vo.getTitle());
 			pstmt.setString(3, vo.getContent());
-			pstmt.setString(4, vo.getId());
+			pstmt.setString(4, vo.getNic());
 
 			return pstmt.executeUpdate();
 		} catch (SQLException se) {
-			se.getStackTrace();
+			System.out.println(se.getMessage());
 			return -1;
 		} finally {
 			DBConnection.close(null, pstmt, conn);
@@ -108,7 +107,7 @@ public class GboardDao {
 
 			return pstmt.executeUpdate();
 		} catch (SQLException se) {
-			se.getStackTrace();
+			System.out.println(se.getMessage());
 			return -1;
 		} finally {
 			DBConnection.close(null, pstmt, conn);
@@ -128,7 +127,7 @@ public class GboardDao {
 
 			return pstmt.executeUpdate();
 		} catch (SQLException se) {
-			se.getStackTrace();
+			System.out.println(se.getMessage());
 			return -1;
 		} finally {
 			DBConnection.close(null, pstmt, conn);
@@ -150,7 +149,7 @@ public class GboardDao {
 
 			return pstmt.executeUpdate();
 		} catch (SQLException se) {
-			se.getStackTrace();
+			System.out.println(se.getMessage());
 			return -1;
 		} finally {
 			DBConnection.close(null, pstmt, conn);
@@ -171,7 +170,7 @@ public class GboardDao {
 
 			return pstmt.executeUpdate();
 		} catch (SQLException se) {
-			se.getStackTrace();
+			System.out.println(se.getMessage());
 			return -1;
 		} finally {
 			DBConnection.close(null, pstmt, conn);
@@ -184,7 +183,7 @@ public class GboardDao {
 		ResultSet rs = null;
 		GboardVo vo = null;
 
-		String sql = "select * from gboard where bnum = ?";
+		String sql = "select gb.*, gu.nic nic from gboard gb join guser gu on gb.id = gu.id where bnum = ?";
 
 		try {
 			conn = DBConnection.conn();
@@ -196,13 +195,13 @@ public class GboardDao {
 				String content = rs.getString("content");
 				int hit = rs.getInt("hit");
 				int recomm = rs.getInt("recomm");
-				String id = rs.getString("id");
+				String nic = rs.getString("nic");
 				Date regdate = rs.getDate("regdate");
-				vo = new GboardVo(bNum, title, content, hit, recomm, id, regdate);
+				vo = new GboardVo(bNum, title, content, hit, recomm, nic, regdate);
 			}
 			return vo;
 		} catch (SQLException se) {
-			se.getStackTrace();
+			System.out.println(se.getMessage());
 			return null;
 		} finally {
 			DBConnection.close(rs, pstmt, conn);
@@ -215,7 +214,7 @@ public class GboardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select * from gboard";
+		String sql = "select gb.*, gu.nic nic from gboard gb join guser gu on gb.id = gu.id";
 
 		try {
 			conn = DBConnection.conn();
@@ -228,14 +227,14 @@ public class GboardDao {
 				String content = rs.getString("content");
 				int hit = rs.getInt("hit");
 				int recomm = rs.getInt("recomm");
-				String id = rs.getString("id");
+				String nic = rs.getString("nic");
 				Date regdate = rs.getDate("regdate");
 
-				list.add(new GboardVo(bNum, title, content, hit, recomm, id, regdate));
+				list.add(new GboardVo(bNum, title, content, hit, recomm, nic, regdate));
 			}
 			return list;
 		} catch (SQLException se) {
-			se.getStackTrace();
+			System.out.println(se.getMessage());
 			return null;
 		} finally {
 			DBConnection.close(rs, pstmt, conn);

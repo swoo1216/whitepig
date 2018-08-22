@@ -8,19 +8,19 @@ public class GboardVo {
 	private String content;
 	private int hit;
 	private int recomm;
-	private String id;
+	private String nic;
 	private Date regdate;
 
 	public GboardVo() {
 	}
 
-	public GboardVo(int bNum, String title, String content, int hit, int recomm, String id, Date regdate) {
+	public GboardVo(int bNum, String title, String content, int hit, int recomm, String nic, Date regdate) {
 		this.bNum = bNum;
 		this.title = title;
 		this.content = content;
 		this.hit = hit;
 		this.recomm = recomm;
-		this.id = id;
+		this.nic = nic;
 		this.regdate = regdate;
 	}
 
@@ -64,12 +64,12 @@ public class GboardVo {
 		this.recomm = recomm;
 	}
 
-	public String getId() {
-		return id;
+	public String getNic() {
+		return nic;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setNic(String nic) {
+		this.nic = nic;
 	}
 
 	public Date getRegdate() {

@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import pp.lol.dao.LoLBoardDao;
 import pp.lol.vo.LoLBoardVo;
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
 @WebServlet("/list.do")
 public class ListController extends HttpServlet
 {
