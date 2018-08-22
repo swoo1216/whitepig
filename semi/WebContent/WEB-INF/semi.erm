@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2018-08-16 17:14:42</creation_date>
-			<updated_date>2018-08-21 13:39:50</updated_date>
+			<updated_date>2018-08-22 09:06:54</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -692,8 +692,8 @@
 			<width>400</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>12</font_size>
-			<x>1037</x>
-			<y>552</y>
+			<x>984</x>
+			<y>468</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -702,7 +702,7 @@
 			<connections>
 				<relation>
 					<id>0</id>
-					<source>3</source>
+					<source>5</source>
 					<target>1</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -724,7 +724,7 @@
 				</relation>
 				<relation>
 					<id>1</id>
-					<source>5</source>
+					<source>3</source>
 					<target>1</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -786,7 +786,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>4</word_id>
+					<word_id>5</word_id>
 					<id>4</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -887,7 +887,7 @@
 				<normal_column>
 					<id>7</id>
 					<referenced_column>24</referenced_column>
-					<relation>1</relation>
+					<relation>0</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -921,7 +921,7 @@
 				<normal_column>
 					<id>8</id>
 					<referenced_column>14</referenced_column>
-					<relation>0</relation>
+					<relation>1</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -977,7 +977,7 @@
 			<connections>
 				<relation>
 					<id>2</id>
-					<source>0</source>
+					<source>5</source>
 					<target>2</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -999,7 +999,7 @@
 				</relation>
 				<relation>
 					<id>3</id>
-					<source>5</source>
+					<source>0</source>
 					<target>2</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -1063,7 +1063,7 @@
 				<normal_column>
 					<id>10</id>
 					<referenced_column>24</referenced_column>
-					<relation>3</relation>
+					<relation>2</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1097,7 +1097,7 @@
 				<normal_column>
 					<id>11</id>
 					<referenced_column>0</referenced_column>
-					<relation>2</relation>
+					<relation>3</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1314,7 +1314,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>5</word_id>
+					<word_id>4</word_id>
 					<id>16</id>
 					<description></description>
 					<unique_key_name></unique_key_name>

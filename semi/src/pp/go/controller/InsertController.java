@@ -21,7 +21,7 @@ public class InsertController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		GboardVo vo = null;
 		String title = request.getParameter("title");
-		String content = request.getParameter("content").replace("\\r\\n", "<br>");
+		String content = request.getParameter("content").replace("\r\n", "<br>");
 		String id = request.getParameter("id");
 
 		vo = new GboardVo(0, title, content, 0, 0, id, null);
