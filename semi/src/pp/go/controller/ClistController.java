@@ -3,6 +3,8 @@ package pp.go.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -26,7 +28,6 @@ public class ClistController extends HttpServlet {
 		// ¡÷ºÆ
 		String sbNum = request.getParameter("bNum");
 		ArrayList<GcommentVo> list = GcommentDao.getInstance().list(Integer.parseInt(sbNum));
-
 		int i = 0;
 		JSONObject obj = new JSONObject();
 		for (GcommentVo vo : list) {
@@ -35,16 +36,41 @@ public class ClistController extends HttpServlet {
 			String content = vo.getContent();
 			int recomm = vo.getRecomm();
 			String id = vo.getId();
+			String nic = vo.getNic();
 			int bNum = vo.getbNum();
 			Date regdate = vo.getRegdate();
 			
-			arr.add(cNum);
-			arr.add(content);
-			arr.add(recomm);
-			arr.add(id);
-			arr.add(bNum);
-			arr.add(regdate);
-			obj.put(i++ + "", arr);
+			String date = new SimpleDateFormat("YYYY-MM-dd").format(regdate);
+			
+			JSONObject _cNum = new JSONObject();
+			_cNum.put("cNum", cNum);
+			arr.add(_cNum);
+			
+			JSONObject _content = new JSONObject();
+			_content.put("content", content);
+			arr.add(_content);
+			
+			JSONObject _recomm = new JSONObject();
+			_recomm.put("recomm", recomm);
+			arr.add(_recomm);
+			
+			JSONObject _id = new JSONObject();
+			_id.put("id", id);
+			arr.add(_id);
+			
+			JSONObject _nic = new JSONObject();
+			_nic.put("nic", nic);
+			arr.add(_nic);
+			
+			JSONObject _bNum = new JSONObject();
+			_bNum.put("bNum", bNum);
+			arr.add(_bNum);
+			
+			JSONObject _date = new JSONObject();
+			_date.put("date", date);
+			arr.add(_date);
+			
+			obj.put(i++, arr);
 		}
 		
 		response.setContentType("text/plain; charset=UTF-8");

@@ -39,22 +39,45 @@ td {
 		var id = document.commentFrm.id.value;
 		var bNum = document.commentFrm.bNum.value;
 		var content = document.commentFrm.content.value;
-		
-		console.log("id, bNum, content", id, bNum, content);
+
 		xhr = new XMLHttpRequest();
-		console.log("xhr", xhr);
 		xhr.onreadystatechange = function() {
-			console.log("들었어");
-			if(xhr.readyState == 4 && xhr.status == 200){
+			if (xhr.readyState == 4 && xhr.status == 200) {
 				var text = xhr.responseText;
-				console.log("text", text);
-				console.log("ev", eval((text)));
 				var json = JSON.parse(text);
-				console.log("JSON", json);
+				var comments = document.getElementById("comments");
+				comments.innerHTML = "";
+				for (var i in json) {
+					var j = json[i];
+					var cNum = j[0].cNum;
+					var content = j[1].content;
+					var recomm = j[2].recomm;
+					var id = j[3].id;
+					var nic = j[4].nic;
+					var bNum = j[5].bNum;
+					var date = j[6].date;
+					var td1 = document.createElement("td")
+					td1.width = '5%';
+					comments.appendChild(td1);
+					
+					
+					
+					
+					
+					
+					
+					comments.innerHTML += "<td width='5%'>" + nic + "</td>"
+							+ "<td width='80%'>" + content + "</td>"
+							+ "<td width='5%''>" + recomm + "</td>"
+							+ "<td width='10%''>" + date + "</td>";
+				}
+
+				console.log("inner", comments.innerHTML);
 			}
 		}
 		xhr.open("POST", "gcinsert.do", true);
-		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr.setRequestHeader("Content-type",
+				"application/x-www-form-urlencoded");
 		console.log("ddd");
 		xhr.send("id=" + id + "&bNum=" + bNum + "&content=" + content);
 	}
@@ -83,7 +106,7 @@ td {
 						</tr>
 						<tr>
 							<td>글쓴이</td>
-							<td>${vo.nic} | 조회${vo.hit} | 작성일 ${vo.regdate} | 댓글</td>
+							<td>${vo.nic}| 조회${vo.hit} | 작성일 ${vo.regdate} | 댓글</td>
 						</tr>
 						<tr>
 							<td height="500px" colspan="2"
@@ -95,7 +118,7 @@ td {
 						<c:forEach var="vo" items="${gclist}">
 							<table>
 								<tr>
-									<td width="5%">${vo.id}</td>
+									<td width="5%">${vo.nic}</td>
 									<td width="80%">${vo.content}</td>
 									<td width="5%">${vo.recomm}</td>
 									<td width="10%">${vo.regdate}</td>

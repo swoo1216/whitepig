@@ -30,7 +30,7 @@ public class CinsertController extends HttpServlet {
 			id = request.getParameter("id");
 		}
 
-		int n = GcommentDao.getInstance().insert(new GcommentVo(0, content, 0, id, bNum, null));
+		int n = GcommentDao.getInstance().insert(new GcommentVo(0, content, 0, id, null, bNum, null));
 
 		if (n > 0) {
 			request.setAttribute("bNum", bNum);
