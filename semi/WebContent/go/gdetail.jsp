@@ -48,6 +48,7 @@ td {
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var text = xhr.responseText;
 				console.log("text", text);
+				console.log("ev", eval((text)));
 				var json = JSON.parse(text);
 				console.log("JSON", json);
 			}
@@ -82,7 +83,7 @@ td {
 						</tr>
 						<tr>
 							<td>글쓴이</td>
-							<td>${vo.nic}|조회${vo.hit}| 작성일 ${vo.regdate} | 댓글</td>
+							<td>${vo.nic} | 조회${vo.hit} | 작성일 ${vo.regdate} | 댓글</td>
 						</tr>
 						<tr>
 							<td height="500px" colspan="2"
