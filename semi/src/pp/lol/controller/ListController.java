@@ -42,6 +42,6 @@ public class ListController extends HttpServlet
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageNum", pageNum);
-		request.getRequestDispatcher("/SW/index.jsp").forward(request, response);
+		request.getRequestDispatcher("/semi/main.jsp").forward(request, response);
 	}
 }

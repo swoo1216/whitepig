@@ -102,7 +102,7 @@ a:hover{
 	
 	</div>
 	<ul>
-		<li><a href="list.do">LoL</a></li>
+		<li><a href="/semi/sw/index.jsp">LoL</a></li>
 		<li><a href="#">Music</a></li>
 		<li><a href="#">Pocketmon</a></li>
 		<li><a href="#">OldGame</a></li>
@@ -154,7 +154,7 @@ a:hover{
 --%>
 	<c:when test="${requestScope.code=='esuccess'}">
 		<script type="text/javascript">
-		alert('당신의 아이디는' + ${id}+'입니다.');
+		alert('당신의 아이디는' + ${id }+'입니다.');
 		</script>
 	</c:when>
 	<c:when test="${requestScope.code=='efail'}">
@@ -164,7 +164,7 @@ a:hover{
 	</c:when>
 	<c:when test="${requestScope.code=='psuccess'}">
 		<script type="text/javascript">
-		alert('당신의 비밀번호는' + ${pwd}+'입니다.');
+		alert('당신의 비밀번호는' + ${pwd }+'입니다.');
 		</script>
 	</c:when>
 	<c:when test="${requestScope.code=='pfail'}">

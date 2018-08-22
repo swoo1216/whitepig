@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import pp.lol.dao.LoLBoardDao;
 import pp.lol.vo.LoLBoardVo;
 
-@WebServlet("/SW/insert.do")
+@WebServlet("/sw/insert.do")
 public class InsertController extends HttpServlet
 
 {
@@ -38,6 +38,6 @@ public class InsertController extends HttpServlet
 		{
 			request.setAttribute("code", "fail");
 		}
-		request.getRequestDispatcher("/SW/result.jsp").forward(request, response);
+		request.getRequestDispatcher("/sw/result.jsp").forward(request, response);
 	}
 }
