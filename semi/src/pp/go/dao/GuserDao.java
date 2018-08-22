@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import pp.go.db.DBConnection;
+import pp.go.vo.GuserVo;
 
 public class GuserDao {
 	private static GuserDao instance = null;
@@ -42,5 +43,27 @@ public class GuserDao {
 			DBConnection.close(rs, pstmt, conn);
 		}
 		return false;
+	}
+
+	public int update(GuserVo vo) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		String sql = "update guser set point = ?, num = ? where id = ?";
+
+		try {
+			conn = DBConnection.conn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, vo.getPoint());
+			pstmt.setInt(2, vo.getNum());
+			pstmt.setString(3, vo.getId());
+
+			return pstmt.executeUpdate();
+		} catch (SQLException se) {
+			System.out.println(se.getMessage());
+			return -1;
+		} finally {
+			DBConnection.close(null, pstmt, conn);
+		}
 	}
 }

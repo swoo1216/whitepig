@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import pp.icon.dao.IconDao;
 import pp.icon.vo.IconVo;
-@WebServlet("/list.do")
+@WebServlet("/icon/list.do")
 public class IconController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");

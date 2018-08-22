@@ -10,10 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pp.go.dao.GboardDao;
+import pp.go.dao.GcommentDao;
 import pp.go.vo.GboardVo;
+import pp.go.vo.GcommentVo;
 
 @WebServlet("/go/gboard.do")
-public class ListController extends HttpServlet {
+public class BlistController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -23,9 +25,6 @@ public class ListController extends HttpServlet {
 		
 		
 		ArrayList<GboardVo> list = GboardDao.getInstance().list();
-		
-		
-		
 		
 		int pageCount = GboardDao.getInstance().getCount();
 

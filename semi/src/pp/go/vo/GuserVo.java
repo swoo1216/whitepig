@@ -6,17 +6,19 @@ public class GuserVo {
 	private String email;
 	private String nic;
 	private String clss;
+	private int num;
 	private int point;
 
 	public GuserVo() {
 	}
 
-	public GuserVo(String id, String pwd, String email, String nic, String clss, int point) {
+	public GuserVo(String id, String pwd, String email, String nic, String clss, int num, int point) {
 		this.id = id;
 		this.pwd = pwd;
 		this.email = email;
 		this.nic = nic;
 		this.clss = clss;
+		this.num = num;
 		this.point = point;
 	}
 
@@ -58,6 +60,14 @@ public class GuserVo {
 
 	public void setClss(String clss) {
 		this.clss = clss;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
 	}
 
 	public int getPoint() {
