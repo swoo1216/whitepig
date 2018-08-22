@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -56,9 +55,7 @@ td {
 	<div id="wrapper">
 		<div id="header"></div>
 		<div id="center">
-			<div id="nav">
-				
-			</div>
+			<div id="nav"></div>
 			<div id="content">
 				<div id="gtable">
 					<table>
@@ -80,9 +77,7 @@ td {
 								<c:forEach var="vo" items="${list}">
 									<tr>
 										<td>${vo.bNum}</td>
-										<td style="text-align: left;"><a
-											href="<c:url value='gdetail.do?bNum=${vo.bNum}'/>">${vo.title}</a>
-											&nbsp;[0]</td>
+										<td style="text-align: left;"><a href="<c:url value='gdetail.do?bNum=${vo.bNum}'/>">${vo.title}</a> &nbsp;[${vo.countComment}]</td>
 										<td>${vo.nic}</td>
 										<td>${vo.regdate}</td>
 										<td>${vo.hit}</td>
@@ -93,6 +88,34 @@ td {
 						</c:choose>
 					</table>
 					<button type="button" onclick="location.href = 'ginsert.jsp';">글쓰기</button>
+					<div style="text-align: center">
+						<c:choose>
+							<c:when test="${startPage>10}">
+								<a href="gboard.do?pageNum=${startPage-1 }">[&lt;]</a>
+							</c:when>
+							<c:otherwise>
+								[&lt;]
+							</c:otherwise>
+						</c:choose>
+						<c:forEach var="i" begin="${startPage}" end="${endPage}">
+							<c:choose>
+								<c:when test="${pageNum == i}">
+							[<a href="gboard.do?pageNum=${i}">${i}</a>]
+						</c:when>
+								<c:otherwise>
+							[<a href="gboard.do?pageNum=${i}">${i}</a>]
+						</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<c:choose>
+							<c:when test="${endPage<pageCount}">
+								<a href="gboard.do?pageNum=${endPage+1}">[&gt;]</a>
+							</c:when>
+							<c:otherwise>
+								[&gt;]
+							</c:otherwise>
+						</c:choose>
+					</div>
 				</div>
 			</div>
 			<div id="extra">
