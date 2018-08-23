@@ -22,6 +22,10 @@ th {
 td {
 	border-bottom: 1px solid black;
 }
+
+#comments{
+	margin-top: 30px;
+}
 </style>
 <script type="text/javascript">
 	window.onload = function() {
@@ -49,53 +53,75 @@ td {
 				comments.innerHTML = "";
 				for (var i in json) {
 					var j = json[i];
-					var cNum = j[0].cNum;
-					var content = j[1].content;
-					var recomm = j[2].recomm;
-					var id = j[3].id;
-					var nic = j[4].nic;
-					var bNum = j[5].bNum;
-					var date = j[6].date;
+					var cNum = j.cNum;
+					var content = j.content;
+					var recomm = j.recomm;
+					var id = j.id;
+					var nic = j.nic;
+					var bNum = j.bNum;
+					var countComment = j.countComment;
+					var hit = j.hit;
+					var date = j.date;
+					
+					var table = document.createElement("table");
+					var tbody = document.createElement("tbody");
+					var tr = document.createElement("tr");
+					
+					var td1 = document.createElement("td");
+					var td2 = document.createElement("td");
+					var td3 = document.createElement("td");
+					var td4 = document.createElement("td");
+					
+					td1.width="5%";
+					td2.width="78%";
+					td3.width="7%";
+					td4.width="10%";
 					
 					var text1 = document.createTextNode(nic);
-					var span1 = document.createElement("span");
-					span1.appendChild(text1);
-					span1.style.width = "5%";
-					comments.appendChild(span1);
-					
 					var text2 = document.createTextNode(content);
-					var span2 = document.createElement("span");
-					span2.appendChild(text2);
-					span2.style.width = "80%";
-					comments.appendChild(span2);
-					
+					console.log(text2);
 					var text3 = document.createTextNode(recomm);
-					var span3 = document.createElement("span");
-					span3.appendChild(text3);
-					span3.style.width = "5%";
-					comments.appendChild(span3);
-					
 					var text4 = document.createTextNode(date);
-					var span4 = document.createElement("span");
-					span4.appendChild(text4);
-					span4.style.width = "5%";
-					comments.appendChild(span4);
-					comments.appendChild(document.createTextNode("\\r\\n"));
 					
+					var pre = document.createElement("pre");
+					pre.appendChild(text2);
 					
-					//comments.innerHTML += "<td width='5%'>" + nic + "</td>"
-					//		+ "<td width='80%'>" + content + "</td>"
-					//		+ "<td width='5%''>" + recomm + "</td>"
-					//		+ "<td width='10%''>" + date + "</td>";
+					td1.appendChild(text1);
+					td2.appendChild(pre);
+					td3.appendChild(text3);
+					td4.appendChild(text4);
+					
+					tr.appendChild(td1);
+					tr.appendChild(td2);
+					tr.appendChild(td3);
+					tr.appendChild(td4);
+					
+					tbody.appendChild(tr);
+					table.appendChild(tbody);
+					
+					comments.appendChild(table);
+					
+					var reset = document.getElementById("resetComment");
+					reset.innerHTML = "";
+					
+					var re_tr1 = document.createElement("td");
+					var re_tr2 = document.createElement("td");
+					var writer = document.createTextNode("글쓴이");
+					var texts = nic + " | 조회 " + hit + " | 작성일 " + date + " | 댓글 " + countComment; 
+					var count = document.createTextNode(texts);
+					re_tr1.appendChild(writer);
+					re_tr2.appendChild(count);
+					
+					reset.appendChild(re_tr1);
+					reset.appendChild(re_tr2);
+					
+					document.getElementById("tarea").value="";
 				}
-
-				console.log("inner", comments.innerHTML);
 			}
 		}
 		xhr.open("POST", "gcinsert.do", true);
 		xhr.setRequestHeader("Content-type",
 				"application/x-www-form-urlencoded");
-		console.log("ddd");
 		xhr.send("id=" + id + "&bNum=" + bNum + "&content=" + content);
 	}
 </script>
@@ -121,9 +147,9 @@ td {
 							<td width="8%">제목</td>
 							<td>${vo.title}</td>
 						</tr>
-						<tr>
+						<tr id="resetComment">
 							<td>글쓴이</td>
-							<td>${vo.nic}| 조회${vo.hit} | 작성일 ${vo.regdate} | 댓글</td>
+							<td>${vo.nic} | 조회 ${vo.hit} | 작성일 ${vo.regdate} | 댓글 ${vo.countComment}</td>
 						</tr>
 						<tr>
 							<td height="500px" colspan="2"
@@ -131,13 +157,14 @@ td {
 						</tr>
 					</table>
 					<button type="button" onclick="golist()">목록</button>
+					<button type="button" onclick="golist()">추천</button>
 					<div id="comments">
 						<c:forEach var="vo" items="${gclist}">
 							<table>
 								<tr>
 									<td width="5%">${vo.nic}</td>
-									<td width="80%">${vo.content}</td>
-									<td width="5%">${vo.recomm}</td>
+									<td width="78%">${vo.content}</td>
+									<td width="7%">${vo.recomm}</td>
 									<td width="10%">${vo.regdate}</td>
 								</tr>
 							</table>
@@ -147,12 +174,10 @@ td {
 						<form method="post" action="gcinsert.do" name="commentFrm">
 							<table>
 								<tr>
-									<td colspan="3">${vo.nic}</td>
-								</tr>
-								<tr>
 									<td width="10%">댓글</td>
-									<td width="70%"><textarea rows="5" cols="100"
-											name="content"></textarea></td>
+									<td width="10%">${vo.nic}</td>
+									<td width="60%"><textarea rows="5" cols="100"
+											name="content" id="tarea"></textarea></td>
 									<td width="20%"><button type="button" onclick="getList()">작성</button></td>
 								</tr>
 							</table>

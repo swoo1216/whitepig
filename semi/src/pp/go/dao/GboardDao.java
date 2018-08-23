@@ -196,8 +196,9 @@ public class GboardDao {
 				int hit = rs.getInt("hit");
 				int recomm = rs.getInt("recomm");
 				String nic = rs.getString("nic");
+				int countComment = GcommentDao.getInstance().getCount(bNum);
 				Date regdate = rs.getDate("regdate");
-				vo = new GboardVo(bNum, title, content, hit, recomm, nic, regdate);
+				vo = new GboardVo(bNum, title, content, hit, recomm, nic, countComment, regdate);
 			}
 			return vo;
 		} catch (SQLException se) {
@@ -208,17 +209,25 @@ public class GboardDao {
 		}
 	}
 
-	public ArrayList<GboardVo> list() {
+	public ArrayList<GboardVo> list(int startRow, int endRow) {
 		ArrayList<GboardVo> list = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select gb.*, gu.nic nic from gboard gb join guser gu on gb.id = gu.id  order by bnum desc";
+		String sql = "select * from " + 
+				"( " + 
+				"	select aa.*, rownum rnum from " + 
+				"	( " + 
+				"		select gb.*, gu.nic nic from gboard gb join guser gu on gb.id = gu.id  order by bnum desc " + 
+				"	) aa " + 
+				") where rnum >= ? and rnum <=?";
 
 		try {
 			conn = DBConnection.conn();
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -229,8 +238,9 @@ public class GboardDao {
 				int recomm = rs.getInt("recomm");
 				String nic = rs.getString("nic");
 				Date regdate = rs.getDate("regdate");
+				int countComment = GcommentDao.getInstance().getCount(bNum);
 
-				list.add(new GboardVo(bNum, title, content, hit, recomm, nic, regdate));
+				list.add(new GboardVo(bNum, title, content, hit, recomm, nic, countComment, regdate));
 			}
 			return list;
 		} catch (SQLException se) {

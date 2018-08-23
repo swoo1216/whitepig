@@ -17,14 +17,14 @@ public class BinsertController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		//게시물 추가
 		request.setCharacterEncoding("UTF-8");
 		GboardVo vo = null;
 		String title = request.getParameter("title");
 		String content = request.getParameter("content").replace("\r\n", "<br>");
 		String id = request.getParameter("id");
-
-		vo = new GboardVo(0, title, content, 0, 0, id, null);
+		//편의상 여기는 아이디로 준다
+		vo = new GboardVo(0, title, content, 0, 0, id, 0,  null);
 		int n = GboardDao.getInstance().insert(vo);
 		if (n > 0) {
 			response.sendRedirect("gboard.do");

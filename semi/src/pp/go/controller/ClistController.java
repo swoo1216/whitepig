@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import pp.go.dao.GboardDao;
 import pp.go.dao.GcommentDao;
 import pp.go.vo.GcommentVo;
 
@@ -25,52 +26,39 @@ public class ClistController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// 주석
+		// 댓글 불러오기
 		String sbNum = request.getParameter("bNum");
 		ArrayList<GcommentVo> list = GcommentDao.getInstance().list(Integer.parseInt(sbNum));
 		int i = 0;
 		JSONObject obj = new JSONObject();
 		for (GcommentVo vo : list) {
-			JSONArray arr = new JSONArray();
 			int cNum = vo.getcNum();
-			String content = vo.getContent();
+			String content = vo.getContent().replaceAll("<br>", "\\n");
 			int recomm = vo.getRecomm();
 			String id = vo.getId();
 			String nic = vo.getNic();
 			int bNum = vo.getbNum();
-			Date regdate = vo.getRegdate();
+			int countComment = GcommentDao.getInstance().getCount(bNum);
+			int hit = GboardDao.getInstance().select(bNum).getHit();
+			Date regdate = GboardDao.getInstance().select(bNum).getRegdate();
 			
 			String date = new SimpleDateFormat("YYYY-MM-dd").format(regdate);
 			
-			JSONObject _cNum = new JSONObject();
-			_cNum.put("cNum", cNum);
-			arr.add(_cNum);
+			JSONObject json = new JSONObject();
+			JSONArray arr = new JSONArray();
 			
-			JSONObject _content = new JSONObject();
-			_content.put("content", content);
-			arr.add(_content);
+			json.put("cNum", cNum);
+			json.put("content", content);
+			json.put("recomm", recomm);
+			json.put("id", id);
+			json.put("nic", nic);
+			json.put("bNum", bNum);
+			json.put("countComment", countComment);
+			json.put("hit", hit);
+			json.put("date", date);
 			
-			JSONObject _recomm = new JSONObject();
-			_recomm.put("recomm", recomm);
-			arr.add(_recomm);
 			
-			JSONObject _id = new JSONObject();
-			_id.put("id", id);
-			arr.add(_id);
-			
-			JSONObject _nic = new JSONObject();
-			_nic.put("nic", nic);
-			arr.add(_nic);
-			
-			JSONObject _bNum = new JSONObject();
-			_bNum.put("bNum", bNum);
-			arr.add(_bNum);
-			
-			JSONObject _date = new JSONObject();
-			_date.put("date", date);
-			arr.add(_date);
-			
-			obj.put(i++, arr);
+			obj.put(i++, json);
 		}
 		
 		response.setContentType("text/plain; charset=UTF-8");

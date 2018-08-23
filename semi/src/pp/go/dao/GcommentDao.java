@@ -47,16 +47,17 @@ public class GcommentDao {
 		}
 	}
 
-	public int getCount() {
+	public int getCount(int bNum) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select NVL(count(rnum), 0) cnt from Gcomment";
+		String sql = "select NVL(count(cnum), 0) cnt from Gcomment where bNum = ?";
 
 		try {
 			conn = DBConnection.conn();
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bNum);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				return rs.getInt("cnt");
@@ -99,7 +100,7 @@ public class GcommentDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select gc.*, gu.nic nic from gcomment gc join guser gu on gc.id=gu.id  where bNum = ? order by cnum desc";
+		String sql = "select gc.*, gu.nic nic from gcomment gc join guser gu on gc.id=gu.id  where bNum = ? order by cnum asc";
 
 		try {
 			conn = DBConnection.conn();
@@ -124,5 +125,4 @@ public class GcommentDao {
 			DBConnection.close(rs, pstmt, conn);
 		}
 	}
-
 }
