@@ -50,9 +50,9 @@ public class IconDao {
 			}else {
 				String searchCase = "";
 				if(search.equals("type")) {
-					searchCase = " =? ";
+					searchCase = " = ? ";
 				}else {
-					searchCase = "like '%'||?||'%' ";
+					searchCase = " like '%'||?||'%' ";
 				}
 				String sql="select NVL(count(num),0) cnt from icon where "+search+searchCase;
 				pstmt=con.prepareStatement(sql);
@@ -94,9 +94,9 @@ public class IconDao {
 		}else {
 			String searchCase = "";
 			if(search.equals("type")) {
-				searchCase= "=?";
+				searchCase=" = ? ";
 			}else {
-				searchCase="like '%'||?||'%' ";
+				searchCase=" like '%'||?||'%' ";
 			}
 		
 			String sql="select * from ( "
