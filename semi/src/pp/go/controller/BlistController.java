@@ -21,7 +21,7 @@ public class BlistController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//게시물 리스트
-		int page = 30;
+		int page = 20;
 
 		String spageNum = request.getParameter("pageNum");
 		int pageNum = 1;

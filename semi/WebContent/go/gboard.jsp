@@ -58,6 +58,17 @@ td {
 			<div id="nav"></div>
 			<div id="content">
 				<div id="gtable">
+					<button>번호순</button>
+					<button>조회순</button>
+					<button>추천순</button>
+					<button>날짜순</button>
+					<div>
+						<select>
+							<option value="content">내용</option>
+							<option value="id">글쓴이</option>
+							<option value="title">제목</option>
+						</select> <input type="text">
+					</div>
 					<table>
 						<tr>
 							<th width="7%">번호</th>
