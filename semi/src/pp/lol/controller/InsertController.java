@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import pp.lol.dao.LoLBoardDao;
 import pp.lol.vo.LoLBoardVo;
 
-@WebServlet("/sw/insert.do")
+@WebServlet("/linsert.do")
 public class InsertController extends HttpServlet
 
 {
