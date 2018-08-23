@@ -33,3 +33,25 @@ CREATE TABLE GCOMMENT(
 	BNUM NUMBER(10) CONSTRAINT GC_BNUM_FK REFERENCES GBOARD(BNUM) ON DELETE CASCADE,
 	REGDATE DATE
 );
+
+--TABLENAMES
+create table tNames
+(
+	tNum number(5) constraint gt_tNum_pk primary key,
+	tName varchar(30) constraint gt_tname_uu unique
+);
+
+
+
+create table recommTable
+(
+	reNum number(10) constraint rt_reNum_pk primary key,
+	ID VARCHAR2(30) CONSTRAINT rt_ID_FK REFERENCES GUSER(ID) ON DELETE CASCADE,
+	BNUM NUMBER(10) CONSTRAINT rt_BNUM_FK REFERENCES GBOARD(BNUM) ON DELETE CASCADE,
+	tNum
+);
+
+
+
+
+

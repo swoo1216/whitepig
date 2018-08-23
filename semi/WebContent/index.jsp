@@ -15,13 +15,21 @@
 <title></title>
 </head>
 <body>
+<c:choose>
+<c:when test="${empty param.content}">
+	<c:set var="content" value="main/main.jsp"/>
+</c:when>
+<c:otherwise>
+	<c:set var="content" value="${param.content}"/>
+</c:otherwise>
+</c:choose>
 	<div id="wrapper">
 		<div id="center">
 			<div id="nav">
 				<jsp:include page="nav.jsp"/>
 			</div>
 			<div id="content">
-				<jsp:include page="sw/index.jsp"/>
+				 <jsp:include page="${content}"/>
 			</div>
 			<div id="extra">
 				<jsp:include page="extra.jsp"/>
