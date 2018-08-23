@@ -1,19 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-</body>
-</html>
+<div id="title">pants</div>
+<button class="navButton">기동아</button>
+<button class="navButton">넌이제</button>
+<button class="navButton">디디디</button>
+<button class="navButton">자자자</button>
+<button class="navButton">이이이</button>
+<button class="navButton" style="border-bottom: 1px solid white;">너너너</button>

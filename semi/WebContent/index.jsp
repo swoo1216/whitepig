@@ -5,27 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/go_frm.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/go_frm.css">
 <style type="text/css">
-td, th {
-	border-spacing: 0px;
-	border-style: none;
-	padding: 5px;
-}
 
-th {
-	border-top: 1px solid black;
-	border-bottom: 1px solid black;
-}
-
-td {
-	border-bottom: 1px solid black;
-}
-
-#comments{
-	margin-top: 30px;
-}
 </style>
 <script type="text/javascript">
 
@@ -34,9 +16,6 @@ td {
 </head>
 <body>
 	<div id="wrapper">
-		<div id="header">
-			<jsp:include page="go/gboard.jsp"/>
-		</div>
 		<div id="center">
 			<div id="nav">
 				<jsp:include page="nav.jsp"/>
@@ -49,6 +28,5 @@ td {
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>
