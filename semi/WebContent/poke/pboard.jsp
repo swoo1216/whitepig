@@ -61,7 +61,7 @@
 			<c:choose>
 				<c:when test="${startPage>5 }">
 					<a
-						href="list.do?pageNum=${startPage-1 }&search=${param.search}&keyword=${param.keyword}"
+						href="plist.do?pageNum=${startPage-1 }&search=${param.search}&keyword=${param.keyword}"
 						class="w3-bar-item w3-btn w3-ripple w3-hover-teal"><i
 						class="fa fa-chevron-left"></i></a>
 				</c:when>
@@ -75,12 +75,12 @@
 				<c:choose>
 					<c:when test="${pageNum==i }">
 						<a
-							href="list.do?pageNum=${i }&search=${param.search}&keyword=${param.keyword}"
+							href="plist.do?pageNum=${i }&search=${param.search}&keyword=${param.keyword}"
 							class="w3-bar-item w3-btn w3-ripple w3-teal w3-hover-teal">${i }</a>
 					</c:when>
 					<c:otherwise>
 						<a
-							href="list.do?pageNum=${i }&search=${param.search}&keyword=${param.keyword}"
+							href="plist.do?pageNum=${i }&search=${param.search}&keyword=${param.keyword}"
 							class="w3-bar-item w3-btn w3-ripple w3-hover-teal">${i }</a>
 					</c:otherwise>
 				</c:choose>
@@ -89,7 +89,7 @@
 			<c:choose>
 				<c:when test="${endPage<pageCount }">
 					<a
-						href="list.do?pageNum=${endPage+1 }&search=${param.search}&keyword=${param.keyword}"
+						href="plist.do?pageNum=${endPage+1 }&search=${param.search}&keyword=${param.keyword}"
 						class="w3-bar-item w3-btn w3-ripple w3-hover-teal"><i
 						class="fa fa-chevron-right"></i></a>
 				</c:when>

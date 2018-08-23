@@ -9,10 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pp.poke.dao.IconDao;
-import pp.poke.vo.IconVo;
-@WebServlet("/poke/list.do")
-public class IconController extends HttpServlet{
+import pp.poke.dao.PboardDao;
+import pp.poke.vo.PboardVo;
+@WebServlet("/poke/plist.do")
+public class PboardController extends HttpServlet{
+	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		String search=req.getParameter("search");
@@ -22,7 +23,6 @@ public class IconController extends HttpServlet{
 			keyword="";
 			search="";
 		}
-		
 		String spageNum=req.getParameter("pageNum");
 		int pageNum=1;
 		if(spageNum!=null) {
@@ -31,9 +31,9 @@ public class IconController extends HttpServlet{
 		int startRow=(pageNum-1)*20+1;
 		int endRow=startRow+19;
 		
-		IconDao dao=IconDao.getInstance();
-		ArrayList<IconVo> list=dao.listIcon(startRow, endRow,search,keyword);
-		int pageCount=(int)Math.ceil(dao.getCount(search,keyword)/20.0);
+		PboardDao dao=PboardDao.getInstance();
+		ArrayList<PboardVo> list=dao.list(startRow, endRow, search, keyword);
+		int pageCount=(int)Math.ceil(dao.getCount(search, keyword)/20.0);
 		int startPage=((pageNum-1)/5*5)+1;
 		int endPage=startPage+4;
 		if(endPage>pageCount) {
@@ -46,9 +46,11 @@ public class IconController extends HttpServlet{
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("search", search);
 		req.setAttribute("keyword", keyword);
-		req.getRequestDispatcher("/poke/main2.jsp").forward(req, resp);
+		req.getRequestDispatcher("/poke/pboard.jsp").forward(req, resp);
 	}
 }
+
+
 
 
 
