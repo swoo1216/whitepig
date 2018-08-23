@@ -7,33 +7,30 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import pp.main.dao.MainDao;
 
-@WebServlet("/mlogin.do")
-public class LoginController extends HttpServlet
+@WebServlet("/mfindpwd.do")
+public class FindpwdController extends HttpServlet
 {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		request.setCharacterEncoding("utf-8");
-		String id= request.getParameter("id");
-		String pwd= request.getParameter("pwd");
+		String id=request.getParameter("id");
+		String email=request.getParameter("email");
 		System.out.println(id);
-		System.out.println(pwd);
+		System.out.println(email);
 		MainDao dao = new MainDao();
-		String nic = dao.login(id, pwd);
-		if(nic!=null)
+		String pwd=dao.findpwd(id,email);
+		if(id!=null && email!=null)
 		{
-			request.setAttribute("code", "success1");
-			HttpSession session = request.getSession();
-			session.setAttribute("id", id);
-			session.setAttribute("nic", nic);
+			request.setAttribute("code", "psuccess");
+			request.setAttribute("pwd", pwd);
 		}
 		else
 		{
-			request.setAttribute("code", "fail1");
+			request.setAttribute("code", "pfail");
 		}
 		request.getRequestDispatcher("/main.jsp").forward(request, response);
 	}

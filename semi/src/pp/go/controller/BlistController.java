@@ -19,16 +19,32 @@ public class BlistController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int bottomPage;
-		int listCount;
-		
-		
-		
-		ArrayList<GboardVo> list = GboardDao.getInstance().list();
-		
-		int pageCount = GboardDao.getInstance().getCount();
+		//게시물 리스트
+		int page = 20;
 
+		String spageNum = request.getParameter("pageNum");
+		int pageNum = 1;
+		if (spageNum != null) {
+			pageNum = Integer.parseInt(spageNum);
+		}
+		int startRow = (pageNum - 1) * page + 1;
+		int endRow = startRow + (page - 1);
+
+		ArrayList<GboardVo> list = GboardDao.getInstance().list(startRow, endRow);
+		int pageCount = (int) Math.floor(Math.ceil(GboardDao.getInstance().getCount() / (double) page));
+		int startPageNum = ((pageNum - 1) / page * page) + 1;
+
+		int endPageNum = startPageNum + (page - 1);
+
+		if (endPageNum > pageCount) {
+			endPageNum = pageCount;
+		}
+		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("startPage", startPageNum);
+		request.setAttribute("endPage", endPageNum);
+		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("/go/gboard.jsp").forward(request, response);;
+		request.getRequestDispatcher("/go/gboard.jsp").forward(request, response);
+		;
 	}
 }

@@ -10,10 +10,11 @@
 </head>
 <body>
 	<h2>id찾기</h2>
-	<form method="post" action="<%=request.getContextPath()%>/mfindid.do">
+	<form method="post" action="<%=request.getContextPath()%>/mfindpwd.do">
 	<div class="w3-section">
+	  	<input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="아이디" name="id" required>
 	  	<input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="이메일" name="email" required>
-	   	<button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">계정찾기</button>
+	   	<button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">비밀번호 찾기</button>
 	</div>
 	</form>
 </body>

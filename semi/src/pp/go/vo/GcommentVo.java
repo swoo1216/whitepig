@@ -7,17 +7,19 @@ public class GcommentVo {
 	private String content;
 	private int recomm;
 	private String id;
+	private String nic;
 	private int bNum;
 	private Date regdate;
 
 	public GcommentVo() {
 	}
 
-	public GcommentVo(int cNum, String content, int recomm, String id, int bNum, Date regdate) {
+	public GcommentVo(int cNum, String content, int recomm, String id, String nic, int bNum, Date regdate) {
 		this.cNum = cNum;
 		this.content = content;
 		this.recomm = recomm;
 		this.id = id;
+		this.nic = nic;
 		this.bNum = bNum;
 		this.regdate = regdate;
 	}
@@ -52,6 +54,14 @@ public class GcommentVo {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getNic() {
+		return nic;
+	}
+
+	public void setNic(String nic) {
+		this.nic = nic;
 	}
 
 	public int getbNum() {

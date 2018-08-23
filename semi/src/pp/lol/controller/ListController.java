@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import pp.lol.dao.LoLBoardDao;
 import pp.lol.vo.LoLBoardVo;
-@WebServlet("/SW/list.do")
+@WebServlet("/llist.do")
 public class ListController extends HttpServlet
 {
 	@Override
@@ -42,6 +42,6 @@ public class ListController extends HttpServlet
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageNum", pageNum);
-		request.getRequestDispatcher("/SW/index.jsp").forward(request, response);
+		request.getRequestDispatcher("/semi/main.jsp").forward(request, response);
 	}
 }
