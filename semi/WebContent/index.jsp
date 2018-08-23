@@ -35,17 +35,17 @@ td {
 <body>
 	<div id="wrapper">
 		<div id="header">
-			<jsp:include page="sw/index.jsp"/>
+			<jsp:include page="go/gboard.jsp"/>
 		</div>
 		<div id="center">
 			<div id="nav">
-				<jsp:include page="sw/index.jsp"/>
+				<jsp:include page="nav.jsp"/>
 			</div>
 			<div id="content">
 				<jsp:include page="sw/index.jsp"/>
 			</div>
 			<div id="extra">
-				<jsp:include page="sw/index.jsp"/>
+				<jsp:include page="extra.jsp"/>
 			</div>
 		</div>
 	</div>
