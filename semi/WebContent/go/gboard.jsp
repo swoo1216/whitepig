@@ -77,7 +77,7 @@ td {
 								<c:forEach var="vo" items="${list}">
 									<tr>
 										<td>${vo.bNum}</td>
-										<td style="text-align: left;"><a href="<c:url value='gdetail.do?bNum=${vo.bNum}'/>">${vo.title}</a> &nbsp;[${vo.countComment}]</td>
+										<td style="text-align: left;"><a href="<c:url value='gdetail.do?bNum=${vo.bNum}&tNum=0'/>">${vo.title}</a> &nbsp;[${vo.countComment}]</td>
 										<td>${vo.nic}</td>
 										<td>${vo.regdate}</td>
 										<td>${vo.hit}</td>

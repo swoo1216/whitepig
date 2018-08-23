@@ -10,6 +10,14 @@ import java.util.ArrayList;
 import pp.go.db.DBConnection;
 import pp.go.vo.GboardVo;
 
+//테이블 게시물 갯수
+//게시물 등록
+//조회수 업
+//게시글 수정
+//게시글 삭제
+//게시글 상세 보기
+//게시물 리스트
+
 public class GboardDao {
 	private static GboardDao instance = null;
 
@@ -47,6 +55,7 @@ public class GboardDao {
 		}
 	}
 
+	// 테이블 게시물 갯수
 	public int getCount() {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -71,6 +80,7 @@ public class GboardDao {
 		}
 	}
 
+	// 게시물 등록
 	public int insert(GboardVo vo) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -94,6 +104,7 @@ public class GboardDao {
 		}
 	}
 
+	// 조회수 업
 	public int hitUp(int bNum) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -114,26 +125,7 @@ public class GboardDao {
 		}
 	}
 
-	public int recommUp(int bNum) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-
-		String sql = "update gboard set recomm = recomm + 1 where bnum = ?";
-
-		try {
-			conn = DBConnection.conn();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, bNum);
-
-			return pstmt.executeUpdate();
-		} catch (SQLException se) {
-			System.out.println(se.getMessage());
-			return -1;
-		} finally {
-			DBConnection.close(null, pstmt, conn);
-		}
-	}
-
+	// 게시글 수정
 	public int update(GboardVo vo) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -157,6 +149,7 @@ public class GboardDao {
 
 	}
 
+	// 게시글 삭제
 	public int delete(int bNum) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -177,6 +170,7 @@ public class GboardDao {
 		}
 	}
 
+	// 게시글 상세 보기
 	public GboardVo select(int bNum) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -195,10 +189,11 @@ public class GboardDao {
 				String content = rs.getString("content");
 				int hit = rs.getInt("hit");
 				int recomm = rs.getInt("recomm");
+				String id = rs.getString("id");
 				String nic = rs.getString("nic");
 				int countComment = GcommentDao.getInstance().getCount(bNum);
 				Date regdate = rs.getDate("regdate");
-				vo = new GboardVo(bNum, title, content, hit, recomm, nic, countComment, regdate);
+				vo = new GboardVo(bNum, title, content, hit, recomm, id, nic, countComment, regdate);
 			}
 			return vo;
 		} catch (SQLException se) {
@@ -209,19 +204,16 @@ public class GboardDao {
 		}
 	}
 
+	// 게시물 리스트
 	public ArrayList<GboardVo> list(int startRow, int endRow) {
 		ArrayList<GboardVo> list = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select * from " + 
-				"( " + 
-				"	select aa.*, rownum rnum from " + 
-				"	( " + 
-				"		select gb.*, gu.nic nic from gboard gb join guser gu on gb.id = gu.id  order by bnum desc " + 
-				"	) aa " + 
-				") where rnum >= ? and rnum <=?";
+		String sql = "select * from " + "( " + "	select aa.*, rownum rnum from " + "	( "
+				+ "		select gb.*, gu.nic nic from gboard gb join guser gu on gb.id = gu.id  order by bnum desc "
+				+ "	) aa " + ") where rnum >= ? and rnum <=?";
 
 		try {
 			conn = DBConnection.conn();
@@ -235,12 +227,13 @@ public class GboardDao {
 				String title = rs.getString("title");
 				String content = rs.getString("content");
 				int hit = rs.getInt("hit");
-				int recomm = rs.getInt("recomm");
+				int recomm = GrecommTableDao.getInstance().getretableCount(bNum, 0);
+				String id = rs.getString("id");
 				String nic = rs.getString("nic");
 				Date regdate = rs.getDate("regdate");
 				int countComment = GcommentDao.getInstance().getCount(bNum);
 
-				list.add(new GboardVo(bNum, title, content, hit, recomm, nic, countComment, regdate));
+				list.add(new GboardVo(bNum, title, content, hit, recomm, id, nic, countComment, regdate));
 			}
 			return list;
 		} catch (SQLException se) {

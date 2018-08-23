@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import pp.go.dao.GboardDao;
 import pp.go.dao.GcommentDao;
+import pp.go.dao.GrecommTableDao;
 import pp.go.vo.GboardVo;
 import pp.go.vo.GcommentVo;
 

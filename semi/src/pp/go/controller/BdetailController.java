@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import pp.go.dao.GboardDao;
 import pp.go.dao.GcommentDao;
+import pp.go.dao.GrecommTableDao;
 import pp.go.vo.GboardVo;
 import pp.go.vo.GcommentVo;
 
@@ -19,10 +20,11 @@ public class BdetailController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		//게시물 보기
+
+		// 게시물 보기
 		request.setCharacterEncoding("UTF-8");
 		String sbNum = request.getParameter("bNum");
+		int tNum = Integer.parseInt(request.getParameter("tNum"));
 
 		int bNum;
 		GboardVo vo = null;

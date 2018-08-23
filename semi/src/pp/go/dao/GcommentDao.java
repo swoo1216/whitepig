@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import pp.go.db.DBConnection;
 import pp.go.vo.GcommentVo;
 
+//Å×ÀÌºíº° ´ñ±Û °¹¼ö
+//´ñ±Û »ý¼º
+//Å×ÀÌºíº° ´ñ±Ûµé
+
 public class GcommentDao {
 	private static GcommentDao instance = null;
 
@@ -47,6 +51,7 @@ public class GcommentDao {
 		}
 	}
 
+	// Å×ÀÌºíº° ´ñ±Û °¹¼ö
 	public int getCount(int bNum) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -71,6 +76,7 @@ public class GcommentDao {
 		}
 	}
 
+	// ´ñ±Û »ý¼º
 	public int insert(GcommentVo vo) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -94,6 +100,7 @@ public class GcommentDao {
 		}
 	}
 
+	// Å×ÀÌºíº° ´ñ±Ûµé
 	public ArrayList<GcommentVo> list(int bNum) {
 		ArrayList<GcommentVo> list = new ArrayList<>();
 		Connection conn = null;
