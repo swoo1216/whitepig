@@ -1,4 +1,4 @@
-package pp.icon.controller;
+package pp.poke.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,7 +14,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 
-@WebServlet("/icon/wishList.do")
+@WebServlet("/poke/wishList.do")
 public class WishListController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,6 +23,8 @@ public class WishListController extends HttpServlet{
 			insert(req,resp);
 		}else if(cmd!=null && cmd.equals("delete")) {
 			delete(req,resp);
+		}else if(cmd!=null && cmd.equals("remove")) {
+			remove(req,resp);
 		}
 	}
 		
@@ -73,7 +75,13 @@ public class WishListController extends HttpServlet{
 		
 		
 	}
-	
+	protected void remove(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		ArrayList list = (ArrayList)req.getSession().getAttribute("wishList");
+		list.clear();
+		
+		resp.sendRedirect("list.do");
+	}
 	
 }
 

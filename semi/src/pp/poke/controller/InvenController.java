@@ -1,4 +1,4 @@
-package pp.inven.controller;
+package pp.poke.controller;
 
 import java.io.IOException;
 
@@ -11,11 +11,11 @@ import javax.servlet.http.HttpSession;
 
 import pp.go.dao.GuserDao;
 import pp.go.vo.GuserVo;
-import pp.icon.dao.IconDao;
-import pp.icon.vo.IconVo;
-import pp.inven.dao.InvenDao;
-import pp.inven.vo.InvenVo;
-@WebServlet("/icon/checkOut.do")
+import pp.poke.dao.IconDao;
+import pp.poke.dao.InvenDao;
+import pp.poke.vo.IconVo;
+import pp.poke.vo.InvenVo;
+@WebServlet("/poke/checkOut.do")
 public class InvenController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -45,7 +45,7 @@ public class InvenController extends HttpServlet{
 		
 		if(point<price) {
 			req.setAttribute("err", "fail");
-			req.getRequestDispatcher("/icon/list.do").forward(req, resp);
+			req.getRequestDispatcher("/poke/list.do").forward(req, resp);
 		}else {
 		
 		int pay=point-price;

@@ -1,4 +1,4 @@
-package pp.inven.vo;
+package pp.poke.vo;
 
 import java.sql.Date;
 
