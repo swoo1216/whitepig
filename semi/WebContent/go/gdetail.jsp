@@ -163,7 +163,7 @@ td {
 							<table>
 								<tr>
 									<td width="5%">${vo.nic}</td>
-									<td width="78%">${vo.content}</td>
+									<td width="78%"><pre>${vo.content}</pre></td>
 									<td width="7%">${vo.recomm}</td>
 									<td width="10%">${vo.regdate}</td>
 								</tr>
