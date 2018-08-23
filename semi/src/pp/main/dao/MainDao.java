@@ -37,7 +37,7 @@ public class MainDao
 			DBConnection.close(null, pstmt, con);
 		}
 	}
-	public int login(String id, String pwd)
+	public String login(String id, String pwd)
 	{
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -50,13 +50,21 @@ public class MainDao
 			pstmt.setString(1, id);
 			pstmt.setString(2, pwd);
 			System.out.println(sql);
-			int n = pstmt.executeUpdate();
-			return n;
+			rs=pstmt.executeQuery();
+			if(rs.next())
+			{
+				String nic = rs.getString("nic");
+				return nic;
+			}
+			else
+			{
+				return null;
+			}
 		}
 		catch(SQLException se)
 		{
 			System.out.println(se.getMessage());
-			return -1;
+			return null;
 		}
 		finally
 		{

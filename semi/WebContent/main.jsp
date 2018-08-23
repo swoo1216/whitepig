@@ -95,8 +95,10 @@ a:hover{
 		}
 		else
 		{
-	%>
+	%>	<div>
+			<a href="location.href='/semi/mypage.do'"><%=session.getAttribute("nic") %>님 환영합니다!</a>
 			<button onclick="location.href='/semi/mlogout.do'" style="background-color: pink;">로그아웃</button>
+		</div>
 	<%	}
 	%>
 	

@@ -23,12 +23,13 @@ public class LoginController extends HttpServlet
 		System.out.println(id);
 		System.out.println(pwd);
 		MainDao dao = new MainDao();
-		int n = dao.login(id, pwd);
-		if(n>0)
+		String nic = dao.login(id, pwd);
+		if(nic!=null)
 		{
 			request.setAttribute("code", "success1");
 			HttpSession session = request.getSession();
 			session.setAttribute("id", id);
+			session.setAttribute("nic", nic);
 		}
 		else
 		{
