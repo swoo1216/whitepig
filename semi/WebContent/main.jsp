@@ -15,7 +15,7 @@
 }
 
 #wrapper {
-	width: 	80%;
+	width: 	100%;
 	height: 1000px;
 	margin: auto;
 	display: flex;
@@ -79,7 +79,7 @@ a:hover{
 <body>
 <div id="wrapper">
 	<div id="nav">
-	<img src="바지.png" style= "height: 100px; margin-left: 66px;">
+	<img src="바지.png" style= "height: 100px; margin-left: 30%;">
 	<div>
 		<h1 style="text-align: center; margin-top: 10px">Pants</h1>
 	</div>
@@ -96,7 +96,7 @@ a:hover{
 		else
 		{
 	%>	<div>
-			<a href="location.href='/semi/mypage.do'"><%=session.getAttribute("nic") %>님 환영합니다!</a>
+			<a href="/semi/mboardcount.do"><%=session.getAttribute("nic") %>님 환영합니다!</a>
 			<button onclick="location.href='/semi/mlogout.do'" style="background-color: pink;">로그아웃</button>
 		</div>
 	<%	}

@@ -23,7 +23,6 @@ public class MainDao
 			pstmt.setString(2, vo.getPwd());
 			pstmt.setString(3, vo.getEmail());
 			pstmt.setString(4, vo.getNic());
-			System.out.println(sql);
 			int n = pstmt.executeUpdate();
 			return n;
 		}
@@ -49,7 +48,6 @@ public class MainDao
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, pwd);
-			System.out.println(sql);
 			rs=pstmt.executeQuery();
 			if(rs.next())
 			{
@@ -82,7 +80,6 @@ public class MainDao
 			String sql=" select id from cuser where email=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, email);
-			System.out.println(sql);
 			rs =pstmt.executeQuery();
 			if(rs.next())
 			{
@@ -116,7 +113,6 @@ public class MainDao
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, email);
-			System.out.println(sql);
 			rs =pstmt.executeQuery();
 			if(rs.next())
 			{
