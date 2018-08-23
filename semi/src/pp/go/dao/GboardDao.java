@@ -56,16 +56,23 @@ public class GboardDao {
 	}
 
 	// 테이블 게시물 갯수
-	public int getCount() {
+	public int getCount(String search, String scontent) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select NVL(count(bnum), 0) cnt from gboard";
+		String sql = "select NVL(count(bnum), 0) cnt from gboard where ? like '%' || ? || '%' ";
+
+		if (search == null)
+			search = "content";
+		if (scontent == null)
+			scontent = "";
 
 		try {
 			conn = DBConnection.conn();
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, search);
+			pstmt.setString(2, scontent);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
@@ -205,21 +212,31 @@ public class GboardDao {
 	}
 
 	// 게시물 리스트
-	public ArrayList<GboardVo> list(int startRow, int endRow) {
+	public ArrayList<GboardVo> list(int startRow, int endRow, String sort, String search, String scontent) {
 		ArrayList<GboardVo> list = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
+		if(sort == null)
+			sort = "bNum";
+		if (search == null)
+			search = "content";
+		if (scontent == null)
+			scontent = "";
+
 		String sql = "select * from " + "( " + "	select aa.*, rownum rnum from " + "	( "
-				+ "		select gb.*, gu.nic nic from gboard gb join guser gu on gb.id = gu.id  order by bnum desc "
+				+ "		select gb.*, gu.nic nic from gboard gb join guser gu on gb.id = gu.id where ? like '%' || ? || '%'  order by ? desc "
 				+ "	) aa " + ") where rnum >= ? and rnum <=?";
 
 		try {
 			conn = DBConnection.conn();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
+			pstmt.setString(1, search);
+			pstmt.setString(2, scontent);
+			pstmt.setString(3, sort);
+			pstmt.setInt(4, startRow);
+			pstmt.setInt(5, endRow);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {

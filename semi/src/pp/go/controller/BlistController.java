@@ -20,10 +20,15 @@ public class BlistController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//게시물 리스트
+		// 게시물 리스트
 		int page = 20;
 
 		String spageNum = request.getParameter("pageNum");
+
+		String sort = request.getParameter("sort");
+		String search = request.getParameter("search");
+		String scontent = request.getParameter("scontent");
+
 		int pageNum = 1;
 		if (spageNum != null) {
 			pageNum = Integer.parseInt(spageNum);
@@ -31,8 +36,8 @@ public class BlistController extends HttpServlet {
 		int startRow = (pageNum - 1) * page + 1;
 		int endRow = startRow + (page - 1);
 
-		ArrayList<GboardVo> list = GboardDao.getInstance().list(startRow, endRow);
-		int pageCount = (int) Math.floor(Math.ceil(GboardDao.getInstance().getCount() / (double) page));
+		ArrayList<GboardVo> list = GboardDao.getInstance().list(startRow, endRow, sort, search, scontent);
+		int pageCount = (int) Math.floor(Math.ceil(GboardDao.getInstance().getCount(search, scontent) / (double) page));
 		int startPageNum = ((pageNum - 1) / page * page) + 1;
 
 		int endPageNum = startPageNum + (page - 1);
@@ -45,6 +50,8 @@ public class BlistController extends HttpServlet {
 		request.setAttribute("endPage", endPageNum);
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("list", list);
+		request.setAttribute("sort", sort);
+		request.setAttribute("search", search);
 		request.getRequestDispatcher("/go/gboard.jsp").forward(request, response);
 		;
 	}
