@@ -131,7 +131,7 @@ td {
 				var text = xhr.responseText;
 				var json = JSON.parse(text);
 				
-				console.log(json);
+				alert("ㅊㅊ");
 			}
 		}
 		xhr.open("POST", "grecommInsert.do", true);

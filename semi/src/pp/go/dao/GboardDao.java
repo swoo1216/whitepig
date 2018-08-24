@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import pp.go.db.DBConnection;
@@ -58,22 +59,32 @@ public class GboardDao {
 	// 테이블 게시물 갯수
 	public int getCount(String search, String scontent) {
 		Connection conn = null;
-		PreparedStatement pstmt = null;
+		Statement stmt = null;
 		ResultSet rs = null;
 
-		String sql = "select NVL(count(bnum), 0) cnt from gboard where ? like '%' || ? || '%' ";
-
-		if (search == null)
-			search = "content";
 		if (scontent == null)
 			scontent = "";
+		if (search == null)
+			search = "";
+
+		switch (search) {
+		case "content":
+		case "title":
+		case "nic":
+			search = " where gb.id = gu.id and " + search + " like '%" + scontent + "%'";
+			break;
+		default:
+			search = " where gb.id = gu.id";
+		}
+
+		String sql = "select NVL(count(bnum), 0) cnt from gboard gb, guser gu " + search;
+
+		System.out.println(sql);
 
 		try {
 			conn = DBConnection.conn();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, search);
-			pstmt.setString(2, scontent);
-			rs = pstmt.executeQuery();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
 
 			if (rs.next()) {
 				return rs.getInt("cnt");
@@ -83,7 +94,7 @@ public class GboardDao {
 			System.out.println(se.getMessage());
 			return -1;
 		} finally {
-			DBConnection.close(rs, pstmt, conn);
+			DBConnection.close(rs, stmt, conn);
 		}
 	}
 
@@ -122,6 +133,27 @@ public class GboardDao {
 			conn = DBConnection.conn();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, bNum);
+
+			return pstmt.executeUpdate();
+		} catch (SQLException se) {
+			System.out.println(se.getMessage());
+			return -1;
+		} finally {
+			DBConnection.close(null, pstmt, conn);
+		}
+	}
+
+	public int updateRecomm(int bNum, int recomm) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		String sql = "update gboard set recomm = ? where bNum =? ";
+
+		try {
+			conn = DBConnection.conn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recomm);
+			pstmt.setInt(2, bNum);
 
 			return pstmt.executeUpdate();
 		} catch (SQLException se) {
@@ -200,7 +232,7 @@ public class GboardDao {
 				String nic = rs.getString("nic");
 				int countComment = GcommentDao.getInstance().getCount(bNum);
 				Date regdate = rs.getDate("regdate");
-				vo = new GboardVo(bNum, title, content, hit, recomm, id, nic, countComment, regdate);
+				vo = new GboardVo(bNum, title, content, hit, recomm, id, nic, countComment, 0, regdate);
 			}
 			return vo;
 		} catch (SQLException se) {
@@ -215,49 +247,55 @@ public class GboardDao {
 	public ArrayList<GboardVo> list(int startRow, int endRow, String sort, String search, String scontent) {
 		ArrayList<GboardVo> list = new ArrayList<>();
 		Connection conn = null;
-		PreparedStatement pstmt = null;
+		Statement stmt = null;
 		ResultSet rs = null;
 
-		if(sort == null)
+		if (sort == null)
 			sort = "bNum";
-		if (search == null)
-			search = "content";
+		if (sort.equals(""))
+			sort = "bNum";
 		if (scontent == null)
 			scontent = "";
+		if (search == null)
+			search = "";
 
-		String sql = "select * from " + "( " + "	select aa.*, rownum rnum from " + "	( "
-				+ "		select gb.*, gu.nic nic from gboard gb join guser gu on gb.id = gu.id where ? like '%' || ? || '%'  order by ? desc "
-				+ "	) aa " + ") where rnum >= ? and rnum <=?";
+		switch (search) {
+		case "content":
+		case "nic":
+		case "title":
+			search = " and " + search + " like '%" + scontent + "%'";
+			break;
+		default:
+			search = "";
+		}
+
+		String sql = "select * from ( " + "    select aa.*, rownum rnum from " + "    ( "
+				+ "        select gb.*, gu.nic nic from gboard gb, guser gu where gb.id = gu.id " + search
+				+ " order by " + sort + " desc " + "    ) aa" + ") where rnum >=" + startRow + " and rnum <= " + endRow;
 
 		try {
 			conn = DBConnection.conn();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, search);
-			pstmt.setString(2, scontent);
-			pstmt.setString(3, sort);
-			pstmt.setInt(4, startRow);
-			pstmt.setInt(5, endRow);
-			rs = pstmt.executeQuery();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
 				int bNum = rs.getInt("bnum");
 				String title = rs.getString("title");
 				String content = rs.getString("content");
 				int hit = rs.getInt("hit");
-				int recomm = GrecommTableDao.getInstance().getretableCount(bNum, 0);
+				int recomm = rs.getInt("recomm");
 				String id = rs.getString("id");
 				String nic = rs.getString("nic");
 				Date regdate = rs.getDate("regdate");
 				int countComment = GcommentDao.getInstance().getCount(bNum);
 
-				list.add(new GboardVo(bNum, title, content, hit, recomm, id, nic, countComment, regdate));
+				list.add(new GboardVo(bNum, title, content, hit, recomm, id, nic, countComment, 0, regdate));
 			}
 			return list;
 		} catch (SQLException se) {
-			System.out.println(se.getMessage());
 			return null;
 		} finally {
-			DBConnection.close(rs, pstmt, conn);
+			DBConnection.close(rs, stmt, conn);
 		}
 	}
 

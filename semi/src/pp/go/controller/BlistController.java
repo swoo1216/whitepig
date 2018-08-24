@@ -24,7 +24,6 @@ public class BlistController extends HttpServlet {
 		int page = 20;
 
 		String spageNum = request.getParameter("pageNum");
-
 		String sort = request.getParameter("sort");
 		String search = request.getParameter("search");
 		String scontent = request.getParameter("scontent");
@@ -52,6 +51,7 @@ public class BlistController extends HttpServlet {
 		request.setAttribute("list", list);
 		request.setAttribute("sort", sort);
 		request.setAttribute("search", search);
+		request.setAttribute("scontent", scontent);
 		request.getRequestDispatcher("/go/gboard.jsp").forward(request, response);
 		;
 	}

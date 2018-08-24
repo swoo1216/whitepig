@@ -11,13 +11,14 @@ public class GboardVo {
 	private String id;
 	private String nic;
 	private int countComment;
+	private int num;
 	private Date regdate;
 
 	public GboardVo() {
 	}
 
 	public GboardVo(int bNum, String title, String content, int hit, int recomm, String id, String nic,
-			int countComment, Date regdate) {
+			int countComment, int num, Date regdate) {
 		this.bNum = bNum;
 		this.title = title;
 		this.content = content;
@@ -26,6 +27,7 @@ public class GboardVo {
 		this.id = id;
 		this.nic = nic;
 		this.countComment = countComment;
+		this.num = num;
 		this.regdate = regdate;
 	}
 
@@ -91,6 +93,14 @@ public class GboardVo {
 
 	public void setCountComment(int countComment) {
 		this.countComment = countComment;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
 	}
 
 	public Date getRegdate() {

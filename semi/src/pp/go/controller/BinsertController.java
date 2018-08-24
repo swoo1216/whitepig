@@ -24,7 +24,8 @@ public class BinsertController extends HttpServlet {
 		String content = request.getParameter("content").replace("\r\n", "<br>");
 		String id = request.getParameter("id");
 		
-		vo = new GboardVo(0, title, content, 0, 0, id, null, 0,  null);
+		vo = new GboardVo(0, title, content, 0, 0, id, id, 0, 0, null);
+
 		int n = GboardDao.getInstance().insert(vo);
 		if (n > 0) {
 			response.sendRedirect("gboard.do");
@@ -34,7 +35,6 @@ public class BinsertController extends HttpServlet {
 			request.setAttribute("id", id);
 
 			request.getRequestDispatcher("/go/ginsert.jsp").forward(request, response);
-			;
 		}
 
 	}
