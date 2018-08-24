@@ -79,8 +79,6 @@ public class GboardDao {
 
 		String sql = "select NVL(count(bnum), 0) cnt from gboard gb, guser gu " + search;
 
-		System.out.println(sql);
-
 		try {
 			conn = DBConnection.conn();
 			stmt = conn.createStatement();
@@ -111,7 +109,7 @@ public class GboardDao {
 			pstmt.setInt(1, getMaxNum() + 1);
 			pstmt.setString(2, vo.getTitle());
 			pstmt.setString(3, vo.getContent());
-			pstmt.setString(4, vo.getNic());
+			pstmt.setString(4, vo.getId());
 
 			return pstmt.executeUpdate();
 		} catch (SQLException se) {

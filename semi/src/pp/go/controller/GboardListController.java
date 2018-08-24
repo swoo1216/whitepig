@@ -16,7 +16,7 @@ import pp.go.vo.GboardVo;
 import pp.go.vo.GcommentVo;
 
 @WebServlet("/go/gboard.do")
-public class BlistController extends HttpServlet {
+public class GboardListController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
