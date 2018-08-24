@@ -26,10 +26,11 @@ public class GboardDeleteController extends HttpServlet {
 			if (vo != null) {
 				if (vo.getId().equals(id)) {
 					GboardDao.getInstance().delete(bNum);
+					response.sendRedirect("gboard.do");
 				}
 			}
 		}
-		
-		response.sendRedirect("gboard.do");
+
+		request.getRequestDispatcher("/go/gdetail.do").forward(request, response);
 	}
 }
