@@ -22,6 +22,7 @@
 	
 	<a href="<c:url value='gboard.do'/>">글목록</a>
 	<a href="<%=request.getContextPath() %>/poke/list.do">상점</a>
+	<a href="<%=request.getContextPath() %>/poke/pboard.do">poke</a>
 
 </body>
 </html>

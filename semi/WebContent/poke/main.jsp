@@ -19,7 +19,7 @@
   <a class="w3-bar-item w3-button w3-border-bottom w3-large w3-hover-white" href="main.jsp"><img src="/semi/바지.png" style="height: 80px;"></a>
   <a class="w3-bar-item w3-button w3-hide-large w3-large w3-hover-white" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
   <a class="w3-bar-item w3-button w3-hover-white" href="#">Link 1</a>
-  <a class="w3-bar-item w3-button w3-hover-white" href="main.jsp?content=pboard.jsp">Link 2</a>
+  <a class="w3-bar-item w3-button w3-hover-white" href="main.jsp?content=/poke/pboard.do">Link 2</a>
   <a class="w3-bar-item w3-button w3-hover-white" href="main.jsp?content=/poke/list.do">Link 3</a>
   <a class="w3-bar-item w3-button w3-hover-white" href="#">Link 4</a>
   <a class="w3-bar-item w3-button w3-hover-white" href="#">Link 5</a>
@@ -47,7 +47,7 @@
 </c:otherwise>
 </c:choose>
 
-<jsp:include page="${content }"></jsp:include>
+<jsp:include page="${content }" flush="false"></jsp:include>
 
 
      

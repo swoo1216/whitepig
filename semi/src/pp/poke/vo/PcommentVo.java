@@ -7,21 +7,41 @@ public class PcommentVo {
 	private String content;
 	private int recomm;
 	private String id;
+	private String nic;
 	private int bnum;
 	private Date regdate;
+	private int num;
 	
 	public PcommentVo() {
 	
 	}
 
-	public PcommentVo(int cnum, String content, int recomm, String id, int bnum, Date regdate) {
+	public PcommentVo(int cnum, String content, int recomm, String id, String nic, int bnum, Date regdate, int num) {
 		super();
 		this.cnum = cnum;
 		this.content = content;
 		this.recomm = recomm;
 		this.id = id;
+		this.nic = nic;
 		this.bnum = bnum;
 		this.regdate = regdate;
+		this.num = num;
+	}
+	
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
+	public String getNic() {
+		return nic;
+	}
+
+	public void setNic(String nic) {
+		this.nic = nic;
 	}
 
 	public int getCnum() {

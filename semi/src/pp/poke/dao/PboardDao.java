@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import pp.go.dao.GcommentDao;
 import pp.go.db.DBConnection;
 import pp.poke.vo.PboardVo;
 
@@ -84,7 +85,7 @@ public class PboardDao {
 								"( " + 
 								"	SELECT AA.*,ROWNUM RNUM FROM " + 
 								"	( " + 
-								"		SELECT * FROM pboard order by bnum" + 
+								"		SELECT pb.*,gu.nic,gu.num FROM pboard pb join guser gu on pb.id=gu.id order by bnum desc" + 
 								"	)AA " + 
 								") " + 
 								"WHERE RNUM>=? AND RNUM<=?";
@@ -102,7 +103,7 @@ public class PboardDao {
 				
 				String sql="select * from ( "
 						+ "select a.*, rownum rnum from( "
-						+ "select * from pboard where "+search+" "+searchCase+" order by bnum desc "
+						+ "select pb.*,gu.nic,gu.num from pboard pb join guser gu on pb.id=gu.id where "+search+" "+searchCase+" order by bnum desc "
 						+ ")a "
 					+ ") where rnum>=? and rnum <=?";
 				pstmt=conn.prepareStatement(sql);
@@ -113,14 +114,18 @@ public class PboardDao {
 			}
 			ArrayList<PboardVo> list=new ArrayList<>();
 			while(rs.next()) {
-				int bnum=rs.getInt(1);
-				String title=rs.getString(2);
-				String content=rs.getString(3);
-				int hit=rs.getInt(4);
-				int recomm=rs.getInt(5);
-				String id=rs.getString(6);
-				Date regdate=rs.getDate(7);
-				PboardVo vo=new PboardVo(bnum, title, content, hit, recomm, id, regdate);
+				int bnum=rs.getInt("bnum");
+				String title=rs.getString("title");
+				String content=rs.getString("content");
+				int hit=rs.getInt("hit");
+				int recomm=rs.getInt("recomm");
+				String id=rs.getString("id");
+				String nic=rs.getString("nic");
+				int commCnt=PcommentDao.getInstance().getCount(bnum);
+				Date regdate=rs.getDate("regdate");
+				int num=rs.getInt("num");
+				
+				PboardVo vo=new PboardVo(bnum, title, content, hit, recomm, id, nic, commCnt, regdate, num);
 				list.add(vo);
 			}
 			return list;
@@ -135,7 +140,7 @@ public class PboardDao {
 		ResultSet rs=null;
 		try {
 			conn=DBConnection.conn();
-			String sql="select * from pboard where bnum=?";
+			String sql="select pb.*,gu.nic,gu.num from pboard pb join guser gu on pb.id=gu.id where bnum=?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, bnum);
 			rs=pstmt.executeQuery();
@@ -145,8 +150,12 @@ public class PboardDao {
 				int hit=rs.getInt("hit");
 				int recomm=rs.getInt("recomm");
 				String id=rs.getString("id");
+				String nic=rs.getString("nic");
+				int commCnt = PcommentDao.getInstance().getCount(bnum);
 				Date regdate=rs.getDate("regdate");
-				return new PboardVo(bnum, title, content, hit, recomm, id, regdate);
+				int num=rs.getInt("num");
+				
+				return new PboardVo(bnum, title, content, hit, recomm, id, nic, commCnt, regdate, num);
 			}else {
 				return null;
 			}
@@ -183,6 +192,28 @@ public class PboardDao {
 			pstmt.setString(1, vo.getTitle());
 			pstmt.setString(2, vo.getContent());
 			pstmt.setInt(3, vo.getBnum());
+			return pstmt.executeUpdate();
+		}catch(SQLException se) {
+			System.out.println(se.getMessage());
+			return -1;
+		}finally {
+			DBConnection.close(null, pstmt, conn);
+		}
+	}
+	public int insert(PboardVo vo) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		
+		String sql="insert into pboard values(?,?,?,0,0,?,sysdate)";
+		
+		try {
+			conn=DBConnection.conn();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, getMaxNum() + 1);
+			pstmt.setString(2, vo.getTitle());
+			pstmt.setString(3, vo.getContent());
+			pstmt.setString(4, vo.getId());
+			
 			return pstmt.executeUpdate();
 		}catch(SQLException se) {
 			System.out.println(se.getMessage());

@@ -9,13 +9,18 @@ public class PboardVo {
 	private int hit;
 	private int recomm;
 	private String id;
+	private String nic;
+	private int commCnt;
 	private Date regdate;
+	private int num;
 	
 	public PboardVo() {
 		
 	}
 
-	public PboardVo(int bnum, String title, String content, int hit, int recomm, String id, Date regdate) {
+
+	public PboardVo(int bnum, String title, String content, int hit, int recomm, String id, String nic, int commCnt,
+			Date regdate, int num) {
 		super();
 		this.bnum = bnum;
 		this.title = title;
@@ -23,8 +28,42 @@ public class PboardVo {
 		this.hit = hit;
 		this.recomm = recomm;
 		this.id = id;
+		this.nic = nic;
+		this.commCnt = commCnt;
 		this.regdate = regdate;
+		this.num = num;
 	}
+
+
+	public int getNum() {
+		return num;
+	}
+
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
+
+	public String getNic() {
+		return nic;
+	}
+
+
+	public void setNic(String nic) {
+		this.nic = nic;
+	}
+
+
+	public int getCommCnt() {
+		return commCnt;
+	}
+
+
+	public void setCommCnt(int commCnt) {
+		this.commCnt = commCnt;
+	}
+
 
 	public int getBnum() {
 		return bnum;

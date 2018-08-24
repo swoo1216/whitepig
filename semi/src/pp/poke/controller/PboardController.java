@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import pp.poke.dao.PboardDao;
 import pp.poke.vo.PboardVo;
-@WebServlet("/poke/plist.do")
+@WebServlet("/poke/pboard.do")
 public class PboardController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
