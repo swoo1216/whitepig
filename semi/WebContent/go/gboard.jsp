@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -6,7 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 </head>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/go_frm.css">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/go_frm.css">
 <style type="text/css">
 td, th {
 	border-spacing: 0px;
@@ -41,14 +43,28 @@ td {
 				this.style.backgroundColor = "white";
 			}, false);
 
-			//var children = tr[i].children;
+			var children = tr[i].children;
 
-			//for (var j = 0; j < children.length; j++) {
-			//	children[j].addEventListener("mouseover", function(){
-			//		this.style.cursor = "pointer";
-			//	}, false);
-			//}
+			for (var j = 0; j < children.length; j++) {
+				children[j].addEventListener("mouseover", function(){
+					this.style.cursor = "pointer";
+				}, false);
+			}
+			
+			document.getElementById("scontent").addEventListener('keyup', function(e){
+				if(e.keyCode == 13)
+					sendScontent()
+			}, false);
 		}
+	}
+	function sendSort(sort) {
+		location.href = "/semi/go/gboard.do?pageNum=${pageNum}&sort=" + sort + "&search=${search}&scontent=${scontent}";
+	}
+	function sendScontent(){
+		var search = document.getElementById("search").value;
+		var scontent = document.getElementById("scontent").value;
+		
+		location.href = "/semi/go/gboard.do?pageNum=${pageNum}&sort=${sort}&search="+ search +"&scontent="+scontent;
 	}
 </script>
 <body>
@@ -58,6 +74,16 @@ td {
 			<div id="nav"></div>
 			<div id="content">
 				<div id="gtable">
+					<button onclick="sendSort('regdate')">최신순</button>
+					<button onclick="sendSort('hit')">조회순</button>
+					<button onclick="sendSort('recomm')">추천순</button>
+					<div>
+						<select id="search">
+							<option value="content" <c:if test="${search == 'content'}">selected</c:if>>내용</option>
+							<option value="nic" <c:if test="${search == 'nic'}">selected</c:if>>글쓴이</option>
+							<option value="title" <c:if test="${search == 'title'}">selected</c:if>>제목</option>
+						</select> <input type="text" id="scontent" value="${scontent}"> <button onclick="sendScontent()">검색^^</button>
+					</div>
 					<table>
 						<tr>
 							<th width="7%">번호</th>
@@ -77,7 +103,9 @@ td {
 								<c:forEach var="vo" items="${list}">
 									<tr>
 										<td>${vo.bNum}</td>
-										<td style="text-align: left;"><a href="<c:url value='gdetail.do?bNum=${vo.bNum}'/>">${vo.title}</a> &nbsp;[${vo.countComment}]</td>
+										<td style="text-align: left;"><a
+											href="<c:url value='gdetail.do?bNum=${vo.bNum}&tNum=0'/>">${vo.title}</a>
+											&nbsp;[${vo.countComment}]</td>
 										<td>${vo.nic}</td>
 										<td>${vo.regdate}</td>
 										<td>${vo.hit}</td>
@@ -91,7 +119,7 @@ td {
 					<div style="text-align: center">
 						<c:choose>
 							<c:when test="${startPage>10}">
-								<a href="gboard.do?pageNum=${startPage-1 }">[&lt;]</a>
+								<a href="gboard.do?pageNum=${startPage-1}&sort=${sort}&search=${search}&scontent=${scontent}">[&lt;]</a>
 							</c:when>
 							<c:otherwise>
 								[&lt;]
@@ -100,16 +128,16 @@ td {
 						<c:forEach var="i" begin="${startPage}" end="${endPage}">
 							<c:choose>
 								<c:when test="${pageNum == i}">
-							[<a href="gboard.do?pageNum=${i}">${i}</a>]
+							[<a href="gboard.do?pageNum=${i}&sort=${sort}&search=${search}&scontent=${scontent}">${i}</a>]
 						</c:when>
 								<c:otherwise>
-							[<a href="gboard.do?pageNum=${i}">${i}</a>]
+							[<a href="gboard.do?pageNum=${i}&sort=${sort}&search=${search}&scontent=${scontent}">${i}</a>]
 						</c:otherwise>
 							</c:choose>
 						</c:forEach>
 						<c:choose>
 							<c:when test="${endPage<pageCount}">
-								<a href="gboard.do?pageNum=${endPage+1}">[&gt;]</a>
+								<a href="gboard.do?pageNum=${endPage+1}&sort=${sort}&search=${search}&scontent=${scontent}">[&gt;]</a>
 							</c:when>
 							<c:otherwise>
 								[&gt;]
@@ -123,6 +151,5 @@ td {
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>

@@ -13,7 +13,7 @@ import pp.go.dao.GboardDao;
 import pp.go.vo.GboardVo;
 
 @WebServlet("/go/ginsert.do")
-public class BinsertController extends HttpServlet {
+public class GboardInsertController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -23,8 +23,9 @@ public class BinsertController extends HttpServlet {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content").replace("\r\n", "<br>");
 		String id = request.getParameter("id");
-		//편의상 여기는 아이디로 준다
-		vo = new GboardVo(0, title, content, 0, 0, id, 0,  null);
+		
+		vo = new GboardVo(0, title, content, 0, 0, id, null, 0, 0, null);
+
 		int n = GboardDao.getInstance().insert(vo);
 		if (n > 0) {
 			response.sendRedirect("gboard.do");
@@ -34,7 +35,6 @@ public class BinsertController extends HttpServlet {
 			request.setAttribute("id", id);
 
 			request.getRequestDispatcher("/go/ginsert.jsp").forward(request, response);
-			;
 		}
 
 	}

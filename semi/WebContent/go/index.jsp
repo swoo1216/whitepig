@@ -21,8 +21,12 @@
 	${id}
 	
 	<a href="<c:url value='gboard.do'/>">글목록</a>
+<<<<<<< HEAD
 	<a href="<%=request.getContextPath() %>/poke/list.do">상점</a>
 	<a href="<%=request.getContextPath() %>/poke/pboard.do">poke</a>
+=======
+	<a href="<%=request.getContextPath()%>/poke/list.do">상점</a>
+>>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
 
 </body>
 </html>
