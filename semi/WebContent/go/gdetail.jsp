@@ -188,7 +188,7 @@ td {
 					<button type="button" onclick="golist()">목록</button>
 					<button type="button" onclick="godeleteModal()">삭제</button>
 					<button type="button" onclick="gomodify('${vo.bNum}')">수정</button>
-					<button type="button" onclick="goRecomm('${vo.id}', ${vo.bNum}, 0)">추천</button>
+					<button type="button" onclick="goRecomm('${sessionScope.id}', ${vo.bNum}, 0)">추천</button>
 					<div id="comments">
 						<c:forEach var="vo" items="${gclist}">
 							<table>
