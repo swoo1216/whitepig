@@ -1,12 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/go_frm.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/go_frm.css">
 <style type="text/css">
 td, th {
 	border-spacing: 0px;
@@ -43,7 +41,7 @@ td {
 	function godelete(bNum){
 		location.href = "gboarddelete.do?bNum=" + bNum + "&tNum=" + 0;
 	}
-	function gomodify(bNum) {//미 개통
+	function gomodify(bNum) {
 		location.href = "gboardmodify.do?bNum=" + bNum;
 	}
 	function insertComment() {
@@ -144,10 +142,93 @@ td {
 				var text = xhr.responseText;
 				var json = JSON.parse(text);
 				
-				alert("ㅊㅊ");
+				detailFunc = document.getElementById("detailFunc");
+				detailFunc.innerHTML = "";
+				
+				var button1 = document.createElement("button");
+				var button2 = document.createElement("button");
+				var button3 = document.createElement("button");
+				var button4 = document.createElement("button");
+				
+				
+				var txt1 = document.createTextNode("목록");
+				var txt2 = document.createTextNode("삭제");
+				var txt3 = document.createTextNode("수정");
+				var txt4 = document.createTextNode("추천취소");
+				
+				button1.appendChild(txt1);
+				button1.addEventListener('click', function(){
+					golist();
+				}, false);
+				button2.appendChild(txt2);
+				button2.addEventListener('click', function(){
+					godeleteModal();
+				}, false);
+				button3.appendChild(txt3);
+				button3.addEventListener('click', function(){
+					gomodify('${vo.bNum}');
+				});
+				button4.appendChild(txt4);
+				button4.addEventListener('click', function(){
+					deleteRecomm('${sessionScope.id}', '${vo.bNum}', 0);
+				}, false);
+				
+				detailFunc.appendChild(button1);
+				detailFunc.appendChild(button2);
+				detailFunc.appendChild(button3);
+				detailFunc.appendChild(button4);
 			}
 		}
 		xhr.open("POST", "grecommInsert.do", true);
+		xhr.setRequestHeader("Content-type",
+				"application/x-www-form-urlencoded");
+		xhr.send("id=" + id + "&bNum=" + bNum + "&tNum=" + tNum);
+	}
+	
+	function deleteRecomm(id, bNum, tNum) {
+		xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var text = xhr.responseText;
+				var json = JSON.parse(text);
+				
+				detailFunc = document.getElementById("detailFunc");
+				detailFunc.innerHTML = "";
+				
+				var button1 = document.createElement("button");
+				var button2 = document.createElement("button");
+				var button3 = document.createElement("button");
+				var button4 = document.createElement("button");
+				
+				var txt1 = document.createTextNode("목록");
+				var txt2 = document.createTextNode("삭제");
+				var txt3 = document.createTextNode("수정");
+				var txt4 = document.createTextNode("추천");
+				
+				button1.appendChild(txt1);
+				button1.addEventListener('click', function(){
+					golist();
+				}, false);
+				button2.appendChild(txt2);
+				button2.addEventListener('click', function(){
+					godeleteModal();
+				}, false);
+				button3.appendChild(txt3);
+				button3.addEventListener('click', function(){
+					gomodify('${vo.bNum}');
+				});
+				button4.appendChild(txt4);
+				button4.addEventListener('click', function(){
+					goRecomm('${sessionScope.id}', '${vo.bNum}', 0);
+				}, false);
+				
+				detailFunc.appendChild(button1);
+				detailFunc.appendChild(button2);
+				detailFunc.appendChild(button3);
+				detailFunc.appendChild(button4);
+			}
+		}
+		xhr.open("POST", "grecommDelete.do", true);
 		xhr.setRequestHeader("Content-type",
 				"application/x-www-form-urlencoded");
 		xhr.send("id=" + id + "&bNum=" + bNum + "&tNum=" + tNum);
@@ -177,19 +258,25 @@ td {
 						</tr>
 						<tr id="resetComment">
 							<td>글쓴이</td>
-							<td>${vo.nic}&nbsp;|&nbsp;조회&nbsp;${vo.hit}&nbsp;|&nbsp;작성일&nbsp;${vo.regdate}&nbsp;|&nbsp;댓글&nbsp;
-								${vo.countComment}</td>
+							<td>${vo.nic}&nbsp;|&nbsp;조회&nbsp;${vo.hit}&nbsp;|&nbsp;작성일&nbsp;${vo.regdate}&nbsp;|&nbsp;댓글&nbsp;${vo.countComment}</td>
 						</tr>
 						<tr>
-							<td height="500px" colspan="2"
-								style="text-align: left; vertical-align: top;">${vo.content}</td>
+							<td height="500px" colspan="2" style="text-align: left; vertical-align: top;">${vo.content}</td>
 						</tr>
 					</table>
-					<button type="button" onclick="golist()">목록</button>
-					<button type="button" onclick="godeleteModal()">삭제</button>
-					<button type="button" onclick="gomodify('${vo.bNum}')">수정</button>
-					<button type="button"
-						onclick="goRecomm('${sessionScope.id}', ${vo.bNum}, 0)">추천</button>
+					<div id="detailFunc">
+						<button type="button" onclick="golist()">목록</button>
+						<button type="button" onclick="godeleteModal()">삭제</button>
+						<button type="button" onclick="gomodify('${vo.bNum}')">수정</button>
+						<c:choose>
+							<c:when test="${isrecomm == 'false'}">
+								<button type="button" onclick="goRecomm('${sessionScope.id}', ${vo.bNum}, 0)">추천</button>
+							</c:when>
+							<c:otherwise>
+								<button type="button" onclick="deleteRecomm('${sessionScope.id}', ${vo.bNum}, 0)">추천취소</button>
+							</c:otherwise>
+						</c:choose>
+					</div>
 					<div id="comments">
 						<c:forEach var="vo" items="${gclist}">
 							<table>
@@ -207,14 +294,12 @@ td {
 							<table>
 								<tr>
 									<td width="10%">댓글</td>
-									<td width="10%">${vo.nic}</td>
-									<td width="60%"><textarea rows="5" cols="100"
-											name="content" id="tarea"></textarea></td>
+									<td width="10%">${sessionScope.nic}</td>
+									<td width="60%"><textarea rows="5" cols="100" name="content" id="tarea"></textarea></td>
 									<td width="20%"><button type="button" onclick="getList()">작성</button></td>
 								</tr>
 							</table>
-							<input type="hidden" name="id" value="${sessionScope.id}">
-							<input type="hidden" name="bNum" value="${vo.bNum}">
+							<input type="hidden" name="id" value="${sessionScope.id}"> <input type="hidden" name="bNum" value="${vo.bNum}">
 						</form>
 					</div>
 				</div>
@@ -228,10 +313,8 @@ td {
 	<div id="delete_modal" class="modal" style="display: none;">
 		<div class="modal_content">
 			<span class="close">&times;</span>
-			<p>
-				진짜 지울꺼여요??
-				<button type="button" onclick="godelete('${vo.bNum}')">확인</button>
-			</p>
+			<p>진짜 지울꺼여요??</p>
+			<button type="button" onclick="godelete('${vo.bNum}')" style="float: none;">확인</button>
 		</div>
 	</div>
 </body>

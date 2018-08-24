@@ -10,12 +10,23 @@ CREATE TABLE GUSER(
 	NUM NUMBER(4) GU_NUM_FK REFERENCES ICON(num) ON DELETE CASCADE
 );
 
-INSERT INTO GUSER VALUES('AAA', '123', 'AAA@AAA.COM', 'ALVIN', NULL, 0);
-INSERT INTO GUSER VALUES('bbb', '123', 'bbb@bbb.com', 'Chris', NULL, 0 , 1);
+INSERT INTO GUSER VALUES('aaa', '123', 'aaa@bbb.com', 'Alvin', NULL, 10000, 1);
+INSERT INTO GUSER VALUES('bbb', '123', 'bbb@bbb.com', 'Chris', NULL, 10000, 1);
 
 
 alter table gUser
 add num CONSTRAINT GU_NUM_FK REFERENCES ICON(num) ON DELETE CASCADE;
+
+
+drop table icon;
+create table icon
+(
+	num number(5) primary key,
+	inum number(5)
+);
+
+insert into icon values(1, 1);
+
 
 --BOARD
 DROP TABLE GBOARD;

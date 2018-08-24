@@ -71,7 +71,7 @@ public class GboardDao {
 		case "content":
 		case "title":
 		case "nic":
-			search = " where gb.id = gu.id and " + search + " like '%" + scontent + "%'";
+			search = " where gb.id = gu.id and upper(" + search + ") like upper('%" + scontent + "%')";
 			break;
 		default:
 			search = " where gb.id = gu.id";
@@ -261,7 +261,7 @@ public class GboardDao {
 		case "content":
 		case "nic":
 		case "title":
-			search = " and " + search + " like '%" + scontent + "%'";
+			search = " and upper(" + search + ") like upper('%" + scontent + "%')";
 			break;
 		default:
 			search = "";

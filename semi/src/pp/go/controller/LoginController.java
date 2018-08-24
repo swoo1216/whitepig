@@ -15,14 +15,16 @@ public class LoginController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//로그인
-		
+		// 로그인
+
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 
 		boolean b = GuserDao.getInstance().loginCheck(id, pwd);
 		if (b) {
+			String nic = GuserDao.getInstance().select(id).getNic();
+			request.getSession().setAttribute("nic", nic);
 			request.getSession().setAttribute("id", id);
 			response.sendRedirect("index.jsp");
 		} else {
