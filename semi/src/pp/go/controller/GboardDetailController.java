@@ -34,7 +34,7 @@ public class GboardDetailController extends HttpServlet {
 			bNum = Integer.parseInt(sbNum);
 			GboardDao.getInstance().hitUp(bNum);
 			vo = GboardDao.getInstance().select(bNum);
-			ArrayList<GcommentVo> list = GcommentDao.getInstance().list(bNum);
+			ArrayList<GcommentVo> list = GcommentDao.getInstance().list(bNum, 0);
 
 			String isrecomm = "";
 			String id = (String) request.getSession().getAttribute("id");

@@ -1,7 +1,7 @@
 package pp.go.vo;
 
 import java.sql.Date;
-
+//°è½ÃÆÇ
 public class GboardVo {
 	private int bNum;
 	private String title;

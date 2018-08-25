@@ -29,8 +29,8 @@ public class GboardDeleteController extends HttpServlet {
 					response.sendRedirect("gboard.do");
 				}
 			}
-		}
-
-		request.getRequestDispatcher("/go/gdetail.do").forward(request, response);
+		}else
+			request.getRequestDispatcher("/go/gdetail.do").forward(request, response);
+		
 	}
 }

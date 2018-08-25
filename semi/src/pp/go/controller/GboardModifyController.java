@@ -23,6 +23,7 @@ public class GboardModifyController extends HttpServlet {
 			bNum = Integer.parseInt(sbNum);
 
 			GboardVo vo = GboardDao.getInstance().select(bNum);
+			vo.setContent(vo.getContent().replace("<br>", "\r\n"));
 			if (request.getSession().getAttribute("id").equals(vo.getId())) {
 				if (vo != null) {
 					request.setAttribute("vo", vo);
