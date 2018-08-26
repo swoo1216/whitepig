@@ -1,4 +1,4 @@
-package pp.icon.dao;
+package pp.poke.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import pp.icon.vo.IconVo;
 import pp.go.db.DBConnection;
+import pp.poke.vo.IconVo;
 
 public class IconDao {
 	private static IconDao instance=new IconDao();
@@ -50,9 +50,9 @@ public class IconDao {
 			}else {
 				String searchCase = "";
 				if(search.equals("type")) {
-					searchCase = " =? ";
+					searchCase = " = ? ";
 				}else {
-					searchCase = "like '%'||?||'%' ";
+					searchCase = " like '%'||?||'%' ";
 				}
 				String sql="select NVL(count(num),0) cnt from icon where "+search+searchCase;
 				pstmt=con.prepareStatement(sql);
@@ -94,9 +94,9 @@ public class IconDao {
 		}else {
 			String searchCase = "";
 			if(search.equals("type")) {
-				searchCase= "=?";
+				searchCase=" = ? ";
 			}else {
-				searchCase="like '%'||?||'%' ";
+				searchCase=" like '%'||?||'%' ";
 			}
 		
 			String sql="select * from ( "

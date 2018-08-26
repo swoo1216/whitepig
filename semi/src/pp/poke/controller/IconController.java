@@ -1,4 +1,4 @@
-package pp.icon.controller;
+package pp.poke.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pp.icon.dao.IconDao;
-import pp.icon.vo.IconVo;
-@WebServlet("/icon/list.do")
+import pp.poke.dao.IconDao;
+import pp.poke.vo.IconVo;
+@WebServlet("/poke/list.do")
 public class IconController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
@@ -46,7 +46,7 @@ public class IconController extends HttpServlet{
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("search", search);
 		req.setAttribute("keyword", keyword);
-		req.getRequestDispatcher("/icon/iconStore.jsp").forward(req, resp);
+		req.getRequestDispatcher("/poke/iconStore.jsp").forward(req, resp);
 	}
 }
 

@@ -1,4 +1,4 @@
-package pp.inven.dao;
+package pp.poke.dao;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import pp.go.db.DBConnection;
-import pp.inven.vo.InvenVo;
+import pp.poke.vo.InvenVo;
 
 
 public class InvenDao {

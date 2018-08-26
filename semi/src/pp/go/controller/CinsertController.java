@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pp.go.dao.GcommentDao;
+import pp.go.dao.GuserDao;
 import pp.go.vo.GcommentVo;
 
 @WebServlet("/go/gcinsert.do")
@@ -17,25 +18,28 @@ public class CinsertController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		//´ñ±Û ´Þ±â
-		String sbNum = request.getParameter("bNum");
-		int bNum = 0;
-		String content = "";
-		String id = "";
+		// ´ñ±Û ´Þ±â
+		String id = request.getParameter("id");
 
-		if (sbNum != null && !sbNum.equals("")) {
-			bNum = Integer.parseInt(sbNum);
-			content = request.getParameter("content").replace("\r\n", "<br>");
-			id = request.getParameter("id");
+		String nic = null;
+		String rPassword = null;
+
+		if (id == null) {
+			nic = request.getParameter("nic");
+			rPassword = request.getParameter("rPassword");
+		} else {
+			nic = GuserDao.getInstance().select(id).getNic();
 		}
 
-		int n = GcommentDao.getInstance().insert(new GcommentVo(0, content, 0, id, null, bNum, null));
+		int bNum = Integer.parseInt(request.getParameter("bNum"));
+		int tNum = Integer.parseInt(request.getParameter("tNum"));
+		String content = request.getParameter("content").replace("\r\n", "<br>");
 
-		if (n > 0) {
-			request.setAttribute("bNum", bNum);
-			request.getRequestDispatcher("/go/gclist.do").forward(request, response);
-		}
+		GcommentVo vo = new GcommentVo(0, bNum, tNum, content, 0, nic, rPassword, id, null);
 
+		GcommentDao.getInstance().insert(vo);
+		request.setAttribute("bNum", bNum);
+		request.setAttribute("tNum", tNum);
+		request.getRequestDispatcher("/go/gclist.do").forward(request, response);
 	}
 }

@@ -1,4 +1,4 @@
-package pp.icon.vo;
+package pp.poke.vo;
 
 public class IconVo {
 	private int num;

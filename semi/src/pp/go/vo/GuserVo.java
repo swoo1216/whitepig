@@ -1,5 +1,5 @@
 package pp.go.vo;
-
+//À¯Àú
 public class GuserVo {
 	private String id;
 	private String pwd;

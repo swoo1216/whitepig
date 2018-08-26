@@ -1,42 +1,76 @@
-package pp.go.vo;
+package pp.poke.vo;
 
 import java.sql.Date;
-//°è½ÃÆÇ
-public class GboardVo {
-	private int bNum;
+
+public class PboardVo {
+	private int bnum;
 	private String title;
 	private String content;
 	private int hit;
 	private int recomm;
 	private String id;
 	private String nic;
-	private int countComment;
-	private int num;
+	private int commCnt;
 	private Date regdate;
-
-	public GboardVo() {
+	private int num;
+	
+	public PboardVo() {
+		
 	}
 
-	public GboardVo(int bNum, String title, String content, int hit, int recomm, String id, String nic,
-			int countComment, int num, Date regdate) {
-		this.bNum = bNum;
+
+	public PboardVo(int bnum, String title, String content, int hit, int recomm, String id, String nic, int commCnt,
+			Date regdate, int num) {
+		super();
+		this.bnum = bnum;
 		this.title = title;
 		this.content = content;
 		this.hit = hit;
 		this.recomm = recomm;
 		this.id = id;
 		this.nic = nic;
-		this.countComment = countComment;
-		this.num = num;
+		this.commCnt = commCnt;
 		this.regdate = regdate;
+		this.num = num;
 	}
 
-	public int getbNum() {
-		return bNum;
+
+	public int getNum() {
+		return num;
 	}
 
-	public void setbNum(int bNum) {
-		this.bNum = bNum;
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
+
+	public String getNic() {
+		return nic;
+	}
+
+
+	public void setNic(String nic) {
+		this.nic = nic;
+	}
+
+
+	public int getCommCnt() {
+		return commCnt;
+	}
+
+
+	public void setCommCnt(int commCnt) {
+		this.commCnt = commCnt;
+	}
+
+
+	public int getBnum() {
+		return bnum;
+	}
+
+	public void setBnum(int bnum) {
+		this.bnum = bnum;
 	}
 
 	public String getTitle() {
@@ -79,30 +113,6 @@ public class GboardVo {
 		this.id = id;
 	}
 
-	public String getNic() {
-		return nic;
-	}
-
-	public void setNic(String nic) {
-		this.nic = nic;
-	}
-
-	public int getCountComment() {
-		return countComment;
-	}
-
-	public void setCountComment(int countComment) {
-		this.countComment = countComment;
-	}
-
-	public int getNum() {
-		return num;
-	}
-
-	public void setNum(int num) {
-		this.num = num;
-	}
-
 	public Date getRegdate() {
 		return regdate;
 	}
@@ -110,5 +120,6 @@ public class GboardVo {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-
+	
+	
 }

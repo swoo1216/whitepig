@@ -25,42 +25,56 @@ public class ClistController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		// 댓글 불러오기
 		String sbNum = request.getParameter("bNum");
-		ArrayList<GcommentVo> list = GcommentDao.getInstance().list(Integer.parseInt(sbNum));
-		int i = 0;
+		String stNum = request.getParameter("tNum");
+
+		if (sbNum == null) {
+			sbNum = String.valueOf(request.getAttribute("bNum"));
+			stNum = String.valueOf(request.getAttribute("tNum"));
+		}
+
+		int bNum = Integer.parseInt(sbNum);
+		int tNum = Integer.parseInt(stNum);
+		GcommentDao dao = GcommentDao.getInstance();
+		ArrayList<GcommentVo> list = dao.list(bNum, tNum);
+
 		JSONObject obj = new JSONObject();
+
+		String bNic = GboardDao.getInstance().select(bNum).getNic();
+		String hit = String.valueOf(GboardDao.getInstance().select(bNum).getHit());
+		String bDate = new SimpleDateFormat("YYYY-MM-dd").format(GboardDao.getInstance().select(bNum).getRegdate());
+		String countComment = String.valueOf(GcommentDao.getInstance().getCount(bNum, tNum));
+
+		JSONObject board = new JSONObject();
+		board.put("bNic", bNic);
+		board.put("hit", hit);
+		board.put("bDate", bDate);
+		board.put("countComment", countComment);
+
+		obj.put("board", board);
+
+		JSONArray arr = new JSONArray();
 		for (GcommentVo vo : list) {
-			int cNum = vo.getcNum();
-			String content = vo.getContent().replaceAll("<br>", "\\n");
-			int recomm = vo.getRecomm();
-			String id = vo.getId();
-			String nic = vo.getNic();
-			int bNum = vo.getbNum();
-			int countComment = GcommentDao.getInstance().getCount(bNum);
-			int hit = GboardDao.getInstance().select(bNum).getHit();
-			Date regdate = GboardDao.getInstance().select(bNum).getRegdate();
-			
-			String date = new SimpleDateFormat("YYYY-MM-dd").format(regdate);
-			
+			String cNum = String.valueOf(vo.getcNum());
+			String content = vo.getContent().replace("<br>", "\r\n");
+			String recomm = String.valueOf(vo.getRecomm());
+			String rnic = vo.getNic();
+			Date regdate = vo.getRegdate();
+			String rdate = new SimpleDateFormat("YYYY-MM-dd").format(regdate);
+
 			JSONObject json = new JSONObject();
-			JSONArray arr = new JSONArray();
-			
+
 			json.put("cNum", cNum);
 			json.put("content", content);
 			json.put("recomm", recomm);
-			json.put("id", id);
-			json.put("nic", nic);
-			json.put("bNum", bNum);
-			json.put("countComment", countComment);
-			json.put("hit", hit);
-			json.put("date", date);
-			
-			
-			obj.put(i++, json);
+			json.put("rnic", rnic);
+			json.put("rdate", rdate);
+
+			arr.add(json);
 		}
-		
+		obj.put("recomm", arr);
+
 		response.setContentType("text/plain; charset=UTF-8");
 		PrintWriter pw = response.getWriter();
 		pw.print(obj.toString());
