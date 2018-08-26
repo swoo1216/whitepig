@@ -8,7 +8,7 @@
 </head>
 <style type="text/css">
 </style>
-<script type="text/javascript">
+<script type="text/javascript">http://localhost:8081/semi/poke/list.do#
 	
 </script>
 <body>
@@ -16,17 +16,10 @@
 		아이디 <input type="text" name="id"><br> 비밀번호 <input type="password" name="pwd">
 		<button type="submit">로그인</button>
 	</form>
-<<<<<<< HEAD
+
 	${errMsg}
 	${id}
 	
-	<a href="<c:url value='gboard.do'/>">글목록</a>
-
-	<a href="<%=request.getContextPath() %>/poke/list.do">상점</a>
-	<a href="<%=request.getContextPath() %>/poke/pboard.do">poke</a>
-
-
-
 
 	<a href="<c:url value='gboard.do'/>">글목록</a>
 	<a href="<%=request.getContextPath()%>/poke/list.do">상점</a>

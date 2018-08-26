@@ -47,7 +47,6 @@
 				<input type="text" name="title" placeholder="title" class="w3-round w3-margin"><br>
 	 			<textarea rows="10" cols="50" placeholder="content" class="w3-round w3-margin" name="content"></textarea>
 	 			
-	 			<a class="w3-btn w3-round w3-ripple w3-teal w3-margin" href="pboard.jsp">취소</a>
 	 			<button class="w3-btn w3-round w3-ripple w3-teal w3-margin w3-right">등록</button>
 	 		</form>
 			</div>

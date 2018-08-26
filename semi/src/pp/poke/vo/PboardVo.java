@@ -1,6 +1,5 @@
 package pp.poke.vo;
 
-import java.sql.Date;
 
 public class PboardVo {
 	private int bnum;
@@ -11,7 +10,7 @@ public class PboardVo {
 	private String id;
 	private String nic;
 	private int commCnt;
-	private Date regdate;
+	private String regdate;
 	private int num;
 	
 	public PboardVo() {
@@ -20,7 +19,7 @@ public class PboardVo {
 
 
 	public PboardVo(int bnum, String title, String content, int hit, int recomm, String id, String nic, int commCnt,
-			Date regdate, int num) {
+			String regdate, int num) {
 		super();
 		this.bnum = bnum;
 		this.title = title;
@@ -113,11 +112,11 @@ public class PboardVo {
 		this.id = id;
 	}
 
-	public Date getRegdate() {
+	public String getRegdate() {
 		return regdate;
 	}
 
-	public void setRegdate(Date regdate) {
+	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
 	

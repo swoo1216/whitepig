@@ -11,22 +11,22 @@ import javax.servlet.http.HttpServletResponse;
 import pp.poke.dao.PboardDao;
 import pp.poke.dao.PrecommDao;
 import pp.poke.vo.PrecommVo;
-@WebServlet("/poke/precomminsert.do")
-public class PrecommInsertController extends HttpServlet{
+@WebServlet("/poke/precommdelete.do")
+public class PrecommDeleteController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id=req.getParameter("id");
 		int bnum=Integer.parseInt(req.getParameter("bnum"));
 		
-		PrecommVo vo = new PrecommVo(0, id, bnum);
+		PrecommVo vo=new PrecommVo(0, id, bnum);
 		if(id!=null && !id.equals("")) {
-			if(!PrecommDao.getInstance().isRecomm(vo)) {
-				PrecommDao.getInstance().insert(vo);
+			if(PrecommDao.getInstance().isRecomm(vo)) {
+				PrecommDao.getInstance().delete(vo);
 				int recomm=PrecommDao.getInstance().getrecommCount(bnum);
 				PboardDao.getInstance().recommUp(vo.getBnum(), recomm);
 			}
 		}
-		req.setAttribute("isrecomm", "true");
+		req.setAttribute("isrecomm", "false");
 		req.getRequestDispatcher("/poke/pdetail.do").forward(req, resp);
 	}
 }

@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import pp.go.db.DBConnection;
@@ -121,7 +122,7 @@ public class PboardDao {
 				String id=rs.getString("id");
 				String nic=rs.getString("nic");
 				int commCnt=PcommentDao.getInstance().getCount(bnum);
-				Date regdate=rs.getDate("regdate");
+				String regdate=rs.getString("regdate");
 				int num=rs.getInt("num");
 				
 				PboardVo vo=new PboardVo(bnum, title, content, hit, recomm, id, nic, commCnt, regdate, num);
@@ -151,10 +152,11 @@ public class PboardDao {
 				String id=rs.getString("id");
 				String nic=rs.getString("nic");
 				int commCnt = PcommentDao.getInstance().getCount(bnum);
-				Date regdate=rs.getDate("regdate");
+				String regdate=rs.getString("regdate");
+				String rdate=regdate.split("\\.")[0];
 				int num=rs.getInt("num");
 				
-				return new PboardVo(bnum, title, content, hit, recomm, id, nic, commCnt, regdate, num);
+				return new PboardVo(bnum, title, content, hit, recomm, id, nic, commCnt, rdate, num);
 			}else {
 				return null;
 			}
@@ -251,7 +253,7 @@ public class PboardDao {
 		try {
 			conn=DBConnection.conn();
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, recomm + 1);
+			pstmt.setInt(1, recomm);
 			pstmt.setInt(2, bnum);
 			
 			return pstmt.executeUpdate();

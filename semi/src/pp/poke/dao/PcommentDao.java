@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import pp.go.db.DBConnection;
@@ -112,10 +113,11 @@ public class PcommentDao {
 				int recomm=rs.getInt("recomm");
 				String id=rs.getString("id");
 				String nic=rs.getString("nic");
-				Date regdate=rs.getDate("regdate");
+				String regdate=rs.getString("regdate");
+				String rdate=regdate.split("\\.")[0];
 				int num=rs.getInt("num");
 				
-				list.add(new PcommentVo(cnum, content, recomm, id, nic, bnum, regdate, num));	
+				list.add(new PcommentVo(cnum, content, recomm, id, nic, bnum, rdate, num));	
 			}
 			return list;
 		}catch(SQLException se) {
@@ -125,6 +127,28 @@ public class PcommentDao {
 			DBConnection.close(rs, pstmt, conn);
 		}
 	}
+	
+	public int delete(int cnum) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		
+		String sql="delete from pcomment where cnum=?";
+		
+		try {
+			conn=DBConnection.conn();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, cnum);
+			
+			return pstmt.executeUpdate();
+		}catch(SQLException se) {
+			System.out.println(se.getMessage());
+			return -1;
+		}finally {
+			DBConnection.close(null, pstmt, conn);
+		}
+	}
+	
+	
 }
 
 

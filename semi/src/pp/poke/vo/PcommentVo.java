@@ -1,7 +1,5 @@
 package pp.poke.vo;
 
-import java.sql.Date;
-
 public class PcommentVo {
 	private int cnum;
 	private String content;
@@ -9,14 +7,14 @@ public class PcommentVo {
 	private String id;
 	private String nic;
 	private int bnum;
-	private Date regdate;
+	private String regdate;
 	private int num;
 	
 	public PcommentVo() {
 	
 	}
 
-	public PcommentVo(int cnum, String content, int recomm, String id, String nic, int bnum, Date regdate, int num) {
+	public PcommentVo(int cnum, String content, int recomm, String id, String nic, int bnum, String regdate, int num) {
 		super();
 		this.cnum = cnum;
 		this.content = content;
@@ -84,11 +82,11 @@ public class PcommentVo {
 		this.bnum = bnum;
 	}
 
-	public Date getRegdate() {
+	public String getRegdate() {
 		return regdate;
 	}
 
-	public void setRegdate(Date regdate) {
+	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
 	
