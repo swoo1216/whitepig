@@ -1,17 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+
 <body>
 <div id="wrapper">
 	<div id="nav">
@@ -19,7 +13,7 @@
   <a class="w3-bar-item w3-button w3-border-bottom w3-large w3-hover-white" href="main.jsp"><img src="/semi/바지.png" style="height: 80px;"></a>
   <a class="w3-bar-item w3-button w3-hide-large w3-large w3-hover-white" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
   <a class="w3-bar-item w3-button w3-hover-white" href="#">Link 1</a>
-  <a class="w3-bar-item w3-button w3-hover-white" href="main.jsp?content=/poke/pboard.do">Link 2</a>
+  <a class="w3-bar-item w3-button w3-hover-white" href="pview.jsp?page=item.jsp">Link 2</a>
   <a class="w3-bar-item w3-button w3-hover-white" href="main.jsp?content=/poke/list.do">Link 3</a>
   <a class="w3-bar-item w3-button w3-hover-white" href="#">Link 4</a>
   <a class="w3-bar-item w3-button w3-hover-white" href="#">Link 5</a>
@@ -36,20 +30,6 @@
 <div class="w3-main" style="margin-left:250px;" id="content">
 
  <div class="w3-hide-large" style="margin-top:83px"></div>
-<c:choose>
-<c:when test="${empty param.content}">
-	<c:set var="content" value="main.html"/>
-</c:when>
-<c:otherwise>
-	
-	<c:set var="content" value="${param.content}"/>
-			
-</c:otherwise>
-</c:choose>
-
-<jsp:include page="${content }" flush="false"></jsp:include>
-
-
      
 </div>
 </div>
@@ -67,5 +47,3 @@
 	
 </script>
 
-</body>
-</html>

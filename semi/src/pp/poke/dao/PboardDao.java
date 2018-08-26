@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import pp.go.dao.GcommentDao;
 import pp.go.db.DBConnection;
 import pp.poke.vo.PboardVo;
 
@@ -46,17 +45,17 @@ public class PboardDao {
 			conn=DBConnection.conn();
 			
 			if(keyword.equals("")) {
-				String sql="select NVL(count(bnum),0) cnt from pboard";
+				String sql="select NVL(count(bnum),0) cnt from pboard pb, guser gu where pb.id=gu.id";
 				pstmt=conn.prepareStatement(sql);
 				rs=pstmt.executeQuery();
 			}else {
 				String searchCase = "";
-				if(search.equals("writer")) {
+				if(search.equals("nic")) {
 					searchCase = " = ? ";
 				}else {
 					searchCase = " like '%'||?||'%' ";
 				}
-				String sql="select NVL(count(bnum),0) cnt from pboard where "+search+searchCase;
+				String sql="select NVL(count(bnum),0) cnt from pboard pb join guser gu on pb.id=gu.id where "+search+searchCase;
 				pstmt=conn.prepareStatement(sql);
 				pstmt.setString(1, keyword);
 				rs=pstmt.executeQuery();
@@ -95,7 +94,7 @@ public class PboardDao {
 				rs=pstmt.executeQuery();
 			}else {
 				String searchCase = "";
-				if(search.equals("writer")) {
+				if(search.equals("nic")) {
 					searchCase=" = ? ";
 				}else {
 					searchCase=" like '%'||?||'%' ";
@@ -213,6 +212,47 @@ public class PboardDao {
 			pstmt.setString(2, vo.getTitle());
 			pstmt.setString(3, vo.getContent());
 			pstmt.setString(4, vo.getId());
+			
+			return pstmt.executeUpdate();
+		}catch(SQLException se) {
+			System.out.println(se.getMessage());
+			return -1;
+		}finally {
+			DBConnection.close(null, pstmt, conn);
+		}
+	}
+	
+	public int hitup(int bnum) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		
+		String sql="update pboard set hit = hit + 1 where bnum = ?";
+		
+		try {
+			conn=DBConnection.conn();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, bnum);
+			
+			return pstmt.executeUpdate();
+		}catch(SQLException se) {
+			System.out.println(se.getMessage());
+			return -1;
+		}finally {
+			DBConnection.close(null, pstmt, conn);
+		}
+	}
+	
+	public int recommUp(int bnum,int recomm) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		
+		String sql="update pboard set recomm=? where bnum=?";
+		
+		try {
+			conn=DBConnection.conn();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, recomm + 1);
+			pstmt.setInt(2, bnum);
 			
 			return pstmt.executeUpdate();
 		}catch(SQLException se) {
