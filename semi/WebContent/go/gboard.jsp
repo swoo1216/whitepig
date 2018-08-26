@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -7,8 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 </head>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/go_frm.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/go_frm.css">
 <style type="text/css">
 td, th {
 	border-spacing: 0px;
@@ -25,46 +23,85 @@ th {
 td {
 	border-bottom: 1px solid black;
 }
+
+ul li {
+	list-style: none;
+}
+
+.popup {
+	z-index: 1;
+	display: none;
+	width: 100px;
+}
+
+.popstyle {
+	outline: 2px solid #ff6666;
+	background-color: white;
+	padding: 10px;
+	text-align: center;
+}
 </style>
 <script type="text/javascript">
 	window.onload = function() {
 		var size = window.innerHeight || document.body.clientHeight;
-		document.getElementById("wrapper").style.height = size + "px";
+		document.getElementById("wrapper").style.height = (size - 10) + "px";
 		var tr = document.getElementsByTagName("tr");
 
 		for (var i = 0; i < tr.length; i++) {
 			if (i == 0)
 				continue;
-			tr[i].addEventListener("mouseover", function() {
+			tr[i].addEventListener("mouseover", function() { //테이블 효과
 				this.style.backgroundColor = "#ffe6e6";
 			}, false);
 
 			tr[i].addEventListener("mouseout", function() {
 				this.style.backgroundColor = "white";
 			}, false);
-
-			var children = tr[i].children;
-
-			for (var j = 0; j < children.length; j++) {
-				children[j].addEventListener("mouseover", function(){
-					this.style.cursor = "pointer";
+		}
+		document.getElementById("scontent").addEventListener('keyup',
+				function(e) {
+					if (e.keyCode == 13)
+						sendScontent()
 				}, false);
-			}
-			
-			document.getElementById("scontent").addEventListener('keyup', function(e){
-				if(e.keyCode == 13)
-					sendScontent()
+
+		var clickPopup = document.getElementsByClassName("clickPopup");
+		for (var i = 0; i < clickPopup.length; i++) {
+			clickPopup[i].addEventListener("mouseover", function() { //팝업
+				this.style.cursor = "pointer";
+			}, false);
+		}
+
+		var popup = document.getElementsByClassName("popup");
+
+		for (var i = 0; i < popup.length; i++) {
+			popup[i].addEventListener("mouseleave", function() {
+				this.style.display = "none";
 			}, false);
 		}
 	}
 	function sendSort(sort) {
-		location.href = "/semi/go/gboard.do?pageNum=${pageNum}&sort=" + sort + "&search=${search}&scontent=${scontent}";
+		location.href = "/semi/go/gboard.do?pageNum=${pageNum}&sort=" + sort
+				+ "&search=${search}&scontent=${scontent}";
 	}
-	function sendScontent(){
+	function sendScontent() {
 		var search = document.getElementById("search").value;
 		var scontent = document.getElementById("scontent").value;
-		
-		location.href = "/semi/go/gboard.do?pageNum=${pageNum}&sort=${sort}&search="+ search +"&scontent="+scontent;
+
+		location.href = "/semi/go/gboard.do?pageNum=${pageNum}&sort=${sort}&search="
+				+ search + "&scontent=" + scontent;
+	}
+	function showPopup(popNum) {
+		var popup = document.getElementsByClassName("popup");
+
+		for (var i = 0; i < popup.length; i++) {
+			popup[i].style.display = "none";
+		}
+
+		var popNum = document.getElementById(popNum);
+		popNum.style.display = "block";
+		popNum.style.position = "absolute";
+		popNum.style.top = event.clientY + "px";
+		popNum.style.left = (event.clientX + 30) + "px";
 	}
 </script>
 <body>
@@ -77,13 +114,12 @@ td {
 					<button onclick="sendSort('regdate')">최신순</button>
 					<button onclick="sendSort('hit')">조회순</button>
 					<button onclick="sendSort('recomm')">추천순</button>
-					<div>
-						<select id="search">
-							<option value="content" <c:if test="${search == 'content'}">selected</c:if>>내용</option>
-							<option value="nic" <c:if test="${search == 'nic'}">selected</c:if>>글쓴이</option>
-							<option value="title" <c:if test="${search == 'title'}">selected</c:if>>제목</option>
-						</select> <input type="text" id="scontent" value="${scontent}"> <button onclick="sendScontent()">검색^^</button>
-					</div>
+					<button onclick="sendScontent()">검색^^</button>
+					<select id="search" style="height: 23px">
+						<option value="content" <c:if test="${search == 'content'}">selected</c:if>>내용</option>
+						<option value="nic" <c:if test="${search == 'nic'}">selected</c:if>>글쓴이</option>
+						<option value="title" <c:if test="${search == 'title'}">selected</c:if>>제목</option>
+					</select> <input type="text" id="scontent" value="${scontent}" style="height: 20px">
 					<table>
 						<tr>
 							<th width="7%">번호</th>
@@ -96,26 +132,39 @@ td {
 						<c:choose>
 							<c:when test="${empty list}">
 								<tr>
-									<td colspan="5">게시물이 존재 하지 않아 하나 좀 써봐</td>
+									<td colspan="6">게시물이 존재 하지 않아 하나 좀 써봐</td>
 								</tr>
 							</c:when>
 							<c:otherwise>
 								<c:forEach var="vo" items="${list}">
 									<tr>
 										<td>${vo.bNum}</td>
-										<td style="text-align: left;"><a
-											href="<c:url value='gdetail.do?bNum=${vo.bNum}&tNum=0'/>">${vo.title}</a>
-											&nbsp;[${vo.countComment}]</td>
-										<td>${vo.nic}</td>
+										<td style="text-align: left;"><a href="<c:url value='gdetail.do?bNum=${vo.bNum}&tNum=0'/>">${vo.title}</a> &nbsp;[${vo.countComment}]</td>
+										<td><span class="clickPopup" onclick="showPopup('pop${vo.bNum}')">${vo.nic}</span></td>
 										<td>${vo.regdate}</td>
 										<td>${vo.hit}</td>
 										<td>${vo.recomm}</td>
 									</tr>
+									<div class="popup" id="pop${vo.bNum}">
+										<div class="popstyle">
+											<ul>
+												<li><a href="">마이페이지</a></li>
+												<li><a href="">쪽지보내기</a></li>
+											</ul>
+										</div>
+									</div>
 								</c:forEach>
 							</c:otherwise>
 						</c:choose>
 					</table>
-					<button type="button" onclick="location.href = 'ginsert.jsp';">글쓰기</button>
+					<c:choose>
+						<c:when test="${empty sessionScope.id}">
+							<button type="button" onclick="location.href = 'index.jsp';">로그인</button>
+						</c:when>
+						<c:otherwise>
+							<button type="button" onclick="location.href = 'ginsert.jsp';">글쓰기</button>
+						</c:otherwise>
+					</c:choose>
 					<div style="text-align: center">
 						<c:choose>
 							<c:when test="${startPage>10}">

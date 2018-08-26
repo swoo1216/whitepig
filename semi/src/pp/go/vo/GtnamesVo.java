@@ -1,5 +1,5 @@
 package pp.go.vo;
-
+//테이블 이름
 public class GtnamesVo {
 	private int tNum;
 	private String tName;

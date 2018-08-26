@@ -71,7 +71,7 @@ public class GboardDao {
 		case "content":
 		case "title":
 		case "nic":
-			search = " where gb.id = gu.id and " + search + " like '%" + scontent + "%'";
+			search = " where gb.id = gu.id and upper(" + search + ") like upper('%" + scontent + "%')";
 			break;
 		default:
 			search = " where gb.id = gu.id";
@@ -228,7 +228,7 @@ public class GboardDao {
 				int recomm = rs.getInt("recomm");
 				String id = rs.getString("id");
 				String nic = rs.getString("nic");
-				int countComment = GcommentDao.getInstance().getCount(bNum);
+				int countComment = GcommentDao.getInstance().getCount(bNum, 0);
 				Date regdate = rs.getDate("regdate");
 				vo = new GboardVo(bNum, title, content, hit, recomm, id, nic, countComment, 0, regdate);
 			}
@@ -261,7 +261,7 @@ public class GboardDao {
 		case "content":
 		case "nic":
 		case "title":
-			search = " and " + search + " like '%" + scontent + "%'";
+			search = " and upper(" + search + ") like upper('%" + scontent + "%')";
 			break;
 		default:
 			search = "";
@@ -285,7 +285,7 @@ public class GboardDao {
 				String id = rs.getString("id");
 				String nic = rs.getString("nic");
 				Date regdate = rs.getDate("regdate");
-				int countComment = GcommentDao.getInstance().getCount(bNum);
+				int countComment = GcommentDao.getInstance().getCount(bNum, 0);
 
 				list.add(new GboardVo(bNum, title, content, hit, recomm, id, nic, countComment, 0, regdate));
 			}

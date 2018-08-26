@@ -13,10 +13,10 @@
 </script>
 <body>
 	<form method="post" action="<c:url value='login.do'/>">
-		아이디 <input type="text" name="id"><br>
-		비밀번호 <input type="password" name="pwd">
+		아이디 <input type="text" name="id"><br> 비밀번호 <input type="password" name="pwd">
 		<button type="submit">로그인</button>
 	</form>
+<<<<<<< HEAD
 	${errMsg}
 	${id}
 	
@@ -28,5 +28,12 @@
 
 
 
+	<a href="<c:url value='gboard.do'/>">글목록</a>
+	<a href="<%=request.getContextPath()%>/poke/list.do">상점</a>
+	<a href="<%=request.getContextPath()%>/poke/pboard.do">poke</a>
+
+	<c:if test="${!sessionScope.id}">
+		<a href="<c:url value='logout.do'/>">로그아웃</a>
+	</c:if>
 </body>
 </html>

@@ -11,26 +11,34 @@ import javax.servlet.http.HttpServletResponse;
 import pp.go.dao.GboardDao;
 import pp.go.vo.GboardVo;
 
-@WebServlet("/go/gboarddelete.do")
-public class GboardDeleteController extends HttpServlet {
+@WebServlet("/go/gmodifyOk.do")
+public class GboardModifyOkController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String sbNum = request.getParameter("bNum");
-		String id = (String) request.getSession().getAttribute("id");
 
-		int bNum = -1;
+		int bNum = 0;
+		String id = "";
+		String title = "";
+		String content = "";
+
 		if (sbNum != null && !sbNum.equals("")) {
 			bNum = Integer.parseInt(sbNum);
-			GboardVo vo = GboardDao.getInstance().select(bNum);
-			if (vo != null) {
-				if (vo.getId().equals(id)) {
-					GboardDao.getInstance().delete(bNum);
-					response.sendRedirect("gboard.do");
-				}
-			}
-		}else
+			id = request.getParameter("id");
+			title = request.getParameter("title");
+			content = request.getParameter("content").replace("\r\n", "<br>");
+		}
+
+		int n = GboardDao.getInstance().update(new GboardVo(bNum, title, content, 0, 0, id, null, 0, 0, null));
+
+		if (n > 0) {
+			request.setAttribute("bNum", bNum);
+			request.setAttribute("tNum", 0);
 			request.getRequestDispatcher("/go/gdetail.do").forward(request, response);
-		
+		} else {
+			response.sendRedirect("gboard.do");
+		}
+
 	}
 }

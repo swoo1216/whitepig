@@ -28,7 +28,7 @@
 <hr style="border-color: teal;">
 	<div class="w3-margin">
 	글제목
-	<button class="w3-btn w3-right"><i class="fa fa-thumbs-o-up fa-lg"> ${vo.recomm }</i> </button>
+	<button class="w3-btn w3-right" onclick=""><i class="fa fa-thumbs-o-up fa-lg"> ${vo.recomm }</i> </button>
 	</div>
 	
 <hr style="border-color: teal;">

@@ -1,5 +1,6 @@
 package pp.go.vo;
 
+//ÃßÃµ
 public class GrecommTableVo {
 	private int reNum;
 	private String id;
