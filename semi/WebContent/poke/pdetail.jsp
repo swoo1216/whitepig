@@ -12,16 +12,20 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-
-<div class="w3-bar w3-top w3-pale-red w3-large" style="z-index:4">
-  <button class="w3-bar-item w3-button w3-hide-large w3-hover-white" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+<div class="w3-bar w3-top w3-pale-red w3-large" style="z-index:4;">
+  <button class="w3-bar-item w3-button w3-hide-large w3-hover-white" onclick="myFunction('Demo1')"><i class="fa fa-bars"></i>  Menu</button>
   <span class="w3-bar-item w3-right">Logo</span>
+  <button
+	class="w3-btn w3-round w3-ripple w3-pale-red w3-large w3-right"
+	onclick="openRightMenu()" id="wish">
+	<i class="fa fa-shopping-cart"></i>
+  </button>
+   <button class="w3-bar-item w3-button w3-hide-large w3-hover-white w3-right"><i class="fa fa-user-plus"></i></button>
+   <button class="w3-bar-item w3-button w3-hide-large w3-hover-white w3-right"><i class="fa fa-user-circle"></i></button>
 </div>
 
-<div id="wrapper">
 	<div id="nav">
-<nav class="w3-sidebar w3-center w3-bar-block w3-collapse w3-animate-left w3-card w3-pale-red" style="z-index:3;width:200px;" id="mySidebar">
-  <a class="w3-bar-item w3-button w3-hide-large w3-large w3-hover-white" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
+<nav class="w3-sidebar w3-center w3-bar-block w3-collapse w3-animate-left w3-card w3-pale-red" style="z-index:3;width:200px;height: 100%;" id="mySidebar">
   <a class="w3-bar-item w3-button w3-large w3-hover-white" href="main.jsp"><img src="/semi/바지.png" style="height: 60px;"></a>
   	<!-- 로그인 회원가입 -->
   	<c:choose>
@@ -37,7 +41,7 @@
 	  </div>
   		</c:otherwise>
   	</c:choose>
-  
+   
  <a class="w3-bar-item w3-button w3-hover-white" href="#" style="margin-top: 60px;"><img alt="" src="/semi/images/슈퍼마리오아이콘.png" style="width: 50px;"> Go</a>
  	<hr style="border-color: white;">
   <a class="w3-bar-item w3-button w3-hover-white" href="/semi/poke/pboard.do"><img alt="" src="/semi/images/포켓몬아이콘.png" style="width: 50px;"> Poke</a>
@@ -47,15 +51,23 @@
   <a class="w3-bar-item w3-button w3-hover-white" href="#"><img alt="" src="/semi/images/롤아이콘.png" style="width: 50px;"> LoL</a>
  	<hr style="border-color: white;">	
   <a class="w3-bar-item w3-button w3-hover-white" href="#"><img alt="" src="/semi/images/음악아이콘.png" style="width: 50px;"> Music</a>
-  
+
  </nav>
  
-<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+ <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 </div>
+
 
 
 <div class="w3-main" style="margin-left:200px;margin-top: 43px;" id="content">
    
+<div id="Demo1" class="w3-hide w3-pale-red" style="position: absolute;width: 100%;">
+	<a class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large" href="#"><img alt="" src="/semi/images/슈퍼마리오아이콘.png" style="width: 30px;"> Go</a>
+	<a class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large" href="/semi/poke/pboard.do"><img alt="" src="/semi/images/포켓몬아이콘.png" style="width: 30px;"> Poke</a>
+  	<a class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large" href="/semi/poke/list.do"><img alt="" src="img/25.gif" style="width: 30px;"> Icon</a>
+  	<a class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large" href="#"><img alt="" src="/semi/images/롤아이콘.png" style="width: 30px;"> LoL</a>
+  	<a class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large" href="#"><img alt="" src="/semi/images/음악아이콘.png" style="width: 30px;"> Music</a>
+</div>
 
 <div class="w3-container" style="min-height: 865px;">
 
@@ -69,7 +81,7 @@
 		${vo.regdate }
 	
 <hr style="border-color: teal;">
-	<div class="w3-margin w3-padding-16">
+	<div class="w3-margin">
 		${vo.title }
 	<div class="w3-right">
 		<c:choose>
@@ -202,7 +214,7 @@
 
 </div>
 
-</div>
+
 
    
 
@@ -216,6 +228,14 @@
 	function w3_close() {
 	 document.getElementById("mySidebar").style.display = "none";
 	 document.getElementById("myOverlay").style.display = "none";
+	}
+	function myFunction(id) {
+	    var x = document.getElementById(id);
+	    if (x.className.indexOf("w3-show") == -1) {
+	        x.className += " w3-show";
+	    } else { 
+	        x.className = x.className.replace(" w3-show", "");
+	    }
 	}
 	
 </script>
