@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <style>
-* {
+* {	
 	margin: 0px;
 	padding: 0px;
 	font-family: Comic Sans MS;

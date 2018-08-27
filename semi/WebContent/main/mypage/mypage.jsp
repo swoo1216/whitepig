@@ -23,21 +23,22 @@
 	padding-left :600px;
 	font-size : 50px;
 }
+#modifyInfo
+{
+
+}
 </style>
 <body>
-
+<div id = "modifyInfo">
+<a href="">[회원정보 수정하기]</a>
+</div>
 <div id="nic">
 	<h1 style= "text-align: center; margin-top:30px; font-size:150px;"><%=session.getAttribute("nic")%></h1>
 	<br><br>
 </div>
 <div id="info">
-[게시글]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[댓글]
+[게시글 : <a href=""><%= session.getAttribute("boardcount") %></a>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[댓  글 : <a href=""><%= session.getAttribute("replycount") %></a>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[포인트 : <%=session.getAttribute("point") %>]
 </div>
-<div id="getnumber">
-<a href=""><%= session.getAttribute("boardcount") %></a>
-<a href=""><%= session.getAttribute("replycount") %></a>
-</div>	
-	
 </body>
 
 </html>

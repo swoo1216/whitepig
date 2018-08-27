@@ -24,12 +24,14 @@ public class LoginController extends HttpServlet
 		System.out.println(pwd);
 		MainDao dao = new MainDao();
 		String nic = dao.login(id, pwd);
+		int point = dao.point(nic);
 		if(nic!=null)
 		{
 			request.setAttribute("code", "success1");
 			HttpSession session = request.getSession();
 			session.setAttribute("id", id);
 			session.setAttribute("nic", nic);
+			session.setAttribute("point", point);
 		}
 		else
 		{
