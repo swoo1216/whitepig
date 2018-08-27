@@ -73,7 +73,7 @@ public class PboardDao {
 			DBConnection.close(rs, pstmt, conn);
 		}
 	}
-	public ArrayList<PboardVo> list(int startRow,int endRow,String search,String keyword){
+	public ArrayList<PboardVo> list(int startRow,int endRow,String sort,String search,String keyword){
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -94,6 +94,8 @@ public class PboardDao {
 				pstmt.setInt(2, endRow);
 				rs=pstmt.executeQuery();
 			}else {
+				if(sort==null) sort="bnum";
+				if(sort.equals("")) sort="bnum";
 				String searchCase = "";
 				if(search.equals("nic")) {
 					searchCase=" = ? ";
@@ -103,7 +105,7 @@ public class PboardDao {
 				
 				String sql="select * from ( "
 						+ "select a.*, rownum rnum from( "
-						+ "select pb.*,gu.nic,gu.num from pboard pb join guser gu on pb.id=gu.id where "+search+" "+searchCase+" order by bnum desc "
+						+ "select pb.*,gu.nic,gu.num from pboard pb join guser gu on pb.id=gu.id where "+search+" "+searchCase+" order by "+sort+" desc "
 						+ ")a "
 					+ ") where rnum>=? and rnum <=?";
 				pstmt=conn.prepareStatement(sql);

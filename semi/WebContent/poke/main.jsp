@@ -9,27 +9,27 @@
 <body>
 <div id="wrapper">
 	<div id="nav">
-<nav class="w3-sidebar w3-center w3-bar-block w3-collapse w3-animate-left w3-card w3-pale-red" style="z-index:3;width:250px;" id="mySidebar">
-  <a class="w3-bar-item w3-button w3-border-bottom w3-large w3-hover-white" href="main.jsp"><img src="/semi/바지.png" style="height: 80px;"></a>
+<nav class="w3-sidebar w3-center w3-bar-block w3-collapse w3-animate-left w3-card w3-pale-red" style="z-index:3;width:200px;" id="mySidebar">
+  <a class="w3-bar-item w3-button w3-border-bottom w3-large w3-hover-white" href="main.jsp"><img src="/semi/바지.png" style="height: 60px;"></a>
   <a class="w3-bar-item w3-button w3-hide-large w3-large w3-hover-white" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
-  <a class="w3-bar-item w3-button w3-hover-white" href="#">Link 1</a>
-  <a class="w3-bar-item w3-button w3-hover-white" href="pview.jsp?page=item.jsp">Link 2</a>
-  <a class="w3-bar-item w3-button w3-hover-white" href="main.jsp?content=/poke/list.do">Link 3</a>
-  <a class="w3-bar-item w3-button w3-hover-white" href="#">Link 4</a>
-  <a class="w3-bar-item w3-button w3-hover-white" href="#">Link 5</a>
+  <a class="w3-bar-item w3-button w3-hover-white" href="#">Go</a>
+  <a class="w3-bar-item w3-button w3-hover-white" href="/semi/poke/pboard.do">Poke</a>
+  <a class="w3-bar-item w3-button w3-hover-white" href="/semi/poke/list.do">Icon</a>
+  <a class="w3-bar-item w3-button w3-hover-white" href="#">LoL</a>
+  <a class="w3-bar-item w3-button w3-hover-white" href="#">Music</a>
  </nav>
  
  <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 </div>
 
-<header class="w3-bar w3-top w3-hide-large w3-pale-red w3-xlarge">
+<header class="w3-bar w3-top w3-hide-large w3-pale-red w3-large">
   <div class="w3-bar-item w3-padding-24 w3-wide"></div>
-  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-left" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-hover-white w3-padding-24 w3-left" onclick="w3_open()"><i class="fa fa-bars"></i></a>
 </header>
 
-<div class="w3-main" style="margin-left:250px;" id="content">
-
- <div class="w3-hide-large" style="margin-top:83px"></div>
+ <div class="w3-hide-large" style="margin-top:66px"></div>
+ 
+<div class="w3-main" style="margin-left:200px;" id="content">
      
 </div>
 </div>
@@ -47,3 +47,5 @@
 	
 </script>
 
+</body>
+</html>

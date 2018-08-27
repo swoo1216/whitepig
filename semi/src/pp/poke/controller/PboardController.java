@@ -16,6 +16,7 @@ public class PboardController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
+		String sort=req.getParameter("sort");
 		String search=req.getParameter("search");
 		String keyword=req.getParameter("keyword");
 		
@@ -23,17 +24,20 @@ public class PboardController extends HttpServlet{
 			keyword="";
 			search="";
 		}
+		
+		if(sort==null || sort.equals("")) sort="";
+		
 		String spageNum=req.getParameter("pageNum");
 		int pageNum=1;
 		if(spageNum!=null) {
 			pageNum=Integer.parseInt(spageNum);
 		}
-		int startRow=(pageNum-1)*20+1;
-		int endRow=startRow+19;
+		int startRow=(pageNum-1)*15+1;
+		int endRow=startRow+14;
 		
 		PboardDao dao=PboardDao.getInstance();
-		ArrayList<PboardVo> list=dao.list(startRow, endRow, search, keyword);
-		int pageCount=(int)Math.ceil(dao.getCount(search, keyword)/20.0);
+		ArrayList<PboardVo> list=dao.list(startRow, endRow, sort, search, keyword);
+		int pageCount=(int)Math.ceil(dao.getCount(search, keyword)/15.0);
 		int startPage=((pageNum-1)/5*5)+1;
 		int endPage=startPage+4;
 		if(endPage>pageCount) {

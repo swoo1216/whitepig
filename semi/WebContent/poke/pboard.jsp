@@ -1,22 +1,80 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>pboard</title>
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
+<body>
+
+<div class="w3-bar w3-top w3-pale-red w3-large" style="z-index:4">
+  <button class="w3-bar-item w3-button w3-hide-large w3-hover-white" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+  <span class="w3-bar-item w3-right">Logo</span>
+</div>
+
+<div id="wrapper">
+	<div id="nav">
+<nav class="w3-sidebar w3-center w3-bar-block w3-collapse w3-animate-left w3-card w3-pale-red" style="z-index:3;width:200px;" id="mySidebar">
+  <a class="w3-bar-item w3-button w3-hide-large w3-large w3-hover-white" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
+  <a class="w3-bar-item w3-button w3-large w3-hover-white" href="main.jsp"><img src="/semi/바지.png" style="height: 60px;"></a>
+  	<!-- 로그인 회원가입 -->
+  	<c:choose>
+  		<c:when test="${id!=null }">
+  			<img alt="" src="img/1.png" style="width: 50px;margin-top: 30px;"> ${nic}
+  			<hr style="border-color: white;">
+  		</c:when>
+  		<c:otherwise>
+  	<div class="w3-bar w3-border w3-border-white" style="display: flex;margin-top: 20px;">
+  			<button class="w3-border-right w3-border-white w3-bar-item w3-button w3-hover-white" onclick="location='/semi/go/index.jsp'">로그인</button>
+			<button class="w3-bar-item w3-button w3-hover-white">회원가입</button>
+			<hr style="border-color: white;">
+	  </div>
+  		</c:otherwise>
+  	</c:choose>
+  
+ <a class="w3-bar-item w3-button w3-hover-white" href="#" style="margin-top: 60px;"><img alt="" src="img/1.gif"> Go</a>
+ 	<hr style="border-color: white;">
+  <a class="w3-bar-item w3-button w3-hover-white" href="/semi/poke/pboard.do"><img alt="" src="img/4.gif"> Poke</a>
+  	<hr style="border-color: white;">
+  <a class="w3-bar-item w3-button w3-hover-white" href="/semi/poke/list.do"><img alt="" src="img/7.gif"> Icon</a>
+	<hr style="border-color: white;">
+  <a class="w3-bar-item w3-button w3-hover-white" href="#"><img alt="" src="img/25.gif"> LoL</a>
+ 	<hr style="border-color: white;">	
+  <a class="w3-bar-item w3-button w3-hover-white" href="#"><img alt="" src="img/5.gif"> Music</a>
+  
+ </nav>
  
- 
-   
+ <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+</div>
 
 
-<header class="w3-container w3-teal">
-	<h1>Header</h1>
-</header>
+<div class="w3-main" style="margin-left:200px;margin-top: 43px;" id="content">
+    
 
-<div class="w3-container">
+<div class="w3-container w3-padding-32" style="min-height: 747px;">
 	<table class="w3-table-all w3-margin-top">
+	
+		<c:if test="${list==null }">
+			<tr>
+				<td style="width: 5%;vertical-align: middle;"></td>
+				<td style="width: 50%;vertical-align: middle;">글을 입력하세요</td>
+				<td style="width: 10%;vertical-align: middle;"><i class="fa fa-twitch"> </i></td>
+				<td style="width: 10%;vertical-align: middle;"><i class="fa fa-thumbs-o-up"> </i></td>
+				<td style="width: 10%;vertical-align: middle;"><i class="fa fa-check-square-o"> </i></td>
+				<td style="width: 15%;vertical-align: middle;"></td>
+			</tr>
+		</c:if>
+	
 	<c:forEach var="vo" items="${list }">
 		<tr>
 			<td style="width: 5%;vertical-align: middle;">${vo.bnum }</td>
@@ -115,8 +173,25 @@
 	</div>
 
 
-<footer class="w3-container w3-teal w3-bottom">
+<footer class="w3-container w3-pale-red">
 	<h5>Footer</h5>
 </footer>
-
 </div>
+</div>
+   
+
+<script type="text/javascript">
+	
+	//Open and close the sidebar on medium and small screens
+	function w3_open() {
+	 document.getElementById("mySidebar").style.display = "block";
+	 document.getElementById("myOverlay").style.display = "block";
+	}
+	function w3_close() {
+	 document.getElementById("mySidebar").style.display = "none";
+	 document.getElementById("myOverlay").style.display = "none";
+	}
+	
+</script>
+</body>
+</html>
