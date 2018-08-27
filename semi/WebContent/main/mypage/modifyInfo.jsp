@@ -16,7 +16,8 @@
 	  	<input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="이메일" name="email" required>
 	   	<input class="w3-input w3-border" type="text" placeholder="닉네임" name="nic" required>
 	   	<button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">회원정보수정</button>
-	   	<span class="w3-right w3-padding w3-hide-small"><a href="">비밀번호변경하기</a></span>
+	   	<span class="w3-right w3-padding w3-hide-small"><a href="">회원탈퇴</a></span>
+	   	<span class="w3-right w3-padding w3-hide-small"><a href="">비밀번호변경</a></span>
 	</div>
 </form>
 </body>
