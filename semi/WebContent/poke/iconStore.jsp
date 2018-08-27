@@ -17,29 +17,56 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+<div class="w3-bar w3-top w3-pale-red w3-large" style="z-index:4">
+  <button class="w3-bar-item w3-button w3-hide-large w3-hover-white" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+  <span class="w3-bar-item w3-right">Logo</span>
+  <button
+	class="w3-btn w3-round w3-ripple w3-pale-red w3-large w3-right"
+	onclick="openRightMenu()" id="wish">
+	<i class="fa fa-shopping-cart"></i>
+  </button>
+</div>
+
 <div id="wrapper">
 	<div id="nav">
 <nav class="w3-sidebar w3-center w3-bar-block w3-collapse w3-animate-left w3-card w3-pale-red" style="z-index:3;width:200px;" id="mySidebar">
-  <a class="w3-bar-item w3-button w3-border-bottom w3-large w3-hover-white" href="main.jsp"><img src="/semi/바지.png" style="height: 60px;"></a>
   <a class="w3-bar-item w3-button w3-hide-large w3-large w3-hover-white" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
-  <a class="w3-bar-item w3-button w3-hover-white" href="#">Go</a>
-  <a class="w3-bar-item w3-button w3-hover-white" href="/semi/poke/pboard.do">Poke</a>
-  <a class="w3-bar-item w3-button w3-hover-white" href="/semi/poke/list.do">Icon</a>
-  <a class="w3-bar-item w3-button w3-hover-white" href="#">LoL</a>
-  <a class="w3-bar-item w3-button w3-hover-white" href="#">Music</a>
+  <a class="w3-bar-item w3-button w3-large w3-hover-white" href="main.jsp"><img src="/semi/바지.png" style="height: 60px;"></a>
+  	<!-- 로그인 회원가입 -->
+  	<c:choose>
+  		<c:when test="${id!=null }">
+  			<img alt="" src="img/1.png" style="width: 50px;margin-top: 30px;"> ${nic}
+  			<hr style="border-color: white;">
+  		</c:when>
+  		<c:otherwise>
+  	<div class="w3-bar w3-border w3-border-white" style="display: flex;margin-top: 20px;">
+  			<button class="w3-border-right w3-border-white w3-bar-item w3-button w3-hover-white" onclick="location='/semi/go/index.jsp'">로그인</button>
+			<button class="w3-bar-item w3-button w3-hover-white">회원가입</button>
+			<hr style="border-color: white;">
+	  </div>
+  		</c:otherwise>
+  	</c:choose>
+  
+ <a class="w3-bar-item w3-button w3-hover-white" href="#" style="margin-top: 60px;"><img alt="" src="/semi/images/슈퍼마리오아이콘.png" style="width: 50px;"> Go</a>
+ 	<hr style="border-color: white;">
+  <a class="w3-bar-item w3-button w3-hover-white" href="/semi/poke/pboard.do"><img alt="" src="/semi/images/포켓몬아이콘.png" style="width: 50px;"> Poke</a>
+  	<hr style="border-color: white;">
+  <a class="w3-bar-item w3-button w3-hover-white" href="/semi/poke/list.do"><img alt="" src="img/25.gif" style="width: 50px;"> Icon</a>
+	<hr style="border-color: white;">
+  <a class="w3-bar-item w3-button w3-hover-white" href="#"><img alt="" src="/semi/images/롤아이콘.png" style="width: 50px;"> LoL</a>
+ 	<hr style="border-color: white;">	
+  <a class="w3-bar-item w3-button w3-hover-white" href="#"><img alt="" src="/semi/images/음악아이콘.png" style="width: 50px;"> Music</a>
+  
  </nav>
  
  <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 </div>
 
-<header class="w3-bar w3-top w3-hide-large w3-pale-red w3-large">
-  <div class="w3-bar-item w3-padding-24 w3-wide"></div>
-  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-left" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-</header>
 
- <div class="w3-hide-large" style="margin-top:74px"></div>
- 
-<div class="w3-main" style="margin-left:200px;" id="content">
+<div class="w3-main" style="margin-left:200px;margin-top: 43px;" id="content">
+   
+
+<div class="w3-container" style="min-height: 865px;">
 
 
 
@@ -82,7 +109,7 @@
 					<c:when test="${id==null }">
 					wish.innerHTML+=
 					"<div class='w3-container w3-margin'>"+
-					"<img src='img/"+json.list[i]+".gif' style='width: 80px'>"+
+					"<img src='img/"+json.list[i]+".gif' style='width: 60px'>"+
 					"<button class='w3-btn w3-round w3-ripple w3-teal w3-margin'"+
 					" disabled='disabled' title='구매'><i class='fa fa-money fa-lg'></i></button>"+
 					"<button class='w3-btn w3-round w3-rip w3-teal'"+
@@ -92,7 +119,7 @@
 					<c:otherwise>
 					wish.innerHTML+=
 					"<div class='w3-container w3-margin'>"+
-					"<img src='img/"+json.list[i]+".gif' style='width: 80px'>"+
+					"<img src='img/"+json.list[i]+".gif' style='width: 60px'>"+
 					"<button class='w3-btn w3-round w3-ripple w3-teal w3-margin'"+
 					"onclick='check("+json.list[i]+")' title='구매'><i class='fa fa-money fa-lg'></i></button>"+
 					"<button class='w3-btn w3-round w3-rip w3-teal'"+
@@ -127,7 +154,7 @@
 
 
 	<div class="w3-sidebar w3-bar-block w3-card w3-animate-right w3-center"
-		style="display: none; right: 0; width: 350px; height: 90%;"
+		style="display: none; right: 0; width: 300px; height: 90%;"
 		id="rightMenu">
 		<button onclick="closeRightMenu()"
 			class="w3-bar-item w3-btn w3-ripple w3-teal w3-large">Close</button>
@@ -154,7 +181,7 @@
 
 		<c:forEach var="list" items="${wishList }">
 			<div class="w3-container w3-margin">
-				<img src="img/${list }.gif" style="width: 80px">
+				<img src="img/${list }.gif" style="width: 60px">
 				<c:choose>
 					<c:when test="${id==null }">
 						<button class="w3-btn w3-round w3-ripple w3-teal w3-margin"
@@ -180,20 +207,12 @@
 	</div>
 
 
-	<header class="w3-container w3-teal">
-		<button
-			class="w3-btn w3-round w3-ripple w3-teal w3-xlarge w3-right w3-margin"
-			onclick="openRightMenu()" id="wish">
-			<i class="fa fa-shopping-cart"></i>
-		</button>
-		<h1>Icon Store</h1>
-	</header>
 	
 
 		
 
-	<div class="w3-container">
-		<div class="w3-margin w3-center">
+	
+		<div class="w3-center" style="margin-top: 40px;">
 			<button class="w3-btn w3-large w3-round w3-ripple w3-teal"
 				style="width: 80px;"
 				onclick="location='list.do?search=type&keyword=grass'">grass</button>
@@ -206,18 +225,18 @@
 		</div>
 
 
-		<div class="w3-center w3-margin w3-padding-64">
-
+		<div class="w3-center w3-padding-32">
+			<div class="w3-panel w3-teal w3-round-xlarge" style="width: 600px;margin: auto;">
 			<c:forEach var="vo" items="${list }" varStatus="status">
 				<c:set var="no" value="${vo.num }" scope="session"></c:set>
-				<img src="img/${vo.num }.png" style="width: 80px; cursor: pointer;"
-					class="w3-hover-opacity w3-margin" id="img"
+				<img src="img/${vo.num }.png" style="width: 70px; cursor: pointer;"
+					class="w3-hover-grayscale w3-margin" id="img"
 					onclick="document.getElementById('icon${ status.count }').style.display='block';"
 					title="${vo.name }">
-					
+						
 
 				<div id="icon${ status.count }" class="w3-modal">
-					<div class="w3-modal-content w3-animate-top w3-card-4">
+					<div class="w3-modal-content w3-animate-top w3-card-4" style="width: 600px;">
 						<div class="w3-container w3-teal">
 							<span
 								onclick="document.getElementById('icon${ status.count}').style.display='none'"
@@ -227,7 +246,7 @@
 						</div>
 
 						<div class="w3-container w3-margin w3-large">
-							<img src="img/${vo.num }.gif" style="width: 100px">
+							<img src="img/${vo.num }.gif" style="width: 60px">
 							<div class="w3-panel w3-teal w3-round-xlarge">
 								<p>${vo.name }</p>
 								<p>${vo.type }</p>
@@ -257,7 +276,7 @@
 								</button>
 							</p>
 						</div>
-
+					
 					</div>
 
 				</div>
@@ -267,6 +286,8 @@
 					</c:when>
 				</c:choose>
 			</c:forEach>
+	</div>	
+
 
 		<!-- 구매 modal -->
 		<div class="w3-modal" id="check">
@@ -297,7 +318,7 @@
 				<button class="w3-btn w3-round w3-ripple w3-teal" style="height: 38px;">Search</button>
 			</form>
 		</div>
-	</div>
+
 	
 
 	<div class="w3-container w3-center w3-margin">
@@ -344,18 +365,17 @@
 			</c:choose>
 		</div>
 	</div>
-	   
-	
+	  
+		</div>
 
-	<footer id="myFooter">
-		<div class="w3-container w3-teal w3-padding-16">
-		<h5>Footer</h5>
-		<p>Footer information goes here</p>
+	<footer class="w3-container w3-pale-red">
+		<div class="w3-right">
+			<h5>Footer</h5>
 		</div>
 	</footer>
-</div>
-    
-	</div>  
+
+    </div>
+	 </div>
 	
 	<!-- 에러 modal -->
 	<div id="err" class="w3-modal">

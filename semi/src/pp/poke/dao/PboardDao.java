@@ -80,12 +80,14 @@ public class PboardDao {
 		try {
 			conn=DBConnection.conn();
 			if(keyword.equals("")) {
+				if(sort==null) sort="bnum";
+				if(sort.equals("")) sort="bnum";
 				String sql=
 						"SELECT * FROM " + 
 								"( " + 
 								"	SELECT AA.*,ROWNUM RNUM FROM " + 
 								"	( " + 
-								"		SELECT pb.*,gu.nic,gu.num FROM pboard pb join guser gu on pb.id=gu.id order by bnum desc" + 
+								"		SELECT pb.*,gu.nic,gu.num FROM pboard pb join guser gu on pb.id=gu.id order by "+sort+" desc" + 
 								"	)AA " + 
 								") " + 
 								"WHERE RNUM>=? AND RNUM<=?";
@@ -94,8 +96,6 @@ public class PboardDao {
 				pstmt.setInt(2, endRow);
 				rs=pstmt.executeQuery();
 			}else {
-				if(sort==null) sort="bnum";
-				if(sort.equals("")) sort="bnum";
 				String searchCase = "";
 				if(search.equals("nic")) {
 					searchCase=" = ? ";
@@ -105,7 +105,7 @@ public class PboardDao {
 				
 				String sql="select * from ( "
 						+ "select a.*, rownum rnum from( "
-						+ "select pb.*,gu.nic,gu.num from pboard pb join guser gu on pb.id=gu.id where "+search+" "+searchCase+" order by "+sort+" desc "
+						+ "select pb.*,gu.nic,gu.num from pboard pb join guser gu on pb.id=gu.id where "+search+" "+searchCase+" order by bnum desc "
 						+ ")a "
 					+ ") where rnum>=? and rnum <=?";
 				pstmt=conn.prepareStatement(sql);

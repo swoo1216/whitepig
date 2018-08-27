@@ -42,15 +42,15 @@
   		</c:otherwise>
   	</c:choose>
   
- <a class="w3-bar-item w3-button w3-hover-white" href="#" style="margin-top: 60px;"><img alt="" src="img/1.gif"> Go</a>
+ <a class="w3-bar-item w3-button w3-hover-white" href="#" style="margin-top: 60px;"><img alt="" src="/semi/images/슈퍼마리오아이콘.png" style="width: 50px;"> Go</a>
  	<hr style="border-color: white;">
-  <a class="w3-bar-item w3-button w3-hover-white" href="/semi/poke/pboard.do"><img alt="" src="img/4.gif"> Poke</a>
+  <a class="w3-bar-item w3-button w3-hover-white" href="/semi/poke/pboard.do"><img alt="" src="/semi/images/포켓몬아이콘.png" style="width: 50px;"> Poke</a>
   	<hr style="border-color: white;">
-  <a class="w3-bar-item w3-button w3-hover-white" href="/semi/poke/list.do"><img alt="" src="img/7.gif"> Icon</a>
+  <a class="w3-bar-item w3-button w3-hover-white" href="/semi/poke/list.do"><img alt="" src="img/25.gif" style="width: 50px;"> Icon</a>
 	<hr style="border-color: white;">
-  <a class="w3-bar-item w3-button w3-hover-white" href="#"><img alt="" src="img/25.gif"> LoL</a>
+  <a class="w3-bar-item w3-button w3-hover-white" href="#"><img alt="" src="/semi/images/롤아이콘.png" style="width: 50px;"> LoL</a>
  	<hr style="border-color: white;">	
-  <a class="w3-bar-item w3-button w3-hover-white" href="#"><img alt="" src="img/5.gif"> Music</a>
+  <a class="w3-bar-item w3-button w3-hover-white" href="#"><img alt="" src="/semi/images/음악아이콘.png" style="width: 50px;"> Music</a>
   
  </nav>
  
@@ -59,9 +59,32 @@
 
 
 <div class="w3-main" style="margin-left:200px;margin-top: 43px;" id="content">
-    
+   
 
-<div class="w3-container w3-padding-32" style="min-height: 747px;">
+<div class="w3-container w3-padding-32" style="min-height: 865px;">
+
+	<button class="w3-btn w3-round w3-ripple w3-teal"
+		style="width: 80px;"
+		onclick="location='/semi/poke/pboard.do?sort=regdate'">최신순</button>
+	<button class="w3-btn w3-round w3-ripple w3-red"
+		style="width: 80px;"
+		onclick="location='/semi/poke/pboard.do?sort=recomm'">추천순</button>
+	<button class="w3-btn w3-round w3-ripple w3-blue"
+		style="width: 80px;"
+		onclick="location='/semi/poke/pboard.do?sort=hit'">조회순</button>
+		
+	<form action="pboard.do" method="post" style="float: right;">
+		<select class="w3-round" style="height: 38px; vertical-align: middle;" name="search">
+			<option value="title">제목</option>
+			<option value="content">내용</option>
+			<option value="nic">아이디</option>
+		</select>
+		<input class="w3-round" type="text"
+			placeholder="Search for names.." name="keyword"
+			style="height: 38px; vertical-align: middle;">
+		<button class="w3-btn w3-round w3-ripple w3-teal" style="height: 38px;">Search</button>
+	</form>	
+
 	<table class="w3-table-all w3-margin-top">
 	
 		<c:if test="${list==null }">
@@ -90,7 +113,7 @@
 	<button class="w3-btn w3-round w3-ripple w3-teal w3-margin w3-right" 
 		onclick="document.getElementById('insert').style.display='block'">글쓰기
 	</button>
-</div>
+
 	
 	<!-- 글쓰기 modal -->
 	<div id="insert" class="w3-modal">
@@ -111,24 +134,9 @@
 		</div>
 	</div>
 
-	<div class="w3-center">
-			<form action="pboard.do" method="post">
-				<select class="w3-round" style="height: 38px; vertical-align: middle;" name="search">
-					<option value="title">제목</option>
-					<option value="content">내용</option>
-					<option value="nic">아이디</option>
-				</select>
-				<input class="w3-round" type="text"
-					placeholder="Search for names.." name="keyword"
-					style="height: 38px; vertical-align: middle;">
-				<button class="w3-btn w3-round w3-ripple w3-teal" style="height: 38px;">Search</button>
-			</form>
-		</div>
-	
-
 
 <div class="w3-container w3-center">
-		<div class="w3-bar w3-border w3-round w3-margin">
+		<div class="w3-bar w3-border w3-round">
 			<c:choose>
 				<c:when test="${startPage>5 }">
 					<a
@@ -171,10 +179,12 @@
 			</c:choose>
 		</div>
 	</div>
-
+</div>
 
 <footer class="w3-container w3-pale-red">
-	<h5>Footer</h5>
+	<div class="w3-right">
+		<h5>Footer</h5>
+	</div>
 </footer>
 </div>
 </div>
