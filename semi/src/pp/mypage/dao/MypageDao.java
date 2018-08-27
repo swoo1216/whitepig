@@ -74,16 +74,68 @@ public class MypageDao
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
-	public int modifyInfo(String id)
+	public String getEmail(String id)
 	{
-		Connection con=null;
+		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try
 		{
 			con = DBConnection.conn();
+			String sql = "select email from cuser where id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next())
+			{
+				String email=rs.getString("email");
+				return email;
+			}
+			else
+			{
+				return null;
+			}
+		}
+		catch(SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return null;
+		}
+		finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+	}
+	public int modifyInfo(String id,String email, String nic)
+	{
+		Connection con=null;
+		PreparedStatement pstmt = null;
+		try
+		{
+			con = DBConnection.conn();
 			String sql = "update cuser set email=? , nic=? where id=?";
-			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setString(2, nic);
+			pstmt.setString(3, id);
+			int n =pstmt.executeUpdate();
+			if(n>0)
+			{
+				return n;
+			}
+			else
+			{
+				return -1;
+			}
+		}
+		catch(SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return -1;
+		}
+		finally
+		{
+			DBConnection.close(null, pstmt, con);
 		}
 	}
 }
