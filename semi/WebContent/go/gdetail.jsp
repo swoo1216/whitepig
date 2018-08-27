@@ -1,10 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/go_frm.css">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/go_frm.css">
 <style type="text/css">
 td, th {
 	border-spacing: 0px;
@@ -110,7 +112,8 @@ p {
 						xhr.open('get', 'GcommentRemoveId.do?cNum=' + cNum + '&id=${sessionScope.id}', true);
 						xhr.send();
 					}else{ //없으면 비밀번호로 삭제
-						
+						var inputPwd = document.getElementById("inputPwd" + cNum);
+						inputPwd.style.display = "block";
 					}
 				}
 			}
@@ -137,6 +140,48 @@ p {
 		comments.appendChild(table);
 		
 		document.getElementById("tarea").value = ""; //입력창 초기화
+		
+		var div1 = document.createElement("div");
+		div1.id = "inputPwd" + cNum;
+		div1.className = "modal";
+		div1.style.display = "none";
+		
+		var div2 = document.createElement("div");
+		div2.className = "modal_content";
+		
+		var mp = document.createElement("p");
+		var ptext = document.createTextNode("작성한 비밀번호를 입력해주세요.");
+		var mbr1 = document.createElement("br");
+		var mbr2 = document.createElement("br");
+		
+		var minput = document.createElement("input");
+		minput.type="text";
+		minput.id = "recommPwd" + cNum;
+		
+		var mbutton = document.createElement("button");
+		mbutton.type = "button";
+		mbutton.addEventListener("click", function(){
+			checkPwd(cNum + "");
+		}, false);
+		var mbtnText = document.createTextNode("입력");
+		
+		mp.appendChild(ptext);
+		
+		mbutton.appendChild(mbtnText);
+		
+		div2.appendChild(mp);
+		div2.appendChild(mbr1);
+		div2.appendChild(minput);
+		div2.appendChild(mbr2);
+		div2.appendChild(mbutton);
+		
+		div1.appendChild(div2);
+		
+		comments.appendChild(div1);
+		
+		var recommPwd = document.getElementById("recommPwd" + cNum);
+		recommPwd.value = "";
+		
 	}
 	function godeleteModal(writerId) {
 		if(writerId !== '${sessionScope.id}'){
@@ -181,8 +226,17 @@ p {
 			return;
 		}
 		
+		
 		var rPassword;
 		if(!id){ //로그인을 안했으면
+			if(nic.length > 10){
+				var nicLengthAlert = document.getElementById("nicLengthAlert");
+				nicLengthAlert.style.display = "block";
+				setTimeout(function(){
+					nicLengthAlert.style.display = "none";
+				}, 2000);
+				return;
+			}
 			rPassword = document.commentFrm.rPassword.value;
 			if(!rPassword){ //비밀번호를 입력안했으면
 				var rpwdAlert = document.getElementById("rpwdAlert");
@@ -192,8 +246,15 @@ p {
 				}, 2000);
 				return;
 			}
+			if(rPassword.length < 4 && rPassword.length > 20){ //비밀번호 길이
+				var pwdLengthAlert = document.getElementById("pwdLengthAlert");
+				pwdLengthAlert.style.display = "block";
+				setTimeout(function(){
+					pwdLengthAlert.style.display = "none";
+				}, 2000);
+				return;
+			}
 		}
-		
 		var bNum = document.commentFrm.bNum.value;
 		var tNum = document.commentFrm.tNum.value;
 		var content = document.commentFrm.content.value;
@@ -237,8 +298,6 @@ p {
 			param += "&id=" + id;
 		}
 		xhr.send(param);	
-		
-		
 	}
 
 	function goRecomm(id, bNum, tNum) { //추천
@@ -373,9 +432,12 @@ p {
 					}
 					xhr.open('get', 'GcommentRemoveId.do?cNum=' + cNum + '&id=${sessionScope.id}', true);
 					xhr.send();
+				}else{ //없으면 비밀번호로 삭제
+					var inputPwd = document.getElementById("inputPwd" + cNum);
+					inputPwd.style.display = "block";
 				}
 			}
-		}
+			}
 		xhr.open("get", 'gcommentIdCheck.do?cNum=' + cNum , true);
 		xhr.send();
 	}
@@ -396,6 +458,43 @@ p {
 
 		reset.appendChild(re_tr1);
 		reset.appendChild(re_tr2);
+	}
+	function checkPwd(cNum){
+		var recommPwd = document.getElementById("recommPwd" + cNum).value;
+		
+		var inputPwd = document.getElementById("inputPwd" + cNum);
+		inputPwd.value = "";
+		inputPwd.style.display = "none";
+		
+		xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if(this.readyState = 4 && this.status == 200){
+				var text = this.responseText;
+				var json = JSON.parse(text);
+				
+				if(json.result == "false"){
+					inputPwd.value = "";
+					document.getElementById("recommPwd" + cNum).value = "";
+					var notrPwdAlert = document.getElementById("notrPwdAlert");
+					notrPwdAlert.style.display = "block";
+					setTimeout(function(){
+						notrPwdAlert.style.display = "none";
+					}, 2000);
+					return;
+				}
+				
+				var comments = document.getElementById("comments");
+				comments.innerHTML = "";
+				
+				for(var i=0; i<json.recomm.length; i++){
+					resetRecommList(json.recomm[i]);
+				}
+				resetBoard(json); //글쓴이 정보 리셋
+				
+			}
+		}
+		xhr.open('get', 'GcommentPwdCheck.do?cNum=' + cNum + '&rpwd=' + recommPwd);
+		xhr.send();
 	}
 </script>
 <title></title>
@@ -425,7 +524,8 @@ p {
 							<td>${vo.nic}&nbsp;|&nbsp;조회&nbsp;${vo.hit}&nbsp;|&nbsp;작성일&nbsp;${vo.regdate}&nbsp;|&nbsp;댓글&nbsp;${vo.countComment}</td>
 						</tr>
 						<tr>
-							<td height="500px" colspan="2" style="text-align: left; vertical-align: top;">${vo.content}</td>
+							<td height="500px" colspan="2"
+								style="text-align: left; vertical-align: top;">${vo.content}</td>
 						</tr>
 					</table>
 					<div id="detailFunc">
@@ -434,10 +534,12 @@ p {
 						<button type="button" onclick="gomodify('${vo.bNum}', '${vo.id}')">수정</button>
 						<c:choose>
 							<c:when test="${isrecomm == 'false'}">
-								<button type="button" onclick="goRecomm('${sessionScope.id}', ${vo.bNum}, 0)">추천</button>
+								<button type="button"
+									onclick="goRecomm('${sessionScope.id}', ${vo.bNum}, 0)">추천</button>
 							</c:when>
 							<c:otherwise>
-								<button type="button" onclick="deleteRecomm('${sessionScope.id}', ${vo.bNum}, 0)">추천취소</button>
+								<button type="button"
+									onclick="deleteRecomm('${sessionScope.id}', ${vo.bNum}, 0)">추천취소</button>
 							</c:otherwise>
 						</c:choose>
 					</div>
@@ -451,9 +553,18 @@ p {
 									<td width="10%">${vo.regdate}</td>
 									<!-- 닉네임으로 작성했으면 닉네임과 비밀번호로 조회후 삭제 -->
 									<!-- 로그인해서 작성했으면 아이디로 조회후 삭제 -->
-									<td><button type="button" onclick="removeRecomm('${vo.cNum}')" style="padding: 5px 10px;">X</button></td>
+									<td><button type="button"
+											onclick="removeRecomm('${vo.cNum}')"
+											style="padding: 5px 10px;">X</button></td>
 								</tr>
 							</table>
+							<div id="inputPwd${vo.cNum}" class="modal" style="display: none;">
+								<div class="modal_content">
+									<p>작성한 비밀번호를 입력해주세요.</p>
+									<br> <input type="text" id="recommPwd${vo.cNum}"><br>
+									<button type="button" onclick="checkPwd('${vo.cNum}')">입력</button>
+								</div>
+							</div>
 						</c:forEach>
 					</div>
 					<div id="insertComment">
@@ -464,7 +575,9 @@ p {
 									<!-- 로그인 안되있으면 닉네임 입력하고 댓글 작성 -->
 									<c:choose>
 										<c:when test="${empty sessionScope.id}">
-											<td width="10%"><input type="text" name="nic" size="10" placeholder="닉네임"> <br> <input type="password" name="rPassword" size="10" placeholder="비밀번호"></td>
+											<td width="10%"><input type="text" name="nic" size="10"
+												placeholder="닉네임"> <br> <input type="password"
+												name="rPassword" size="10" placeholder="비밀번호"></td>
 										</c:when>
 										<c:otherwise>
 											<td width="10%">${sessionScope.nic}</td>
@@ -472,11 +585,13 @@ p {
 											<input type="hidden" name="nic" value="${sessionScope.nic}">
 										</c:otherwise>
 									</c:choose>
-									<td width="60%"><textarea rows="5" cols="100" name="content" id="tarea"></textarea></td>
+									<td width="60%"><textarea rows="5" cols="100"
+											name="content" id="tarea"></textarea></td>
 									<td width="20%"><button type="button" onclick="getList()">작성</button></td>
 								</tr>
 							</table>
-							<input type="hidden" name="bNum" value="${vo.bNum}"> <input type="hidden" name="tNum" value="0">
+							<input type="hidden" name="bNum" value="${vo.bNum}"> <input
+								type="hidden" name="tNum" value="0">
 						</form>
 					</div>
 				</div>
@@ -491,7 +606,8 @@ p {
 		<div class="modal_content">
 			<span class="close">&times;</span>
 			<p>정말 삭제하실 꺼예요?</p>
-			<button type="button" onclick="godelete('${vo.bNum}')" style="float: none;">확인</button>
+			<button type="button" onclick="godelete('${vo.bNum}')"
+				style="float: none;">확인</button>
 		</div>
 	</div>
 
@@ -528,6 +644,24 @@ p {
 	<div id="noiddAlert" class="modal" style="display: none;">
 		<div class="modal_content">
 			<p>댓글 작성자만 삭제 할 수 있습니다.</p>
+		</div>
+	</div>
+
+	<div id="notrPwdAlert" class="modal" style="display: none;">
+		<div class="modal_content">
+			<p>댓글 작성자만 삭제 할 수 있습니다.</p>
+		</div>
+	</div>
+
+	<div id="nicLengthAlert" class="modal" style="display: none;">
+		<div class="modal_content">
+			<p>닉네임은 10자 이상 입력할 수 없습니다.</p>
+		</div>
+	</div>
+
+	<div id="pwdLengthAlert" class="modal" style="display: none;">
+		<div class="modal_content">
+			<p>비밀번호는 4자이상 20자 이하여야 합니다.</p>
 		</div>
 	</div>
 </body>
