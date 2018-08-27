@@ -19,7 +19,7 @@ public class MainDao
 		try
 		{
 			con = DBConnection.conn();
-			String sql = "insert into cuser values(?,?,?,?,'user',0)";
+			String sql = "insert into cuser values(?,?,?,?,'user',0,sysdate,0)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,vo.getId());
 			pstmt.setString(2, vo.getPwd());

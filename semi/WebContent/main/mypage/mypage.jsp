@@ -30,7 +30,7 @@
 </style>
 <body>
 <div id = "modifyInfo">
-<a href="">[회원정보 수정하기]</a>
+<a href="/semi/mmodify.do">[회원정보 수정하기]</a> 
 </div>
 <div id="nic">
 	<h1 style= "text-align: center; margin-top:30px; font-size:150px;"><%=session.getAttribute("nic")%></h1>

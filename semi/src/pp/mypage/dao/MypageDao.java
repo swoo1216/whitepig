@@ -74,4 +74,16 @@ public class MypageDao
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
+	public int modifyInfo(String id)
+	{
+		Connection con=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try
+		{
+			con = DBConnection.conn();
+			String sql = "update cuser set email=? , nic=? where id=?";
+			
+		}
+	}
 }

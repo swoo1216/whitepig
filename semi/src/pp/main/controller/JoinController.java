@@ -26,7 +26,7 @@ public class JoinController extends HttpServlet
 		System.out.println(pwd);
 		System.out.println(email);
 		System.out.println(nic);
-		MainVo vo = new MainVo(id, pwd, email, nic, null, null);
+		MainVo vo = new MainVo(id, pwd, email, nic, null, 0, null, 0);
 		MainDao dao = new MainDao();
 		int n = dao.insert(vo);
 		if(n>0)
