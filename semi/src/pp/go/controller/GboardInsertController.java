@@ -3,6 +3,7 @@ package pp.go.controller;
 import java.io.IOException;
 import java.sql.Date;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pp.go.dao.GboardDao;
+import pp.go.dao.GuserDao;
 import pp.go.vo.GboardVo;
 
 @WebServlet("/go/ginsert.do")
@@ -27,6 +29,7 @@ public class GboardInsertController extends HttpServlet {
 		vo = new GboardVo(0, title, content, 0, 0, id, null, 0, 0, null);
 
 		int n = GboardDao.getInstance().insert(vo);
+		String point = getInitParameter("boardAddPoint");
 		if (n > 0) {
 			response.sendRedirect("gboard.do");
 		} else {
