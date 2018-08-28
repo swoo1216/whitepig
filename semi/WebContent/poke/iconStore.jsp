@@ -10,16 +10,82 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+<script type="text/javascript">
+var lastNum = 0;
+function submit() {
+	var id = '${id}';
+	var content = $('#contents').val();
+	$.ajax({
+		type: "post",
+		url: "/semi/poke/chatInsert.do",
+		data: {
+			id: id,
+			content: content
+		},
+		success: function(result) {
+			if(result == 1){
+				alert('전송에 성공했습니다');	
+			}else if(result == 0){
+				alert('내용을 정확히 입력하세요');
+			}else{
+				alert('데이터베이스 오류가 발생했습니다.');
+			}
+		} 
+	});
+	$('#content').val('');
+}
+	
+function chatList(type) {
+	$.ajax({
+		type: "post",
+		url: "/semi/poke/chatList.do",
+		data: {
+			listType: type,
+		},
+		success: function(data) {
+			if(data == "") return;
+			var parsed = JSON.parse(data);
+			var result = parsed.result;
+			for(var i = 0; i<result.length;i++){
+				addChat(result[i][0].value, result[i][1].value,result[i][2].value);
+			}
+			lastNum = Number(parsed.last);
+		}
+	});
+}
+
+function addChat(id,content,regdate) {
+	$('#chatList').append(id + ',' + content + ',' + regdate + "<br>");
+	$('#chatList').scrollTop($('#chatList')[0].scrollHeight);
+}
+		
+function getInfiniteChat() {
+	setInterval(function() {
+		chatList(lastNum)
+	}, 1000);
+}		
+		
+		
+		
+</script>
 </head>
 <body>
 <div class="w3-bar w3-top w3-pale-red w3-large" style="z-index:4;">
+	
   <button class="w3-bar-item w3-button w3-hide-large w3-hover-white" onclick="myFunction('Demo1')"><i class="fa fa-bars"></i>  Menu</button>
   <span class="w3-bar-item w3-right">Logo</span>
+  
+	<!-- 전체채팅 -->
+	<button class="w3-btn w3-round w3-ripple w3-pale-red w3-large w3-right" onclick="document.getElementById('chat').style.display='block'">
+		<i class="fa fa-comment"></i>
+	</button>
+	
   <button
 	class="w3-btn w3-round w3-ripple w3-pale-red w3-large w3-right"
 	onclick="openRightMenu()" id="wish">
@@ -76,14 +142,33 @@
 
 <div class="w3-container" style="min-height: 650px;">
 
-
-
-
-
-
-
-
-
+	<!-- 채팅 modal -->
+		<div class="w3-modal" id="chat">
+			<div class="w3-modal-content w3-animate-zoom w3-card-4" style="width: 450px;margin-top: 100px;">
+				<header class="w3-container w3-teal">
+					<span onclick="document.getElementById('chat').style.display='none'" 
+						class="w3-btn w3-round w3-ripple w3-display-topright"><i
+								class="fa fa-close"></i></span>
+						<h2>전체채팅</h2>
+				</header>
+				<div class="w3-container">
+				
+					<div id="chatList" style="width: 400px;height: 400px;overflow: auto;" id="chat">
+						
+					</div>
+					<div>
+					<textarea rows="3" cols="10" id="contents"></textarea>
+					<input type="button" onclick="submit()" value="전송">
+					</div>
+				</div> 
+				<script type="text/javascript">
+					$(document).ready(function() {
+						chatList('ten');
+						getInfiniteChat();
+					});
+				</script>
+			</div>
+		</div>
 
 <script type="text/javascript">
 	function removeWish(num) {
@@ -218,11 +303,6 @@
 
 		</c:forEach>
 	</div>
-
-
-	
-
-		
 
 	
 		<div class="w3-center" style="margin-top: 40px;">
@@ -449,6 +529,7 @@
 	 document.getElementById("mySidebar").style.display = "none";
 	 document.getElementById("myOverlay").style.display = "none";
 	}
+	
 	
 </script>
 
