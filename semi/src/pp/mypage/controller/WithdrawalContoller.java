@@ -11,35 +11,25 @@ import javax.servlet.http.HttpSession;
 
 import pp.mypage.dao.MypageDao;
 
-@WebServlet("/mboardcount.do")
-public class BoardCountController extends HttpServlet
+@WebServlet("/mwithdrawal.do")
+public class WithdrawalContoller extends HttpServlet
 {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
-		String id =(String)session.getAttribute("id");
-		System.out.println(id);
+		String id = (String)session.getAttribute("id");
 		MypageDao dao = new MypageDao();
-		String boardcount = dao.countBoard(id);
-		String commentcount = dao.countComment(id);
-		if(boardcount!=null)
+		int n = dao.withDrawal(id);
+		if(n>0)
 		{
-			session.setAttribute("boardcount", boardcount);
+			request.setAttribute("code", "wsuccess");
 		}
 		else
 		{
-			session.setAttribute("boardcount", 0);
+			request.setAttribute("code", "wfail");
 		}
-		if(commentcount!=null)
-		{
-			session.setAttribute("commentcount", commentcount);
-		}
-		else
-		{
-			session.setAttribute("commentcount", 0);
-		}
-		request.getRequestDispatcher("/main/mypage/mypage.jsp").forward(request, response);
+		request.getRequestDispatcher("/main.jsp").forward(request, response);
 	}
 }

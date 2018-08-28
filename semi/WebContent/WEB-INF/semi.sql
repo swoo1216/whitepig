@@ -185,9 +185,9 @@ ALTER TABLE lrecomm
 ;
 
 
-ALTER TABLE lreply
-	ADD FOREIGN KEY (lnum)
-	REFERENCES lboard (lnum)
+ALTER TABLE lcomment
+	ADD FOREIGN KEY (bnum)
+	REFERENCES lboard (bnum)
 ;
 
 

@@ -19,10 +19,26 @@ public class PwdchageController extends HttpServlet
 		String id = request.getParameter("id");
 		String pwd=request.getParameter("pwd");
 		String pwd2=request.getParameter("pwd2");
-		if(pwd==pwd2)
+		System.out.println(id);
+		System.out.println(pwd);
+		if(pwd.equals(pwd2))
 		{
 			MypageDao dao = new MypageDao();
 			int n = dao.pwdChange(id, pwd);
+			System.out.println(n);
+			if(n>0)
+			{
+				request.setAttribute("code", "success");
+			}
+			else
+			{
+				request.setAttribute("code", "fail");
+			}
 		}
+		else
+		{
+			request.setAttribute("code", "fail");
+		}
+		request.getRequestDispatcher("/main/mypage/mypage.jsp").forward(request, response);
 	}
 }

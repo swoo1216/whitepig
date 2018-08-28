@@ -79,7 +79,7 @@ a:hover{
 <body>
 <div id="wrapper">
 	<div id="nav">
-	<img src="바지.png" style= "height: 100px; margin-left: 30%;">
+	<img src="images/바지.png" style= "height: 100px; margin-left: 30%;">
 	<div>
 		<h1 style="text-align: center; margin-top: 10px">Pants</h1>
 	</div>
@@ -172,6 +172,16 @@ a:hover{
 	<c:when test="${requestScope.code=='pfail'}">
 		<script type="text/javascript">
 		alert('등록되지 않은 아이디 또는 이메일입니다.');
+		</script>
+	</c:when>
+	<c:when test="${requestScope.code=='wsuccess'}">
+		<script type="text/javascript">
+		alert('회원탈퇴되셨습니다. 그동안 이용해주셔서 감사합니다.');
+		</script>
+	</c:when>
+	<c:when test="${requestScope.code=='wfail'}">
+		<script type="text/javascript">
+		alert('회원탈퇴에 실패했습니다.');
 		</script>
 	</c:when>
 </c:choose>
