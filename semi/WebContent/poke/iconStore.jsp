@@ -113,12 +113,12 @@ function getInfiniteChat() {
   	<c:choose>
   		<c:when test="${id!=null }">
   			<img alt="" src="img/1.png" style="width: 50px;margin-top: 30px;"> ${nic}
-  			<button class="w3-button w3-large w3-hover-white"><i class="fa fa-sign-out"></i></button>
+  			<button class="w3-button w3-large w3-hover-white" onclick="location.href='/semi/mlogout.do'"><i class="fa fa-sign-out"></i></button>
   			<hr style="border-color: white;">
   		</c:when>
   		<c:otherwise>
   	<div class="w3-bar w3-border w3-border-white" style="display: flex;margin-top: 20px;">
-  			<button class="w3-border-right w3-border-white w3-bar-item w3-button w3-hover-white" onclick="location='/semi/go/index.jsp'">로그인</button>
+  			<button class="w3-border-right w3-border-white w3-bar-item w3-button w3-hover-white" onclick="location='/semi/main/login.jsp'">로그인</button>
 			<button class="w3-bar-item w3-button w3-hover-white">회원가입</button>
 			<hr style="border-color: white;">
 	  </div>

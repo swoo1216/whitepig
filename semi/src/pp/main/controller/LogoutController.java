@@ -19,6 +19,6 @@ public class LogoutController extends HttpServlet
 		request.setAttribute("code", "logout");
 		HttpSession session= request.getSession();
 		session.invalidate();
-		request.getRequestDispatcher("/main.jsp").forward(request, response);
+		request.getRequestDispatcher("/poke/main.jsp").forward(request, response);
 	}
 }
