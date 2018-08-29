@@ -10,19 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import pp.mu.dao.MboardDao;
 import pp.mu.vo.MboardVo;
-@WebServlet("/mu/minsert.do")
-public class MinsertController extends HttpServlet {
+@WebServlet("/mu/mdetail.do")
+public class MdetailController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String title=request.getParameter("title");
-		String content=request.getParameter("content");
-		String id=request.getParameter("id");
-		MboardVo vo=new MboardVo(0, title, content, 0, 0, id, null, null);
 		MboardDao dao=MboardDao.getInstance();
-		int result=dao.muInsert(vo);
-		if(result>0) {
-			request.getRequestDispatcher("mlist.do").forward(request, response);
-		}	
+		int mnum=Integer.parseInt(request.getParameter("mnum"));
+		System.out.println("do:"+ mnum);
+		MboardVo vo=dao.muDetail(mnum);
+		request.setAttribute("vo", vo);
+		request.getRequestDispatcher("/mu/mudetail.jsp").forward(request, response);
 	}
 }

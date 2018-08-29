@@ -1,31 +1,28 @@
 package pp.mu.vo;
 
+import java.sql.Date;
+
 public class MboardVo {
 	private int mnum;
 	private String title;
 	private String content;
-	private int reply;
-	private int recomm;
 	private int hit;
+	private int recomm;
 	private String id;
-	
+	private Date regdate;
+	private String path;
 	public MboardVo() {}
-	public MboardVo(int mnum, String title, String content, int reply, int recomm, int hit, String id, String path,
-			String regdate) {
+	public MboardVo(int mnum, String title, String content, int hit, int recomm, String id, Date regdate, String path) {
 		super();
 		this.mnum = mnum;
 		this.title = title;
 		this.content = content;
-		this.reply = reply;
-		this.recomm = recomm;
 		this.hit = hit;
+		this.recomm = recomm;
 		this.id = id;
-		this.path = path;
 		this.regdate = regdate;
+		this.path = path;
 	}
-	private String path;
-	private String regdate;
-
 	public int getMnum() {
 		return mnum;
 	}
@@ -44,11 +41,11 @@ public class MboardVo {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public int getReply() {
-		return reply;
+	public int getHit() {
+		return hit;
 	}
-	public void setReply(int reply) {
-		this.reply = reply;
+	public void setHit(int hit) {
+		this.hit = hit;
 	}
 	public int getRecomm() {
 		return recomm;
@@ -56,30 +53,22 @@ public class MboardVo {
 	public void setRecomm(int recomm) {
 		this.recomm = recomm;
 	}
-	public int getHit() {
-		return hit;
-	}
-	public void setHit(int hit) {
-		this.hit = hit;
-	}
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
+	public Date getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
+	}
 	public String getPath() {
 		return path;
 	}
 	public void setPath(String path) {
 		this.path = path;
-	}
-	public String getRegdate() {
-		return regdate;
-	}
-	public void setRegdate(String regdate) {
-		this.regdate = regdate;
-	}
-	
-	
+	}	
 }

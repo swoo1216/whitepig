@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//import pp.mu.dao.MboardDao;
+import pp.mu.dao.MboardDao;
 import pp.mu.vo.MboardVo;
-@WebServlet("/mu/musiclist.do")
+@WebServlet("/mu/mlist.do")
 public class MlistController extends HttpServlet{
-//	@Override
-/*	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		request.setCharacterEncoding("utf-8");
-		MboardDao dao=new MboardDao();
+		MboardDao dao=MboardDao.getInstance();
 		String spagenum=request.getParameter("pagenum");
 		int pagenum=1;
 		if(spagenum!=null) {
@@ -24,7 +24,7 @@ public class MlistController extends HttpServlet{
 		}
 		int srow=(pagenum-1)*5+1;
 		int erow=srow+4;
-		ArrayList<MboardVo> list=dao.list(srow, erow);
+		ArrayList<MboardVo> list=dao.muList(srow, erow);
 		
 		int pagecount=(int)Math.ceil(dao.getCount()/5.0);
 		int startpage=((pagenum-1)/5*5)+1;
@@ -32,12 +32,11 @@ public class MlistController extends HttpServlet{
 		if(endpage>pagecount) {
 			endpage=pagecount;
 		}
-		System.out.println(list);
 		request.setAttribute("list", list);
 		request.setAttribute("pagecount",pagecount);
 		request.setAttribute("startpage",startpage);
 		request.setAttribute("endpage",endpage);
 		request.setAttribute("pagenum",pagenum);
-		request.getRequestDispatcher("/main.jsp").forward(request, response);
-	}*/	
+		request.getRequestDispatcher("/mu/mumain.jsp").forward(request, response);
+	}	
 }
