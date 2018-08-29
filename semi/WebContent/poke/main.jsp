@@ -129,9 +129,54 @@ function getInfiniteChat() {
  <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 </div>
  
+ <div id="Demo1" class="w3-hide w3-pale-red" style="position: absolute;width: 100%;">
+	<a class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large" href="#"><img alt="" src="/semi/images/슈퍼마리오아이콘.png" style="width: 30px;"> Go</a>
+	<a class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large" href=""><img alt="" src="/semi/images/포켓몬아이콘.png" style="width: 30px;"> Poke</a>
+  	<a class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large" href="/semi/poke/list.do"><img alt="" src="img/25.gif" style="width: 30px;"> Icon</a>
+  	<a class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large" href="#"><img alt="" src="/semi/images/롤아이콘.png" style="width: 30px;"> LoL</a>
+  	<a class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large" href="#"><img alt="" src="/semi/images/음악아이콘.png" style="width: 30px;"> Music</a>
+</div>
+ 
 <div class="w3-main" style="margin-left:250px;margin-top: 43px;" id="content">
      
+     <!-- 채팅 modal -->
+		<div class="w3-modal" id="chat">
+			<div class="w3-modal-content w3-animate-zoom w3-card-4" style="width: 480px;">
+				<header class="w3-container w3-teal">
+					<span onclick="document.getElementById('chat').style.display='none'" 
+						class="w3-btn w3-round w3-ripple w3-display-topright"><i
+								class="fa fa-close"></i></span>
+						<h2>Chat</h2>
+				</header>
+				<div class="w3-container">
+				
+					<div id="chatList" style="width: 450px;height: 500px;overflow: auto;" id="chat">
+						
+					</div>
+					<div>
+					<textarea rows="3" cols="40" id="contents"></textarea>
+					<input type="button" onclick="submit()" value="전송">
+					</div>
+				</div> 
+				<script type="text/javascript">
+					$(document).ready(function() {
+						chatList('ten');
+						getInfiniteChat();
+					});
+				</script>
+			</div>
+		</div>
+
 <div class="w3-container" style="min-height: 860px;">
+
+<%
+			String contentpage=request.getParameter("page");
+			if(contentpage==null) contentpage="/poke/index.jsp";
+		%>
+		
+			<jsp:include page="<%=contentpage %>"/>
+		
+		
 </div>
 
 <footer class="w3-container w3-pale-red">
@@ -142,15 +187,45 @@ function getInfiniteChat() {
 </div>
 <script type="text/javascript">
 	
-	//Open and close the sidebar on medium and small screens
-	function w3_open() {
-	 document.getElementById("mySidebar").style.display = "block";
-	 document.getElementById("myOverlay").style.display = "block";
+
+function openRightMenu() {
+	document.getElementById("rightMenu").style.display = "block";
+}
+function closeRightMenu() {
+	document.getElementById("rightMenu").style.display = "none";
+}
+window.onclick = function(e) {
+	var icon = e.target.id.substring(0, 4);
+	if(icon === 'icon'){
+		e.target.style.display = "none";
+		return;
 	}
-	function w3_close() {
-	 document.getElementById("mySidebar").style.display = "none";
-	 document.getElementById("myOverlay").style.display = "none";
-	}
+}
+function check(num) {
+	document.getElementById('check').style.display='block';
+	document.getElementById("cart").value = num;
+	
+}
+
+function myFunction(id) {
+    var x = document.getElementById(id);
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+
+
+function w3_open() {
+document.getElementById("mySidebar").style.display = "block";
+document.getElementById("myOverlay").style.display = "block";
+}
+function w3_close() {
+document.getElementById("mySidebar").style.display = "none";
+document.getElementById("myOverlay").style.display = "none";
+}
+
 	
 </script>
 

@@ -28,6 +28,6 @@ public class PdetailController extends HttpServlet{
 		
 		req.setAttribute("vo", vo);
 		req.setAttribute("list", list);
-		req.getRequestDispatcher("/poke/pdetail.jsp").forward(req, resp);
+		req.getRequestDispatcher("/poke/main.jsp?page=/poke/pdetail.jsp").forward(req, resp);
 	}
 }
