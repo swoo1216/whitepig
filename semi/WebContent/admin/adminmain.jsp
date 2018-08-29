@@ -19,7 +19,7 @@
 			<div class="w3-bar-block w3-teal" style="width:100%;">
 			  	<a href="#" class="w3-bar-item w3-button">회원목록</a>
 			  	<a href="#" class="w3-bar-item w3-button">lol</a>
-			  	<a href="adminmain.jsp?page=/mu/mumain.jsp" class="w3-bar-item w3-button">music</a>
+			  	<a href="../mu/mlist.do" class="w3-bar-item w3-button">music</a>
 			  	<a href="#" class="w3-bar-item w3-button">oldgame</a>
 			  	<a href="#" class="w3-bar-item w3-button">pocket</a>			  	
 			  	<a href="#" class="w3-bar-item w3-button">판매량</a>
