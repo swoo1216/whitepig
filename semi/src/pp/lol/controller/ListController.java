@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pp.lol.dao.LoLBoardDao;
-import pp.lol.vo.LoLBoardVo;
+import pp.lol.dao.LBoardDao;
+import pp.lol.vo.LBoardVo;
 @WebServlet("/llist.do")
 public class ListController extends HttpServlet
 {
@@ -25,8 +25,8 @@ public class ListController extends HttpServlet
 		}
 		int startRow=(pageNum-1)*5+1;
 		int endRow=startRow+4;
-		LoLBoardDao dao=new LoLBoardDao();
-		ArrayList<LoLBoardVo> list=dao.list(startRow,endRow);
+		LBoardDao dao=new LBoardDao();
+		ArrayList<LBoardVo> list=dao.list(startRow,endRow);
 		//전체패이지갯수구하기
 		int pageCount=(int)Math.ceil(dao.getCount()/5.0);
 		//시작페이지번호
@@ -42,6 +42,6 @@ public class ListController extends HttpServlet
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageNum", pageNum);
-		request.getRequestDispatcher("/semi/main.jsp").forward(request, response);
+		request.getRequestDispatcher("/lol/index.jsp").forward(request, response);
 	}
 }

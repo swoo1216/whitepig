@@ -5,7 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>main</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <style>
 * {	
@@ -106,10 +110,11 @@ a:hover{
 	
 	</div>
 	<ul>
-		<li><a href="/semi/sw/index.jsp">LoL</a></li>
+		<li><a href="#">LoL</a></li>
 		<li><a href="#">Music</a></li>
-		<li><a href="#">Pocketmon</a></li>
-		<li><a href="#">OldGame</a></li>
+		<li><a href="/semi/poke/list.do">Icon</a></li>
+		<li><a href="/semi/poke/pboard.do">Pocketmon</a></li>
+		<li><a href="/semi/go/gboard.do">OldGame</a></li>
 	</ul>
 	</div>
 	
@@ -145,17 +150,17 @@ a:hover{
 		alert('로그인성공');
 		</script>
 	</c:when>
-	<c:when test="${requestScope.code=='fail1'}">
-		<script type="text/javascript">
-		alert('로그인실패');
-		</script>
-	</c:when>
 	<c:when test="${requestScope.code=='logout'}">
 		<script type="text/javascript">
 		alert('로그아웃 하셨습니다.');
 		</script>
 	</c:when>
 --%>
+	<c:when test="${requestScope.code=='fail1'}">
+		<script type="text/javascript">
+		alert('로그인실패');
+		</script>
+	</c:when>
 	<c:when test="${requestScope.code=='esuccess'}">
 		<script type="text/javascript">
 		alert('당신의 아이디는' + ${id }+'입니다.');
