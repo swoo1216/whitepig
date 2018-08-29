@@ -5,12 +5,12 @@ import java.sql.Date;
 public class McommentVo {
 	private int cnum;
 	private String content;
-	private String recomm;
+	private int recomm;
 	private String id ;
 	private int mnum;
 	private Date regdate;
 	public McommentVo() {}
-	public McommentVo(int cnum, String content, String recomm, String id, int mnum, Date regdate) {
+	public McommentVo(int cnum, String content, int recomm, String id, int mnum, Date regdate) {
 		super();
 		this.cnum = cnum;
 		this.content = content;
@@ -31,10 +31,10 @@ public class McommentVo {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getRecomm() {
+	public int getRecomm() {
 		return recomm;
 	}
-	public void setRecomm(String recomm) {
+	public void setRecomm(int recomm) {
 		this.recomm = recomm;
 	}
 	public String getId() {
@@ -54,5 +54,6 @@ public class McommentVo {
 	}
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
-	}	
+	}
+
 }
