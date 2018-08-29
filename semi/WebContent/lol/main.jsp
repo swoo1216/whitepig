@@ -181,7 +181,7 @@ function getInfiniteChat() {
 
 <footer class="w3-container w3-pale-red">
 		<div class="w3-right">
-			<h5>호호호</h5>
+			<h5>Footer</h5>
 		</div>
 	</footer>
 </div>

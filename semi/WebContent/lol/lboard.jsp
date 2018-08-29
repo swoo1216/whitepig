@@ -6,15 +6,15 @@
 
 	<button class="w3-btn w3-round w3-ripple w3-teal"
 		style="width: 80px;"
-		onclick="location='/semi/poke/pboard.do?sort=regdate'">최신순</button>
+		onclick="location='/semi/lol/lboard.do?sort=regdate'">최신순</button>
 	<button class="w3-btn w3-round w3-ripple w3-red"
 		style="width: 80px;"
-		onclick="location='/semi/poke/pboard.do?sort=recomm'">추천순</button>
+		onclick="location='/semi/lol/lboard.do?sort=recomm'">추천순</button>
 	<button class="w3-btn w3-round w3-ripple w3-blue"
 		style="width: 80px;"
-		onclick="location='/semi/poke/pboard.do?sort=hit'">조회순</button>
+		onclick="location='/semi/lol/lboard.do?sort=hit'">조회순</button>
 		
-	<form action="pboard.do" method="post" style="float: right;">
+	<form action="lboard.do" method="post" style="float: right;">
 		<select class="w3-round" style="height: 38px; vertical-align: middle;" name="search">
 			<option value="title">제목</option>
 			<option value="content">내용</option>
@@ -41,7 +41,7 @@
 	<c:forEach var="vo" items="${list }">
 		<tr>
 			<td style="width: 5%;vertical-align: middle;">${vo.bnum }</td>
-			<td style="width: 50%;vertical-align: middle;"><a href="<%=request.getContextPath() %>/poke/pdetail.do?bnum=${vo.bnum }" class="w3-hover-teal" style="text-decoration: none;">${vo.title }</a></td>
+			<td style="width: 50%;vertical-align: middle;"><a href="<%=request.getContextPath() %>/lol/ldetail.do?bnum=${vo.bnum }" class="w3-hover-teal" style="text-decoration: none;">${vo.title }</a></td>
 			<td style="width: 10%;vertical-align: middle;"><i class="fa fa-twitch"> ${vo.commCnt }</i></td>
 			<td style="width: 10%;vertical-align: middle;"><i class="fa fa-thumbs-o-up"> ${vo.recomm }</i></td>
 			<td style="width: 10%;vertical-align: middle;"><i class="fa fa-check-square-o"> ${vo.hit }</i></td>
@@ -64,7 +64,7 @@
 				<h2>글쓰기</h2>
 			</header>
 			<div class="w3-container w3-margin">
-			<form action="pinsert.do?id=${sessionScope.id }" method="post">
+			<form action="linsert.do?id=${sessionScope.id }" method="post">
 				<input type="text" name="title" placeholder="title" class="w3-round w3-margin"><br>
 	 			<textarea rows="10" cols="50" placeholder="content" class="w3-round w3-margin" name="content"></textarea>
 	 			
@@ -80,7 +80,7 @@
 			<c:choose>
 				<c:when test="${startPage>5 }">
 					<a
-						href="pboard.do?pageNum=${startPage-1 }&search=${param.search}&keyword=${param.keyword}"
+						href="lboard.do?pageNum=${startPage-1 }&search=${param.search}&keyword=${param.keyword}"
 						class="w3-bar-item w3-btn w3-ripple w3-hover-teal"><i
 						class="fa fa-chevron-left"></i></a>
 				</c:when>
@@ -94,12 +94,12 @@
 				<c:choose>
 					<c:when test="${pageNum==i }">
 						<a
-							href="pboard.do?pageNum=${i }&search=${param.search}&keyword=${param.keyword}"
+							href="lboard.do?pageNum=${i }&search=${param.search}&keyword=${param.keyword}"
 							class="w3-bar-item w3-btn w3-ripple w3-teal w3-hover-teal">${i }</a>
 					</c:when>
 					<c:otherwise>
 						<a
-							href="pboard.do?pageNum=${i }&search=${param.search}&keyword=${param.keyword}"
+							href="lboard.do?pageNum=${i }&search=${param.search}&keyword=${param.keyword}"
 							class="w3-bar-item w3-btn w3-ripple w3-hover-teal">${i }</a>
 					</c:otherwise>
 				</c:choose>
@@ -108,7 +108,7 @@
 			<c:choose>
 				<c:when test="${endPage<pageCount }">
 					<a
-						href="pboard.do?pageNum=${endPage+1 }&search=${param.search}&keyword=${param.keyword}"
+						href="lboard.do?pageNum=${endPage+1 }&search=${param.search}&keyword=${param.keyword}"
 						class="w3-bar-item w3-btn w3-ripple w3-hover-teal"><i
 						class="fa fa-chevron-right"></i></a>
 				</c:when>
