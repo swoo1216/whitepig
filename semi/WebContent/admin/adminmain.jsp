@@ -24,6 +24,10 @@
 			  	<a href="#" class="w3-bar-item w3-button">pocket</a>
 			  	
 			  	<a href="adminmain.jsp?page=salesvolume.jsp" class="w3-bar-item w3-button">판매량</a>
+			  	<a href="../mu/mlist.do" class="w3-bar-item w3-button">music</a>
+			  	<a href="#" class="w3-bar-item w3-button">oldgame</a>
+			  	<a href="#" class="w3-bar-item w3-button">pocket</a>			  	
+			  	<a href="#" class="w3-bar-item w3-button">판매량</a>
 			  	<a href="#" class="w3-bar-item w3-button">사용자통계</a>
 			  	<a href="#" class="w3-bar-item w3-button">신고접수리스트</a>
 			</div>		
