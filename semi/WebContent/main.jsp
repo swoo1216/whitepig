@@ -25,6 +25,7 @@
 	width: 20%;
 	height: 100%;
 	background-color: #ff80b3;
+	padding: 10px;
 }
 
 #content {
@@ -40,6 +41,7 @@
 	border: 1px solid tomato;
 	width: 20%;
 	height: 100%;
+	padding: 10px;
 }
 #chat {
 	border: 1px solid black;
@@ -96,7 +98,7 @@ a:hover{
 		else
 		{
 	%>	<div>
-			<a href="/semi/mboardcount.do"><%=session.getAttribute("nic") %>님 환영합니다!</a>
+			<a href="/semi/mboardcount.do"><%=session.getAttribute("nic") %>님<br>환영합니다!</a><br>
 			<button onclick="location.href='/semi/mlogout.do'" style="background-color: pink;">로그아웃</button>
 		</div>
 	<%	}

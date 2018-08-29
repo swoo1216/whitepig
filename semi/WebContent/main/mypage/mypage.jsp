@@ -6,6 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <style>
 *
@@ -24,18 +26,15 @@
 	padding-left :600px;
 	font-size : 50px;
 }
-#modifyInfo
-{
-
-}
 </style>
 <body>
 <div id = "modifyInfo">
 <a href="/semi/main/mypage/modifyInfo.jsp">[회원정보 수정하기]</a>
-<a href="#">[보유 아이콘 보러가기]</a>
 </div>
 <div id="nic">
-	<h1 style= "text-align: center; margin-top:30px; font-size:150px;"><img src = "poke/img/<%=session.getAttribute("num") %>.png" style= height:100px;><%=session.getAttribute("nic")%></h1>
+	<h1 style= "text-align: center; margin-top:30px; font-size:120px;"><img src = "poke/img/<%=session.getAttribute("num") %>.png" 
+	onclick="document.getElementById('id01').style.display='block'"
+	style = height:120px;><%=session.getAttribute("nic")%></h1>
 	<br><br>
 </div>
 <div id="info">
@@ -53,7 +52,24 @@
 		</script>
 	</c:when>
 </c:choose>
-	
-</body>
 
+<div id="id01" class="w3-modal">
+ <div class="w3-modal-content w3-card-4 w3-animate-zoom	">
+  <header class="w3-container w3-pale-red"> 
+   <span onclick="document.getElementById('id01').style.display='none'" 
+   class="w3-button w3-pale-red	 w3-xlarge w3-hover-pale-red w3-display-topright">&times;</span>
+   <h2>보유아이콘목록</h2>
+  </header>
+
+  <img src = "poke/img/1.gif" style = height:120px;>
+  <img src = "poke/img/4.gif" style = height:120px;>
+  <img src = "poke/img/7.gif" style = height:120px;>
+  <img src = "poke/img/25.gif" style = height:120px;>
+  <div class="w3-container w3-pale-red w3-padding w3-center">
+  	 <button class="w3-button w3-white w3-border" 
+   	onclick="document.getElementById('id01').style.display='none'">바꾸기</button>
+  </div>
+  </div>
+ </div>
+</body>
 </html>
