@@ -21,16 +21,18 @@
 			  	<a href="#" class="w3-bar-item w3-button">lol</a>
 			  	<a href="main.jsp?page=/musicboard/main.jsp" class="w3-bar-item w3-button">music</a>
 			  	<a href="adminmain.jsp?page=board.jsp" class="w3-bar-item w3-button">oldgame</a>
-			  	<a href="#" class="w3-bar-item w3-button">pocket</a>
-			  	
-			  	<a href="adminmain.jsp?page=salesvolume.jsp" class="w3-bar-item w3-button">판매량</a>
+			  	<a href="#" class="w3-bar-item w3-button">pocket</a>			  	
+			  	<a href="adminmain.jsp?page=salsevolume.do" class="w3-bar-item w3-button">판매량</a>
 			  	<a href="#" class="w3-bar-item w3-button">사용자통계</a>
 			  	<a href="#" class="w3-bar-item w3-button">신고접수리스트</a>
 			</div>		
 		</div>
-
+		<%
+			String contentpage=request.getParameter("page");
+			if(contentpage==null) contentpage="board.jsp";
+		%>
 		<div id="content" class="w3-white w3-cell" style="width: 1000px; height: 1000px;">
-
+			<jsp:include page="<%=contentpage %>"/>
 		</div>
 		<div class="w3-container w3-teal w3-cell w3-cell-bottom" style="width: 300px; height: 1000px;">			
 		</div>
