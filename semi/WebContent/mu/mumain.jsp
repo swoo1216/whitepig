@@ -11,7 +11,6 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body>
-
 	<div class="w3-container w3-dark-gray">
 		<h1>Header</h1>
 	</div>
