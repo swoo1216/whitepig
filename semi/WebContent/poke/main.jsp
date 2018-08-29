@@ -131,8 +131,15 @@ function getInfiniteChat() {
  
 <div class="w3-main" style="margin-left:250px;margin-top: 43px;" id="content">
      
+<div class="w3-container" style="min-height: 860px;">
 </div>
 
+<footer class="w3-container w3-pale-red">
+		<div class="w3-right">
+			<h5>Footer</h5>
+		</div>
+	</footer>
+</div>
 <script type="text/javascript">
 	
 	//Open and close the sidebar on medium and small screens
