@@ -23,7 +23,7 @@ public class FindpwdController extends HttpServlet
 		System.out.println(email);
 		MainDao dao = new MainDao();
 		String pwd=dao.findpwd(id,email);
-		if(id!=null && email!=null)
+		if(pwd!=null)
 		{
 			request.setAttribute("code", "psuccess");
 			request.setAttribute("pwd", pwd);
@@ -32,6 +32,6 @@ public class FindpwdController extends HttpServlet
 		{
 			request.setAttribute("code", "pfail");
 		}
-		request.getRequestDispatcher("/main.jsp").forward(request, response);
+		request.getRequestDispatcher("/main/main.jsp").forward(request, response);
 	}
 }

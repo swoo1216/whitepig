@@ -38,6 +38,6 @@ public class LoginController extends HttpServlet
 		{
 			request.setAttribute("code", "fail1");
 		}
-		request.getRequestDispatcher("/poke/main.jsp").forward(request, response);
+		request.getRequestDispatcher("/main/main.jsp").forward(request, response);
 	}
 }
