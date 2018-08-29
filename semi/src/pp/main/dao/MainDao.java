@@ -103,6 +103,38 @@ public class MainDao
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
+	public int num(String id)
+	{
+		Connection con = null;
+		PreparedStatement pstmt= null;
+		ResultSet rs = null;
+		try
+		{
+			con=DBConnection.conn();
+			String sql = "select num from cuser where id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+			{
+				int num = rs.getInt("num");
+				return num;
+			}
+			else
+			{
+				return -1;
+			}
+		}
+		catch(SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return -1;
+		}
+		finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+	}
 	public String findid(String email)
 	{
 		Connection con=null;
