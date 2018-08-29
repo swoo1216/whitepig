@@ -30,7 +30,7 @@ function submit() {
 		},
 		success: function(result) {
 			if(result == 1){
-				alert('전송에 성공했습니다');	
+				$('#contents').val('');
 			}else if(result == 0){
 				alert('내용을 정확히 입력하세요');
 			}else{
@@ -38,7 +38,7 @@ function submit() {
 			}
 		} 
 	});
-	$('#content').val('');
+	
 }
 	
 function chatList(type) {
@@ -61,7 +61,9 @@ function chatList(type) {
 }
 
 function addChat(id,content,regdate) {
-	$('#chatList').append(id + ',' + content + ',' + regdate + "<br>");
+	$('#chatList').append('<img src="img/1.png" style="width: 30px">'+ ' ' + id + '<br>' + content + ' ' + regdate + "<hr> <br>" );
+	
+	
 	$('#chatList').scrollTop($('#chatList')[0].scrollHeight);
 }
 		
@@ -91,22 +93,32 @@ function getInfiniteChat() {
 	onclick="openRightMenu()" id="wish">
 	<i class="fa fa-shopping-cart"></i>
   </button>
-   <button class="w3-bar-item w3-button w3-hide-large w3-hover-white w3-right"><i class="fa fa-user-plus"></i></button>
-   <button class="w3-bar-item w3-button w3-hide-large w3-hover-white w3-right"><i class="fa fa-user-circle"></i></button>
+  
+ <c:choose>
+ 	<c:when test="${id!=null }">
+ 		 <button class="w3-button w3-hide-large w3-large w3-hover-white w3-right"><i class="fa fa-sign-out"></i></button>
+ 		 <img alt="" src="img/1.png" class="w3-right w3-hide-large" style="width: 20px;margin-top: 10px;">
+	   </c:when>
+	   <c:otherwise>
+		   <button class="w3-bar-item w3-button w3-hide-large w3-hover-white w3-right"><i class="fa fa-user-plus"></i></button>
+		   <button class="w3-bar-item w3-button w3-hide-large w3-hover-white w3-right"><i class="fa fa-sign-in"></i></button>
+	   </c:otherwise>
+ </c:choose>
 </div>
 
 	<div id="nav">
-<nav class="w3-sidebar w3-center w3-bar-block w3-collapse w3-animate-left w3-card w3-pale-red" style="z-index:3;width:200px;height: 100%;" id="mySidebar">
+<nav class="w3-sidebar w3-center w3-bar-block w3-collapse w3-animate-left w3-card w3-pale-red" style="z-index:3;width:250px;height: 100%;" id="mySidebar">
   <a class="w3-bar-item w3-button w3-large w3-hover-white" href="main.jsp"><img src="/semi/바지.png" style="height: 60px;"></a>
   	<!-- 로그인 회원가입 -->
   	<c:choose>
   		<c:when test="${id!=null }">
   			<img alt="" src="img/1.png" style="width: 50px;margin-top: 30px;"> ${nic}
+  			<button class="w3-button w3-large w3-hover-white" onclick="location.href='/semi/mlogout.do'"><i class="fa fa-sign-out"></i></button>
   			<hr style="border-color: white;">
   		</c:when>
   		<c:otherwise>
   	<div class="w3-bar w3-border w3-border-white" style="display: flex;margin-top: 20px;">
-  			<button class="w3-border-right w3-border-white w3-bar-item w3-button w3-hover-white" onclick="location='/semi/go/index.jsp'">로그인</button>
+  			<button class="w3-border-right w3-border-white w3-bar-item w3-button w3-hover-white" onclick="location='/semi/main/login.jsp'">로그인</button>
 			<button class="w3-bar-item w3-button w3-hover-white">회원가입</button>
 			<hr style="border-color: white;">
 	  </div>
@@ -130,7 +142,7 @@ function getInfiniteChat() {
 
 
 
-<div class="w3-main" style="margin-left:200px;margin-top: 43px;" id="content">
+<div class="w3-main" style="margin-left:250px;margin-top: 43px;" id="content">
    
 <div id="Demo1" class="w3-hide w3-pale-red" style="position: absolute;width: 100%;">
 	<a class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large" href="#"><img alt="" src="/semi/images/슈퍼마리오아이콘.png" style="width: 30px;"> Go</a>
@@ -144,20 +156,20 @@ function getInfiniteChat() {
 
 	<!-- 채팅 modal -->
 		<div class="w3-modal" id="chat">
-			<div class="w3-modal-content w3-animate-zoom w3-card-4" style="width: 450px;margin-top: 100px;">
+			<div class="w3-modal-content w3-animate-zoom w3-card-4" style="width: 480px;">
 				<header class="w3-container w3-teal">
 					<span onclick="document.getElementById('chat').style.display='none'" 
 						class="w3-btn w3-round w3-ripple w3-display-topright"><i
 								class="fa fa-close"></i></span>
-						<h2>전체채팅</h2>
+						<h2>Chat</h2>
 				</header>
 				<div class="w3-container">
 				
-					<div id="chatList" style="width: 400px;height: 400px;overflow: auto;" id="chat">
+					<div id="chatList" style="width: 450px;height: 500px;overflow: auto;" id="chat">
 						
 					</div>
 					<div>
-					<textarea rows="3" cols="10" id="contents"></textarea>
+					<textarea rows="3" cols="40" id="contents"></textarea>
 					<input type="button" onclick="submit()" value="전송">
 					</div>
 				</div> 

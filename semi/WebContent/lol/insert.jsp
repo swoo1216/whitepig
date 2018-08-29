@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>새 글 쓰기</h1>
-<form action = "/semi/sw/insert.do" method="post">
+<form action = "/semi/linsert.do" method="post">
 	<input type="hidden" name="bnum" value="${param.bnum }">
 	<input type="hidden" name="id" value="${param.id}">
 	제목<br> <input type="text" name="title"><br>

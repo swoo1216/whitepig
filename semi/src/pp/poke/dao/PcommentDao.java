@@ -1,11 +1,9 @@
 package pp.poke.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import pp.go.db.DBConnection;
@@ -100,7 +98,7 @@ public class PcommentDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		String sql="select pc.*,gu.nic,gu.num from pcomment pc join guser gu on pc.id=gu.id where bnum=? order by cnum";
+		String sql="select pc.*,gu.nic,gu.num from pcomment pc join cuser gu on pc.id=gu.id where bnum=? order by cnum";
 		
 		try {
 			conn=DBConnection.conn();

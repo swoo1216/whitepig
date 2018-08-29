@@ -9,7 +9,7 @@
 </head>
 <body>
 커뮤니티	
-	<a href="/semi/sw/insert.jsp">글쓰기</a><br>
+	<a href="/semi/lol/insert.jsp">글쓰기</a><br>
 	<a href="new.jsp">최신순</a>
 	<a href="rmd.jsp">추천순</a>
 	<a href="cmt.jsp">댓글순</a>
@@ -31,7 +31,7 @@
 		<tr>
 			<td>${vo.bnum }</td>
 			<td>${vo.title }</td>
-			<td>${vo.reply }</td>
+			<td></td>
 			<td>${vo.recomm }</td>
 			<td>${vo.hit }</td>
 			<td>${vo.id }</td>

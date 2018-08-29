@@ -11,11 +11,11 @@
 <c:choose>
 	<c:when test="${requestScope.code=='success'}">
 		<h2>글등록성공</h2>
-		<a href="/semi/sw/index.jsp">첫페이지로</a>
+		<a href="/semi/llist.do">첫페이지로</a>
 	</c:when>
 	<c:otherwise>
 		<h2>글등록실패</h2>
-		<a href="/semi/sw/index.jsp">첫페이지로</a>
+		<a href="/semi/lol/index.jsp">첫페이지로</a>
 	</c:otherwise>
 </c:choose>
 </body>

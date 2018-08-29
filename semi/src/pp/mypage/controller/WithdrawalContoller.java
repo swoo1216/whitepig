@@ -22,6 +22,7 @@ public class WithdrawalContoller extends HttpServlet
 		String id = (String)session.getAttribute("id");
 		MypageDao dao = new MypageDao();
 		int n = dao.withDrawal(id);
+		session.invalidate();	
 		if(n>0)
 		{
 			request.setAttribute("code", "wsuccess");

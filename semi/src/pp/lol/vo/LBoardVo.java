@@ -1,35 +1,27 @@
 package pp.lol.vo;
 
-public class LoLReplyVo
+public class LBoardVo
 {
-	private int rnum;
 	private int bnum;
-	private String id;
+	private String title;
 	private String content;
+	private int hit;
 	private int recomm;
+	private String id;
 	private String regdate;
 	
-	public LoLReplyVo(){}
+	public LBoardVo() {}
 
-	public LoLReplyVo(int rnum, int bnum, String id, String content, int recomm, String regdate)
+	public LBoardVo(int bnum, String title, String content, int hit, int recomm, String id, String regdate)
 	{
 		super();
-		this.rnum = rnum;
 		this.bnum = bnum;
-		this.id = id;
+		this.title = title;
 		this.content = content;
+		this.hit = hit;
 		this.recomm = recomm;
+		this.id = id;
 		this.regdate = regdate;
-	}
-
-	public int getRnum()
-	{
-		return rnum;
-	}
-
-	public void setRnum(int rnum)
-	{
-		this.rnum = rnum;
 	}
 
 	public int getBnum()
@@ -42,14 +34,14 @@ public class LoLReplyVo
 		this.bnum = bnum;
 	}
 
-	public String getId()
+	public String getTitle()
 	{
-		return id;
+		return title;
 	}
 
-	public void setId(String id)
+	public void setTitle(String title)
 	{
-		this.id = id;
+		this.title = title;
 	}
 
 	public String getContent()
@@ -62,6 +54,16 @@ public class LoLReplyVo
 		this.content = content;
 	}
 
+	public int getHit()
+	{
+		return hit;
+	}
+
+	public void setHit(int hit)
+	{
+		this.hit = hit;
+	}
+
 	public int getRecomm()
 	{
 		return recomm;
@@ -70,6 +72,16 @@ public class LoLReplyVo
 	public void setRecomm(int recomm)
 	{
 		this.recomm = recomm;
+	}
+
+	public String getId()
+	{
+		return id;
+	}
+
+	public void setId(String id)
+	{
+		this.id = id;
 	}
 
 	public String getRegdate()
@@ -85,7 +97,7 @@ public class LoLReplyVo
 	@Override
 	public String toString()
 	{
-		return "LoLReplyVo [rnum=" + rnum + ", bnum=" + bnum + ", id=" + id + ", content=" + content + ", recomm="
-				+ recomm + ", regdate=" + regdate + "]";
+		return "LBoardVo [bnum=" + bnum + ", title=" + title + ", content=" + content + ", hit=" + hit + ", recomm="
+				+ recomm + ", id=" + id + ", regdate=" + regdate + "]";
 	}
 }

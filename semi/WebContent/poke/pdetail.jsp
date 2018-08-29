@@ -85,7 +85,7 @@
 		${vo.title }
 	<div class="w3-right">
 		<c:choose>
-			<c:when test="${id == vo.id}">
+			<c:when test="${id != null}">
 				<c:choose>
 					<c:when test="${isrecomm == 'true' }">
 						<button class="w3-btn w3-round w3-ripple" 

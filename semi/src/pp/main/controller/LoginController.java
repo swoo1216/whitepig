@@ -20,11 +20,11 @@ public class LoginController extends HttpServlet
 		request.setCharacterEncoding("utf-8");
 		String id= request.getParameter("id");
 		String pwd= request.getParameter("pwd");
-		System.out.println(id);
-		System.out.println(pwd);
 		MainDao dao = new MainDao();
 		String nic = dao.login(id, pwd);
 		int point = dao.point(nic);
+		int num = dao.num(id);
+		System.out.println(num);
 		if(nic!=null)
 		{
 			request.setAttribute("code", "success1");
@@ -32,11 +32,12 @@ public class LoginController extends HttpServlet
 			session.setAttribute("id", id);
 			session.setAttribute("nic", nic);
 			session.setAttribute("point", point);
+			session.setAttribute("num", num);
 		}
 		else
 		{
 			request.setAttribute("code", "fail1");
 		}
-		request.getRequestDispatcher("/main.jsp").forward(request, response);
+		request.getRequestDispatcher("/poke/main.jsp").forward(request, response);
 	}
 }

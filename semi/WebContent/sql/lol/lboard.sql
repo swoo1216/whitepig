@@ -7,7 +7,7 @@ CREATE TABLE lboard
 	hit number(7,0),
 	recomm number(10,0),
 	id varchar2(30) NOT NULL,
-	regdate varchar2(100),
+	regdate date,
 	PRIMARY KEY (bnum)
 );
 
@@ -17,7 +17,7 @@ CREATE TABLE lcomment
 	content varchar2(100),
 	id varchar2(30) NOT NULL,
 	bnum number(10,0) NOT NULL,
-	regdate varchar2(100),
+	regdate date,
 	PRIMARY KEY (cnum)
 );
 

@@ -46,7 +46,7 @@ public class PboardDao {
 			conn=DBConnection.conn();
 			
 			if(keyword.equals("")) {
-				String sql="select NVL(count(bnum),0) cnt from pboard pb, guser gu where pb.id=gu.id";
+				String sql="select NVL(count(bnum),0) cnt from pboard pb, cuser gu where pb.id=gu.id";
 				pstmt=conn.prepareStatement(sql);
 				rs=pstmt.executeQuery();
 			}else {
@@ -56,7 +56,7 @@ public class PboardDao {
 				}else {
 					searchCase = " like '%'||?||'%' ";
 				}
-				String sql="select NVL(count(bnum),0) cnt from pboard pb join guser gu on pb.id=gu.id where "+search+searchCase;
+				String sql="select NVL(count(bnum),0) cnt from pboard pb join cuser gu on pb.id=gu.id where "+search+searchCase;
 				pstmt=conn.prepareStatement(sql);
 				pstmt.setString(1, keyword);
 				rs=pstmt.executeQuery();
@@ -87,7 +87,7 @@ public class PboardDao {
 								"( " + 
 								"	SELECT AA.*,ROWNUM RNUM FROM " + 
 								"	( " + 
-								"		SELECT pb.*,gu.nic,gu.num FROM pboard pb join guser gu on pb.id=gu.id order by "+sort+" desc" + 
+								"		SELECT pb.*,gu.nic,gu.num FROM pboard pb join cuser gu on pb.id=gu.id order by "+sort+" desc" + 
 								"	)AA " + 
 								") " + 
 								"WHERE RNUM>=? AND RNUM<=?";
@@ -105,7 +105,7 @@ public class PboardDao {
 				
 				String sql="select * from ( "
 						+ "select a.*, rownum rnum from( "
-						+ "select pb.*,gu.nic,gu.num from pboard pb join guser gu on pb.id=gu.id where "+search+" "+searchCase+" order by bnum desc "
+						+ "select pb.*,gu.nic,gu.num from pboard pb join cuser gu on pb.id=gu.id where "+search+" "+searchCase+" order by bnum desc "
 						+ ")a "
 					+ ") where rnum>=? and rnum <=?";
 				pstmt=conn.prepareStatement(sql);
@@ -142,7 +142,7 @@ public class PboardDao {
 		ResultSet rs=null;
 		try {
 			conn=DBConnection.conn();
-			String sql="select pb.*,gu.nic,gu.num from pboard pb join guser gu on pb.id=gu.id where bnum=?";
+			String sql="select pb.*,gu.nic,gu.num from pboard pb join cuser gu on pb.id=gu.id where bnum=?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, bnum);
 			rs=pstmt.executeQuery();

@@ -8,8 +8,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
-import pp.lol.dao.LoLBoardDao;
-import pp.lol.vo.LoLBoardVo;
+import pp.lol.dao.LBoardDao;
+import pp.lol.vo.LBoardVo;
 
 @WebServlet("/linsert.do")
 public class InsertController extends HttpServlet
@@ -26,9 +26,8 @@ public class InsertController extends HttpServlet
 		int bnum=0;
 		int hit=0;
 		int recomm=0;
-		int reply=0;
-		LoLBoardVo vo = new LoLBoardVo(bnum, title, content, reply, recomm, hit, null, null);
-		LoLBoardDao dao = new LoLBoardDao();
+		LBoardVo vo = new LBoardVo(bnum, title, content, hit, recomm, null, null);
+		LBoardDao dao = new LBoardDao();
 		int n = dao.insert(vo);
 		if(n>0)
 		{
@@ -38,6 +37,6 @@ public class InsertController extends HttpServlet
 		{
 			request.setAttribute("code", "fail");
 		}
-		request.getRequestDispatcher("/sw/result.jsp").forward(request, response);
+		request.getRequestDispatcher("/lol/result.jsp").forward(request, response);
 	}
 }
