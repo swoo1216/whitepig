@@ -11,7 +11,7 @@
 	</page_setting>
 	<category_index>0</category_index>
 	<zoom>0.75</zoom>
-	<x>95</x>
+	<x>499</x>
 	<y>0</y>
 	<default_color>
 		<r>128</r>
@@ -41,7 +41,7 @@
 		<suspend_validator>false</suspend_validator>
 		<export_setting>
 			<export_ddl_setting>
-				<output_path>C:\Users\User\Desktop\11.sql</output_path>
+				<output_path>C:\Users\User\Desktop\qqq.sql</output_path>
 				<encoding>x-windows-949</encoding>
 				<line_feed>CR+LF</line_feed>
 				<is_open_after_saved>true</is_open_after_saved>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2018-08-16 17:14:42</creation_date>
-			<updated_date>2018-08-28 19:07:59</updated_date>
+			<updated_date>2018-08-28 20:42:47</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -1156,7 +1156,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>6</word_id>
+					<word_id>8</word_id>
 					<id>9</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1224,7 +1224,7 @@
 				<normal_column>
 					<id>11</id>
 					<referenced_column>28</referenced_column>
-					<relation>2</relation>
+					<relation>3</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name>쓰는사람</logical_name>
@@ -1258,7 +1258,7 @@
 				<normal_column>
 					<id>12</id>
 					<referenced_column>28</referenced_column>
-					<relation>3</relation>
+					<relation>2</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name>적히는사람</logical_name>
@@ -1431,7 +1431,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>24</word_id>
+					<word_id>25</word_id>
 					<id>15</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1718,7 +1718,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>8</word_id>
+					<word_id>6</word_id>
 					<id>22</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1927,7 +1927,7 @@
 				<normal_column>
 					<id>26</id>
 					<referenced_column>28</referenced_column>
-					<relation>8</relation>
+					<relation>7</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name>신고자</logical_name>
@@ -1961,7 +1961,7 @@
 				<normal_column>
 					<id>27</id>
 					<referenced_column>28</referenced_column>
-					<relation>7</relation>
+					<relation>8</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name>신고대상자</logical_name>
@@ -2529,7 +2529,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>25</word_id>
+					<word_id>24</word_id>
 					<id>41</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
