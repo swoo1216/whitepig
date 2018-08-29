@@ -50,7 +50,7 @@ public class PboardController extends HttpServlet{
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("search", search);
 		req.setAttribute("keyword", keyword);
-		req.getRequestDispatcher("/poke/pboard.jsp").forward(req, resp);
+		req.getRequestDispatcher("/poke/main.jsp?page=/poke/pboard.jsp").forward(req, resp);
 	}
 }
 

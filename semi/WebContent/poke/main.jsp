@@ -139,11 +139,43 @@ function getInfiniteChat() {
  
 <div class="w3-main" style="margin-left:250px;margin-top: 43px;" id="content">
      
-     
+     <!-- 채팅 modal -->
+		<div class="w3-modal" id="chat">
+			<div class="w3-modal-content w3-animate-zoom w3-card-4" style="width: 480px;">
+				<header class="w3-container w3-teal">
+					<span onclick="document.getElementById('chat').style.display='none'" 
+						class="w3-btn w3-round w3-ripple w3-display-topright"><i
+								class="fa fa-close"></i></span>
+						<h2>Chat</h2>
+				</header>
+				<div class="w3-container">
+				
+					<div id="chatList" style="width: 450px;height: 500px;overflow: auto;" id="chat">
+						
+					</div>
+					<div>
+					<textarea rows="3" cols="40" id="contents"></textarea>
+					<input type="button" onclick="submit()" value="전송">
+					</div>
+				</div> 
+				<script type="text/javascript">
+					$(document).ready(function() {
+						chatList('ten');
+						getInfiniteChat();
+					});
+				</script>
+			</div>
+		</div>
 
 <div class="w3-container" style="min-height: 860px;">
 
-
+<%
+			String contentpage=request.getParameter("page");
+			if(contentpage==null) contentpage="/poke/index.jsp";
+		%>
+		
+			<jsp:include page="<%=contentpage %>"/>
+		
 		
 </div>
 

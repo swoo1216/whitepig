@@ -46,7 +46,7 @@ public class IconController extends HttpServlet{
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("search", search);
 		req.setAttribute("keyword", keyword);
-		req.getRequestDispatcher("/poke/iconStore.jsp").forward(req, resp);
+		req.getRequestDispatcher("/poke/main.jsp?page=/poke/iconStore.jsp").forward(req, resp);
 	}
 }
 
