@@ -120,7 +120,7 @@ function getInfiniteChat() {
   	<hr style="border-color: white;">
   <a class="w3-bar-item w3-button w3-hover-white" href="/semi/poke/list.do"><img alt="" src="img/25.gif" style="width: 50px;"> Icon</a>
 	<hr style="border-color: white;">
-  <a class="w3-bar-item w3-button w3-hover-white" href="#"><img alt="" src="/semi/images/롤아이콘.png" style="width: 50px;"> LoL</a>
+  <a class="w3-bar-item w3-button w3-hover-white" href=""><img alt="" src="/semi/images/롤아이콘.png" style="width: 50px;"> LoL</a>
  	<hr style="border-color: white;">	
   <a class="w3-bar-item w3-button w3-hover-white" href="#"><img alt="" src="/semi/images/음악아이콘.png" style="width: 50px;"> Music</a>
 
@@ -131,7 +131,7 @@ function getInfiniteChat() {
  
  <div id="Demo1" class="w3-hide w3-pale-red" style="position: absolute;width: 100%;">
 	<a class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large" href="#"><img alt="" src="/semi/images/슈퍼마리오아이콘.png" style="width: 30px;"> Go</a>
-	<a class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large" href="/semi/poke/pboard.do"><img alt="" src="/semi/images/포켓몬아이콘.png" style="width: 30px;"> Poke</a>
+	<a class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large" href=""><img alt="" src="/semi/images/포켓몬아이콘.png" style="width: 30px;"> Poke</a>
   	<a class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large" href="/semi/poke/list.do"><img alt="" src="img/25.gif" style="width: 30px;"> Icon</a>
   	<a class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large" href="#"><img alt="" src="/semi/images/롤아이콘.png" style="width: 30px;"> LoL</a>
   	<a class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large" href="#"><img alt="" src="/semi/images/음악아이콘.png" style="width: 30px;"> Music</a>
@@ -139,7 +139,12 @@ function getInfiniteChat() {
  
 <div class="w3-main" style="margin-left:250px;margin-top: 43px;" id="content">
      
+     
+
 <div class="w3-container" style="min-height: 860px;">
+
+
+		
 </div>
 
 <footer class="w3-container w3-pale-red">
