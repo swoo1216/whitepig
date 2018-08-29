@@ -27,8 +27,8 @@
 				</tr>
 			</thead>
 			<c:forEach var="vo" items="${list }">
-				<tr onclick="#">
-					<td>${vo.bnum }</td>
+				<tr onclick="location.href='mdetail.do?mnum=${vo.mnum }'" style = "cursor:pointer;">
+					<td>${vo.mnum }</td>
 					<td>${vo.title }</td>
 					<td>${vo.hit }</td>
 					<td>${vo.id }</td>
@@ -38,7 +38,7 @@
 		<div>
 			<c:choose>
 				<c:when test="${startpage>10 }">
-					<a href="musiclist.do?pagenum=${startpage-1 }">[이전]</a>
+					<a href="mlist.do?pagenum=${startpage-1 }">[이전]</a>
 				</c:when>
 				<c:otherwise>
 					[이전]
@@ -47,17 +47,17 @@
 	<c:forEach var="i" begin="${startpage }" end="${endpage }">
 			<c:choose>
 				<c:when test="${pagenum==i }"><%-- 현재페이지인경우--%>
-					<a href="musiclist.do?pagenum=${i }"><span style="color:red" >[${i }]</span></a>
+					<a href="mlist.do?pagenum=${i }"><span style="color:red" >[${i }]</span></a>
 				</c:when>
 				<c:otherwise>
-					<a href="musiclist.do?pagenum=${i }"><span style="color:#555" >[${i }]</span></a>
+					<a href="mlist.do?pagenum=${i }"><span style="color:#555" >[${i }]</span></a>
 				</c:otherwise>
 			</c:choose>	
 			</c:forEach>
 			<!-- 다음 -->
 			<c:choose>
 				<c:when test="${endpage<pagecount }">
-					<a href="musiclist.do?pagenum=${endpage+1 }">[다음]</a>
+					<a href="mlist.do?pagenum=${endpage+1 }">[다음]</a>
 				</c:when>
 				<c:otherwise>
 					[다음]
@@ -76,9 +76,11 @@
 	</div>
 	<div id="writeboard" class="w3-modal">
 		<div class="w3-modal-content w3-animate-zoom" style="width: 60%">
-			<form action="insert.do"
+			<form action="minsert.do"
 				class="w3-container w3-card-4 w3-light-grey w3-text-w3-dark-gray">
-				<h2 class="w3-center">Contact Us</h2>
+				
+				<h2 class="w3-center w3-dark-grey w3-padding">글작성</h2>
+				
 				<div class="w3-row w3-section">
 				
 					<div class="w3-rest">
