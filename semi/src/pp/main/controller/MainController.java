@@ -7,35 +7,31 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import pp.main.dao.MainDao;
-import pp.main.vo.MainVo;
 
-@WebServlet("/mjoin.do")
-public class JoinController extends HttpServlet
+@WebServlet("/mmain.do")
+public class MainController extends HttpServlet
 {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		request.setCharacterEncoding("utf-8");
-		String id=request.getParameter("id");
-		String pwd=request.getParameter("pwd");
-		String email=request.getParameter("email");
-		String nic=request.getParameter("nic");
-		System.out.println(id);
-		System.out.println(pwd);
-		System.out.println(email);
-		System.out.println(nic);
-		MainVo vo = new MainVo(id, pwd, email, nic, null, 0, null, 0);
+		String id= request.getParameter("id");
+		String pwd= request.getParameter("pwd");
 		MainDao dao = new MainDao();
-		int n = dao.insert(vo);
-		if(n>0)
+		String nic = dao.login(id, pwd);
+		int point = dao.point(nic);
+		int num = dao.num(id);
+		System.out.println(num);
+		if(nic!=null)
 		{
-			request.setAttribute("code", "success");
-		}
-		else
-		{
-			request.setAttribute("code", "fail");
+			HttpSession session = request.getSession();
+			session.setAttribute("id", id);
+			session.setAttribute("nic", nic);
+			session.setAttribute("point", point);
+			session.setAttribute("num", num);
 		}
 		request.getRequestDispatcher("/main/main.jsp").forward(request, response);
 	}

@@ -29,7 +29,7 @@
 <div id="wrapper">
 	<div id="nav">
 <nav class="w3-sidebar w3-center w3-bar-block w3-collapse w3-animate-left w3-card w3-pale-red" style="z-index:3;width:20%;" id="mySidebar">
-  <a class="w3-bar-item w3-button w3-border-bottom w3-large w3-hover-white" href="main.jsp"><img src="/semi/바지.png" style="height: 60px;">PANTS</a>
+  <a class="w3-bar-item w3-button w3-border-bottom w3-large w3-hover-white" href="/semi/main/main.jsp"><img src="/semi/바지.png" style="height: 60px;">PANTS</a>
   <a class="w3-bar-item w3-button w3-hide-large w3-large w3-hover-white" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
   <div style="margin-left:auto; margin-right: auto;">
 	<%
@@ -44,7 +44,9 @@
 		else
 		{
 	%>	<div>
-			<a href="/semi/mboardcount.do"><%=session.getAttribute("nic") %>님<br>환영합니다!</a><br>
+			<img src = "poke/img/<%=session.getAttribute("num") %>.png"
+			onclick="document.getElementById('id01').style.display='block'"style = height:50px;>
+			<a href="/semi/mboardcount.do"><%=session.getAttribute("nic") %></a>님<br>환영합니다!<br>
 			<button onclick="location.href='/semi/mlogout.do'" style="background-color: pink;">로그아웃</button>
 		</div>
 	<%	}
@@ -85,6 +87,66 @@
 	}
 	
 </script>
+
+<c:choose>
+	<c:when test="${requestScope.code=='success'}">
+		<script type="text/javascript">
+		alert('회원가입성공');
+		</script>
+	</c:when>
+	<c:when test="${requestScope.code=='fail'}">
+		<script type="text/javascript">
+		alert('회원가입실패');
+		</script>
+	</c:when>
+<%-- 
+	<c:when test="${requestScope.code=='success1'}">
+		<script type="text/javascript">
+		alert('로그인성공');
+		</script>
+	</c:when>
+	<c:when test="${requestScope.code=='logout'}">
+		<script type="text/javascript">
+		alert('로그아웃 하셨습니다.');
+		</script>
+	</c:when>
+--%>
+	<c:when test="${requestScope.code=='fail1'}">
+		<script type="text/javascript">
+		alert('로그인실패');
+		</script>
+	</c:when>
+	<c:when test="${requestScope.code=='esuccess'}">
+		<script type="text/javascript">
+		alert('당신의 아이디는' + ${id }+'입니다.');
+		</script>
+	</c:when>
+	<c:when test="${requestScope.code=='efail'}">
+		<script type="text/javascript">
+		alert('등록되지 않은 이메일입니다.');
+		</script>
+	</c:when>
+	<c:when test="${requestScope.code=='psuccess'}">
+		<script type="text/javascript">
+		alert('당신의 비밀번호는' + ${pwd }+'입니다.');
+		</script>
+	</c:when>
+	<c:when test="${requestScope.code=='pfail'}">
+		<script type="text/javascript">
+		alert('등록되지 않은 아이디 또는 이메일입니다.');
+		</script>
+	</c:when>
+	<c:when test="${requestScope.code=='wsuccess'}">
+		<script type="text/javascript">
+		alert('회원탈퇴되셨습니다. 그동안 이용해주셔서 감사합니다.');
+		</script>
+	</c:when>
+	<c:when test="${requestScope.code=='wfail'}">
+		<script type="text/javascript">
+		alert('회원탈퇴에 실패했습니다.');
+		</script>
+	</c:when>
+</c:choose>
 
 </body>
 </html>

@@ -30,6 +30,7 @@
 <body>
 <div id = "modifyInfo">
 <a href="/semi/main/mypage/modifyInfo.jsp">[회원정보 수정하기]</a>
+<a href="<%=request.getContextPath()%>/mmain.do">[메인으로 가기]</a>
 </div>
 <div id="nic">
 	<h1 style= "text-align: center; margin-top:30px; font-size:120px;"><img src = "poke/img/<%=session.getAttribute("num") %>.png" 

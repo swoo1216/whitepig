@@ -29,6 +29,6 @@ public class FindidController extends HttpServlet
 		{
 			request.setAttribute("code", "efail");
 		}
-		request.getRequestDispatcher("/main.jsp").forward(request, response);
+		request.getRequestDispatcher("/main/main.jsp").forward(request, response);
 	}
 }
