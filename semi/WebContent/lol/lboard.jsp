@@ -4,9 +4,9 @@
 
 <div class="w3-container w3-padding-32" style="min-height: 865px;">
 
-	<button class="w3-btn w3-round w3-ripple w3-teal"
+<!-- 	<button class="w3-btn w3-round w3-ripple w3-teal"
 		style="width: 80px;"
-		onclick="location='/semi/lol/lboard.do?sort=regdate'">최신순</button>
+		onclick="location='/semi/lol/lboard.do?sort=regdate'">최신순</button> -->
 	<button class="w3-btn w3-round w3-ripple w3-red"
 		style="width: 80px;"
 		onclick="location='/semi/lol/lboard.do?sort=recomm'">추천순</button>

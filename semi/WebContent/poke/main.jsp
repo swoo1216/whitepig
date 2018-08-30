@@ -256,16 +256,7 @@
 			%>
 
 			<jsp:include page="<%=contentpage%>" />
-
-
-
 		</div>
-
-		<footer class="w3-container w3-pale-red">
-			<div class="w3-right">
-				<h5>Footer</h5>
-			</div>
-		</footer>
 	</div>
 	<script type="text/javascript">
 		function openRightMenu() {
