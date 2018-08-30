@@ -14,7 +14,7 @@
 	}
 </script>
 <body>
-	<form method="post" action="<c:url value='login.do'/>">
+	<form method="post" action="/semi/go/login.do">
 		아이디 <input type="text" name="id"><br> 비밀번호 <input type="password" name="pwd">
 		<button type="submit">로그인</button>
 	</form>
