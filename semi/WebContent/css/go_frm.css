@@ -6,7 +6,7 @@
 }
 
 #wrapper {
-	width: 100%;
+	/*width: 100%;*/
 	margin: auto;
 }
 
@@ -18,7 +18,6 @@
 
 #nav {
 	background-color: #ffe6e6;
-	height: 100%;
 	width: 15%;
 	display: flex;
 	flex-direction: column;

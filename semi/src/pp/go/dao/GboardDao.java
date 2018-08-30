@@ -77,7 +77,7 @@ public class GboardDao {
 			search = " where gb.id = gu.id";
 		}
 
-		String sql = "select NVL(count(bnum), 0) cnt from gboard gb, guser gu " + search;
+		String sql = "select NVL(count(bnum), 0) cnt from gboard gb, cuser gu " + search;
 
 		try {
 			conn = DBConnection.conn();
@@ -214,7 +214,7 @@ public class GboardDao {
 		ResultSet rs = null;
 		GboardVo vo = null;
 
-		String sql = "select gb.*, gu.nic nic from gboard gb join guser gu on gb.id = gu.id where bnum = ?";
+		String sql = "select gb.*, gu.nic nic from gboard gb join cuser gu on gb.id = gu.id where bnum = ?";
 
 		try {
 			conn = DBConnection.conn();
@@ -268,7 +268,7 @@ public class GboardDao {
 		}
 
 		String sql = "select * from ( " + "    select aa.*, rownum rnum from " + "    ( "
-				+ "        select gb.*, gu.nic nic from gboard gb, guser gu where gb.id = gu.id " + search
+				+ "        select gb.*, gu.nic nic from gboard gb, cuser gu where gb.id = gu.id " + search
 				+ " order by " + sort + " desc " + "    ) aa" + ") where rnum >=" + startRow + " and rnum <= " + endRow;
 
 		try {

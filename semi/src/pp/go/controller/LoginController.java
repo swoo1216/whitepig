@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pp.go.dao.GuserDao;
+import pp.go.vo.GuserVo;
 
 @WebServlet("/go/login.do")
 public class LoginController extends HttpServlet {
@@ -23,9 +24,10 @@ public class LoginController extends HttpServlet {
 
 		boolean b = GuserDao.getInstance().loginCheck(id, pwd);
 		if (b) {
-			String nic = GuserDao.getInstance().select(id).getNic();
-			request.getSession().setAttribute("nic", nic);
+			GuserVo vo = GuserDao.getInstance().select(id);
+			request.getSession().setAttribute("vo", vo);
 			request.getSession().setAttribute("id", id);
+			request.getSession().setAttribute("nic", vo.getNic());
 			response.sendRedirect("index.jsp");
 		} else {
 			request.setAttribute("errMsg", "아이디 또는 비밀번호가 맞지 않아요");

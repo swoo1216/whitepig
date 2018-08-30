@@ -1,12 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/go_frm.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/go_frm.css?ver=2">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/go_modal.css?ver=2">
 <style type="text/css">
 td, th {
 	border-spacing: 0px;
@@ -48,6 +47,7 @@ p {
 		var content = j.content;
 		var recomm = j.recomm;
 		var rnic = j.rnic;
+		var rid = j.rid;
 		var rdate = j.rdate;
 
 		var table = document.createElement("table");
@@ -64,10 +64,9 @@ p {
 		td2.width = "78%";
 		td3.width = "7%";
 		td4.width = "10%";
-
+		
 		var text1 = document.createTextNode(rnic);
 		var text2 = document.createTextNode(content);
-		var text3 = document.createTextNode(recomm);
 		var text4 = document.createTextNode(rdate);
 		var text5 = document.createTextNode("X");
 		
@@ -123,14 +122,13 @@ p {
 		btn.style.padding = "5px 10px";
 
 		td1.appendChild(text1);
+		td1.innerHTML = "<span class='clickPopup' onclick="+ "\"" +"showPopup('pop" + cNum +"')" + "\"" + ">" + rnic + "</span>";
 		td2.appendChild(pre);
-		td3.appendChild(text3);
 		td4.appendChild(text4);
 		td5.appendChild(btn);
 
 		tr.appendChild(td1);
 		tr.appendChild(td2);
-		tr.appendChild(td3);
 		tr.appendChild(td4);
 		tr.appendChild(td5);
 
@@ -179,9 +177,56 @@ p {
 		
 		comments.appendChild(div1);
 		
+		var pdiv = document.createElement("div");
+		pdiv.className = "popup";
+		pdiv.id = "pop" + cNum;
+		
+		var popstyle = document.createElement("div");
+		popstyle.className = "popstyle";
+		
+		var ul = document.createElement("ul");
+		
+		var li1 = document.createElement("li");
+		var li2 = document.createElement("li");
+		
+		var a1 = document.createElement("a");
+		var a2 = document.createElement("a");
+		
+		a1.href="javascript:sendMsg('${sessionScope.id}', '${sessionScope.nic}','" + rid + "', '" + rnic + "')";
+		a1.appendChild(document.createTextNode("쪽지보내기"));
+		
+		li1.appendChild(a1);
+		
+		a2.href="";
+		a2.appendChild(document.createTextNode("신고하기"));
+		
+		li2.appendChild(a2);
+		
+		ul.appendChild(li1);
+		ul.appendChild(li2);
+		
+		popstyle.appendChild(ul);
+		pdiv.appendChild(popstyle);
+		
+		comments.appendChild(pdiv);
+		
 		var recommPwd = document.getElementById("recommPwd" + cNum);
 		recommPwd.value = "";
 		
+		var clickPopup = document.getElementsByClassName("clickPopup"); // 마우스포인터 효과
+		for (var i = 0; i < clickPopup.length; i++) {
+			clickPopup[i].addEventListener("mouseover", function() { // 팝업
+				this.style.cursor = "pointer";
+			}, false);
+		}
+
+		var popup = document.getElementsByClassName("popup");
+
+		for (var i = 0; i < popup.length; i++) {  // 마우스 떠나면 꺼지기
+			popup[i].addEventListener("mouseleave", function() {
+				this.style.display = "none";
+			}, false);
+		}
 	}
 	function godeleteModal(writerId) {
 		if(writerId !== '${sessionScope.id}'){
@@ -225,7 +270,6 @@ p {
 			}, 2000);
 			return;
 		}
-		
 		
 		var rPassword;
 		if(!id){ //로그인을 안했으면
@@ -524,8 +568,7 @@ p {
 							<td>${vo.nic}&nbsp;|&nbsp;조회&nbsp;${vo.hit}&nbsp;|&nbsp;작성일&nbsp;${vo.regdate}&nbsp;|&nbsp;댓글&nbsp;${vo.countComment}</td>
 						</tr>
 						<tr>
-							<td height="500px" colspan="2"
-								style="text-align: left; vertical-align: top;">${vo.content}</td>
+							<td height="500px" colspan="2" style="text-align: left; vertical-align: top;">${vo.content}</td>
 						</tr>
 					</table>
 					<div id="detailFunc">
@@ -534,12 +577,10 @@ p {
 						<button type="button" onclick="gomodify('${vo.bNum}', '${vo.id}')">수정</button>
 						<c:choose>
 							<c:when test="${isrecomm == 'false'}">
-								<button type="button"
-									onclick="goRecomm('${sessionScope.id}', ${vo.bNum}, 0)">추천</button>
+								<button type="button" onclick="goRecomm('${sessionScope.id}', ${vo.bNum}, 0)">추천</button>
 							</c:when>
 							<c:otherwise>
-								<button type="button"
-									onclick="deleteRecomm('${sessionScope.id}', ${vo.bNum}, 0)">추천취소</button>
+								<button type="button" onclick="deleteRecomm('${sessionScope.id}', ${vo.bNum}, 0)">추천취소</button>
 							</c:otherwise>
 						</c:choose>
 					</div>
@@ -547,15 +588,13 @@ p {
 						<c:forEach var="vo" items="${gclist}">
 							<table>
 								<tr>
-									<td width="5%">${vo.nic}</td>
-									<td width="78%"><pre>${vo.content}</pre></td>
-									<td width="7%">${vo.recomm}</td>
-									<td width="10%">${vo.regdate}</td>
+									<td width="5%"><span class="clickPopup" onclick="showPopup('pop${vo.cNum}')">${vo.nic}</span></td>
+									<td width="80%"><pre>${vo.content}</pre></td>
+									<!-- <td width="7%">${vo.recomm}</td> -->
+									<td width="15%">${vo.regdate}</td>
 									<!-- 닉네임으로 작성했으면 닉네임과 비밀번호로 조회후 삭제 -->
 									<!-- 로그인해서 작성했으면 아이디로 조회후 삭제 -->
-									<td><button type="button"
-											onclick="removeRecomm('${vo.cNum}')"
-											style="padding: 5px 10px;">X</button></td>
+									<td><button type="button" onclick="removeRecomm('${vo.cNum}')" style="padding: 5px 10px;">X</button></td>
 								</tr>
 							</table>
 							<div id="inputPwd${vo.cNum}" class="modal" style="display: none;">
@@ -563,6 +602,15 @@ p {
 									<p>작성한 비밀번호를 입력해주세요.</p>
 									<br> <input type="text" id="recommPwd${vo.cNum}"><br>
 									<button type="button" onclick="checkPwd('${vo.cNum}')">입력</button>
+								</div>
+							</div>
+							<!-- popup -->
+							<div class="popup" id="pop${vo.cNum}">
+								<div class="popstyle">
+									<ul>
+										<li><a href="javascript:sendMsg('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">쪽지보내기</a></li>
+										<li><a href="">신고하기</a></li>
+									</ul>
 								</div>
 							</div>
 						</c:forEach>
@@ -575,9 +623,7 @@ p {
 									<!-- 로그인 안되있으면 닉네임 입력하고 댓글 작성 -->
 									<c:choose>
 										<c:when test="${empty sessionScope.id}">
-											<td width="10%"><input type="text" name="nic" size="10"
-												placeholder="닉네임"> <br> <input type="password"
-												name="rPassword" size="10" placeholder="비밀번호"></td>
+											<td width="10%"><input type="text" name="nic" size="10" placeholder="닉네임"> <br> <input type="password" name="rPassword" size="10" placeholder="비밀번호"></td>
 										</c:when>
 										<c:otherwise>
 											<td width="10%">${sessionScope.nic}</td>
@@ -585,13 +631,11 @@ p {
 											<input type="hidden" name="nic" value="${sessionScope.nic}">
 										</c:otherwise>
 									</c:choose>
-									<td width="60%"><textarea rows="5" cols="100"
-											name="content" id="tarea"></textarea></td>
+									<td width="60%"><textarea rows="5" cols="100" name="content" id="tarea"></textarea></td>
 									<td width="20%"><button type="button" onclick="getList()">작성</button></td>
 								</tr>
 							</table>
-							<input type="hidden" name="bNum" value="${vo.bNum}"> <input
-								type="hidden" name="tNum" value="0">
+							<input type="hidden" name="bNum" value="${vo.bNum}"> <input type="hidden" name="tNum" value="0">
 						</form>
 					</div>
 				</div>
@@ -606,8 +650,7 @@ p {
 		<div class="modal_content">
 			<span class="close">&times;</span>
 			<p>정말 삭제하실 꺼예요?</p>
-			<button type="button" onclick="godelete('${vo.bNum}')"
-				style="float: none;">확인</button>
+			<button type="button" onclick="godelete('${vo.bNum}')" style="float: none;">확인</button>
 		</div>
 	</div>
 
@@ -676,5 +719,10 @@ window.onclick = function(event) {
     	event.target.style.display = "none";
     }
 }
+</script>
+<script src="/semi/js/pantalk.js?ver=4" type="text/javascript" charset="UTF-8"></script>
+<script type="text/javascript">
+	var pt = new pantalk("${sessionScope.id}", "${sessionScope.nic}");
+	pt.startCount();
 </script>
 </html>
