@@ -355,4 +355,9 @@
 </c:choose>
 
 </body>
+<script src="/semi/js/pantalk.js?ver=4" type="text/javascript" charset="UTF-8"></script>
+<script type="text/javascript">
+	var pt = new pantalk("${sessionScope.id}", "${sessionScope.nic}");
+	pt.startCount();
+</script>
 </html>
