@@ -15,12 +15,15 @@
 
 		xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = callback;
+		
 		xhr.open('get', 'miconchange.do', true);
 		xhr.send();
 	}
-	function callback() {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-
+	function callback()
+	{
+		if (xhr.readyState == 4 && xhr.status == 200)
+		{
+				
 			var text = xhr.responseText;
 			var json = JSON.parse(text);
 			var iconlist = json.iconlist;
@@ -29,25 +32,15 @@
 
 			var id03 = document.getElementById('id03');
 
-			for (var i = 0; i < iconlist.length; i++) {
+			id03.innerHTML = "";			
+			for (var i = 0; i < iconlist.length; i++)
+			{
 
 				var img = document.createElement('img');
 				img.src = '/semi/poke/img/' + iconlist[i] + '.gif';
 				img.style.height='120px';
-
 				id03.appendChild(img);
-
 			}
-
-			/* var text=xhr.responseText;
-			var json=JSON.parse(text);
-			var span=document.getElementById("idcheck");
-			//eval('true') --> true
-			if(json.using==true){
-				span.innerHTML="사용할 수 없는 아이디입니다.";
-			}else{
-				span.innerHTML="사용가능한 아이디입니다.";
-			} */
 		}
 	}
 </script>
@@ -113,7 +106,8 @@
 				class="w3-button w3-pale-red	 w3-xlarge w3-hover-pale-red w3-display-topright">&times;</span>
 			<h2>보유아이콘목록</h2>
 			</header>
-			<div id="id03"> <!-- 아이콘 자리  -->
+			<div id="id03">
+				<!-- 아이콘 자리  -->
 			</div>
 			<div class="w3-container w3-pale-red w3-padding w3-center">
 				<button class="w3-button w3-white w3-border"
