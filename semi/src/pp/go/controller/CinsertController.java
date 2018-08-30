@@ -29,6 +29,7 @@ public class CinsertController extends HttpServlet {
 			rPassword = request.getParameter("rPassword");
 		} else {
 			nic = GuserDao.getInstance().select(id).getNic();
+			GuserDao.getInstance().upPoint(id, 5);
 		}
 
 		int bNum = Integer.parseInt(request.getParameter("bNum"));
@@ -37,7 +38,7 @@ public class CinsertController extends HttpServlet {
 
 		GcommentVo vo = new GcommentVo(0, bNum, tNum, content, 0, nic, rPassword, id, null);
 
-		GcommentDao.getInstance().insert(vo);
+		int n = GcommentDao.getInstance().insert(vo);
 		request.setAttribute("bNum", bNum);
 		request.setAttribute("tNum", tNum);
 		request.getRequestDispatcher("/go/gclist.do").forward(request, response);

@@ -25,7 +25,7 @@ public class GuserDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select * from guser where id = ? and pwd = ?";
+		String sql = "select * from cuser where id = ? and pwd = ?";
 
 		try {
 			conn = DBConnection.conn();
@@ -45,11 +45,53 @@ public class GuserDao {
 		return false;
 	}
 
+	public int upPoint(String id, int getPoint) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		String sql = "update cuser set point = point + ? where id = ?";
+
+		try {
+			conn = DBConnection.conn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, getPoint);
+			pstmt.setString(2, id);
+
+			return pstmt.executeUpdate();
+		} catch (SQLException se) {
+			System.out.println(se.getMessage());
+			return -1;
+		} finally {
+			DBConnection.close(null, pstmt, conn);
+		}
+	}
+
+	public int changeUserClass(String id, String clss) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		String sql = "update cuser set clss = ? where id = ?";
+
+		try {
+			conn = DBConnection.conn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, clss);
+			pstmt.setString(2, id);
+
+			return pstmt.executeUpdate();
+		} catch (SQLException se) {
+			System.out.println(se.getMessage());
+			return -1;
+		} finally {
+			DBConnection.close(null, pstmt, conn);
+		}
+	}
+
 	public int update(GuserVo vo) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
-		String sql = "update guser set point = ?, num = ? where id = ?";
+		String sql = "update cuser set point = ?, num = ? where id = ?";
 
 		try {
 			conn = DBConnection.conn();
@@ -73,7 +115,7 @@ public class GuserDao {
 		ResultSet rs = null;
 		GuserVo vo = null;
 
-		String sql = "select * from guser where id = ?";
+		String sql = "select * from cuser where id = ?";
 
 		try {
 			conn = DBConnection.conn();

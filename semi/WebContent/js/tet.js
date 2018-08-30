@@ -2,7 +2,8 @@
 window.pp.tet = {};
 
 
-pp.tet.init = function(){// 초기화
+pp.tet.init = function(id){// 초기화
+	pp.tet.id = id;
 	pp.tet.canvas = document.getElementById("canvas");
 	pp.tet.ctx = pp.tet.canvas.getContext("2d");
 	
@@ -54,10 +55,10 @@ pp.tet.init = function(){// 초기화
 			if(cnt == 0)
 				pp.tet.x -= 1;
 			break;
-		case 38: //위
+		case 38: // 위
 			pp.tet.rotate();
 			break;
-		case 39: //오른
+		case 39: // 오른
 			var cnt = 0;
 			for(var i = 0;i<block.length;i++){
 				if((block[i].x + pp.tet.x) == pp.tet.bx-1 || pp.tet.stack[block[i].y + pp.tet.y][block[i].x + pp.tet.x + 1].is == 1)
@@ -66,7 +67,7 @@ pp.tet.init = function(){// 초기화
 			if(cnt == 0)
 				pp.tet.x += 1;
 			break;
-		case 40: //아래
+		case 40: // 아래
 			pp.tet.y += 1;
 			break;
 		case 32:
@@ -74,7 +75,6 @@ pp.tet.init = function(){// 초기화
 				pp.tet.y += 1;
 				for(var i=0;i<block.length;i++){
 					if((block[i].y + pp.tet.y) >= pp.tet.by-1 || pp.tet.stack[(block[i].y + pp.tet.y) + 1][block[i].x + pp.tet.x].is == 1){
-						console.log("왔어");
 						pp.tet.game();
 						return;
 					}
@@ -93,6 +93,8 @@ pp.tet.init = function(){// 초기화
 			block[i].x = -(_y);
 		}
 	}
+	pp.tet.ctx.fillStyle = pp.tet.background; // 배경
+	pp.tet.ctx.fillRect(0, 0, pp.tet.canvas.width, pp.tet.canvas.height);
 }
 
 pp.tet.reset = function(){
@@ -111,7 +113,7 @@ pp.tet.reset = function(){
 			pp.tet.stack[i][j] = {is:0, colour:"gray"};
 		}
 	}
-	
+	frame = 5;
 	pp.tet.score = 0;// 점수 초기화
 }
 
@@ -152,13 +154,12 @@ pp.tet.game = function(){
 	ctx.fillText("Score: " + pp.tet.score, 10, 50);
 	
 	
-	//다음블럭
+	// 다음블럭
 	var nb = pp.tet.block[pp.tet.next_block];
 	
 	var copyblock = function(nb){
 		
 	}
-	
 	
 	
 	for(var i in nb){
@@ -187,15 +188,18 @@ pp.tet.game = function(){
 			break;
 		}
 	}
-	
-	
-	
-	
-	
 	for(var i in pp.tet.stack[1]){
-		if(pp.tet.stack[2][i].is == 1){
-			alert("Score: " + pp.tet.score);
-			pp.tet.reset();
+		if(pp.tet.stack[2][i].is == 1){ // 게임 종료
+			xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function(){
+				if(this.readyState == 4 && this.status == 200){
+					alert("점수 저장 완료");
+				}
+			}
+			xhr.open("get", "/semi/go/getGamePoint.do?id=" + pp.tet.id + "&score=" + pp.tet.score);
+			xhr.send();
+			clearInterval(go);
+			return;
 		}
 	}
 }
@@ -231,13 +235,3 @@ pp.tet.check_line = function(){
 		}
 	}
 }
-
-pp.tet.init();
-var frame = 5;
-var go = setInterval(function(){
-	pp.tet.y++;
-	pp.tet.game();
-}, 1000/frame);
-
-
-

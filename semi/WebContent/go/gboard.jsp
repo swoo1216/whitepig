@@ -6,7 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 </head>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/go_frm.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/go_frm.css?ver=4">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/go_modal.css?ver=4">
 <style type="text/css">
 td, th {
 	border-spacing: 0px;
@@ -28,18 +29,6 @@ ul li {
 	list-style: none;
 }
 
-.popup {
-	z-index: 1;
-	display: none;
-	width: 100px;
-}
-
-.popstyle {
-	outline: 2px solid #ff6666;
-	background-color: white;
-	padding: 10px;
-	text-align: center;
-}
 </style>
 <script type="text/javascript">
 	window.onload = function() {
@@ -63,20 +52,18 @@ ul li {
 					if (e.keyCode == 13)
 						sendScontent()
 				}, false);
+		function showPopup(popNum) { // 팝업띄우기
+			var popup = document.getElementsByClassName("popup");
 
-		var clickPopup = document.getElementsByClassName("clickPopup");
-		for (var i = 0; i < clickPopup.length; i++) {
-			clickPopup[i].addEventListener("mouseover", function() { //팝업
-				this.style.cursor = "pointer";
-			}, false);
-		}
+			for (var i = 0; i < popup.length; i++) {
+				popup[i].style.display = "none";
+			}
 
-		var popup = document.getElementsByClassName("popup");
-
-		for (var i = 0; i < popup.length; i++) {
-			popup[i].addEventListener("mouseleave", function() {
-				this.style.display = "none";
-			}, false);
+			var popNum = document.getElementById(popNum);
+			popNum.style.display = "block";
+			popNum.style.position = "absolute";
+			popNum.style.top = event.clientY + "px";
+			popNum.style.left = (event.clientX + 30) + "px";
 		}
 	}
 	function sendSort(sort) {
@@ -89,19 +76,6 @@ ul li {
 
 		location.href = "/semi/go/gboard.do?pageNum=${pageNum}&sort=${sort}&search="
 				+ search + "&scontent=" + scontent;
-	}
-	function showPopup(popNum) {
-		var popup = document.getElementsByClassName("popup");
-
-		for (var i = 0; i < popup.length; i++) {
-			popup[i].style.display = "none";
-		}
-
-		var popNum = document.getElementById(popNum);
-		popNum.style.display = "block";
-		popNum.style.position = "absolute";
-		popNum.style.top = event.clientY + "px";
-		popNum.style.left = (event.clientX + 30) + "px";
 	}
 </script>
 <body>
@@ -148,8 +122,8 @@ ul li {
 									<div class="popup" id="pop${vo.bNum}">
 										<div class="popstyle">
 											<ul>
-												<li><a href="">마이페이지</a></li>
-												<li><a href="">쪽지보내기</a></li>
+												<li><a href="javascript:sendMsg('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">쪽지보내기</a></li>
+												<li><a href="">신고하기</a></li>
 											</ul>
 										</div>
 									</div>
@@ -201,4 +175,9 @@ ul li {
 		</div>
 	</div>
 </body>
+<script src="/semi/js/pantalk.js?ver=4" type="text/javascript" charset="UTF-8"></script>
+<script type="text/javascript">
+	var pt = new pantalk("${sessionScope.id}", "${sessionScope.nic}");
+	pt.startCount();
+</script>
 </html>

@@ -60,6 +60,7 @@ public class ClistController extends HttpServlet {
 			String content = vo.getContent().replace("<br>", "\r\n");
 			String recomm = String.valueOf(vo.getRecomm());
 			String rnic = vo.getNic();
+			String rid = vo.getId();
 			Date regdate = vo.getRegdate();
 			String rdate = new SimpleDateFormat("YYYY-MM-dd").format(regdate);
 
@@ -69,6 +70,7 @@ public class ClistController extends HttpServlet {
 			json.put("content", content);
 			json.put("recomm", recomm);
 			json.put("rnic", rnic);
+			json.put("rid", rid);
 			json.put("rdate", rdate);
 
 			arr.add(json);

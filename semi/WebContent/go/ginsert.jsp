@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/go_frm.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/go_modal.css?ver=4">
 <title></title>
 </head>
 <style type="text/css">
@@ -74,4 +75,9 @@ td {
 		</div>
 	</div>
 </body>
+<script src="/semi/js/pantalk.js?ver=4" type="text/javascript" charset="UTF-8"></script>
+<script type="text/javascript">
+	var pt = new pantalk("${sessionScope.id}", "${sessionScope.nic}");
+	pt.startCount();
+</script>
 </html>
