@@ -5,10 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.apache.catalina.connector.Request;
-
-import pp.go.dao.GuserDao;
-import pp.go.vo.MainVo;
 import pp.main.vo.MainVo;
 import test.db.DBConnection;
 

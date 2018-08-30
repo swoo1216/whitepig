@@ -13,7 +13,7 @@
 		<i class="fa fa-twitch w3-right fa-lg w3-margin"> ${vo.commCnt }</i><br>
 		<i class="fa fa-warning w3-right fa-lg w3-margin"></i> ${vo.regdate }
 
-		<hr style="border-color: teal;">
+		<hr style="border-color: pale-red;">
 		<div class="w3-margin">
 			${vo.title }
 			<div class="w3-right">
@@ -46,9 +46,9 @@
 			</div>
 		</div>
 
-		<hr style="border-color: teal;">
+		<hr style="border-color: pale-red;">
 
-		<div class="w3-panel w3-teal w3-round-xlarge w3-margin w3-padding-32">
+		<div class="w3-panel w3-pale-red w3-round-xlarge w3-margin w3-padding-32">
 			<div class="w3-margin">
 				${vo.content }
 				<c:choose>
@@ -85,7 +85,7 @@
 	<div id="update" class="w3-modal">
 		<div class="w3-modal-content w3-animate-bottom w3-card-4"
 			style="width: 600px;">
-			<header class="w3-container w3-teal">
+			<header class="w3-container w3-pale-red">
 				<span
 					onclick="document.getElementById('update').style.display='none'"
 					class="w3-btn w3-round w3-ripple w3-display-topright"><i
@@ -100,7 +100,7 @@
 						class="w3-round w3-margin" name="content"></textarea>
 
 					<button
-						class="w3-btn w3-round w3-ripple w3-teal w3-margin w3-right">수정</button>
+						class="w3-btn w3-round w3-ripple w3-pale-red w3-margin w3-right">수정</button>
 				</form>
 			</div>
 		</div>
@@ -110,7 +110,7 @@
 	<div id="delete" class="w3-modal">
 		<div class="w3-modal-content w3-animate-bottom w3-card-4"
 			style="width: 400px;">
-			<header class="w3-container w3-teal">
+			<header class="w3-container w3-pale-red">
 				<span
 					onclick="document.getElementById('delete').style.display='none'"
 					class="w3-btn w3-round w3-ripple w3-display-topright"><i
@@ -130,16 +130,16 @@
 	<div class="w3-panel w3-border">
 
 		<h5>Comments</h5>
-		<hr style="border-color: teal;">
+		<hr style="border-color: pale-red;">
 
 		<c:forEach var="vo" items="${list }">
 			<div class="w3-margin">
 				<img src="img/${vo.num }.png" style="width: 40px;"> ${vo.nic }
 				<div class="w3-right" style="margin-top: 30px;">${vo.regdate }
 				</div>
-				<hr style="border-color: teal;">
+				<hr style="border-color: pale-red;">
 				<div
-					class="w3-panel w3-teal w3-round-xlarge w3-margin w3-padding-16">
+					class="w3-panel w3-pale-red w3-round-xlarge w3-margin w3-padding-16">
 					<div class="w3-margin">
 						${vo.content }
 
@@ -171,7 +171,7 @@
 				<textarea rows="5" cols="50" class="w3-round" placeholder="comment"
 					name="content"></textarea>
 				<br>
-				<button class="w3-btn w3-round w3-ripple w3-teal">등록</button>
+				<button class="w3-btn w3-round w3-ripple w3-pale-red">등록</button>
 				<input type="hidden" name="id" value="${id }"> <input
 					type="hidden" name="bnum" value="${vo.bnum }">
 			</form>

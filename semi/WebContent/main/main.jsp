@@ -27,6 +27,7 @@
 </style>
 <body>
 <div id="wrapper">
+
 	<div id="nav">
 <nav class="w3-sidebar w3-center w3-bar-block w3-collapse w3-animate-left w3-card w3-pale-red" style="z-index:3;width:20%;" id="mySidebar">
   <a class="w3-bar-item w3-button w3-border-bottom w3-large w3-hover-white" href="/semi/mmain.do"><img src="/semi/바지.png" style="height: 60px;">PANTS</a>
@@ -43,21 +44,28 @@
 		}
 		else
 		{
-	%>	<div>
+	%>	<div style="margin: 10px;">
+	
 			<img src = "poke/img/<%=session.getAttribute("num") %>.png"
 			onclick="document.getElementById('id01').style.display='block'"style = height:50px;>
-			<a href="/semi/mboardcount.do"><%=session.getAttribute("nic") %></a>님<br>환영합니다!<br>
+			<a href="/semi/mboardcount.do"><%=session.getAttribute("nic") %></a>님<br>환영합니다!
 			<button onclick="location.href='/semi/mlogout.do'" style="background-color: pink;">로그아웃</button>
+			<hr style="border-color: white;">
 		</div>
 	<%	}
 	%>
 	
 	</div>
   <a class="w3-bar-item w3-button w3-hover-white" href="#"><img alt="" src="/semi/images/슈퍼마리오아이콘.png" style="width: 50px;">Go</a>
+  <hr style="border-color: white;">
   <a class="w3-bar-item w3-button w3-hover-white" href="/semi/poke/pboard.do"><img alt="" src="/semi/images/포켓몬아이콘.png" style="width: 50px;">Poke</a>
-  <a class="w3-bar-item w3-button w3-hover-white" href="/semi/poke/list.do"><img alt="" src="/semi/images/이모티콘아이콘.png" style="width: 50px;">Icon</a>
+  <hr style="border-color: white;">
+  <a class="w3-bar-item w3-button w3-hover-white" href="/semi/poke/list.do"><img alt="" src="/semi/lol/img/25.gif" style="width: 50px;">Icon</a>
+  <hr style="border-color: white;">
   <a class="w3-bar-item w3-button w3-hover-white" href="/semi/lol/lboard.do"><img alt="" src="/semi/images/롤아이콘.png" style="width: 50px;">LoL</a>
+  <hr style="border-color: white;">
   <a class="w3-bar-item w3-button w3-hover-white" href="#"><img alt="" src="/semi/images/음악아이콘.png" style="width: 50px;">Music</a>
+  <hr style="border-color: white;">
  </nav>
  
  <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
@@ -68,12 +76,23 @@
   <a href="javascript:void(0)" class="w3-bar-item w3-button w3-hover-white w3-padding-24 w3-left" onclick="w3_open()"><i class="fa fa-bars"></i></a>
 </header>
 
- <div class="w3-hide-large" style="margin-top:66px"></div>
+ <div class="w3-hide-large" style="margin-top:66px">
+ </div>
  
 <div class="w3-main" style="margin-left:200px;" id="content">
      
 </div>
 </div>
+<header class="w3-container w3-pale-red w3-top">
+			<div class="w3-right">
+				<h5>header</h5>
+			</div>
+		</header>
+<footer class="w3-container w3-pale-red">
+			<div class="w3-right">
+				<h5>Footer</h5>
+			</div>
+		</footer>
 <script type="text/javascript">
 	
 	//Open and close the sidebar on medium and small screens
