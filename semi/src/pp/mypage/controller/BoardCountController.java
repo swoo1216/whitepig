@@ -23,7 +23,7 @@ public class BoardCountController extends HttpServlet
 		System.out.println(id);
 		MypageDao dao = new MypageDao();
 		int boardcount = dao.countBoard(id);
-		String commentcount = dao.countComment(id);
+		int commentcount = dao.countComment(id);
 		if (boardcount > 0)
 		{
 			session.setAttribute("boardcount", boardcount);
@@ -32,7 +32,7 @@ public class BoardCountController extends HttpServlet
 		{
 			session.setAttribute("boardcount", 0);
 		}
-		if(commentcount!=null)
+		if(commentcount > 0)
 		{
 			session.setAttribute("commentcount", commentcount);
 		}
