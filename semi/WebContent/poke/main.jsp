@@ -204,7 +204,7 @@
 			href="/semi/lol/lboard.do"><img alt=""
 			src="/semi/images/롤아이콘.png" style="width: 30px;"> LoL</a> <a
 			class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large"
-			href="#"><img alt="" src="/semi/images/음악아이콘.png"
+			href="/semi/mu/mlist.do"><img alt="" src="/semi/images/음악아이콘.png"
 			style="width: 30px;"> Music</a>
 	</div>
 

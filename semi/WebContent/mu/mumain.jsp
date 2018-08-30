@@ -107,8 +107,5 @@
 			</form>
 		</div>
 	</div>
-	<div class="w3-container w3-dark-gray">
-		<h5>Footer</h5>
-	</div>
 </body>
 </html>
