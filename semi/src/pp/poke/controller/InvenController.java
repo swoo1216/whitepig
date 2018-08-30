@@ -37,7 +37,7 @@ public class InvenController extends HttpServlet{
 		MainVo vo1=dao1.select(id);
 		
 		String pwd=vo1.getPwd();
-		
+		int num1 = vo1.getNum();
 		String email=vo1.getEmail();
 		String nic=vo1.getNic();
 		String clss=vo1.getClss();
@@ -51,7 +51,7 @@ public class InvenController extends HttpServlet{
 		int pay=point-price;
 		
 		//MainVo gv=new MainVo(id, pwd, email, nic, clss, num, pay);
-		MainVo gv=new MainVo(id, pwd, email, nic, clss, pay, null, num);
+		MainVo gv=new MainVo(id, pwd, email, nic, clss, pay, null, num1);
 		
 		
 		dao1.update(gv);
