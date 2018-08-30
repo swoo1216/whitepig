@@ -10,19 +10,21 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
+<div class="w3-container">
+<div class="w3-container w3-dark-gray"><h2>판매량</h2></div>
 <%
 	ArrayList<String> list=(ArrayList)request.getAttribute("list");
 	for(int i=0;i<list.size();i++){
 		String svolume=list.get(i);
 		String[] a=svolume.split(",");
 %>
-		<div class="w3-panel w3-pale-blue w3-leftbar w3-border-blue">
+		<div class="w3-panel w3-light-gray w3-leftbar w3-border-gray">
 		    <img src="img/<%=a[1] %>.gif">
 		    <p>판매량 :<%=a[0] %></p>
 	 	</div>	 	
 <%	 				
 	}
 %>
-</div>	
+</div>
 </body>
 </html>
