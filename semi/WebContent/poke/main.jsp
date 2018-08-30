@@ -129,6 +129,7 @@
 			<a class="w3-bar-item w3-button w3-large w3-hover-white"
 				href="main.jsp"><img src="/semi/바지.png" style="height: 60px;">PANTS</a>
 					
+
 			<!-- 로그인 회원가입 -->
 			<c:choose>
 				<c:when test="${id!=null }">
