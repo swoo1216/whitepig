@@ -37,6 +37,6 @@ public class MlistController extends HttpServlet{
 		request.setAttribute("startpage",startpage);
 		request.setAttribute("endpage",endpage);
 		request.setAttribute("pagenum",pagenum);
-		request.getRequestDispatcher("/admin/adminmain.jsp?page=/mu/mumain.jsp").forward(request, response);
+		request.getRequestDispatcher("/mu/mumain.jsp").forward(request, response);
 	}	
 }

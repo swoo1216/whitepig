@@ -11,13 +11,13 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body>
-	<div class="w3-teal">
+	<div class="w3-dark-gray" style="width: 100%">
 		<h1>회원정보</h1>
 	</div>
 	<div class="w3-container">
 		<table class="w3-table-all w3-striped">
 			<thead>
-				<tr class="w3-teal">
+				<tr class="w3-dark-gray">
 					<th style="width: 10%">ID</th>
 					<th style="width: 25%">Nick Name</th>
 					<th style="width: 25%">E-Mail</th>
@@ -35,32 +35,34 @@
 					<td>${vo.clss }</td>
 					<td>${vo.regdate }</td>
 				</tr>
-				<div  class="w3-container w3-modal" id="detailuser${vo.id}">
-					<div class="w3-modal-content w3-animate-zoom w3-margin-top" style="width: 80%">	
+				<div class="w3-modal" id="detailuser${vo.id}">
+					
+					<div class="w3-modal-content w3-animate-zoom w3-margin-top w3-container" style="width: 80%">
+					<div class="w3-dark-gray w3-container w3-margin-top"><h3>회원정보</h3></div>
 					<form class="w3-container" action="modifyuser.do">
 						<div class="w3-section">
-							<label style="hidden"><b>id</b></label> <input class="w3-input w3-border"
-								type="text" name="detailid" id="detailid" value="${vo.id }" readonly="readonly" style="background-color:  fuchsia;">
+							<label style="hidden"><b>ID</b></label> <input class="w3-input w3-border w3-light-gray"
+								type="text" name="detailid" id="detailid" value="${vo.id }" readonly="readonly">
 							<label><b>Password</b></label> <input class="w3-input w3-border"
 								type="password" name="detailpwd" id="detailpwd" value="${vo.pwd }" required>
 							<label><b>Nickname</b></label> <input class="w3-input w3-border"
-								type="text" name="detailemail" id='detailemail' value="${vo.nic }" required>
+								type="text" name="detailnic" id='detailnic' value="${vo.nic }" required>
 							<label><b>E-Mail</b></label> <input class="w3-input w3-border"
-								type="text" name="detailnic" id="detailnic" value="${vo.email }">
+								type="text" name="detailemail" id="detailemail" value="${vo.email }">
 							<label><b>class</b></label> <input class="w3-input w3-border"
 								type="text" name="detailclss" id="detailclss" value="${vo.clss }">
 							<label><b>Point</b></label> <input class="w3-input w3-border"
 								type="text" name="detailpoint" id="detailpoint" value="${vo.point }">
-							<label><b>regdate</b></label> <input class="w3-input w3-border"
+							<label><b>regdate</b></label> <input class="w3-input w3-border w3-light-gray"
 								type="text" name="detailregdate" id="detailregdate" value="${vo.regdate }" readonly="readonly">
 							<label><b>Icon</b></label> <input class="w3-input w3-border"
 								type="text" name="detailicon" id="detailicon" value="${vo.num }">
-							<button class="w3-button w3-block w3-green w3-section w3-padding"
+							<button class="w3-button w3-block w3-light-gray w3-section w3-padding"
 								type="submit" onclick="modifyuser.do">Modify</button>
 							<button
 								onclick="document.getElementById('detailuser${vo.id}').style.display='none'"
 								type="button"
-								class="w3-button w3-block w3-teal w3-section w3-padding">Cancel</button>
+								class="w3-button w3-block w3-dark-gray w3-section w3-padding">Cancel</button>
 						</div>		
 					</form>
 					</div>
@@ -77,7 +79,7 @@
 				</select>
 				<input class="w3-input w3-border" type="text" name="searchinfo" id="searchinfo" required>
 				<input class="w3-button" type="submit" value="조회"></div>
-				<div class="w3-bar w3-teal" style="width: 200px; margin-top: 50px;">
+				<div class="w3-bar w3-dark-gray" style="width: 200px; margin-top: 50px;">
 			</form>
 				<a
 					onclick="document.getElementById('writeboard').style.display='block'"
@@ -118,7 +120,8 @@
 		</div>
 	</div>
 	<div id="writeboard" class="w3-modal">
-		<div class="w3-modal-content w3-animate-zoom" style="width: 80%">
+		<div class="w3-modal-content w3-animate-zoom w3-container" style="width: 80%">
+		<div class="w3-dark-gray w3-container w3-margin-top"><h3>회원정보수정</h3></div>
 		<form class="w3-container" action="adminjoin.do">
 			<div class="w3-section">
 				<label><b>id</b></label> <input class="w3-input w3-border"
@@ -131,19 +134,19 @@
 				<label><b>Nickname</b></label> <input class="w3-input w3-border"
 					type="text" placeholder="Enter Nickname" name="nic" id="nic" onkeyup="infocheck('nic')" required>
 					<div id="niccheck" style="font-size:12px; font-weight:bold;"></div>			
-				<button class="w3-button w3-block w3-green w3-section w3-padding"
+				<button class="w3-button w3-block w3-light-gray w3-section w3-padding"
 					type="submit" onclick="return ckcommit()">Join</button>
 				<button
 					onclick="document.getElementById('writeboard').style.display='none'"
 					type="button"
-					class="w3-button w3-block w3-teal w3-section w3-padding">Cancel</button>
+					class="w3-button w3-block w3-dark-gray w3-section w3-padding">Cancel</button>
 			</div>		
 		</form>
 		</div>
-			<div class="w3-container w3-teal">
+	</div>
+		
+	<div class="w3-container w3-dark-gray">
 		<h5>Footer</h5>
 	</div>
-	</div>	
-
 </body>
 </html>

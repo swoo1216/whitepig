@@ -15,7 +15,6 @@
 		<h1>Header</h1>
 	</div>
 	<div class="w3-container" >
-
 		<table class="w3-table-all w3-striped">
 			<thead>
 				<tr class="w3-dark-gray">
