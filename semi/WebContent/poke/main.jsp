@@ -33,7 +33,7 @@
 				}
 			}
 		});
-
+		document.getElementById("contents").focus();
 	}
 
 	function chatList(type) {
@@ -71,6 +71,12 @@
 			chatList(lastNum)
 		}, 1000);
 	}
+	
+	function chatFocus() {
+		document.getElementById("contents").focus();
+	}
+
+	
 </script>
 </head>
 <body>
@@ -85,7 +91,7 @@
 		<!-- 전체채팅 -->
 		<button
 			class="w3-btn w3-round w3-ripple w3-pale-red w3-large w3-right"
-			onclick="document.getElementById('chat').style.display='block'">
+			onclick="document.getElementById('chat').style.display='block';chatFocus();">
 			<i class="fa fa-comment"></i>
 		</button>
 
