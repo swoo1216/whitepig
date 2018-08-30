@@ -1,11 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/go_frm.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/go_modal.css?ver=4">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/go_frm.css">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/go_modal.css?ver=4">
 <title></title>
 </head>
 <style type="text/css">
@@ -31,7 +34,7 @@
 		document.getElementById("wrapper").style.height = (size - 10) + "px";
 	}
 	function golist() {
-		location.href = "gboard.do";
+		location.href = "/semi/go/gboard.do";
 	}
 </script>
 <body>
@@ -49,7 +52,7 @@
 			</div>
 			<div id="content">
 				<div id="gtable">
-					<form method="post" action="<c:url value='ginsert.do'/>">
+					<form method="post" action="/semi/go/ginsert.do">
 						<table>
 							<tr>
 								<td>닉네임</td>
@@ -76,7 +79,8 @@
 		</div>
 	</div>
 </body>
-<script src="/semi/js/pantalk.js?ver=4" type="text/javascript" charset="UTF-8"></script>
+<script src="/semi/js/pantalk.js?ver=4" type="text/javascript"
+	charset="UTF-8"></script>
 <script type="text/javascript">
 	var pt = new pantalk("${sessionScope.id}", "${sessionScope.nic}");
 	pt.startCount();

@@ -20,8 +20,8 @@
 	</form>
 	${errMsg} ${id}
 
-	<a href="<c:url value='gboard.do'/>">글목록</a>
-	<a href="<%=request.getContextPath()%>/p	oke/list.do">상점</a>
+	<a href="/semi/go/gboard.do">글목록</a>
+	<a href="<%=request.getContextPath()%>/poke/list.do">상점</a>
 	<a href="<%=request.getContextPath()%>/poke/pboard.do">poke</a>
 
 	<c:if test="${!sessionScope.id}">

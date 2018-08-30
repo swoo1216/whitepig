@@ -51,7 +51,7 @@
 			</div>
 			<div id="content">
 				<div id="gtable">
-					<form method="post" action="gmodifyOk.do">
+					<form method="post" action="/semi/go/gmodifyOk.do">
 						<table>
 							<tr>
 								<td>아이디</td>
