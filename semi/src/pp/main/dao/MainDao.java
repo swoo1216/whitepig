@@ -7,11 +7,19 @@ import java.sql.SQLException;
 
 import org.apache.catalina.connector.Request;
 
+import pp.go.dao.GuserDao;
+import pp.go.vo.MainVo;
 import pp.main.vo.MainVo;
 import test.db.DBConnection;
 
 public class MainDao
 {
+	private static MainDao instance = null;
+	public static MainDao getInstance() {
+		if (instance == null)
+			instance = new MainDao();
+		return instance;
+	}
 	public int insert(MainVo vo)
 	{
 		Connection con=null;
@@ -260,6 +268,59 @@ public class MainDao
 		finally
 		{
 			DBConnection.close(rs, pstmt, con);
+		}
+	}
+	public MainVo select(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MainVo vo = null;
+
+		String sql = "select * from cuser where id = ?";
+
+		try {
+			conn = DBConnection.conn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				String pwd = rs.getString("pwd");
+				String email = rs.getString("email");
+				String nic = rs.getString("nic");
+				String clss = rs.getString("clss");
+				int num = rs.getInt("num");
+				int point = rs.getInt("point");
+
+				vo = new MainVo(id, pwd, email, nic, clss, point, null, num);
+			}
+			return vo;
+		} catch (SQLException se) {
+			System.out.println(se.getMessage());
+			return null;
+		} finally {
+			DBConnection.close(rs, pstmt, conn);
+		}
+	}
+	public int update(MainVo vo) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		String sql = "update cuser set point = ?, num = ? where id = ?";
+
+		try {
+			conn = DBConnection.conn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, vo.getPoint());
+			pstmt.setInt(2, vo.getNum());
+			pstmt.setString(3, vo.getId());
+
+			return pstmt.executeUpdate();
+		} catch (SQLException se) {
+			System.out.println(se.getMessage());
+			return -1;
+		} finally {
+			DBConnection.close(null, pstmt, conn);
 		}
 	}
 }

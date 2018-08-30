@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import pp.go.dao.GuserDao;
-import pp.go.vo.GuserVo;
+import pp.main.dao.MainDao;
+import pp.main.vo.MainVo;
 import pp.poke.dao.IconDao;
 import pp.poke.dao.InvenDao;
 import pp.poke.vo.IconVo;
@@ -32,9 +32,9 @@ public class InvenController extends HttpServlet{
 		String type=iv.getType();
 		String tier=iv.getTier();
 		
-		GuserDao dao1=GuserDao.getInstance();
+		MainDao dao1=MainDao.getInstance();
 	
-		GuserVo vo1=dao1.select(id);
+		MainVo vo1=dao1.select(id);
 		
 		String pwd=vo1.getPwd();
 		
@@ -50,7 +50,9 @@ public class InvenController extends HttpServlet{
 		
 		int pay=point-price;
 		
-		GuserVo gv=new GuserVo(id, pwd, email, nic, clss, num, pay);
+		//MainVo gv=new MainVo(id, pwd, email, nic, clss, num, pay);
+		MainVo gv=new MainVo(id, pwd, email, nic, clss, pay, null, num);
+		
 		
 		dao1.update(gv);
 		

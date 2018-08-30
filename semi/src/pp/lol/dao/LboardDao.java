@@ -44,7 +44,7 @@ public class LboardDao {
 			conn=DBConnection.conn();
 			
 			if(keyword.equals("")) {
-				String sql="select NVL(count(bnum),0) cnt from lboard pb, cuser gu where pb.id=gu.id";
+				String sql="select NVL(count(bnum),0) cnt from lboard lb, cuser cu where lb.id=cu.id";
 				pstmt=conn.prepareStatement(sql);
 				rs=pstmt.executeQuery();
 			}else {
@@ -54,7 +54,7 @@ public class LboardDao {
 				}else {
 					searchCase = " like '%'||?||'%' ";
 				}
-				String sql="select NVL(count(bnum),0) cnt from lboard pb join cuser gu on pb.id=gu.id where "+search+searchCase;
+				String sql="select NVL(count(bnum),0) cnt from lboard lb join cuser cu on lb.id=cu.id where "+search+searchCase;
 				pstmt=conn.prepareStatement(sql);
 				pstmt.setString(1, keyword);
 				rs=pstmt.executeQuery();
@@ -85,7 +85,7 @@ public class LboardDao {
 								"( " + 
 								"	SELECT AA.*,ROWNUM RNUM FROM " + 
 								"	( " + 
-								"		SELECT pb.*,gu.nic,gu.num FROM lboard pb join cuser gu on pb.id=gu.id order by "+sort+" desc" + 
+								"		SELECT lb.*,cu.nic,cu.num FROM lboard lb join cuser cu on lb.id=cu.id order by "+sort+" desc" + 
 								"	)AA " + 
 								") " + 
 								"WHERE RNUM>=? AND RNUM<=?";
@@ -103,7 +103,7 @@ public class LboardDao {
 				
 				String sql="select * from ( "
 						+ "select a.*, rownum rnum from( "
-						+ "select pb.*,gu.nic,gu.num from lboard pb join cuser gu on pb.id=gu.id where "+search+" "+searchCase+" order by bnum desc "
+						+ "select lb.*,cu.nic,cu.num from lboard lb join cuser cu on lb.id=cu.id where "+search+" "+searchCase+" order by bnum desc "
 						+ ")a "
 					+ ") where rnum>=? and rnum <=?";
 				pstmt=conn.prepareStatement(sql);

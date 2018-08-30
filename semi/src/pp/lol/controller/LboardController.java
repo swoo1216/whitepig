@@ -50,7 +50,7 @@ public class LboardController extends HttpServlet{
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("search", search);
 		req.setAttribute("keyword", keyword);
-		req.getRequestDispatcher("/lol/main.jsp?page=/lol/lboard.jsp").forward(req, resp);
+		req.getRequestDispatcher("/poke/main.jsp?page=/lol/lboard.jsp").forward(req, resp);
 	}
 }
 
