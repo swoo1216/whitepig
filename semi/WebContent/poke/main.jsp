@@ -128,15 +128,16 @@
 			style="z-index: 3; width: 250px; height: 100%;" id="mySidebar">
 			<a class="w3-bar-item w3-button w3-large w3-hover-white"
 				href="main.jsp"><img src="/semi/바지.png" style="height: 60px;">PANTS</a>
+					
 			<!-- 로그인 회원가입 -->
 			<c:choose>
 				<c:when test="${id!=null }">
-					<img alt="" src="/semi/poke/img/1.png"
-						style="width: 50px; margin-top: 30px;"> ${nic}
-  			<button class="w3-button w3-large w3-hover-white"
-						onclick="location.href='/semi/mlogout.do'">
-						<i class="fa fa-sign-out"></i>
-					</button>
+				<div style="margin: 10px;">
+					<img alt="" src="/semi/poke/img/${num }.png"
+						style="width: 50px;"> <a href="/semi/mboardcount.do">${nic}</a>님<br>환영합니다!
+			<button onclick="location.href='/semi/mlogout.do'" style="background-color: pink;">로그아웃</button>
+  			</div>
+						
 					<hr style="border-color: white;">
 				</c:when>
 				<c:otherwise>
