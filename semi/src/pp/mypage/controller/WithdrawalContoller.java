@@ -31,6 +31,6 @@ public class WithdrawalContoller extends HttpServlet
 		{
 			request.setAttribute("code", "wfail");
 		}
-		request.getRequestDispatcher("/main.jsp").forward(request, response);
+		request.getRequestDispatcher("/poke/main.jsp").forward(request, response);
 	}
 }

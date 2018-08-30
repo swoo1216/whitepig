@@ -23,8 +23,8 @@
 		<td>${vo.bnum}</td>
 		<td>${vo.title}</td>
 		<td>${vo.id }</td>
-		<td>${vo.recomm}</td>
 		<td>${vo.hit }</td>
+		<td>${vo.recomm}</td>
 		<td>${vo.regdate }</td>
 	</tr>
 	</c:forEach>

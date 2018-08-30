@@ -285,6 +285,66 @@
 			document.getElementById("myOverlay").style.display = "none";
 		}
 	</script>
+	
+	<c:choose>
+	<c:when test="${requestScope.code=='success'}">
+		<script type="text/javascript">
+		alert('회원가입성공');
+		</script>
+	</c:when>
+	<c:when test="${requestScope.code=='fail'}">
+		<script type="text/javascript">
+		alert('회원가입실패');
+		</script>
+	</c:when>
+<%-- 
+	<c:when test="${requestScope.code=='success1'}">
+		<script type="text/javascript">
+		alert('로그인성공');
+		</script>
+	</c:when>
+	<c:when test="${requestScope.code=='logout'}">
+		<script type="text/javascript">
+		alert('로그아웃 하셨습니다.');
+		</script>
+	</c:when>
+--%>
+	<c:when test="${requestScope.code=='fail1'}">
+		<script type="text/javascript">
+		alert('로그인실패');
+		</script>
+	</c:when>
+	<c:when test="${requestScope.code=='esuccess'}">
+		<script type="text/javascript">
+		alert('당신의 아이디는' + ${id }+'입니다.');
+		</script>
+	</c:when>
+	<c:when test="${requestScope.code=='efail'}">
+		<script type="text/javascript">
+		alert('등록되지 않은 이메일입니다.');
+		</script>
+	</c:when>
+	<c:when test="${requestScope.code=='psuccess'}">
+		<script type="text/javascript">
+		alert('당신의 비밀번호는' + ${pwd }+'입니다.');
+		</script>
+	</c:when>
+	<c:when test="${requestScope.code=='pfail'}">
+		<script type="text/javascript">
+		alert('등록되지 않은 아이디 또는 이메일입니다.');
+		</script>
+	</c:when>
+	<c:when test="${requestScope.code=='wsuccess'}">
+		<script type="text/javascript">
+		alert('회원탈퇴되셨습니다. 그동안 이용해주셔서 감사합니다.');
+		</script>
+	</c:when>
+	<c:when test="${requestScope.code=='wfail'}">
+		<script type="text/javascript">
+		alert('회원탈퇴에 실패했습니다.');
+		</script>
+	</c:when>
+</c:choose>
 
 </body>
 </html>
