@@ -375,4 +375,35 @@ public class MypageDao
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
+	public ArrayList<Integer> iconlist(String id)
+	{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try
+		{
+			con = DBConnection.conn();
+			String sql = "select num from inven where id = ? order by num";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			ArrayList<Integer> iconlist = new ArrayList<>();
+			while(rs.next())
+			{
+				int num = rs.getInt("num");
+				iconlist.add(num);
+			}
+			System.out.println(iconlist);
+			return iconlist;
+		}
+		catch(SQLException se)
+		{
+			System.out.println(se.getMessage());
+		}
+		finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+		return null;
+	}
 }
