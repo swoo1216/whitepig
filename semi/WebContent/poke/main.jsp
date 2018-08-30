@@ -33,7 +33,7 @@
 				}
 			}
 		});
-
+		document.getElementById("contents").focus();
 	}
 
 	function chatList(type) {
@@ -59,8 +59,9 @@
 
 	function addChat(id, content, regdate) {
 		$('#chatList').append(
+				'<div class="w3-panel w3-teal w3-round-large w3-padding-16">' +
 				'<img src="/semi/poke/img/${num}.png" style="width: 30px">' + ' ${nic}' + '<br>'
-						+ content + ' ' + '<span class="w3-right w3-small">' + regdate + '</span>' + "<hr> <br>");
+						 + content + '<span class="w3-right w3-small">' + regdate + '</span>' + "</div>");
 
 		$('#chatList').scrollTop($('#chatList')[0].scrollHeight);
 	}
@@ -70,6 +71,12 @@
 			chatList(lastNum)
 		}, 1000);
 	}
+	
+	function chatFocus() {
+		document.getElementById("contents").focus();
+	}
+
+	
 </script>
 </head>
 <body>
@@ -84,7 +91,7 @@
 		<!-- 전체채팅 -->
 		<button
 			class="w3-btn w3-round w3-ripple w3-pale-red w3-large w3-right"
-			onclick="document.getElementById('chat').style.display='block'">
+			onclick="document.getElementById('chat').style.display='block';chatFocus();">
 			<i class="fa fa-comment"></i>
 		</button>
 
@@ -222,8 +229,9 @@
 
 					</div>
 					<div>
-						<textarea rows="3" cols="40" id="contents"></textarea>
-						<input type="button" onclick="submit()" value="전송">
+						<textarea rows="3" cols="40" id="contents" class="w3-round"></textarea>
+						<input type="button" class="w3-round w3-ripple w3-teal" onclick="submit()" value="전송">
+					
 					</div>
 				</div>
 				<script type="text/javascript">
