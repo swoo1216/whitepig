@@ -5,7 +5,7 @@
 <div class="w3-container w3-padding-32" style="min-height: 865px;">
 
 	<button class="w3-btn w3-round w3-ripple w3-teal" style="width: 80px;"
-		onclick="location='/semi/poke/pboard.do?sort=regdate'">최신순</button>
+		onclick="location='/semi/poke/pboard.do'">최신순</button>
 	<button class="w3-btn w3-round w3-ripple w3-red" style="width: 80px;"
 		onclick="location='/semi/poke/pboard.do?sort=recomm'">추천순</button>
 	<button class="w3-btn w3-round w3-ripple w3-blue" style="width: 80px;"
