@@ -127,7 +127,7 @@
 			class="w3-sidebar w3-center w3-bar-block w3-collapse w3-animate-left w3-card w3-pale-red"
 			style="z-index: 3; width: 250px; height: 100%;" id="mySidebar">
 			<a class="w3-bar-item w3-button w3-large w3-hover-white"
-				href="main.jsp"><img src="/semi/바지.png" style="height: 60px;">PANTS</a>
+				href="/semi/mmain.do"><img src="/semi/바지.png" style="height: 60px;">PANTS</a>
 			<!-- 로그인 회원가입 -->
 			<c:choose>
 				<c:when test="${id!=null }">

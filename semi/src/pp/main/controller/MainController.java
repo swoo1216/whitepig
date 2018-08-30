@@ -33,6 +33,6 @@ public class MainController extends HttpServlet
 			session.setAttribute("point", point);
 			session.setAttribute("num", num);
 		}
-		request.getRequestDispatcher("/main/main.jsp").forward(request, response);
+		request.getRequestDispatcher("/poke/main.jsp").forward(request, response);
 	}
 }
