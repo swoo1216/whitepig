@@ -46,9 +46,9 @@
 							<label><b>Password</b></label> <input class="w3-input w3-border"
 								type="password" name="detailpwd" id="detailpwd" value="${vo.pwd }" required>
 							<label><b>Nickname</b></label> <input class="w3-input w3-border"
-								type="text" name="detailemail" id='detailemail' value="${vo.nic }" required>
+								type="text" name="detailnic" id='detailnic' value="${vo.nic }" required>
 							<label><b>E-Mail</b></label> <input class="w3-input w3-border"
-								type="text" name="detailnic" id="detailnic" value="${vo.email }">
+								type="text" name="detailemail" id="detailemail" value="${vo.email }">
 							<label><b>class</b></label> <input class="w3-input w3-border"
 								type="text" name="detailclss" id="detailclss" value="${vo.clss }">
 							<label><b>Point</b></label> <input class="w3-input w3-border"
