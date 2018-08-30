@@ -35,7 +35,13 @@
 				}
 			}
 		});
+<<<<<<< HEAD
+=======
+		document.getElementById("contents").focus();
+	}
+>>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
 
+<<<<<<< HEAD
 	}
 
 	function chatList(type) {
@@ -72,6 +78,49 @@
 			chatList(lastNum)
 		}, 1000);
 	}
+=======
+	function chatList(type) {
+		$.ajax({
+			type : "post",
+			url : "/semi/poke/chatList.do",
+			data : {
+				listType : type,
+			},
+			success : function(data) {
+				if (data == "")
+					return;
+				var parsed = JSON.parse(data);
+				var result = parsed.result;
+				for (var i = 0; i < result.length; i++) {
+					addChat(result[i][0].value, result[i][1].value,
+							result[i][2].value);
+				}
+				lastNum = Number(parsed.last);
+			}
+		});
+	}
+
+	function addChat(id, content, regdate) {
+		$('#chatList').append(
+				'<div class="w3-panel w3-teal w3-round-large w3-padding-16">' +
+				'<img src="/semi/poke/img/${num}.png" style="width: 30px">' + ' ${nic}' + '<br>'
+						 + content + '<span class="w3-right w3-small">' + regdate + '</span>' + "</div>");
+
+		$('#chatList').scrollTop($('#chatList')[0].scrollHeight);
+	}
+
+	function getInfiniteChat() {
+		setInterval(function() {
+			chatList(lastNum)
+		}, 1000);
+	}
+	
+	function chatFocus() {
+		document.getElementById("contents").focus();
+	}
+
+	
+>>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
 </script>
 </head>
 <body>
@@ -86,10 +135,24 @@
 		<!-- 전체채팅 -->
 		<button
 			class="w3-btn w3-round w3-ripple w3-pale-red w3-large w3-right"
+<<<<<<< HEAD
 			onclick="document.getElementById('chat').style.display='block'">
 			<i class="fa fa-comment"></i>
 		</button>
 
+=======
+			onclick="document.getElementById('chat').style.display='block';chatFocus();">
+			<i class="fa fa-comment"></i>
+		</button>
+
+		<c:if test="${param.icon!=null }">
+			<button
+				class="w3-btn w3-round w3-ripple w3-pale-red w3-large w3-right"
+				onclick="openRightMenu()" id="wish">
+				<i class="fa fa-shopping-cart"></i>
+			</button>
+		</c:if>
+>>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
 
 		<c:choose>
 			<c:when test="${id!=null }">
@@ -117,6 +180,7 @@
 	</div>
 
 	<div id="nav">
+<<<<<<< HEAD
 		<nav
 			class="w3-sidebar w3-center w3-bar-block w3-collapse w3-animate-left w3-card w3-pale-red"
 			style="z-index: 3; width: 250px; height: 100%;" id="mySidebar">
@@ -145,7 +209,10 @@
 					</div>
 				</c:otherwise>
 			</c:choose>
+=======
+>>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
 
+<<<<<<< HEAD
 			<a class="w3-bar-item w3-button w3-hover-white" href="#"
 				style="margin-top: 60px;"><img alt=""
 				src="/semi/images/슈퍼마리오아이콘.png" style="width: 50px;"> Go</a>
@@ -187,6 +254,81 @@
 			class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large"
 			href="#"><img alt="" src="/semi/images/롤아이콘.png"
 			style="width: 30px;"> LoL</a> <a
+=======
+		<nav
+			class="w3-sidebar w3-center w3-bar-block w3-collapse w3-animate-left w3-card w3-pale-red"
+			style="z-index: 3; width: 250px; height: 100%;" id="mySidebar">
+			<a class="w3-bar-item w3-button w3-large w3-hover-white"
+				href="main.jsp"><img src="/semi/바지.png" style="height: 60px;">PANTS</a>
+					
+
+			<!-- 로그인 회원가입 -->
+			<c:choose>
+				<c:when test="${id!=null }">
+				<div style="margin: 10px;">
+					<img alt="" src="/semi/poke/img/${num }.png"
+						style="width: 50px;"> <a href="/semi/mboardcount.do">${nic}</a>님<br>환영합니다!
+			<button onclick="location.href='/semi/mlogout.do'" style="background-color: pink;">로그아웃</button>
+  			</div>
+						
+					<hr style="border-color: white;">
+				</c:when>
+				<c:otherwise>
+					<div class="w3-bar w3-border w3-border-white"
+						style="display: flex; margin-top: 20px;">
+						<button
+							class="w3-border-right w3-border-white w3-bar-item w3-button w3-hover-white"
+							onclick="location='/semi/main/login.jsp'">로그인</button>
+						<button class="w3-bar-item w3-button w3-hover-white"
+							onclick="location='/semi/main/join.jsp'">회원가입</button>
+						<hr style="border-color: white;">
+					</div>
+				</c:otherwise>
+			</c:choose>
+
+
+
+			<a class="w3-bar-item w3-button w3-hover-white" href="#"><img
+				alt="" src="/semi/images/슈퍼마리오아이콘.png" style="width: 50px;">Go</a>
+			<hr style="border-color: white;">
+			<a class="w3-bar-item w3-button w3-hover-white"
+				href="/semi/poke/pboard.do"><img alt=""
+				src="/semi/images/포켓몬아이콘.png" style="width: 50px;">Poke</a>
+			<hr style="border-color: white;">
+			<a class="w3-bar-item w3-button w3-hover-white"
+				href="/semi/poke/list.do"><img alt="" src="/semi/lol/img/25.gif"
+				style="width: 50px;">Icon</a>
+			<hr style="border-color: white;">
+			<a class="w3-bar-item w3-button w3-hover-white"
+				href="/semi/lol/lboard.do"><img alt=""
+				src="/semi/images/롤아이콘.png" style="width: 50px;">LoL</a>
+			<hr style="border-color: white;">
+			<a class="w3-bar-item w3-button w3-hover-white" href="#"><img
+				alt="" src="/semi/images/음악아이콘.png" style="width: 50px;">Music</a>
+			<hr style="border-color: white;">
+
+		</nav>
+
+		<div class="w3-overlay w3-hide-large w3-animate-opacity"
+			onclick="w3_close()" style="cursor: pointer" id="myOverlay"></div>
+	</div>
+
+	<div id="Demo1" class="w3-hide w3-pale-red"
+		style="position: absolute; width: 100%;">
+		<a
+			class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large"
+			href="#"><img alt="" src="/semi/images/슈퍼마리오아이콘.png"
+			style="width: 30px;"> Go</a> <a
+			class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large"
+			href="/semi/poke/pboard.do"><img alt=""
+			src="/semi/images/포켓몬아이콘.png" style="width: 30px;"> Poke</a> <a
+			class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large"
+			href="/semi/poke/list.do"><img alt="" src="img/25.gif"
+			style="width: 30px;"> Icon</a> <a
+			class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large"
+			href="/semi/lol/lboard.do"><img alt=""
+			src="/semi/images/롤아이콘.png" style="width: 30px;"> LoL</a> <a
+>>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
 			class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large"
 			href="#"><img alt="" src="/semi/images/음악아이콘.png"
 			style="width: 30px;"> Music</a>
@@ -213,8 +355,14 @@
 
 					</div>
 					<div>
+<<<<<<< HEAD
 						<textarea rows="3" cols="40" id="contents"></textarea>
 						<input type="button" onclick="submit()" value="전송">
+=======
+						<textarea rows="3" cols="40" id="contents" class="w3-round"></textarea>
+						<input type="button" class="w3-round w3-ripple w3-teal" onclick="submit()" value="전송">
+					
+>>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
 					</div>
 				</div>
 				<script type="text/javascript">
@@ -228,6 +376,21 @@
 
 		<div class="w3-container" style="min-height: 860px;">
 
+<<<<<<< HEAD
+			<%
+				String contentpage = request.getParameter("page");
+				if (contentpage == null)
+					contentpage = "/poke/index.jsp";
+			%>
+=======
+>>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
+
+<<<<<<< HEAD
+			<jsp:include page="<%=contentpage%>" />
+=======
+
+
+
 			<%
 				String contentpage = request.getParameter("page");
 				if (contentpage == null)
@@ -236,11 +399,14 @@
 
 			<jsp:include page="<%=contentpage%>" />
 
+>>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
+
 
 		</div>
 
 		<footer class="w3-container w3-pale-red">
 			<div class="w3-right">
+<<<<<<< HEAD
 				<h5>호호호</h5>
 			</div>
 		</footer>
@@ -262,9 +428,33 @@
 		function check(num) {
 			document.getElementById('check').style.display = 'block';
 			document.getElementById("cart").value = num;
+=======
+				<h5>Footer</h5>
+			</div>
+		</footer>
+	</div>
+	<script type="text/javascript">
+		function openRightMenu() {
+			document.getElementById("rightMenu").style.display = "block";
+		}
+		function closeRightMenu() {
+			document.getElementById("rightMenu").style.display = "none";
+		}
+>>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
 
+<<<<<<< HEAD
+=======
+		function myFunction(id) {
+			var x = document.getElementById(id);
+			if (x.className.indexOf("w3-show") == -1) {
+				x.className += " w3-show";
+			} else {
+				x.className = x.className.replace(" w3-show", "");
+			}
+>>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
 		}
 
+<<<<<<< HEAD
 		function myFunction(id) {
 			var x = document.getElementById(id);
 			if (x.className.indexOf("w3-show") == -1) {
@@ -274,6 +464,8 @@
 			}
 		}
 
+=======
+>>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
 		function w3_open() {
 			document.getElementById("mySidebar").style.display = "block";
 			document.getElementById("myOverlay").style.display = "block";

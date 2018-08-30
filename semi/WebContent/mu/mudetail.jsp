@@ -14,13 +14,16 @@
 		xhr.open('get', 'mcomments.do', true);
 		xhr.send();		
 	}
+	function mCheckList(){
+		alert("aaa");
+	}
 
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<body>
+<body onload="mGetList()">
 	<div class="w3-dark-gray w3-container">
 		<div class="w3-padding-64 w3-padding-large">
 			<div class="w3-button" style="float: left">

@@ -22,6 +22,7 @@
 			<div id="content">
 				<canvas id="canvas" width="600" height="800"></canvas>
 				<button type="button" onclick="startTet()">시작</button>
+				<button type="button" onclick="restart()">재시작</button>
 			</div>
 		</div>
 	</div>
@@ -30,12 +31,16 @@
 <script type="text/javascript">
 pp.tet.init('${sessionScope.id}');
 console.log("pp.id", pp.tet.id);
+var go;
+var frame = 5;
 	function startTet() {
-		var frame = 5;
-		var go = setInterval(function() {
+		go = setInterval(function() {
 			pp.tet.y++;
 			pp.tet.game();
 		}, 1000 / frame);
+		
+	}
+	function restart(){
 		pp.tet.reset();
 	}
 </script>

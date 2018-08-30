@@ -113,7 +113,7 @@ pp.tet.reset = function(){
 			pp.tet.stack[i][j] = {is:0, colour:"gray"};
 		}
 	}
-	
+	frame = 5;
 	pp.tet.score = 0;// 점수 초기화
 }
 
