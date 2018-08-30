@@ -178,7 +178,7 @@
 				href="/semi/lol/lboard.do"><img alt=""
 				src="/semi/images/롤아이콘.png" style="width: 50px;">LoL</a>
 			<hr style="border-color: white;">
-			<a class="w3-bar-item w3-button w3-hover-white" href="#"><img
+			<a class="w3-bar-item w3-button w3-hover-white" href="/semi/mu/mlist.do"><img
 				alt="" src="/semi/images/음악아이콘.png" style="width: 50px;">Music</a>
 			<hr style="border-color: white;">
 

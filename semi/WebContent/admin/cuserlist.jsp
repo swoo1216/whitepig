@@ -27,7 +27,9 @@
 				</tr>
 			</thead>
 			<c:forEach var="vo" items="${adminlist }">
-				<tr onclick="document.getElementById('detailuser${vo.id}').style.display='block'">
+				<tr
+					onclick="document.getElementById('detailuser${vo.id}').style.display='block'"
+					style="cursor: pointer">
 					<td>${vo.id }</td>
 					<td>${vo.nic }</td>
 					<td>${vo.email }</td>
@@ -36,117 +38,128 @@
 					<td>${vo.regdate }</td>
 				</tr>
 				<div class="w3-modal" id="detailuser${vo.id}">
-					
-					<div class="w3-modal-content w3-animate-zoom w3-margin-top w3-container" style="width: 80%">
-					<div class="w3-dark-gray w3-container w3-margin-top"><h3>회원정보</h3></div>
-					<form class="w3-container" action="modifyuser.do">
-						<div class="w3-section">
-							<label style="hidden"><b>ID</b></label> <input class="w3-input w3-border w3-light-gray"
-								type="text" name="detailid" id="detailid" value="${vo.id }" readonly="readonly">
-							<label><b>Password</b></label> <input class="w3-input w3-border"
-								type="password" name="detailpwd" id="detailpwd" value="${vo.pwd }" required>
-							<label><b>Nickname</b></label> <input class="w3-input w3-border"
-								type="text" name="detailnic" id='detailnic' value="${vo.nic }" required>
-							<label><b>E-Mail</b></label> <input class="w3-input w3-border"
-								type="text" name="detailemail" id="detailemail" value="${vo.email }">
-							<label><b>class</b></label> <input class="w3-input w3-border"
-								type="text" name="detailclss" id="detailclss" value="${vo.clss }">
-							<label><b>Point</b></label> <input class="w3-input w3-border"
-								type="text" name="detailpoint" id="detailpoint" value="${vo.point }">
-							<label><b>regdate</b></label> <input class="w3-input w3-border w3-light-gray"
-								type="text" name="detailregdate" id="detailregdate" value="${vo.regdate }" readonly="readonly">
-							<label><b>Icon</b></label> <input class="w3-input w3-border"
-								type="text" name="detailicon" id="detailicon" value="${vo.num }">
-							<button class="w3-button w3-block w3-light-gray w3-section w3-padding"
-								type="submit" onclick="modifyuser.do">Modify</button>
-							<button
-								onclick="document.getElementById('detailuser${vo.id}').style.display='none'"
-								type="button"
-								class="w3-button w3-block w3-dark-gray w3-section w3-padding">Cancel</button>
-						</div>		
-					</form>
+
+					<div
+						class="w3-modal-content w3-animate-zoom w3-margin-top w3-container"
+						style="width: 80%">
+						<div class="w3-dark-gray w3-container w3-margin-top">
+							<h3>회원정보</h3>
+						</div>
+						<form class="w3-container" action="modifyuser.do">
+							<div class="w3-section">
+								<label style=""><b>ID</b></label> <input
+									class="w3-input w3-border w3-light-gray" type="text"
+									name="detailid" id="detailid" value="${vo.id }"
+									readonly="readonly"> <label><b>Password</b></label> <input
+									class="w3-input w3-border" type="password" name="detailpwd"
+									id="detailpwd" value="${vo.pwd }" required> <label><b>Nickname</b></label>
+								<input class="w3-input w3-border" type="text" name="detailnic"
+									id='detailnic' value="${vo.nic }" required> <label><b>E-Mail</b></label>
+								<input class="w3-input w3-border" type="text" name="detailemail"
+									id="detailemail" value="${vo.email }"> <label><b>class</b></label>
+								<input class="w3-input w3-border" type="text" name="detailclss"
+									id="detailclss" value="${vo.clss }"> <label><b>Point</b></label>
+								<input class="w3-input w3-border" type="text" name="detailpoint"
+									id="detailpoint" value="${vo.point }"> <label><b>regdate</b></label>
+								<input class="w3-input w3-border w3-light-gray" type="text"
+									name="detailregdate" id="detailregdate" value="${vo.regdate }"
+									readonly="readonly"> <label><b>Icon</b></label> <input
+									class="w3-input w3-border" type="text" name="detailicon"
+									id="detailicon" value="${vo.num }">
+								<button
+									class="w3-button w3-block w3-light-gray w3-section w3-padding"
+									type="submit" onclick="modifyuser.do">Modify</button>
+								<button
+									onclick="document.getElementById('detailuser${vo.id}').style.display='none'"
+									type="button"
+									class="w3-button w3-block w3-dark-gray w3-section w3-padding">Cancel</button>
+							</div>
+						</form>
 					</div>
-				</div>		
+				</div>
 			</c:forEach>
 		</table>
-		<div class="w3-right">
+		<div class="w3-right w3-bar">
+
 			<form action="usersearch.do" onsubmit="return searchvalue()">
-				<select name="searchvalue">
+				<select class="w3-bar-item" name="searchvalue">
 					<option value="id">ID</option>
 					<option value="nic">NickName</option>
 					<option value="email">E-Mail</option>
-					<option value="clss">권한</option>					
-				</select>
-				<input class="w3-input w3-border" type="text" name="searchinfo" id="searchinfo" required>
-				<input class="w3-button" type="submit" value="조회"></div>
-				<div class="w3-bar w3-dark-gray" style="width: 200px; margin-top: 50px;">
+					<option value="clss">권한</option>
+				</select> <input class="w3-input w3-bar-item w3-border" type="text"
+					name="searchinfo" id="searchinfo" required> <input
+					class="w3-button w3-bar-item w3-dark-gray" type="submit" value="조회">
 			</form>
-				<a
-					onclick="document.getElementById('writeboard').style.display='block'"
-					class="w3-bar-item w3-button" style="width: 50%">회원추가</a> <a
-					href="main.jsp?page=join.jsp" class="w3-bar-item w3-button"
-					style="width: 50%">회원삭제</a>
-			</div>
+			<a href="main.jsp?page=join.jsp"
+				class="w3-bar-item w3-button w3-dark-gray w3-right">회원삭제</a> <a
+				onclick="document.getElementById('writeboard').style.display='block'"
+				class="w3-bar-item w3-button w3-dark-gray w3-right">회원추가</a>
 		</div>
-		<div>
-			<c:choose>
-				<c:when test="${startPage>10 }">
-					<a href="userlist.do?pageNum=${startPage-1 }">[이전]</a>
-				</c:when>
-				<c:otherwise>
+	</div>
+	<div>
+		<c:choose>
+			<c:when test="${startPage>10 }">
+				<a href="userlist.do?pageNum=${startPage-1 }">[이전]</a>
+			</c:when>
+			<c:otherwise>
 					[이전]
 				</c:otherwise>
-			</c:choose>
-			
-			<c:forEach var="i" begin="${startPage }" end="${endPage }">
+		</c:choose>
+
+		<c:forEach var="i" begin="${startPage }" end="${endPage }">
 			<c:choose>
-				<c:when test="${pageNum==i }"><%-- 현재페이지인경우--%>
-					<a href="userlist.do?pageNum=${i }"><span style="color:red" >[${i }]</span></a>
+				<c:when test="${pageNum==i }">
+					<%-- 현재페이지인경우--%>
+					<a href="userlist.do?pageNum=${i }"><span style="color: red">[${i }]</span></a>
 				</c:when>
 				<c:otherwise>
-					<a href="userlist.do?pageNum=${i }"><span style="color:#555" >[${i }]</span></a>
+					<a href="userlist.do?pageNum=${i }"><span style="color: #555">[${i }]</span></a>
 				</c:otherwise>
-			</c:choose>	
-			</c:forEach>
-			<!-- 다음 -->
-			<c:choose>
-				<c:when test="${endPage<pageCount }">
-					<a href="userlist.do?pageNum=${endPage+1 }">[다음]</a>
-				</c:when>
-				<c:otherwise>
+			</c:choose>
+		</c:forEach>
+		<!-- 다음 -->
+		<c:choose>
+			<c:when test="${endPage<pageCount }">
+				<a href="userlist.do?pageNum=${endPage+1 }">[다음]</a>
+			</c:when>
+			<c:otherwise>
 					[다음]
 				</c:otherwise>
-			</c:choose>
-		</div>
+		</c:choose>
+	</div>
 	</div>
 	<div id="writeboard" class="w3-modal">
-		<div class="w3-modal-content w3-animate-zoom w3-container" style="width: 80%">
-		<div class="w3-dark-gray w3-container w3-margin-top"><h3>회원정보수정</h3></div>
-		<form class="w3-container" action="adminjoin.do">
-			<div class="w3-section">
-				<label><b>id</b></label> <input class="w3-input w3-border"
-					type="text" placeholder="Enter Username" name="id" id="id" onkeyup="infocheck('id')" required>
-					<div id="idcheck" style="font-size:12px; font-weight:bold;"></div>									
-				<label><b>Password</b></label> <input class="w3-input w3-border"
-					type="password" placeholder="Enter Password" name="pwd" id="pwd" required>
-				<label><b>E-Mail</b></label> <input class="w3-input w3-border"
-					type="text" placeholder="Enter E-Mail" name="email" required>
-				<label><b>Nickname</b></label> <input class="w3-input w3-border"
-					type="text" placeholder="Enter Nickname" name="nic" id="nic" onkeyup="infocheck('nic')" required>
-					<div id="niccheck" style="font-size:12px; font-weight:bold;"></div>			
-				<button class="w3-button w3-block w3-light-gray w3-section w3-padding"
-					type="submit" onclick="return ckcommit()">Join</button>
-				<button
-					onclick="document.getElementById('writeboard').style.display='none'"
-					type="button"
-					class="w3-button w3-block w3-dark-gray w3-section w3-padding">Cancel</button>
-			</div>		
-		</form>
+		<div class="w3-modal-content w3-animate-zoom w3-container"
+			style="width: 80%">
+			<div class="w3-dark-gray w3-container w3-margin-top">
+				<h3>회원정보수정</h3>
+			</div>
+			<form class="w3-container" action="adminjoin.do">
+				<div class="w3-section">
+					<label><b>id</b></label> <input class="w3-input w3-border"
+						type="text" placeholder="Enter Username" name="id" id="id"
+						onkeyup="infocheck('id')" required>
+					<div id="idcheck" style="font-size: 12px; font-weight: bold;"></div>
+					<label><b>Password</b></label> <input class="w3-input w3-border"
+						type="password" placeholder="Enter Password" name="pwd" id="pwd"
+						required> <label><b>E-Mail</b></label> <input
+						class="w3-input w3-border" type="text" placeholder="Enter E-Mail"
+						name="email" required> <label><b>Nickname</b></label> <input
+						class="w3-input w3-border" type="text"
+						placeholder="Enter Nickname" name="nic" id="nic"
+						onkeyup="infocheck('nic')" required>
+					<div id="niccheck" style="font-size: 12px; font-weight: bold;"></div>
+					<button
+						class="w3-button w3-block w3-light-gray w3-section w3-padding"
+						type="submit" onclick="return ckcommit()">Join</button>
+					<button
+						onclick="document.getElementById('writeboard').style.display='none'"
+						type="button"
+						class="w3-button w3-block w3-dark-gray w3-section w3-padding">Cancel</button>
+				</div>
+			</form>
 		</div>
-	</div>
-		
-	<div class="w3-container w3-dark-gray">
-		<h5>Footer</h5>
 	</div>
 </body>
 </html>
