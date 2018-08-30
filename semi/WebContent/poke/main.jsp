@@ -59,8 +59,8 @@
 
 	function addChat(id, content, regdate) {
 		$('#chatList').append(
-				'<img src="img/1.png" style="width: 30px">' + ' ' + id + '<br>'
-						+ content + ' ' + regdate + "<hr> <br>");
+				'<img src="/semi/poke/img/${num}.png" style="width: 30px">' + ' ${nic}' + '<br>'
+						+ content + ' ' + '<span class="w3-right w3-small">' + regdate + '</span>' + "<hr> <br>");
 
 		$('#chatList').scrollTop($('#chatList')[0].scrollHeight);
 	}
