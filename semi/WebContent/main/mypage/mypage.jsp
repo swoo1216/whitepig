@@ -113,7 +113,7 @@
 				class="w3-button w3-pale-red	 w3-xlarge w3-hover-pale-red w3-display-topright">&times;</span>
 			<h2>보유아이콘목록</h2>
 			</header>
-			<div id="id03">
+			<div id="id03"> <!-- 아이콘 자리  -->
 			</div>
 			<div class="w3-container w3-pale-red w3-padding w3-center">
 				<button class="w3-button w3-white w3-border"
