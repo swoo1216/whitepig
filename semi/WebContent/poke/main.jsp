@@ -123,44 +123,55 @@
 
 	<div id="nav">
 
-<nav class="w3-sidebar w3-center w3-bar-block w3-collapse w3-animate-left w3-card w3-pale-red" style="z-index:3;width:250px;height: 100%;" id="mySidebar">
-  <a class="w3-bar-item w3-button w3-large w3-hover-white" href="main.jsp"><img src="/semi/바지.png" style="height: 60px;"></a>
-  	<!-- 로그인 회원가입 -->
-  	<c:choose>
-  		<c:when test="${id!=null }">
-  			<img alt="" src="/semi/poke/img/1.png" style="width: 50px;margin-top: 30px;"> ${nic}
-  			<button class="w3-button w3-large w3-hover-white" onclick="location.href='/semi/mlogout.do'"><i class="fa fa-sign-out"></i></button>
-  			<hr style="border-color: white;">
-  		</c:when>
-  		<c:otherwise>
-  	<div class="w3-bar w3-border w3-border-white" style="display: flex;margin-top: 20px;">
-  			<button class="w3-border-right w3-border-white w3-bar-item w3-button w3-hover-white" onclick="location='/semi/main/login.jsp'">로그인</button>
-			<button class="w3-bar-item w3-button w3-hover-white" onclick="location='/semi/main/join.jsp'">회원가입</button>
-			<hr style="border-color: white;">
-	  </div>
-  		</c:otherwise>
-  	</c:choose>
-   
+		<nav
+			class="w3-sidebar w3-center w3-bar-block w3-collapse w3-animate-left w3-card w3-pale-red"
+			style="z-index: 3; width: 250px; height: 100%;" id="mySidebar">
+			<a class="w3-bar-item w3-button w3-large w3-hover-white"
+				href="main.jsp"><img src="/semi/바지.png" style="height: 60px;">PANTS</a>
+			<!-- 로그인 회원가입 -->
+			<c:choose>
+				<c:when test="${id!=null }">
+					<img alt="" src="/semi/poke/img/1.png"
+						style="width: 50px; margin-top: 30px;"> ${nic}
+  			<button class="w3-button w3-large w3-hover-white"
+						onclick="location.href='/semi/mlogout.do'">
+						<i class="fa fa-sign-out"></i>
+					</button>
+					<hr style="border-color: white;">
+				</c:when>
+				<c:otherwise>
+					<div class="w3-bar w3-border w3-border-white"
+						style="display: flex; margin-top: 20px;">
+						<button
+							class="w3-border-right w3-border-white w3-bar-item w3-button w3-hover-white"
+							onclick="location='/semi/main/login.jsp'">로그인</button>
+						<button class="w3-bar-item w3-button w3-hover-white"
+							onclick="location='/semi/main/join.jsp'">회원가입</button>
+						<hr style="border-color: white;">
+					</div>
+				</c:otherwise>
+			</c:choose>
 
 
-			<a class="w3-bar-item w3-button w3-hover-white" href="#"
-				style="margin-top: 60px;"><img alt=""
-				src="/semi/images/슈퍼마리오아이콘.png" style="width: 50px;"> Go</a>
+
+			<a class="w3-bar-item w3-button w3-hover-white" href="#"><img
+				alt="" src="/semi/images/슈퍼마리오아이콘.png" style="width: 50px;">Go</a>
 			<hr style="border-color: white;">
 			<a class="w3-bar-item w3-button w3-hover-white"
 				href="/semi/poke/pboard.do"><img alt=""
-				src="/semi/images/포켓몬아이콘.png" style="width: 50px;"> Poke</a>
+				src="/semi/images/포켓몬아이콘.png" style="width: 50px;">Poke</a>
 			<hr style="border-color: white;">
 			<a class="w3-bar-item w3-button w3-hover-white"
-				href="/semi/poke/list.do"><img alt="" src="img/25.gif"
-				style="width: 50px;"> Icon</a>
+				href="/semi/poke/list.do"><img alt="" src="/semi/lol/img/25.gif"
+				style="width: 50px;">Icon</a>
 			<hr style="border-color: white;">
-			<a class="w3-bar-item w3-button w3-hover-white" href="/semi/lol/lboard.do"><img
-				alt="" src="/semi/images/롤아이콘.png" style="width: 50px;"> LoL</a>
+			<a class="w3-bar-item w3-button w3-hover-white"
+				href="/semi/lol/lboard.do"><img alt=""
+				src="/semi/images/롤아이콘.png" style="width: 50px;">LoL</a>
 			<hr style="border-color: white;">
 			<a class="w3-bar-item w3-button w3-hover-white" href="#"><img
-				alt="" src="/semi/images/음악아이콘.png" style="width: 50px;">
-				Music</a>
+				alt="" src="/semi/images/음악아이콘.png" style="width: 50px;">Music</a>
+			<hr style="border-color: white;">
 
 		</nav>
 
@@ -181,8 +192,8 @@
 			href="/semi/poke/list.do"><img alt="" src="img/25.gif"
 			style="width: 30px;"> Icon</a> <a
 			class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large"
-			href="/semi/lol/lboard.do"><img alt="" src="/semi/images/롤아이콘.png"
-			style="width: 30px;"> LoL</a> <a
+			href="/semi/lol/lboard.do"><img alt=""
+			src="/semi/images/롤아이콘.png" style="width: 30px;"> LoL</a> <a
 			class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large"
 			href="#"><img alt="" src="/semi/images/음악아이콘.png"
 			style="width: 30px;"> Music</a>
@@ -253,8 +264,6 @@
 		function closeRightMenu() {
 			document.getElementById("rightMenu").style.display = "none";
 		}
-	
-		
 
 		function myFunction(id) {
 			var x = document.getElementById(id);
