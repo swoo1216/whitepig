@@ -9,18 +9,19 @@
 <title></title>
 </head>
 <style type="text/css">
-td, th {
+#gtable table tbody td, #gtable table tbody th {
 	border-spacing: 0px;
 	border-style: none;
 	padding: 5px;
+	text-align: left;
 }
 
-th {
+#gtable table tbody th {
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
 }
 
-td {
+#gtable table tbody td {
 	border-bottom: 1px solid black;
 }
 </style>

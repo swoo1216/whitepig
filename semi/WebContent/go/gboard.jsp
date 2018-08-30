@@ -113,7 +113,7 @@ ul li {
 								<c:forEach var="vo" items="${list}">
 									<tr>
 										<td>${vo.bNum}</td>
-										<td style="text-align: left;"><a href="<c:url value='gdetail.do?bNum=${vo.bNum}&tNum=0'/>">${vo.title}</a> &nbsp;[${vo.countComment}]</td>
+										<td style="text-align: left;"><a href="/semi/go/gdetail.do?bNum=${vo.bNum}&tNum=0">${vo.title}</a> &nbsp;[${vo.countComment}]</td>
 										<td><span class="clickPopup" onclick="showPopup('pop${vo.bNum}')">${vo.nic}</span></td>
 										<td>${vo.regdate}</td>
 										<td>${vo.hit}</td>
@@ -133,16 +133,16 @@ ul li {
 					</table>
 					<c:choose>
 						<c:when test="${empty sessionScope.id}">
-							<button type="button" onclick="location.href = 'index.jsp';">로그인</button>
+							<button type="button" onclick="location.href = '/semi/go/index.jsp';">로그인</button>
 						</c:when>
 						<c:otherwise>
-							<button type="button" onclick="location.href = 'ginsert.jsp';">글쓰기</button>
+							<button type="button" onclick="location.href = '/semi/go/ginsert.jsp';">글쓰기</button>
 						</c:otherwise>
 					</c:choose>
 					<div style="text-align: center">
 						<c:choose>
 							<c:when test="${startPage>10}">
-								<a href="gboard.do?pageNum=${startPage-1}&sort=${sort}&search=${search}&scontent=${scontent}">[&lt;]</a>
+								<a href="/semi/go/gboard.do?pageNum=${startPage-1}&sort=${sort}&search=${search}&scontent=${scontent}">[&lt;]</a>
 							</c:when>
 							<c:otherwise>
 								[&lt;]
@@ -151,16 +151,16 @@ ul li {
 						<c:forEach var="i" begin="${startPage}" end="${endPage}">
 							<c:choose>
 								<c:when test="${pageNum == i}">
-							[<a href="gboard.do?pageNum=${i}&sort=${sort}&search=${search}&scontent=${scontent}">${i}</a>]
+							[<a href="/semi/go/gboard.do?pageNum=${i}&sort=${sort}&search=${search}&scontent=${scontent}">${i}</a>]
 						</c:when>
 								<c:otherwise>
-							[<a href="gboard.do?pageNum=${i}&sort=${sort}&search=${search}&scontent=${scontent}">${i}</a>]
+							[<a href="/semi/go/gboard.do?pageNum=${i}&sort=${sort}&search=${search}&scontent=${scontent}">${i}</a>]
 						</c:otherwise>
 							</c:choose>
 						</c:forEach>
 						<c:choose>
 							<c:when test="${endPage<pageCount}">
-								<a href="gboard.do?pageNum=${endPage+1}&sort=${sort}&search=${search}&scontent=${scontent}">[&gt;]</a>
+								<a href="/semi/go/gboard.do?pageNum=${endPage+1}&sort=${sort}&search=${search}&scontent=${scontent}">[&gt;]</a>
 							</c:when>
 							<c:otherwise>
 								[&gt;]
