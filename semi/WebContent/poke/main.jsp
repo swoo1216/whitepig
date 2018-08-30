@@ -59,7 +59,7 @@
 
 	function addChat(id, content, regdate) {
 		$('#chatList').append(
-				'<div class="w3-panel w3-teal w3-round-large w3-padding-16">' +
+				'<div class="w3-panel w3-pale-red w3-round-large w3-padding-16">' +
 				'<img src="/semi/poke/img/${num}.png" style="width: 30px">' + ' ${nic}' + '<br>'
 						 + content + '<span class="w3-right w3-small">' + regdate + '</span>' + "</div>");
 
@@ -215,7 +215,7 @@
 		<div class="w3-modal" id="chat">
 			<div class="w3-modal-content w3-animate-zoom w3-card-4"
 				style="width: 480px;">
-				<header class="w3-container w3-teal">
+				<header class="w3-container w3-pale-red">
 					<span
 						onclick="document.getElementById('chat').style.display='none'"
 						class="w3-btn w3-round w3-ripple w3-display-topright"><i
@@ -230,7 +230,7 @@
 					</div>
 					<div>
 						<textarea rows="3" cols="40" id="contents" class="w3-round"></textarea>
-						<input type="button" class="w3-round w3-ripple w3-teal" onclick="submit()" value="전송">
+						<input type="button" class="w3-round w3-ripple w3-pale-red" onclick="submit()" value="전송">
 					
 					</div>
 				</div>

@@ -9,76 +9,84 @@ import java.util.ArrayList;
 import pp.mypage.vo.MypageVo;
 import test.db.DBConnection;
 
-
 public class MypageDao
 {
-	public String countBoard(String id)
+	public int countBoard(String id)
 	{
 		Connection con = null;
-		PreparedStatement pstmt= null;
-		ResultSet rs = null;
+		PreparedStatement[] pstmt = new PreparedStatement[4];
+		ResultSet[] rs = new ResultSet[4];
+
+		String[] sql = new String[4];
+		sql[0] = "select count(*) count from lboard where id=?";
+		sql[1] = "select count(*) count from gboard where id=?";
+		sql[2] = "select count(*) count from pboard where id=?";
+		sql[3] = "select count(*) count from mboard where id=?";
+
+		int total = 0;
 		try
 		{
-			con=DBConnection.conn();
-			String sql= "select count(*) count from lboard where id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			if(rs.next())
+			con = DBConnection.conn();
+
+			for (int i = 0; i < 4; i++)
 			{
-				String n = rs.getString("count");
-				return n;
+				pstmt[i] = con.prepareStatement(sql[i]);
+				pstmt[i].setString(1, id);
+
+				rs[i] = pstmt[i].executeQuery();
+				rs[i].next();
+				total += rs[i].getInt("count");
+				System.out.println("total" + total);
 			}
-			else
-			{
-				return null;
-			}
-		}
-		catch(SQLException se)
+			return total;
+		} catch (SQLException se)
 		{
 			System.out.println(se.getMessage());
-			return null;
-		}
-		finally
+			return -1;
+		} finally
 		{
-			DBConnection.close(rs, pstmt, con);
+			for (int i = 0; i < 4; i++)
+			{
+				DBConnection.close(rs[i], pstmt[i], null);
+			}
+			DBConnection.close(null, null, con);
+
 		}
 	}
+
 	public String countComment(String id)
 	{
 		Connection con = null;
-		PreparedStatement pstmt= null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try
 		{
-			con=DBConnection.conn();
-			String sql= "select count(*) count from lcomment where id=?";
+			con = DBConnection.conn();
+			String sql = "select count(*) count from lcomment where id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			if(rs.next())
+			if (rs.next())
 			{
 				String n = rs.getString("count");
 				return n;
-			}
-			else
+			} else
 			{
 				return null;
 			}
-		}
-		catch(SQLException se)
+		} catch (SQLException se)
 		{
 			System.out.println(se.getMessage());
 			return null;
-		}
-		finally
+		} finally
 		{
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
-	public int modifyInfo(String id,String email, String nic)
+
+	public int modifyInfo(String id, String email, String nic)
 	{
-		Connection con=null;
+		Connection con = null;
 		PreparedStatement pstmt = null;
 		try
 		{
@@ -88,26 +96,24 @@ public class MypageDao
 			pstmt.setString(1, email);
 			pstmt.setString(2, nic);
 			pstmt.setString(3, id);
-			int n =pstmt.executeUpdate();
-			if(n>0)
+			int n = pstmt.executeUpdate();
+			if (n > 0)
 			{
 				return n;
-			}
-			else
+			} else
 			{
 				return -1;
 			}
-		}
-		catch(SQLException se)
+		} catch (SQLException se)
 		{
 			System.out.println(se.getMessage());
 			return -1;
-		}
-		finally
+		} finally
 		{
 			DBConnection.close(null, pstmt, con);
 		}
 	}
+
 	public int pwdChange(String id, String pwd)
 	{
 		Connection con = null;
@@ -124,25 +130,23 @@ public class MypageDao
 			System.out.println("id " + id);
 			int n = pstmt.executeUpdate();
 			System.out.println("n " + n);
-			if(n>0)
+			if (n > 0)
 			{
 				return n;
-			}
-			else
+			} else
 			{
 				return -1;
 			}
-		}
-		catch(SQLException se)
+		} catch (SQLException se)
 		{
 			System.out.println(se.getMessage());
 			return -1;
-		}
-		finally
+		} finally
 		{
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
+
 	public int withDrawal(String id)
 	{
 		Connection con = null;
@@ -155,26 +159,24 @@ public class MypageDao
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			int n = pstmt.executeUpdate();
-			if(n>0)
+			if (n > 0)
 			{
 				return n;
-			}
-			else
+			} else
 			{
 				return -1;
 			}
-			
-		}
-		catch(SQLException se)
+
+		} catch (SQLException se)
 		{
 			System.out.println(se.getMessage());
 			return -1;
-		}
-		finally
+		} finally
 		{
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
+
 	public int getMaxNum()
 	{
 		Connection con = null;
@@ -186,25 +188,23 @@ public class MypageDao
 			String sql = "select NVL(max(bnum),0) maxnum from lboard";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			if(rs.next())
+			if (rs.next())
 			{
 				return rs.getInt("maxnum");
-			}
-			else
+			} else
 			{
 				return 0;
 			}
-		}
-		catch(SQLException se)
+		} catch (SQLException se)
 		{
 			System.out.println(se.getMessage());
 			return -1;
-		}
-		finally
+		} finally
 		{
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
+
 	public int getCount()
 	{
 		Connection con = null;
@@ -219,22 +219,20 @@ public class MypageDao
 			if (rs.next())
 			{
 				return rs.getInt("cnt");
-			} 
-			else
+			} else
 			{
 				return 0;
 			}
-		}
-		catch (SQLException se)
+		} catch (SQLException se)
 		{
 			System.out.println(se.getMessage());
 			return -1;
-		}
-		finally
+		} finally
 		{
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
+
 	public ArrayList<MypageVo> list(int startRow, int endRow)
 	{
 		String sql = "select * from(select aa.*,rownum rnum from(select * from"
@@ -256,7 +254,7 @@ public class MypageDao
 				String title = rs.getString("title");
 				String content = rs.getString("content");
 				int hit = rs.getInt("hit");
-				int recomm= rs.getInt("recomm");
+				int recomm = rs.getInt("recomm");
 				String id = rs.getString("id");
 				String regdate = rs.getString("regdate");
 				MypageVo vo = new MypageVo(bnum, title, content, hit, recomm, id, regdate);
@@ -264,17 +262,16 @@ public class MypageDao
 				list.add(vo);
 			}
 			return list;
-		}
-		catch (SQLException se)
+		} catch (SQLException se)
 		{
 			System.out.println(se.getMessage());
 			return null;
-		}
-		finally
+		} finally
 		{
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
+
 	public int getCommentMaxNum()
 	{
 		Connection con = null;
@@ -286,25 +283,23 @@ public class MypageDao
 			String sql = "select NVL(max(cnum),0) maxnum from lcomment";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			if(rs.next())
+			if (rs.next())
 			{
 				return rs.getInt("maxnum");
-			}
-			else
+			} else
 			{
 				return 0;
 			}
-		}
-		catch(SQLException se)
+		} catch (SQLException se)
 		{
 			System.out.println(se.getMessage());
 			return -1;
-		}
-		finally
+		} finally
 		{
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
+
 	public int getCommentCount()
 	{
 		Connection con = null;
@@ -320,22 +315,20 @@ public class MypageDao
 			if (rs.next())
 			{
 				return rs.getInt("cnt");
-			} 
-			else
+			} else
 			{
 				return 0;
 			}
-		}
-		catch (SQLException se)
+		} catch (SQLException se)
 		{
 			System.out.println(se.getMessage());
 			return -1;
-		}
-		finally
+		} finally
 		{
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
+
 	public ArrayList<MypageVo> commentlist(int startRow, int endRow)
 	{
 		String sql = "select * from(select aa.*,rownum from(select * from"
@@ -361,17 +354,16 @@ public class MypageDao
 				commentlist.add(vo);
 			}
 			return commentlist;
-		}
-		catch (SQLException se)
+		} catch (SQLException se)
 		{
 			System.out.println(se.getMessage());
 			return null;
-		}
-		finally
+		} finally
 		{
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
+
 	public int hitup(int bnum)
 	{
 		Connection con = null;
@@ -383,8 +375,7 @@ public class MypageDao
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, bnum);
 			return pstmt.executeUpdate();
-		}
-		catch(SQLException se)
+		} catch (SQLException se)
 		{
 			System.out.println(se.getMessage());
 			return -1;
