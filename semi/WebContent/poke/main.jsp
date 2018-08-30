@@ -155,7 +155,7 @@
 				href="/semi/poke/list.do"><img alt="" src="img/25.gif"
 				style="width: 50px;"> Icon</a>
 			<hr style="border-color: white;">
-			<a class="w3-bar-item w3-button w3-hover-white" href="#"><img
+			<a class="w3-bar-item w3-button w3-hover-white" href="/semi/lol/lboard.do"><img
 				alt="" src="/semi/images/롤아이콘.png" style="width: 50px;"> LoL</a>
 			<hr style="border-color: white;">
 			<a class="w3-bar-item w3-button w3-hover-white" href="#"><img
@@ -181,7 +181,7 @@
 			href="/semi/poke/list.do"><img alt="" src="img/25.gif"
 			style="width: 30px;"> Icon</a> <a
 			class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large"
-			href="#"><img alt="" src="/semi/images/롤아이콘.png"
+			href="/semi/lol/lboard.do"><img alt="" src="/semi/images/롤아이콘.png"
 			style="width: 30px;"> LoL</a> <a
 			class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large"
 			href="#"><img alt="" src="/semi/images/음악아이콘.png"

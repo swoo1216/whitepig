@@ -14,10 +14,8 @@ public class LcdeleteController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int cnum=Integer.parseInt(req.getParameter("cnum"));
-		
 		LcommentDao dao=LcommentDao.getInstance();
 		dao.delete(cnum);
-		
 		req.getRequestDispatcher("/lol/ldetail.do").forward(req, resp);
 	}
 }
