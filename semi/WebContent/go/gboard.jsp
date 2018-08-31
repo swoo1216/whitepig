@@ -26,7 +26,7 @@ ul li {
 	list-style: none;
 }
 
-button {
+.mybutton {
 	border: none;
 	background-color: #ff6666;
 	color: white;
@@ -36,7 +36,7 @@ button {
 	cursor: pointer;
 }
 
-button:hover {
+.mybutton:hover {
 	background-color: #ff8080;
 }
 </style>
