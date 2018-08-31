@@ -40,15 +40,15 @@ public class McommentDao {
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
-	public ArrayList<McommentVo> mcommList(int mnum) {
+	public ArrayList<McommentVo> mcommList(int bnum) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = DBConnection.conn();
-			String sql = "select * from mcomment where mnum=?";
+			String sql = "select * from mcomment where bnum=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, mnum);
+			pstmt.setInt(1, bnum);
 			rs = pstmt.executeQuery();
 			ArrayList<McommentVo> list=new ArrayList<>();
 			while (rs.next()) {
@@ -57,7 +57,7 @@ public class McommentDao {
 				int recomm=rs.getInt("recomm");
 				String id=rs.getString("id");
 				Date regdate=rs.getDate("regdate");
-				McommentVo vo=new McommentVo(cnum, content, recomm, id, mnum, regdate);
+				McommentVo vo=new McommentVo(cnum, content, recomm, id, bnum, regdate);
 				list.add(vo);				
 			}
 			return list;

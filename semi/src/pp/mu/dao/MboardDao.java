@@ -25,7 +25,7 @@ public class MboardDao {
 		ResultSet rs = null;
 		try {
 			con = DBConnection.conn();
-			String sql = "select NVL(max(mnum),0) maxnum from mboard";
+			String sql = "select NVL(max(bnum),0) maxnum from mboard";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -48,7 +48,7 @@ public class MboardDao {
 		ResultSet rs = null;
 		try {
 			con = DBConnection.conn();
-			String sql = "select NVL(count(mnum),0) cnt from mboard";
+			String sql = "select NVL(count(bnum),0) cnt from mboard";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -96,14 +96,14 @@ public class MboardDao {
 		ResultSet rs=null;
 		try {
 			con=DBConnection.conn();
-			String sql="SELECT * FROM (SELECT AA.*,ROWNUM RNUM FROM (SELECT * FROM mboard ORDER BY mnum DESC)AA) WHERE RNUM>=? AND RNUM<=?";
+			String sql="SELECT * FROM (SELECT AA.*,ROWNUM RNUM FROM (SELECT * FROM mboard ORDER BY bnum DESC)AA) WHERE RNUM>=? AND RNUM<=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, srow);
 			pstmt.setInt(2, erow);
 			rs=pstmt.executeQuery();
 			ArrayList<MboardVo> list=new ArrayList<>();
 			while(rs.next()) {
-				int mnum=rs.getInt("mnum");
+				int bnum=rs.getInt("bnum");
 				String title=rs.getString("title");
 				String content=rs.getString("content");
 				int hit=rs.getInt("hit");
@@ -111,7 +111,7 @@ public class MboardDao {
 				String id=rs.getString("id");
 				Date regdate=rs.getDate("regdate");
 				String path=rs.getString("path");	
-				MboardVo vo=new MboardVo(mnum, title, content, hit, recomm, id, regdate, path);
+				MboardVo vo=new MboardVo(bnum, title, content, hit, recomm, id, regdate, path);
 				list.add(vo);
 			}
 			return list;
@@ -144,16 +144,16 @@ public class MboardDao {
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
-	public MboardVo muDetail(int mnum) {
+	public MboardVo muDetail(int bnum) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		hitUp(mnum);
+		hitUp(bnum);
 		try {
 			con=DBConnection.conn();
-			String sql="select * from mboard where mnum=?";
+			String sql="select * from mboard where bnum=?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, mnum);
+			pstmt.setInt(1, bnum);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				String title=rs.getString("title");
@@ -163,7 +163,7 @@ public class MboardDao {
 				String id=rs.getString("id");
 				Date regdate=rs.getDate("regdate");
 				String path=rs.getString("path");	
-				MboardVo vo=new MboardVo(mnum, title, content, hit, recomm, id, regdate, path);
+				MboardVo vo=new MboardVo(bnum, title, content, hit, recomm, id, regdate, path);
 				return vo;
 			}else {
 				return null;
@@ -175,14 +175,14 @@ public class MboardDao {
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
-	public int hitUp(int mnum){
+	public int hitUp(int bnum){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {
 			con = DBConnection.conn();
-			String sql = "update mboard set hit=hit+1 where mnum=?";
+			String sql = "update mboard set hit=hit+1 where bnum=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, mnum);
+			pstmt.setInt(1, bnum);
 			int hitup=pstmt.executeUpdate();
 			return hitup;
 		} catch (SQLException se) {
