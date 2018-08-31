@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import pp.go.dao.GuserDao;
 import pp.poke.dao.PboardDao;
 import pp.poke.vo.PboardVo;
 @WebServlet("/poke/pinsert.do")
@@ -24,6 +25,7 @@ public class PinsertController extends HttpServlet{
 		int n=PboardDao.getInstance().insert(vo);
 		if(n>0) {
 			resp.sendRedirect("pboard.do");
+			GuserDao.getInstance().upPoint(id, 10);
 		}else {
 			req.setAttribute("title", title);
 			req.setAttribute("content", content);

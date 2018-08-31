@@ -15,10 +15,23 @@ public class GameScoreDao {
 
 		return instance;
 	}
+	
+	public int getMaxNum() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select "
+	}
 
 	public int insert(GameScoreVo vo) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
+		String sql = "insert into gamescore values()";
+		
+		private int gameNum;
+		private String id;
+		private int getPoint;
 	}
 }

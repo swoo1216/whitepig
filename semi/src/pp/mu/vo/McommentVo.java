@@ -7,16 +7,16 @@ public class McommentVo {
 	private String content;
 	private int recomm;
 	private String id ;
-	private int mnum;
+	private int bnum;
 	private Date regdate;
 	public McommentVo() {}
-	public McommentVo(int cnum, String content, int recomm, String id, int mnum, Date regdate) {
+	public McommentVo(int cnum, String content, int recomm, String id, int bnum, Date regdate) {
 		super();
 		this.cnum = cnum;
 		this.content = content;
 		this.recomm = recomm;
 		this.id = id;
-		this.mnum = mnum;
+		this.bnum = bnum;
 		this.regdate = regdate;
 	}
 	public int getCnum() {
@@ -43,11 +43,11 @@ public class McommentVo {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public int getMnum() {
-		return mnum;
+	public int getBnum() {
+		return bnum;
 	}
-	public void setMnum(int mnum) {
-		this.mnum = mnum;
+	public void setBnum(int bnum) {
+		this.bnum = bnum;
 	}
 	public Date getRegdate() {
 		return regdate;

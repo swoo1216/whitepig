@@ -3,7 +3,7 @@ package pp.mu.vo;
 import java.sql.Date;
 
 public class MboardVo {
-	private int mnum;
+	private int bnum;
 	private String title;
 	private String content;
 	private int hit;
@@ -12,9 +12,9 @@ public class MboardVo {
 	private Date regdate;
 	private String path;
 	public MboardVo() {}
-	public MboardVo(int mnum, String title, String content, int hit, int recomm, String id, Date regdate, String path) {
+	public MboardVo(int bnum, String title, String content, int hit, int recomm, String id, Date regdate, String path) {
 		super();
-		this.mnum = mnum;
+		this.bnum = bnum;
 		this.title = title;
 		this.content = content;
 		this.hit = hit;
@@ -23,11 +23,11 @@ public class MboardVo {
 		this.regdate = regdate;
 		this.path = path;
 	}
-	public int getMnum() {
-		return mnum;
+	public int getBnum() {
+		return bnum;
 	}
-	public void setMnum(int mnum) {
-		this.mnum = mnum;
+	public void setBnum(int bnum) {
+		this.bnum = bnum;
 	}
 	public String getTitle() {
 		return title;

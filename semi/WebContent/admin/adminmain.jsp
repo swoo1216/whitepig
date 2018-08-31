@@ -58,7 +58,7 @@ body {
 			class="w3-bar-item w3-button w3-hover-white">music</a> <a
 			href="salsevolume.do" onclick="w3_close()"
 			class="w3-bar-item w3-button w3-hover-white">판매량</a> <a
-			href="salesvolume.jsp" onclick="w3_close()"
+			href="#contact" onclick="w3_close()"
 			class="w3-bar-item w3-button w3-hover-white">사용자통계</a> <a
 			href="#contact" onclick="w3_close()"
 			class="w3-bar-item w3-button w3-hover-white">신고접수리스트</a>

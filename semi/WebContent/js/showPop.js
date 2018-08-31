@@ -1,4 +1,4 @@
-window.onload = function(){
+window.onload = function() {
 	var clickPopup = document.getElementsByClassName("clickPopup"); // 마우스포인터 효과
 	for (var i = 0; i < clickPopup.length; i++) {
 		clickPopup[i].addEventListener("mouseover", function() { // 팝업
@@ -8,7 +8,7 @@ window.onload = function(){
 
 	var popup = document.getElementsByClassName("popup");
 
-	for (var i = 0; i < popup.length; i++) {  // 마우스 떠나면 꺼지기
+	for (var i = 0; i < popup.length; i++) { // 마우스 떠나면 꺼지기
 		popup[i].addEventListener("mouseleave", function() {
 			this.style.display = "none";
 		}, false);
@@ -25,6 +25,6 @@ function showPopup(popNum) { // 팝업띄우기
 	var popNum = document.getElementById(popNum);
 	popNum.style.display = "block";
 	popNum.style.position = "absolute";
-	popNum.style.top = event.pageY + "px";
-	popNum.style.left = (event.pageX + 30) + "px";
+	popNum.style.top = (event.pageY + 20) + "px";
+	popNum.style.left = (event.pageX - 40) + "px";
 }

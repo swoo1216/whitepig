@@ -19,12 +19,16 @@
 	var lastNum = 0;
 	function submit() {
 		var id = '${id}';
+		var nic = '${nic}';
+		var num = '${num}';
 		var content = $('#contents').val();
 		$.ajax({
 			type : "post",
 			url : "/semi/poke/chatInsert.do",
 			data : {
 				id : id,
+				nic : nic,
+				num : num,
 				content : content
 			},
 			success : function(result) {
@@ -53,18 +57,18 @@
 				var parsed = JSON.parse(data);
 				var result = parsed.result;
 				for (var i = 0; i < result.length; i++) {
-					addChat(result[i][0].value, result[i][1].value,
-							result[i][2].value);
+					addChat(result[i][1].value, result[i][2].value,
+							result[i][3].value, result[i][4].value);
 				}
 				lastNum = Number(parsed.last);
 			}
 		});
 	}
 
-	function addChat(id, content, regdate) {
+	function addChat(nic, num, content, regdate) {
 		$('#chatList').append(
 				'<div class="w3-panel w3-pale-red w3-round-large w3-padding-16">' +
-				'<img src="/semi/poke/img/${num}.png" style="width: 30px">' + ' ${nic}' + '<br>'
+				'<img src="/semi/poke/img/' + num + '.png" style="width: 30px">' + nic + '<br>'
 						 + content + '<span class="w3-right w3-small">' + regdate + '</span>' + "</div>");
 
 		$('#chatList').scrollTop($('#chatList')[0].scrollHeight);
@@ -73,7 +77,7 @@
 	function getInfiniteChat() {
 		setInterval(function() {
 			chatList(lastNum)
-		}, 3000);
+		}, 1000);
 	}
 	
 	function chatFocus() {
@@ -118,8 +122,12 @@
 					onclick="location.href='/semi/mlogout.do'">
 					<i class="fa fa-sign-out"></i>
 				</button>
-				<img alt="" src="img/1.png" class="w3-right w3-hide-large"
-					style="width: 20px; margin-top: 10px;">
+				<button
+					class="w3-button w3-hide-large w3-large w3-hover-white w3-right"
+					onclick="location.href='/semi/mboardcount.do'">
+					<img alt="" src="/semi/poke/img/${num }.png" style="width: 30px;">
+				</button>
+				
 			</c:when>
 			<c:otherwise>
 				<button
@@ -172,16 +180,21 @@
 
 
 
+<<<<<<< HEAD
 			<a class="w3-bar-item w3-button w3-hover-white"
 				href="/semi/go/gboard.do"><img alt=""
 				src="/semi/images/슈퍼마리오아이콘.png" style="width: 50px;">Go</a>
+=======
+			<a class="w 3-bar-item w3-button w3-hover-white" href="/semi/go/gboard.do"><img
+				alt="" src="/semi/images/슈퍼마리오아이콘.png" style="width: 50px;">Go</a>
+>>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
 			<hr style="border-color: white;">
 			<a class="w3-bar-item w3-button w3-hover-white"
 				href="/semi/poke/pboard.do"><img alt=""
 				src="/semi/images/포켓몬아이콘.png" style="width: 50px;">Poke</a>
 			<hr style="border-color: white;">
 			<a class="w3-bar-item w3-button w3-hover-white"
-				href="/semi/poke/list.do"><img alt="" src="/semi/lol/img/25.gif"
+				href="/semi/poke/list.do"><img alt="" src="/semi/poke/img/25.gif"
 				style="width: 50px;">Icon</a>
 			<hr style="border-color: white;">
 			<a class="w3-bar-item w3-button w3-hover-white"
@@ -225,7 +238,7 @@
 		<!-- 채팅 modal -->
 		<div class="w3-modal" id="chat">
 			<div class="w3-modal-content w3-animate-zoom w3-card-4"
-				style="width: 480px;">
+				style="width: 60%;">
 				<header class="w3-container w3-pale-red">
 					<span
 						onclick="document.getElementById('chat').style.display='none'"
@@ -236,11 +249,11 @@
 				<div class="w3-container">
 
 					<div id="chatList"
-						style="width: 450px; height: 500px; overflow: auto;" id="chat">
+						style="width: 100%; height: 500px; overflow: auto;" id="chat">
 
 					</div>
 					<div>
-						<textarea rows="3" cols="40" id="contents" class="w3-round"></textarea>
+						<textarea rows="3" style="width: 90%;" id="contents" class="w3-round"></textarea>
 						<input type="button" class="w3-round w3-ripple w3-pale-red"
 							onclick="submit()" value="전송">
 

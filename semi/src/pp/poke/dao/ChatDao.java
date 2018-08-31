@@ -29,8 +29,10 @@ public class ChatDao {
 			list=new ArrayList<>();
 			while(rs.next()) {
 				ChatVo vo=new ChatVo();
-				vo.setchatNum(rs.getInt("chatNum"));
+				vo.setChatNum(rs.getInt("chatNum"));
 				vo.setId(rs.getString("id"));
+				vo.setNic(rs.getString("nic"));
+				vo.setNum(rs.getInt("num"));
 				vo.setContent(rs.getString("content").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt").replaceAll("\n", "<br>"));
 				int chatTime = Integer.parseInt(rs.getString("regdate").substring(11, 13));
 				String timeType = "오전";
@@ -65,8 +67,10 @@ public class ChatDao {
 			list=new ArrayList<>();
 			while(rs.next()) {
 				ChatVo vo=new ChatVo();
-				vo.setchatNum(rs.getInt("chatNum"));
+				vo.setChatNum(rs.getInt("chatNum"));
 				vo.setId(rs.getString("id"));
+				vo.setNic(rs.getString("nic"));
+				vo.setNum(rs.getInt("num"));
 				vo.setContent(rs.getString("content").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt").replaceAll("\n", "<br>"));
 				int chatTime = Integer.parseInt(rs.getString("regdate").substring(11, 13));
 				String timeType = "오전";
@@ -101,8 +105,10 @@ public class ChatDao {
 			list=new ArrayList<>();
 			while(rs.next()) {
 				ChatVo vo=new ChatVo();
-				vo.setchatNum(rs.getInt("chatNum"));
+				vo.setChatNum(rs.getInt("chatNum"));
 				vo.setId(rs.getString("id"));
+				vo.setNic(rs.getString("nic"));
+				vo.setNum(rs.getInt("num"));
 				vo.setContent(rs.getString("content").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt").replaceAll("\n", "<br>"));
 				int chatTime = Integer.parseInt(rs.getString("regdate").substring(11, 13));
 				String timeType = "오전";
@@ -122,16 +128,18 @@ public class ChatDao {
 			DBConnection.close(rs, pstmt, conn);
 		}
 	}
-	public int submit(String id,String content) {
+	public int submit(ChatVo vo) {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 	
 		try {
 			conn=DBConnection.conn();
-			String sql="insert into chat values(chat_seq.nextval,?,?,sysdate)";
+			String sql="insert into chat values(chat_seq.nextval,?,?,?,?,sysdate)";
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, content);
+			pstmt.setString(1, vo.getId());
+			pstmt.setString(2, vo.getNic());
+			pstmt.setInt(3, vo.getNum());
+			pstmt.setString(4, vo.getContent());
 			
 			return pstmt.executeUpdate();
 			

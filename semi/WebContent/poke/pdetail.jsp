@@ -9,13 +9,14 @@
 
 		<img src="img/${vo.num }.png" style="width: 50px; margin-top: 10px;">
 		<span>${vo.nic }</span> <i
-			class="fa fa-check-square-o w3-right fa-lg w3-margin"> ${vo.hit }</i>
-		<i class="fa fa-twitch w3-right fa-lg w3-margin"> ${vo.commCnt }</i><br>
-		${vo.regdate }
+			class="fa fa-check-square-o w3-right w3-margin"> ${vo.hit }</i> <i
+			class="fa fa-twitch w3-right w3-margin"> ${vo.commCnt }</i><br>
+		<br>
+		<span class="w3-small w3-right">${vo.regdate }</span>
 
 		<hr style="border-color: teal;">
 		<div class="w3-margin">
-			${vo.title }
+			<strong>${vo.title }</strong>
 			<div class="w3-right">
 				<c:choose>
 					<c:when test="${id != null}">
@@ -80,7 +81,7 @@
 
 
 	</div>
-	
+
 	<!-- 글수정 modal -->
 	<div id="update" class="w3-modal">
 		<div class="w3-modal-content w3-animate-bottom w3-card-4"
@@ -118,7 +119,7 @@
 				<h2>글삭제</h2>
 			</header>
 			<div class="w3-container w3-margin">
-			삭제?
+				삭제?
 				<button class="w3-btn w3-round w3-ripple w3-right"
 					onclick="location='/semi/poke/pdelete.do?bnum=${vo.bnum }'">
 					<i class="fa fa-trash"></i>
@@ -135,7 +136,7 @@
 		<c:forEach var="vo" items="${list }">
 			<div class="w3-margin">
 				<img src="img/${vo.num }.png" style="width: 40px;"> ${vo.nic }
-				<div class="w3-right" style="margin-top: 30px;">${vo.regdate }
+				<div class="w3-right w3-small" style="margin-top: 30px;">${vo.regdate }
 				</div>
 				<hr style="border-color: teal;">
 				<div
@@ -168,12 +169,12 @@
 
 		<div class="w3-margin">
 			<form method="post" action="pcinsert.do">
-				<textarea rows="5" cols="50" class="w3-round" placeholder="comment"
+				<textarea rows="5" style="width: 100%" class="w3-round" placeholder="comment"
 					name="content"></textarea>
-				<br>
-				<button class="w3-btn w3-round w3-ripple w3-teal">등록</button>
-				<input type="hidden" name="id" value="${id }"> <input
-					type="hidden" name="bnum" value="${vo.bnum }">
+
+				<button class="w3-btn w3-round w3-ripple w3-teal w3-right">등록</button>
+				<input type="hidden" name="id" value="${id }"> 
+				<input type="hidden" name="bnum" value="${vo.bnum }">
 			</form>
 		</div>
 	</div>
