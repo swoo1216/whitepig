@@ -30,7 +30,7 @@
 	<table class="w3-table-all w3-margin-top w3-tangerine">
 
 		<c:if test="${list==null }">
-			<tr>
+			<tr class="w3-leftbar w3-border-teal">
 				<td style="width: 5%; vertical-align: middle;"></td>
 				<td style="width: 50%; vertical-align: middle;">내용을 입력하세요</td>
 				<td style="width: 10%; vertical-align: middle;"><i
@@ -44,21 +44,43 @@
 		</c:if>
 
 		<c:forEach var="vo" items="${list }">
-			<tr>
-				<td style="width: 5%; vertical-align: middle;">${vo.bnum }</td>
-				<td style="width: 50%; vertical-align: middle;"><a
-					href="<%=request.getContextPath() %>/poke/pdetail.do?bnum=${vo.bnum }"
-					class="w3-hover-teal" style="text-decoration: none;">${vo.title }</a></td>
-				<td style="width: 10%; vertical-align: middle;"><i
-					class="fa fa-twitch"> ${vo.commCnt }</i></td>
-				<td style="width: 10%; vertical-align: middle;"><i
-					class="fa fa-thumbs-o-up"> ${vo.recomm }</i></td>
-				<td style="width: 10%; vertical-align: middle;"><i
-					class="fa fa-check-square-o"> ${vo.hit }</i></td>
-				<td style="width: 15%; vertical-align: middle;"><img
-					src="img/${vo.num }.gif" style="width: 40px;"><span
-					class="clickPopup" onclick="showPopup('pop${vo.bnum}')">${vo.nic}</span></td>
-			</tr>
+			<c:choose>
+				<c:when test="${vo.commCnt!=0 }">
+					<tr class="w3-leftbar w3-border-teal">
+						<td style="width: 5%; vertical-align: middle;">${vo.bnum }</td>
+						<td style="width: 50%; vertical-align: middle;"><a
+							href="<%=request.getContextPath() %>/poke/pdetail.do?bnum=${vo.bnum }"
+							class="w3-hover-teal" style="text-decoration: none;">${vo.title }</a></td>
+						<td style="width: 10%; vertical-align: middle;"><i
+							class="fa fa-twitch"> ${vo.commCnt }</i></td>
+						<td style="width: 10%; vertical-align: middle;"><i
+							class="fa fa-thumbs-o-up"> ${vo.recomm }</i></td>
+						<td style="width: 10%; vertical-align: middle;"><i
+							class="fa fa-check-square-o"> ${vo.hit }</i></td>
+						<td style="width: 15%; vertical-align: middle;"><img
+							src="img/${vo.num }.gif" style="width: 40px;"><span
+							class="clickPopup" onclick="showPopup('pop${vo.bnum}')">${vo.nic}</span></td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<tr class="w3-leftbar w3-border-gray">
+						<td style="width: 5%; vertical-align: middle;">${vo.bnum }</td>
+						<td style="width: 50%; vertical-align: middle;"><a
+							href="<%=request.getContextPath() %>/poke/pdetail.do?bnum=${vo.bnum }"
+							class="w3-hover-teal" style="text-decoration: none;">${vo.title }</a></td>
+						<td style="width: 10%; vertical-align: middle;"><i
+							class="fa fa-twitch"> ${vo.commCnt }</i></td>
+						<td style="width: 10%; vertical-align: middle;"><i
+							class="fa fa-thumbs-o-up"> ${vo.recomm }</i></td>
+						<td style="width: 10%; vertical-align: middle;"><i
+							class="fa fa-check-square-o"> ${vo.hit }</i></td>
+						<td style="width: 15%; vertical-align: middle;"><img
+							src="img/${vo.num }.gif" style="width: 40px;"><span
+							class="clickPopup" onclick="showPopup('pop${vo.bnum}')">${vo.nic}</span></td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
+			
 			<div class="popup" id="pop${vo.bnum}">
 				<div class="popstyle">
 					<ul>
@@ -91,9 +113,9 @@
 			<div class="w3-container w3-margin">
 				<form action="pinsert.do?id=${sessionScope.id }" method="post">
 					<input type="text" name="title" placeholder="title"
-						class="w3-round w3-margin"><br>
-					<textarea rows="10" cols="50" placeholder="content"
-						class="w3-round w3-margin" name="content"></textarea>
+						class="w3-round"><br>
+					<textarea rows="10" style="width: 100%;margin-top: 20px;" placeholder="content"
+						class="w3-round" name="content"></textarea>
 
 					<button
 						class="w3-btn w3-round w3-ripple w3-teal w3-margin w3-right">등록</button>

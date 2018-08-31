@@ -217,7 +217,7 @@
 
 
 <div class="w3-center w3-padding-32">
-	<div class="w3-panel w3-sand w3-round-xlarge">
+	<div class="w3-panel w3-sand w3-round-large">
 		<c:forEach var="vo" items="${list }" varStatus="status">
 			<c:set var="no" value="${vo.num }" scope="session"></c:set>
 			<img src="img/${vo.num }.png" style="width: 70px; cursor: pointer;margin: 20px;"
@@ -228,7 +228,7 @@
 
 			<div id="icon${ status.count }" class="w3-modal">
 				<div class="w3-modal-content w3-animate-top w3-card-4"
-					style="width: 600px;">
+					style="width: 500px;">
 					<div class="w3-container w3-teal">
 						<span
 							onclick="document.getElementById('icon${ status.count}').style.display='none'"
@@ -239,10 +239,10 @@
 
 					<div class="w3-container w3-margin w3-large">
 						<img src="img/${vo.num }.gif" style="width: 70px">
-						<div class="w3-panel w3-teal w3-round-xlarge">
-							<p><strong>${vo.name }</strong></p>
-							<p>${vo.type }</p>
-							<p>
+						<div class="w3-panel w3-teal w3-round-large w3-padding-16">
+							<p class="w3-margin"><strong>${vo.name }</strong></p>
+							<p class="w3-margin">${vo.type }</p>
+							<p class="w3-margin">
 								<i class="fa fa-btc"></i> ${vo.price }
 							</p>
 						</div>
@@ -255,13 +255,13 @@
 									</button>
 								</c:when>
 								<c:otherwise>
-									<button class="w3-btn w3-round w3-ripple w3-teal"
+									<button class="w3-btn w3-round w3-ripple w3-teal w3-margin"
 										onclick="check(${vo.num})" title="구매">
 										<i class="fa fa-money fa-lg"></i>
 									</button>
 								</c:otherwise>
 							</c:choose>
-							<button class="w3-btn w3-round w3-ripple w3-teal"
+							<button class="w3-btn w3-round w3-ripple w3-teal w3-margin"
 								onclick="location='wishList.do?num=${vo.num}&cmd=insert'"
 								title="장바구니">
 								<i class="fa fa-cart-arrow-down fa-lg"></i>

@@ -178,21 +178,11 @@
 				</c:otherwise>
 			</c:choose>
 
-<<<<<<< HEAD
 
-
-			<<<<<<< HEAD <a class="w3-bar-item w3-button w3-hover-white"
-				href="/semi/go/gboard.do"><img alt=""
-				src="/semi/images/슈퍼마리오아이콘.png" style="width: 50px;">Go</a>
-			======= <a class="w 3-bar-item w3-button w3-hover-white"
-				href="/semi/go/gboard.do"><img alt=""
-				src="/semi/images/슈퍼마리오아이콘.png" style="width: 50px;">Go</a>
-			>>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
-=======
 
 			<a class="w 3-bar-item w3-button w3-hover-white" href="/semi/go/gboard.do"><img
 				alt="" src="/semi/images/슈퍼마리오아이콘.png" style="width: 50px;">Go</a>
->>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
+
 			<hr style="border-color: white;">
 			<a class="w3-bar-item w3-button w3-hover-white"
 				href="/semi/poke/pboard.do"><img alt=""
@@ -583,6 +573,14 @@
 			event.target.style.display = "none";
 			pt.imsee = false;
 		}
+	}
+	
+	var modal = document.getElementById('chat');
+
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
 	}
 </script>
 </html>
