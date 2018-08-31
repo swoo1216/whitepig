@@ -135,17 +135,18 @@
 			style="z-index: 3; width: 250px; height: 100%;" id="mySidebar">
 			<a class="w3-bar-item w3-button w3-large w3-hover-white"
 				href="main.jsp"><img src="/semi/바지.png" style="height: 60px;">PANTS</a>
-					
+
 
 			<!-- 로그인 회원가입 -->
 			<c:choose>
 				<c:when test="${id!=null }">
-				<div style="margin: 10px;">
-					<img alt="" src="/semi/poke/img/${num }.png"
-						style="width: 50px;"> <a href="/semi/mboardcount.do">${nic}</a>님<br>환영합니다!
-			<button onclick="location.href='/semi/mlogout.do'" style="background-color: pink;">로그아웃</button>
-  			</div>
-						
+					<div style="margin: 10px;">
+						<img alt="" src="/semi/poke/img/${num }.png" style="width: 50px;">
+						<a href="/semi/mboardcount.do">${nic}</a>님<br>환영합니다!
+						<button onclick="location.href='/semi/mlogout.do'"
+							style="background-color: pink;">로그아웃</button>
+					</div>
+
 					<hr style="border-color: white;">
 				</c:when>
 				<c:otherwise>
@@ -163,7 +164,7 @@
 
 
 
-			<a class="w3-bar-item w3-button w3-hover-white" href="#"><img
+			<a class="w3-bar-item w3-button w3-hover-white" href="/semi/go/gboard.do"><img
 				alt="" src="/semi/images/슈퍼마리오아이콘.png" style="width: 50px;">Go</a>
 			<hr style="border-color: white;">
 			<a class="w3-bar-item w3-button w3-hover-white"
@@ -192,8 +193,8 @@
 		style="position: absolute; width: 100%;">
 		<a
 			class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large"
-			href="#"><img alt="" src="/semi/images/슈퍼마리오아이콘.png"
-			style="width: 30px;"> Go</a> <a
+			href="/semi/go/gboard.do"><img alt=""
+			src="/semi/images/슈퍼마리오아이콘.png" style="width: 30px;"> Go</a> <a
 			class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large"
 			href="/semi/poke/pboard.do"><img alt=""
 			src="/semi/images/포켓몬아이콘.png" style="width: 30px;"> Poke</a> <a
@@ -230,8 +231,9 @@
 					</div>
 					<div>
 						<textarea rows="3" cols="40" id="contents" class="w3-round"></textarea>
-						<input type="button" class="w3-round w3-ripple w3-pale-red" onclick="submit()" value="전송">
-					
+						<input type="button" class="w3-round w3-ripple w3-pale-red"
+							onclick="submit()" value="전송">
+
 					</div>
 				</div>
 				<script type="text/javascript">
@@ -293,19 +295,19 @@
 			document.getElementById("myOverlay").style.display = "none";
 		}
 	</script>
-	
+
 	<c:choose>
-	<c:when test="${requestScope.code=='success'}">
-		<script type="text/javascript">
+		<c:when test="${requestScope.code=='success'}">
+			<script type="text/javascript">
 		alert('회원가입성공');
 		</script>
-	</c:when>
-	<c:when test="${requestScope.code=='fail'}">
-		<script type="text/javascript">
+		</c:when>
+		<c:when test="${requestScope.code=='fail'}">
+			<script type="text/javascript">
 		alert('회원가입실패');
 		</script>
-	</c:when>
-<%-- 
+		</c:when>
+		<%-- 
 	<c:when test="${requestScope.code=='success1'}">
 		<script type="text/javascript">
 		alert('로그인성공');
@@ -317,45 +319,46 @@
 		</script>
 	</c:when>
 --%>
-	<c:when test="${requestScope.code=='fail1'}">
-		<script type="text/javascript">
+		<c:when test="${requestScope.code=='fail1'}">
+			<script type="text/javascript">
 		alert('로그인실패');
 		</script>
-	</c:when>
-	<c:when test="${requestScope.code=='esuccess'}">
-		<script type="text/javascript">
+		</c:when>
+		<c:when test="${requestScope.code=='esuccess'}">
+			<script type="text/javascript">
 		alert('당신의 아이디는' + ${id }+'입니다.');
 		</script>
-	</c:when>
-	<c:when test="${requestScope.code=='efail'}">
-		<script type="text/javascript">
+		</c:when>
+		<c:when test="${requestScope.code=='efail'}">
+			<script type="text/javascript">
 		alert('등록되지 않은 이메일입니다.');
 		</script>
-	</c:when>
-	<c:when test="${requestScope.code=='psuccess'}">
-		<script type="text/javascript">
+		</c:when>
+		<c:when test="${requestScope.code=='psuccess'}">
+			<script type="text/javascript">
 		alert('당신의 비밀번호는' + ${pwd }+'입니다.');
 		</script>
-	</c:when>
-	<c:when test="${requestScope.code=='pfail'}">
-		<script type="text/javascript">
+		</c:when>
+		<c:when test="${requestScope.code=='pfail'}">
+			<script type="text/javascript">
 		alert('등록되지 않은 아이디 또는 이메일입니다.');
 		</script>
-	</c:when>
-	<c:when test="${requestScope.code=='wsuccess'}">
-		<script type="text/javascript">
+		</c:when>
+		<c:when test="${requestScope.code=='wsuccess'}">
+			<script type="text/javascript">
 		alert('회원탈퇴되셨습니다. 그동안 이용해주셔서 감사합니다.');
 		</script>
-	</c:when>
-	<c:when test="${requestScope.code=='wfail'}">
-		<script type="text/javascript">
+		</c:when>
+		<c:when test="${requestScope.code=='wfail'}">
+			<script type="text/javascript">
 		alert('회원탈퇴에 실패했습니다.');
 		</script>
-	</c:when>
-</c:choose>
+		</c:when>
+	</c:choose>
 
 </body>
-<script src="/semi/js/pantalk.js?ver=4" type="text/javascript" charset="UTF-8"></script>
+<script src="/semi/js/pantalk.js?ver=4" type="text/javascript"
+	charset="UTF-8"></script>
 <script type="text/javascript">
 	var pt = new pantalk("${sessionScope.id}", "${sessionScope.nic}");
 	pt.startCount();

@@ -48,7 +48,7 @@ public class GboardDetailController extends HttpServlet {
 			request.setAttribute("vo", vo);
 			request.setAttribute("gclist", list);
 			request.setAttribute("isrecomm", isrecomm);
-			request.getRequestDispatcher("/go/gdetail.jsp").forward(request, response);
+			request.getRequestDispatcher("/poke/main.jsp?page=/go/gdetail.jsp").forward(request, response);
 		} else {
 			response.sendRedirect("gboard.do");
 		}

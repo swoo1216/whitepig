@@ -117,7 +117,7 @@ function pantalk(receiverId, receiverNic) {
 		var si = setInterval(function (){
 			xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = function(){
-				if(this.readyState == 4 & this.status == 200){
+				if(this.readyState == 4 && this.status == 200){
 					var text = this.responseText;
 					var json = JSON.parse(text);
 					

@@ -1,7 +1,9 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -166,7 +168,14 @@
 	});
 	function gameover(){
 		clearInterval(end);
-		//alert(score);
+		xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if(this.readyState == 4 && this.status == 200){
+				alert("종료");
+			}
+		}
+		xhr.open("get", "/semi/go/getGamePoint.do?id=${sessionScope.id}&getPoint=" + score);
+		xhr.send();
 	}
 	</script>
 </body>

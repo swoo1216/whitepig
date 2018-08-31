@@ -52,7 +52,7 @@ public class GboardListController extends HttpServlet {
 		request.setAttribute("sort", sort);
 		request.setAttribute("search", search);
 		request.setAttribute("scontent", scontent);
-		request.getRequestDispatcher("/go/gboard.jsp").forward(request, response);
-		;
+		// request.getRequestDispatcher("/go/gboard.jsp").forward(request, response);
+		request.getRequestDispatcher("/poke/main.jsp?page=/go/gboard.jsp").forward(request, response);
 	}
 }

@@ -27,7 +27,7 @@ public class GboardModifyController extends HttpServlet {
 			if (request.getSession().getAttribute("id").equals(vo.getId())) {
 				if (vo != null) {
 					request.setAttribute("vo", vo);
-					request.getRequestDispatcher("/go/gmodify.jsp").forward(request, response);
+					request.getRequestDispatcher("/semi/poke/main.jsp?page=/go/gmodify.jsp").forward(request, response);
 				}
 
 			} else

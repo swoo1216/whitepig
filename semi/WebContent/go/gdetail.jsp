@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/go_frm.css?ver=2">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/go_modal.css?ver=2">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/go_frm.css?ver=2">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/go_modal.css?ver=2">
 <style type="text/css">
 #gtable table tbody td, #gtable table tbody th {
 	border-spacing: 0px;
@@ -32,13 +31,13 @@ p {
 }
 </style>
 <script type="text/javascript">
-	window.onload = function() {
-		var size = window.innerHeight || document.body.clientHeight;
-		document.getElementById("wrapper").style.height = (size - 10) + "px";
-	}
+	//window.onload = function() {
+	//	var size = window.innerHeight || document.body.clientHeight;
+	//	document.getElementById("wrapper").style.height = (size - 10) + "px";
+	//}
 	
 	function golist() {
-		location.href = "gboard.do";
+		location.href = "/semi/go/gboard.do";
 	}
 	
 	function resetRecommList(json){
@@ -546,105 +545,96 @@ p {
 <title></title>
 </head>
 <body>
-	<div id="wrapper">
-		<div id="header"></div>
-		<div id="center">
-			<div id="nav">
-				<div id="title">pants</div>
-				<button class="navButton">기동아</button>
-				<button class="navButton">넌이제</button>
-				<button class="navButton">디디디</button>
-				<button class="navButton">자자자</button>
-				<button class="navButton">이이이</button>
-				<button class="navButton" style="border-bottom: 1px solid white;">너너너</button>
-			</div>
-			<div id="content">
-				<div id="gtable">
-					<table>
-						<tr>
-							<td width="8%">제목</td>
-							<td>${vo.title}</td>
-						</tr>
-						<tr id="resetComment">
-							<td>글쓴이</td>
-							<td>${vo.nic}&nbsp;|&nbsp;조회&nbsp;${vo.hit}&nbsp;|&nbsp;작성일&nbsp;${vo.regdate}&nbsp;|&nbsp;댓글&nbsp;${vo.countComment}</td>
-						</tr>
-						<tr>
-							<td height="500px" colspan="2" style="text-align: left; vertical-align: top;">${vo.content}</td>
-						</tr>
-					</table>
-					<div id="detailFunc">
-						<button type="button" onclick="golist()">목록</button>
-						<button type="button" onclick="godeleteModal('${vo.id}')">삭제</button>
-						<button type="button" onclick="gomodify('${vo.bNum}', '${vo.id}')">수정</button>
-						<c:choose>
-							<c:when test="${isrecomm == 'false'}">
-								<button type="button" onclick="goRecomm('${sessionScope.id}', ${vo.bNum}, 0)">추천</button>
-							</c:when>
-							<c:otherwise>
-								<button type="button" onclick="deleteRecomm('${sessionScope.id}', ${vo.bNum}, 0)">추천취소</button>
-							</c:otherwise>
-						</c:choose>
-					</div>
-					<div id="comments">
-						<c:forEach var="vo" items="${gclist}">
-							<table>
-								<tr>
-									<td width="5%"><span class="clickPopup" onclick="showPopup('pop${vo.cNum}')">${vo.nic}</span></td>
-									<td width="80%"><pre>${vo.content}</pre></td>
-									<!-- <td width="7%">${vo.recomm}</td> -->
-									<td width="15%">${vo.regdate}</td>
-									<!-- 닉네임으로 작성했으면 닉네임과 비밀번호로 조회후 삭제 -->
-									<!-- 로그인해서 작성했으면 아이디로 조회후 삭제 -->
-									<td><button type="button" onclick="removeRecomm('${vo.cNum}')" style="padding: 5px 10px;">X</button></td>
-								</tr>
-							</table>
-							<div id="inputPwd${vo.cNum}" class="modal" style="display: none;">
-								<div class="modal_content">
-									<p>작성한 비밀번호를 입력해주세요.</p>
-									<br> <input type="text" id="recommPwd${vo.cNum}"><br>
-									<button type="button" onclick="checkPwd('${vo.cNum}')">입력</button>
-								</div>
-							</div>
-							<!-- popup -->
-							<div class="popup" id="pop${vo.cNum}">
-								<div class="popstyle">
-									<ul>
-										<li><a href="javascript:sendMsg('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">쪽지보내기</a></li>
-										<li><a href="">신고하기</a></li>
-									</ul>
-								</div>
-							</div>
-						</c:forEach>
-					</div>
-					<div id="insertComment">
-						<form method="post" action="/semi/go/gcinsert.do" name="commentFrm">
-							<table>
-								<tr>
-									<td width="10%">댓글</td>
-									<!-- 로그인 안되있으면 닉네임 입력하고 댓글 작성 -->
-									<c:choose>
-										<c:when test="${empty sessionScope.id}">
-											<td width="10%"><input type="text" name="nic" size="10" placeholder="닉네임"> <br> <input type="password" name="rPassword" size="10" placeholder="비밀번호"></td>
-										</c:when>
-										<c:otherwise>
-											<td width="10%">${sessionScope.nic}</td>
-											<input type="hidden" name="id" value="${sessionScope.id}">
-											<input type="hidden" name="nic" value="${sessionScope.nic}">
-										</c:otherwise>
-									</c:choose>
-									<td width="60%"><textarea rows="5" cols="100" name="content" id="tarea"></textarea></td>
-									<td width="20%"><button type="button" onclick="getList()">작성</button></td>
-								</tr>
-							</table>
-							<input type="hidden" name="bNum" value="${vo.bNum}"> <input type="hidden" name="tNum" value="0">
-						</form>
+	<div id="gtable">
+		<table>
+			<tr>
+				<td width="8%">제목</td>
+				<td>${vo.title}</td>
+			</tr>
+			<tr id="resetComment">
+				<td>글쓴이</td>
+				<td>${vo.nic}&nbsp;|&nbsp;조회&nbsp;${vo.hit}&nbsp;|&nbsp;작성일&nbsp;${vo.regdate}&nbsp;|&nbsp;댓글&nbsp;${vo.countComment}</td>
+			</tr>
+			<tr>
+				<td height="500px" colspan="2"
+					style="text-align: left; vertical-align: top;">${vo.content}</td>
+			</tr>
+		</table>
+		<div id="detailFunc">
+			<button type="button" onclick="golist()">목록</button>
+			<button type="button" onclick="godeleteModal('${vo.id}')">삭제</button>
+			<button type="button" onclick="gomodify('${vo.bNum}', '${vo.id}')">수정</button>
+			<c:choose>
+				<c:when test="${isrecomm == 'false'}">
+					<button type="button"
+						onclick="goRecomm('${sessionScope.id}', ${vo.bNum}, 0)">추천</button>
+				</c:when>
+				<c:otherwise>
+					<button type="button"
+						onclick="deleteRecomm('${sessionScope.id}', ${vo.bNum}, 0)">추천취소</button>
+				</c:otherwise>
+			</c:choose>
+		</div>
+		<div id="comments">
+			<c:forEach var="vo" items="${gclist}">
+				<table>
+					<tr>
+						<td width="5%"><span class="clickPopup"
+							onclick="showPopup('pop${vo.cNum}')">${vo.nic}</span></td>
+						<td width="80%"><pre>${vo.content}</pre></td>
+						<!-- <td width="7%">${vo.recomm}</td> -->
+						<td width="15%">${vo.regdate}</td>
+						<!-- 닉네임으로 작성했으면 닉네임과 비밀번호로 조회후 삭제 -->
+						<!-- 로그인해서 작성했으면 아이디로 조회후 삭제 -->
+						<td><button type="button"
+								onclick="removeRecomm('${vo.cNum}')" style="padding: 5px 10px;">X</button></td>
+					</tr>
+				</table>
+				<div id="inputPwd${vo.cNum}" class="modal" style="display: none;">
+					<div class="modal_content">
+						<p>작성한 비밀번호를 입력해주세요.</p>
+						<br> <input type="text" id="recommPwd${vo.cNum}"><br>
+						<button type="button" onclick="checkPwd('${vo.cNum}')">입력</button>
 					</div>
 				</div>
-			</div>
-			<div id="extra">
-				<img src="../ad1.jpg" alt="ad">
-			</div>
+				<!-- popup -->
+				<div class="popup" id="pop${vo.cNum}">
+					<div class="popstyle">
+						<ul>
+							<li><a
+								href="javascript:sendMsg('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">쪽지보내기</a></li>
+							<li><a href="">신고하기</a></li>
+						</ul>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+		<div id="insertComment">
+			<form method="post" action="/semi/go/gcinsert.do" name="commentFrm">
+				<table>
+					<tr>
+						<td width="10%">댓글</td>
+						<!-- 로그인 안되있으면 닉네임 입력하고 댓글 작성 -->
+						<c:choose>
+							<c:when test="${empty sessionScope.id}">
+								<td width="10%"><input type="text" name="nic" size="10"
+									placeholder="닉네임"> <br> <input type="password"
+									name="rPassword" size="10" placeholder="비밀번호"></td>
+							</c:when>
+							<c:otherwise>
+								<td width="10%">${sessionScope.nic}</td>
+								<input type="hidden" name="id" value="${sessionScope.id}">
+								<input type="hidden" name="nic" value="${sessionScope.nic}">
+							</c:otherwise>
+						</c:choose>
+						<td width="60%"><textarea rows="5" cols="100" name="content"
+								id="tarea"></textarea></td>
+						<td width="20%"><button type="button" onclick="getList()">작성</button></td>
+					</tr>
+				</table>
+				<input type="hidden" name="bNum" value="${vo.bNum}"> <input
+					type="hidden" name="tNum" value="0">
+			</form>
 		</div>
 	</div>
 
@@ -652,7 +642,8 @@ p {
 		<div class="modal_content">
 			<span class="close">&times;</span>
 			<p>정말 삭제하실 꺼예요?</p>
-			<button type="button" onclick="godelete('${vo.bNum}')" style="float: none;">확인</button>
+			<button type="button" onclick="godelete('${vo.bNum}')"
+				style="float: none;">확인</button>
 		</div>
 	</div>
 
@@ -722,9 +713,9 @@ window.onclick = function(event) {
     }
 }
 </script>
-<script src="/semi/js/pantalk.js?ver=4" type="text/javascript" charset="UTF-8"></script>
+<script src="/semi/js/pantalk.js?ver=4" type="text/javascript"
+	charset="UTF-8"></script>
 <script type="text/javascript">
 	var pt = new pantalk("${sessionScope.id}", "${sessionScope.nic}");
 	pt.startCount();
 </script>
-</html>

@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/go_frm.css?ver=4">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/go_modal.css?ver=4">
 
 <div class="w3-container w3-padding-32" style="min-height: 865px;">
 
@@ -52,8 +56,18 @@
 				<td style="width: 10%; vertical-align: middle;"><i
 					class="fa fa-check-square-o"> ${vo.hit }</i></td>
 				<td style="width: 15%; vertical-align: middle;"><img
-					src="img/${vo.num }.gif" style="width: 40px;"> ${vo.nic }</td>
+					src="img/${vo.num }.gif" style="width: 40px;"><span
+					class="clickPopup" onclick="showPopup('pop${vo.bnum}')">${vo.nic}</span></td>
 			</tr>
+			<div class="popup" id="pop${vo.bnum}">
+				<div class="popstyle">
+					<ul>
+						<li><a
+							href="javascript:sendMsg('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">쪽지보내기</a></li>
+						<li><a href="">신고하기</a></li>
+					</ul>
+				</div>
+			</div>
 		</c:forEach>
 	</table>
 
