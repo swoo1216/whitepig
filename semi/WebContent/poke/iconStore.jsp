@@ -197,7 +197,7 @@
 		onclick="location='list.do?search=type&keyword=rock'">바위</button>
 	<button class="w3-btn w3-large w3-round w3-ripple w3-deep-purple"
 		style="width: 80px;"
-		onclick="location='list.do?search=type&keyword=water'">독</button>
+		onclick="location='list.do?search=type&keyword=poison'">독</button>
 	<button class="w3-btn w3-large w3-round w3-ripple w3-light-blue"
 		style="width: 80px;"
 		onclick="location='list.do?search=type&keyword=flying'">비행</button>
