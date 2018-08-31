@@ -13,6 +13,10 @@ window.onload = function() {
 			this.style.display = "none";
 		}, false);
 	}
+	
+	if (event.target.className == "modal") {
+		event.target.style.display = "none";
+	}
 }
 
 function showPopup(popNum) { // 팝업띄우기

@@ -549,7 +549,8 @@
 	});
 	function gameover(){
 		clearInterval(end);
-		scroll(function() { return true; });
+		document.body.style.overflow = "hidden";
+		window.scroll(function() { return true; });
 		xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function(){
 			if(this.readyState == 4 && this.status == 200){
@@ -574,13 +575,6 @@
 			pt.imsee = false;
 		}
 	}
-	
-	var modal = document.getElementById('chat');
 
-	window.onclick = function(event) {
-	    if (event.target == modal) {
-	        modal.style.display = "none";
-	    }
-	}
 </script>
 </html>
