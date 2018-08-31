@@ -34,8 +34,8 @@ public class IconController extends HttpServlet{
 		IconDao dao=IconDao.getInstance();
 		ArrayList<IconVo> list=dao.listIcon(startRow, endRow,search,keyword);
 		int pageCount=(int)Math.ceil(dao.getCount(search,keyword)/20.0);
-		int startPage=((pageNum-1)/5*5)+1;
-		int endPage=startPage+4;
+		int startPage=((pageNum-1)/4*4)+1;
+		int endPage=startPage+3;
 		if(endPage>pageCount) {
 			endPage=pageCount;
 		}

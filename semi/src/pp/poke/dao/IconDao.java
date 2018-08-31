@@ -101,7 +101,7 @@ public class IconDao {
 		
 			String sql="select * from ( "
 				+ "select a.*, rownum rnum from( "
-				+ "select * from icon where "+search+" "+searchCase+" order by num desc "
+				+ "select * from icon where "+search+" "+searchCase+" order by num"
 				+ ")a "
 			+ ") where rnum>=? and rnum <=?";
 			pstmt=con.prepareStatement(sql);
