@@ -234,7 +234,7 @@
 				<div class="w3-container">
 
 					<div id="chatList"
-						style="width: 100%; height: 500px; overflow: auto;" id="chat">
+						style="width: 100%; height: 500px; overflow: auto;">
 
 					</div>
 					<div>
@@ -356,10 +356,21 @@
 	</c:choose>
 
 </body>
+
+
 <script src="/semi/js/pantalk.js?ver=4" type="text/javascript"
 	charset="UTF-8"></script>
 <script type="text/javascript">
 	var pt = new pantalk("${sessionScope.id}", "${sessionScope.nic}");
 	pt.startCount();
+	
+	var modal = document.getElementById('chat');
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
+	}
+
+	
 </script>
 </html>

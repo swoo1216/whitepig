@@ -567,6 +567,6 @@ function showPopup(popNum) { // 팝업띄우기
 	var popNum = document.getElementById(popNum);
 	popNum.style.display = "block";
 	popNum.style.position = "absolute";
-	popNum.style.top = event.pageY + "px";
-	popNum.style.left = (event.pageX + 30) + "px";
+	popNum.style.top = (event.pageY+20) + "px";
+	popNum.style.left = (event.pageX -40) + "px";
 }
