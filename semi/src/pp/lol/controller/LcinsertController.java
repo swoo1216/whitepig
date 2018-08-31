@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import pp.go.dao.GuserDao;
 import pp.lol.dao.LcommentDao;
 import pp.lol.vo.LcommentVo;
 @WebServlet("/lol/lcinsert.do")
@@ -21,6 +22,7 @@ public class LcinsertController extends HttpServlet{
 		String id=req.getParameter("id");
 		
 		LcommentDao.getInstance().insert(new LcommentVo(0, content, id, null, bnum, null, 0));
+		GuserDao.getInstance().upPoint(id, 5);
 		
 		req.getRequestDispatcher("/lol/ldetail.do").forward(req, resp);
 	}

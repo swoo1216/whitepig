@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/go_frm.css?ver=4">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/go_modal.css?ver=4">
 <div class="w3-container" style="min-height: 865px;">
 
 
@@ -47,7 +50,8 @@
 
 		<hr style="border-color: pale-red;">
 
-		<div class="w3-panel w3-pale-red w3-round-xlarge w3-margin w3-padding-32">
+		<div
+			class="w3-panel w3-pale-red w3-round-xlarge w3-margin w3-padding-32">
 			<div class="w3-margin">
 				${vo.content }
 				<c:choose>
@@ -79,7 +83,7 @@
 
 
 	</div>
-	
+
 	<!-- 글수정 modal -->
 	<div id="update" class="w3-modal">
 		<div class="w3-modal-content w3-animate-bottom w3-card-4"
@@ -117,7 +121,7 @@
 				<h2>글삭제</h2>
 			</header>
 			<div class="w3-container w3-margin">
-			삭제?
+				삭제?
 				<button class="w3-btn w3-round w3-ripple w3-right"
 					onclick="location='/semi/lol/ldelete.do?bnum=${vo.bnum }'">
 					<i class="fa fa-trash"></i>
@@ -133,7 +137,8 @@
 
 		<c:forEach var="vo" items="${list }">
 			<div class="w3-margin">
-				<img src="img/${vo.num }.png" style="width: 40px;"> ${vo.nic }
+				<img src="img/${vo.num }.png" style="width: 40px;"><span
+					class="clickPopup" onclick="showPopup('pop${vo.cnum}')">${vo.nic}</span>
 				<div class="w3-right" style="margin-top: 30px;">${vo.regdate }
 				</div>
 				<hr style="border-color: pale-red;">
@@ -162,6 +167,16 @@
 				</div>
 				<br>
 			</div>
+			<div class="popup" id="pop${vo.cnum}">
+				<div class="popstyle">
+					<ul>
+						<li><a
+							href="javascript:sendMsg('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">쪽지보내기</a></li>
+						<li><a
+							href="javascript:sendReport('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">신고하기</a></li>
+					</ul>
+				</div>
+			</div>
 		</c:forEach>
 
 
@@ -177,5 +192,5 @@
 		</div>
 	</div>
 </div>
-
+<script src="/semi/js/showPop.js" charset="UTF-8"></script>
 
