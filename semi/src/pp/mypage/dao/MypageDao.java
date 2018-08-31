@@ -628,6 +628,7 @@ public class MypageDao
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		System.out.println("list3 id: "+ id);
 		try
 		{
 			con = DBConnection.conn();
@@ -820,6 +821,7 @@ public class MypageDao
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		System.out.println("list4 id: "+ id);
 		try
 		{
 			con = DBConnection.conn();
@@ -827,6 +829,7 @@ public class MypageDao
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 			pstmt.setString(3, id);
+			
 			rs = pstmt.executeQuery();
 			ArrayList<MypageVo> list4 = new ArrayList<>();
 			while (rs.next())
