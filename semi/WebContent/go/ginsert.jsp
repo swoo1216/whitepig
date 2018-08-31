@@ -50,10 +50,24 @@ button:hover {
 	function golist() {
 		location.href = "/semi/go/gboard.do";
 	}
+
+	function check() {
+		if (!document.getElementsByName("title")[0].value){
+			alert("제목을 입력하세요");
+			return;
+		}
+			
+
+		if (!document.getElementsByName("content")[0].value)
+			return;
+
+
+		document.insertFrm.submit();
+	}
 </script>
 <body>
 	<div id="gtable">
-		<form method="post" action="/semi/go/ginsert.do">
+		<form name="insertFrm" method="post" action="/semi/go/ginsert.do">
 			<table>
 				<tr>
 					<td>닉네임</td>
@@ -70,7 +84,7 @@ button:hover {
 			</table>
 			<input type="hidden" name="id" value="${sessionScope.id}">
 			<button type="button" onclick="golist()">목록</button>
-			<button type="submit">작성</button>
+			<button type="button" onclick="check();">작성</button>
 		</form>
 	</div>
 </body>
