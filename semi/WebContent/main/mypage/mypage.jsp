@@ -15,15 +15,13 @@
 
 		xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = callback;
-		
+
 		xhr.open('get', 'miconchange.do', true);
 		xhr.send();
 	}
-	function callback()
-	{
-		if (xhr.readyState == 4 && xhr.status == 200)
-		{
-				
+	function callback() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+
 			var text = xhr.responseText;
 			var json = JSON.parse(text);
 			var iconlist = json.iconlist;
@@ -32,15 +30,22 @@
 
 			var id03 = document.getElementById('id03');
 
-			id03.innerHTML = "";			
-			for (var i = 0; i < iconlist.length; i++)
-			{
+			id03.innerHTML = "";
+			for (var i = 0; i < iconlist.length; i++) {
 
 				var img = document.createElement('img');
 				img.src = '/semi/poke/img/' + iconlist[i] + '.gif';
-				img.style.height='120px';
+				img.style.height = '120px';
+				img.addEventListener('click', function() {
+					console.log(this);
+					var num = this.src.split("/");
+					var num2 = num[num.length - 1];
+					location.href= "/semi/mchangeicon.do?id=${sessionScope.id}&num=" + num2.split(".")[0];
+				}, false);
+				
 				id03.appendChild(img);
 			}
+			document.getElementById("fuck").src = "poke/img/" + iconlist[i] + ".png";
 		}
 	}
 </script>
@@ -75,7 +80,7 @@
 	<div id="nic">
 		<h1 style="text-align: center; margin-top: 30px; font-size: 120px;">
 			<img src="poke/img/<%=session.getAttribute("num")%>.png"
-				onclick="idcheck()" style="height: 120px;">
+				onclick="idcheck()" style="height: 120px;" id="fuck">
 			<!-- "document.getElementById('id01').style.display='block'" -->
 			<%=session.getAttribute("nic")%></h1>
 		<br> <br>
