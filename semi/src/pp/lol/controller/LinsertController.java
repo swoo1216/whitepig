@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import pp.go.dao.GuserDao;
 import pp.lol.dao.LboardDao;
 import pp.lol.vo.LboardVo;
 @WebServlet("/lol/linsert.do")
@@ -22,6 +23,7 @@ public class LinsertController extends HttpServlet{
 		
 		LboardVo vo= new LboardVo(0, title, content, 0, 0, id, null, 0, null, 0);
 		int n=LboardDao.getInstance().insert(vo);
+		GuserDao.getInstance().upPoint(id, 10);
 		if(n>0) {
 			resp.sendRedirect("lboard.do");
 		}else {
