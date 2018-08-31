@@ -38,7 +38,7 @@ public class GboardInsertController extends HttpServlet {
 			request.setAttribute("content", content);
 			request.setAttribute("id", id);
 
-			request.getRequestDispatcher("/semi/poke/main.jsp?page=/go/ginsert.jsp").forward(request, response);
+			request.getRequestDispatcher("/poke/main.jsp?page=/go/ginsert.jsp").forward(request, response);
 		}
 
 	}

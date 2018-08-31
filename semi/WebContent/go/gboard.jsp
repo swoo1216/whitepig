@@ -26,7 +26,7 @@ ul li {
 	list-style: none;
 }
 
-.mybutton {
+button {
 	border: none;
 	background-color: #ff6666;
 	color: white;
@@ -35,7 +35,8 @@ ul li {
 	margin-top: 5px;
 	cursor: pointer;
 }
-.mybutton:hover {
+
+button:hover {
 	background-color: #ff8080;
 }
 </style>
@@ -120,7 +121,8 @@ ul li {
 					<c:forEach var="vo" items="${list}">
 						<tr>
 							<td>${vo.bNum}</td>
-							<td style="text-align: left;"><a href="gdetail.do?bNum=${vo.bNum}&tNum=0">${vo.title}</a>
+							<td style="text-align: left;"><a
+								href="gdetail.do?bNum=${vo.bNum}&tNum=0">${vo.title}</a>
 								&nbsp;[${vo.countComment}]</td>
 							<td><span class="clickPopup"
 								onclick="showPopup('pop${vo.bNum}')">${vo.nic}</span></td>
@@ -133,7 +135,8 @@ ul li {
 								<ul>
 									<li><a
 										href="javascript:sendMsg('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">쪽지보내기</a></li>
-									<li><a href="javascript:sendReport('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">신고하기</a></li>
+									<li><a
+										href="javascript:sendReport('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">신고하기</a></li>
 								</ul>
 							</div>
 						</div>
@@ -143,7 +146,8 @@ ul li {
 		</table>
 		<c:choose>
 			<c:when test="${empty sessionScope.id}">
-				<button class="mybutton" type="button" onclick="location.href = '/main/login.jsp';">로그인</button>
+				<button class="mybutton" type="button"
+					onclick="location.href = '/main/login.jsp';">로그인</button>
 			</c:when>
 			<c:otherwise>
 				<button type="button" class="mybutton"
