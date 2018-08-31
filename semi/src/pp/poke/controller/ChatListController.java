@@ -41,11 +41,13 @@ public class ChatListController extends HttpServlet{
 		ArrayList<ChatVo> list = dao.list(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 		for(int i=0;i<list.size();i++) {
 			result.append("[{\"value\": \"" + list.get(i).getId() + "\"},");
+			result.append("{\"value\": \"" + list.get(i).getNic() + "\"},");
+			result.append("{\"value\": \"" + list.get(i).getNum() + "\"},");
 			result.append("{\"value\": \"" + list.get(i).getContent() + "\"},");
 			result.append("{\"value\": \"" + list.get(i).getRegdate() + "\"}]");
 			if(i != list.size() -1) result.append(",");
 		}
-		result.append("], \"last\":\"" + list.get(list.size() -1).getchatNum() + "\"}");
+		result.append("], \"last\":\"" + list.get(list.size() -1).getChatNum() + "\"}");
 		return result.toString();
 	}
 	
@@ -56,11 +58,13 @@ public class ChatListController extends HttpServlet{
 		ArrayList<ChatVo> list = dao.listByRecent(10);
 		for(int i=0;i<list.size();i++) {
 			result.append("[{\"value\": \"" + list.get(i).getId() + "\"},");
+			result.append("{\"value\": \"" + list.get(i).getNic() + "\"},");
+			result.append("{\"value\": \"" + list.get(i).getNum() + "\"},");
 			result.append("{\"value\": \"" + list.get(i).getContent() + "\"},");
 			result.append("{\"value\": \"" + list.get(i).getRegdate() + "\"}]");
 			if(i != list.size() -1) result.append(",");
 		}
-		result.append("], \"last\":\"" + list.get(list.size() -1).getchatNum() + "\"}");
+		result.append("], \"last\":\"" + list.get(list.size() -1).getChatNum() + "\"}");
 		return result.toString();
 	}
 	
@@ -71,11 +75,13 @@ public class ChatListController extends HttpServlet{
 		ArrayList<ChatVo> list = dao.listByRecent(chatNum);
 		for(int i=0;i<list.size();i++) {
 			result.append("[{\"value\": \"" + list.get(i).getId() + "\"},");
+			result.append("{\"value\": \"" + list.get(i).getNic() + "\"},");
+			result.append("{\"value\": \"" + list.get(i).getNum() + "\"},");
 			result.append("{\"value\": \"" + list.get(i).getContent() + "\"},");
 			result.append("{\"value\": \"" + list.get(i).getRegdate() + "\"}]");
 			if(i != list.size() -1) result.append(",");
 		}
-		result.append("], \"last\":\"" + list.get(list.size() -1).getchatNum() + "\"}");
+		result.append("], \"last\":\"" + list.get(list.size() -1).getChatNum() + "\"}");
 		return result.toString();
 	}
 }

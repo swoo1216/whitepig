@@ -15,12 +15,16 @@
 	var lastNum = 0;
 	function submit() {
 		var id = '${id}';
+		var nic = '${nic}';
+		var num = '${num}';
 		var content = $('#contents').val();
 		$.ajax({
 			type : "post",
 			url : "/semi/poke/chatInsert.do",
 			data : {
 				id : id,
+				nic : nic,
+				num : num,
 				content : content
 			},
 			success : function(result) {
@@ -49,18 +53,18 @@
 				var parsed = JSON.parse(data);
 				var result = parsed.result;
 				for (var i = 0; i < result.length; i++) {
-					addChat(result[i][0].value, result[i][1].value,
-							result[i][2].value);
+					addChat(result[i][1].value, result[i][2].value,
+							result[i][3].value, result[i][4].value);
 				}
 				lastNum = Number(parsed.last);
 			}
 		});
 	}
 
-	function addChat(id, content, regdate) {
+	function addChat(nic, num, content, regdate) {
 		$('#chatList').append(
 				'<div class="w3-panel w3-pale-red w3-round-large w3-padding-16">' +
-				'<img src="/semi/poke/img/${num}.png" style="width: 30px">' + ' ${nic}' + '<br>'
+				'<img src="/semi/poke/img/' + num + '.png" style="width: 30px">' + nic + '<br>'
 						 + content + '<span class="w3-right w3-small">' + regdate + '</span>' + "</div>");
 
 		$('#chatList').scrollTop($('#chatList')[0].scrollHeight);
@@ -69,7 +73,7 @@
 	function getInfiniteChat() {
 		setInterval(function() {
 			chatList(lastNum)
-		}, 3000);
+		}, 1000);
 	}
 	
 	function chatFocus() {

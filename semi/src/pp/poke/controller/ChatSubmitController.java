@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pp.poke.dao.ChatDao;
+import pp.poke.vo.ChatVo;
 @WebServlet("/poke/chatInsert.do")
 public class ChatSubmitController extends HttpServlet{
 	@Override
@@ -16,11 +17,16 @@ public class ChatSubmitController extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 		resp.setContentType("text/plain;charset=utf-8");
 		String id = req.getParameter("id");
+		String nic = req.getParameter("nic");
+		int num = Integer.parseInt(req.getParameter("num"));
 		String content = req.getParameter("content");
+		
+		ChatVo vo=new ChatVo(0, id, nic, num, content, null);
+		
 		if(id == null || id.equals("") || content == null || content.equals("")) {
 			resp.getWriter().write("0");
 		}else {
-			resp.getWriter().write(ChatDao.getInstance().submit(id, content) + "");
+			resp.getWriter().write(ChatDao.getInstance().submit(vo) + "");
 		}
 	}
 }
