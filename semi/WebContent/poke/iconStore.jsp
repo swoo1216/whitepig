@@ -158,7 +158,9 @@
 </div>
 
 
-<div class="w3-center" style="margin-top: 40px;">
+<div>
+
+<div class="w3-center" style="margin-top: 30px;">
 	<button class="w3-btn w3-large w3-round w3-ripple w3-teal"
 		style="width: 80px;"
 		onclick="location='list.do?search=type&keyword=grass'">풀</button>
@@ -211,11 +213,11 @@
 
 
 <div class="w3-center w3-padding-32">
-	<div class="w3-panel w3-teal w3-round-xlarge">
+	<div class="w3-panel w3-sand w3-round-xlarge">
 		<c:forEach var="vo" items="${list }" varStatus="status">
 			<c:set var="no" value="${vo.num }" scope="session"></c:set>
-			<img src="img/${vo.num }.png" style="width: 70px; cursor: pointer;"
-				class="w3-hover-grayscale w3-margin" id="img"
+			<img src="img/${vo.num }.png" style="width: 70px; cursor: pointer;margin: 20px;"
+				class="w3-opacity w3-hover-opacity-off" id="img"
 				onclick="document.getElementById('icon${ status.count }').style.display='block';"
 				title="${vo.name }">
 
@@ -234,7 +236,7 @@
 					<div class="w3-container w3-margin w3-large">
 						<img src="img/${vo.num }.gif" style="width: 70px">
 						<div class="w3-panel w3-teal w3-round-xlarge">
-							<p>${vo.name }</p>
+							<p><strong>${vo.name }</strong></p>
 							<p>${vo.type }</p>
 							<p>
 								<i class="fa fa-btc"></i> ${vo.price }
@@ -379,3 +381,4 @@
 		</script>
 </c:if>
 
+</div>

@@ -172,7 +172,7 @@
 
 
 
-			<a class="w3-bar-item w3-button w3-hover-white" href="/semi/go/gboard.do"><img
+			<a class="w 3-bar-item w3-button w3-hover-white" href="/semi/go/gboard.do"><img
 				alt="" src="/semi/images/슈퍼마리오아이콘.png" style="width: 50px;">Go</a>
 			<hr style="border-color: white;">
 			<a class="w3-bar-item w3-button w3-hover-white"
@@ -223,7 +223,7 @@
 		<!-- 채팅 modal -->
 		<div class="w3-modal" id="chat">
 			<div class="w3-modal-content w3-animate-zoom w3-card-4"
-				style="width: 480px;">
+				style="width: 60%;">
 				<header class="w3-container w3-pale-red">
 					<span
 						onclick="document.getElementById('chat').style.display='none'"
@@ -234,11 +234,11 @@
 				<div class="w3-container">
 
 					<div id="chatList"
-						style="width: 450px; height: 500px; overflow: auto;" id="chat">
+						style="width: 100%; height: 500px; overflow: auto;" id="chat">
 
 					</div>
 					<div>
-						<textarea rows="3" cols="40" id="contents" class="w3-round"></textarea>
+						<textarea rows="3" style="width: 90%;" id="contents" class="w3-round"></textarea>
 						<input type="button" class="w3-round w3-ripple w3-pale-red"
 							onclick="submit()" value="전송">
 
