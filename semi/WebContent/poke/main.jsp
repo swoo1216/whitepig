@@ -127,7 +127,7 @@
 					onclick="location.href='/semi/mboardcount.do'">
 					<img alt="" src="/semi/poke/img/${num }.png" style="width: 30px;">
 				</button>
-				
+
 			</c:when>
 			<c:otherwise>
 				<button
@@ -180,22 +180,21 @@
 
 
 
-<<<<<<< HEAD
-			<a class="w3-bar-item w3-button w3-hover-white"
+			<<<<<<< HEAD <a class="w3-bar-item w3-button w3-hover-white"
 				href="/semi/go/gboard.do"><img alt=""
 				src="/semi/images/슈퍼마리오아이콘.png" style="width: 50px;">Go</a>
-=======
-			<a class="w 3-bar-item w3-button w3-hover-white" href="/semi/go/gboard.do"><img
-				alt="" src="/semi/images/슈퍼마리오아이콘.png" style="width: 50px;">Go</a>
->>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
+			======= <a class="w 3-bar-item w3-button w3-hover-white"
+				href="/semi/go/gboard.do"><img alt=""
+				src="/semi/images/슈퍼마리오아이콘.png" style="width: 50px;">Go</a>
+			>>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
 			<hr style="border-color: white;">
 			<a class="w3-bar-item w3-button w3-hover-white"
 				href="/semi/poke/pboard.do"><img alt=""
 				src="/semi/images/포켓몬아이콘.png" style="width: 50px;">Poke</a>
 			<hr style="border-color: white;">
 			<a class="w3-bar-item w3-button w3-hover-white"
-				href="/semi/poke/list.do"><img alt="" src="/semi/poke/img/25.gif"
-				style="width: 50px;">Icon</a>
+				href="/semi/poke/list.do"><img alt=""
+				src="/semi/poke/img/25.gif" style="width: 50px;">Icon</a>
 			<hr style="border-color: white;">
 			<a class="w3-bar-item w3-button w3-hover-white"
 				href="/semi/lol/lboard.do"><img alt=""
@@ -249,11 +248,10 @@
 				<div class="w3-container">
 
 					<div id="chatList"
-						style="width: 100%; height: 500px; overflow: auto;">
-
-					</div>
+						style="width: 100%; height: 500px; overflow: auto;"></div>
 					<div>
-						<textarea rows="3" style="width: 90%;" id="contents" class="w3-round"></textarea>
+						<textarea rows="3" style="width: 90%;" id="contents"
+							class="w3-round"></textarea>
 						<input type="button" class="w3-round w3-ripple w3-pale-red"
 							onclick="submit()" value="전송">
 
@@ -574,13 +572,11 @@
 	var pt = new pantalk("${sessionScope.id}", "${sessionScope.nic}");
 	pt.startCount();
 	
-	var modal = document.getElementById('chat');
-	window.onclick = function(event) {
-	    if (event.target == modal) {
-	        modal.style.display = "none";
-	    }
+	window.onclick = function(event) { // 모달 닫기
+		if (event.target.className == "modal") {
+			event.target.style.display = "none";
+			pt.imsee = false;
+		}
 	}
-
-	
 </script>
 </html>

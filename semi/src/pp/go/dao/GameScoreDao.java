@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import pp.go.db.DBConnection;
 import pp.go.vo.GameScoreVo;
@@ -68,6 +69,7 @@ public class GameScoreDao {
 	}
 
 	public ArrayList<GameScoreVo> list() {
+		ArrayList<GameScoreVo> list = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -76,8 +78,18 @@ public class GameScoreDao {
 
 		try {
 			conn = DBConnection.conn();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				int gameNum = rs.getInt("gameNum");
+				String id = rs.getString("id");
+				int getPoint = rs.getInt("getPoint");
+			}
+			return list;
 		} catch (SQLException se) {
 			System.out.println(se.getMessage());
+			return null;
 		} finally {
 			DBConnection.close(rs, pstmt, conn);
 		}
