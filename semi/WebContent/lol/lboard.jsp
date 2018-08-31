@@ -7,7 +7,7 @@
 	href="<%=request.getContextPath()%>/css/go_modal.css?ver=4">
 <div class="w3-container w3-padding-32" style="min-height: 865px;">
 
-	<!-- 	<button class="w3-btn w3-round w3-ripple w3-teal"
+	<!-- 	<button class="w3-btn w3-round w3-ripple w3-pale-red"
 		style="width: 80px;"
 		onclick="location='/semi/lol/lboard.do?sort=regdate'">최신순</button> -->
 	<button class="w3-btn w3-round w3-ripple w3-red" style="width: 80px;"
@@ -23,7 +23,7 @@
 			<option value="nic">아이디</option>
 		</select> <input class="w3-round" type="text" name="keyword"
 			style="height: 38px; vertical-align: middle;">
-		<button class="w3-btn w3-round w3-ripple w3-teal"
+		<button class="w3-btn w3-round w3-ripple w3-pale-red"
 			style="height: 38px;">Search</button>
 	</form>
 
@@ -48,7 +48,7 @@
 				<td style="width: 5%; vertical-align: middle;">${vo.bnum }</td>
 				<td style="width: 50%; vertical-align: middle;"><a
 					href="<%=request.getContextPath() %>/lol/ldetail.do?bnum=${vo.bnum }"
-					class="w3-hover-teal" style="text-decoration: none;">${vo.title }</a></td>
+					class="w3-hover-pale-red" style="text-decoration: none;">${vo.title }</a></td>
 				<td style="width: 10%; vertical-align: middle;"><i
 					class="fa fa-twitch"> ${vo.commCnt }</i></td>
 				<td style="width: 10%; vertical-align: middle;"><i
@@ -72,7 +72,7 @@
 		</c:forEach>
 	</table>
 
-	<button class="w3-btn w3-round w3-ripple w3-teal w3-margin w3-right"
+	<button class="w3-btn w3-round w3-ripple w3-pale-red w3-margin w3-right"
 		onclick="document.getElementById('insert').style.display='block'">글쓰기
 	</button>
 
@@ -81,7 +81,7 @@
 	<div id="insert" class="w3-modal">
 		<div class="w3-modal-content w3-animate-bottom w3-card-4"
 			style="width: 600px;">
-			<header class="w3-container w3-teal">
+			<header class="w3-container w3-pale-red">
 				<span
 					onclick="document.getElementById('insert').style.display='none'"
 					class="w3-btn w3-round w3-ripple w3-display-topright"><i
@@ -96,7 +96,7 @@
 						class="w3-round w3-margin" name="content"></textarea>
 
 					<button
-						class="w3-btn w3-round w3-ripple w3-teal w3-margin w3-right">등록</button>
+						class="w3-btn w3-round w3-ripple w3-pale-red w3-margin w3-right">등록</button>
 				</form>
 			</div>
 		</div>
@@ -109,11 +109,11 @@
 				<c:when test="${startPage>5 }">
 					<a
 						href="lboard.do?pageNum=${startPage-1 }&search=${param.search}&keyword=${param.keyword}"
-						class="w3-bar-item w3-btn w3-ripple w3-hover-teal"><i
+						class="w3-bar-item w3-btn w3-ripple w3-hover-pale-red"><i
 						class="fa fa-chevron-left"></i></a>
 				</c:when>
 				<c:otherwise>
-					<a href="" class="w3-bar-item w3-btn w3-ripple w3-hover-teal"><i
+					<a href="" class="w3-bar-item w3-btn w3-ripple w3-hover-pale-red"><i
 						class="fa fa-chevron-left"></i></a>
 				</c:otherwise>
 			</c:choose>
@@ -123,12 +123,12 @@
 					<c:when test="${pageNum==i }">
 						<a
 							href="lboard.do?pageNum=${i }&search=${param.search}&keyword=${param.keyword}"
-							class="w3-bar-item w3-btn w3-ripple w3-teal w3-hover-teal">${i }</a>
+							class="w3-bar-item w3-btn w3-ripple w3-pale-red w3-hover-pale-red">${i }</a>
 					</c:when>
 					<c:otherwise>
 						<a
 							href="lboard.do?pageNum=${i }&search=${param.search}&keyword=${param.keyword}"
-							class="w3-bar-item w3-btn w3-ripple w3-hover-teal">${i }</a>
+							class="w3-bar-item w3-btn w3-ripple w3-hover-pale-red">${i }</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
@@ -137,11 +137,11 @@
 				<c:when test="${endPage<pageCount }">
 					<a
 						href="lboard.do?pageNum=${endPage+1 }&search=${param.search}&keyword=${param.keyword}"
-						class="w3-bar-item w3-btn w3-ripple w3-hover-teal"><i
+						class="w3-bar-item w3-btn w3-ripple w3-hover-pale-red"><i
 						class="fa fa-chevron-right"></i></a>
 				</c:when>
 				<c:otherwise>
-					<a href="" class="w3-bar-item w3-btn w3-ripple w3-hover-teal"><i
+					<a href="" class="w3-bar-item w3-btn w3-ripple w3-hover-pale-red"><i
 						class="fa fa-chevron-right"></i></a>
 				</c:otherwise>
 			</c:choose>
