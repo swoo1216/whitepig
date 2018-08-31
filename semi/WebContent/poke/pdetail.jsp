@@ -187,12 +187,12 @@
 					name="content"></textarea>
 			<c:choose>
 				<c:when test="${id!=null }">
-					<button class="w3-btn w3-round w3-ripple w3-teal w3-right">등록</button>
+					<button class="w3-btn w3-round w3-ripple w3-teal w3-right w3-margin">등록</button>
 					<input type="hidden" name="id" value="${id }"> 
 					<input type="hidden" name="bnum" value="${vo.bnum }">
 				</c:when>
 				<c:otherwise>
-					<button class="w3-btn w3-round w3-ripple w3-teal w3-right" disabled="disabled">등록</button>
+					<button class="w3-btn w3-round w3-ripple w3-teal w3-right w3-margin" disabled="disabled">등록</button>
 					<input type="hidden" name="id" value="${id }"> 
 					<input type="hidden" name="bnum" value="${vo.bnum }">
 				</c:otherwise>
