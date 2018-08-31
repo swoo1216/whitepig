@@ -40,6 +40,6 @@ public class BoardCountController extends HttpServlet
 		{
 			session.setAttribute("commentcount", 0);
 		}
-		request.getRequestDispatcher("/main/mypage/mypage.jsp").forward(request, response);
+		request.getRequestDispatcher("/poke/main.jsp?page=/main/mypage/mypage.jsp").forward(request, response);
 	}
 }
