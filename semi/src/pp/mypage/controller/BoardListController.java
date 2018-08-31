@@ -67,6 +67,6 @@ public class BoardListController extends HttpServlet
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageNum", pageNum);
-		request.getRequestDispatcher("/main/mypage/boardList.jsp").forward(request, response);
+		request.getRequestDispatcher("/poke/main.jsp?page=/main/mypage/boardList.jsp").forward(request, response);
 	}
 }

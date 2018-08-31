@@ -74,7 +74,7 @@
 </style>
 <body>
 	<div id="modifyInfo">
-		<a href="/semi/main/mypage/modifyInfo.jsp">[회원정보 수정하기]</a> <a
+		<a href="/semi/poke/main.jsp?page=/main/mypage/modifyInfo.jsp">[회원정보 수정하기]</a> <a
 			href="<%=request.getContextPath()%>/mmain.do">[메인으로 가기]</a>
 	</div>
 	<div id="nic">

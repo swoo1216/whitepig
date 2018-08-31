@@ -66,6 +66,6 @@ public class CommentListController extends HttpServlet
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageNum", pageNum);
-		request.getRequestDispatcher("/main/mypage/commentList.jsp").forward(request, response);
+		request.getRequestDispatcher("/poke/main.jsp?page=/main/mypage/commentList.jsp").forward(request, response);
 	}
 }
