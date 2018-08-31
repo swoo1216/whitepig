@@ -85,6 +85,8 @@ public class GameScoreDao {
 				int gameNum = rs.getInt("gameNum");
 				String id = rs.getString("id");
 				int getPoint = rs.getInt("getPoint");
+
+				list.add(new GameScoreVo(gameNum, id, getPoint));
 			}
 			return list;
 		} catch (SQLException se) {
