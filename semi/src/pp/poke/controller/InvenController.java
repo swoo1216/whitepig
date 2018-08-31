@@ -60,6 +60,8 @@ public class InvenController extends HttpServlet{
 		InvenDao dao=InvenDao.getInstance();
 		dao.insert(vo);
 		
+		req.setAttribute("point", pay);
+		req.getSession().setAttribute("point", pay);
 		
 		resp.sendRedirect("list.do");
 		}

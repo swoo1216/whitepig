@@ -26,6 +26,22 @@
 #gtable table tbody td {
 	border-bottom: 1px solid black;
 }
+
+button {
+	border: none;
+	background-color: #ff6666;
+	color: white;
+	text-align: center;
+	padding: 10px 10px 10px 10px;
+	margin-top: 5px;
+	cursor: pointer;
+	button: hover{    
+	background-color: #ff8080;
+}
+
+button:hover {
+	background-color: #ff8080;
+}
 </style>
 <script type="text/javascript">
 	window.onload = function() {

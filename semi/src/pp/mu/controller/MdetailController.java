@@ -20,6 +20,6 @@ public class MdetailController extends HttpServlet {
 		System.out.println("do:"+ mnum);
 		MboardVo vo=dao.muDetail(mnum);
 		request.setAttribute("vo", vo);
-		request.getRequestDispatcher("/mu/mudetail.jsp").forward(request, response);
+		request.getRequestDispatcher("/poke/main.jsp?page=/mu/mudetail.jsp").forward(request, response);
 	}
 }

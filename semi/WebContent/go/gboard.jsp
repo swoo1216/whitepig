@@ -25,6 +25,19 @@ td {
 ul li {
 	list-style: none;
 }
+
+.mybutton {
+	border: none;
+	background-color: #ff6666;
+	color: white;
+	text-align: center;
+	padding: 10px 10px 10px 10px;
+	margin-top: 5px;
+	cursor: pointer;
+}
+.mybutton:hover {
+	background-color: #ff8080;
+}
 </style>
 <script type="text/javascript">
 	window.onload = function() {
@@ -76,10 +89,10 @@ ul li {
 </script>
 <body>
 	<div id="gtable">
-		<button onclick="sendSort('bNum')">최신순</button>
-		<button onclick="sendSort('hit')">조회순</button>
-		<button onclick="sendSort('recomm')">추천순</button>
-		<button onclick="sendScontent()">검색^^</button>
+		<button class="mybutton" onclick="sendSort('bNum')">최신순</button>
+		<button class="mybutton" onclick="sendSort('hit')">조회순</button>
+		<button class="mybutton" onclick="sendSort('recomm')">추천순</button>
+		<button class="mybutton" onclick="sendScontent()">검색^^</button>
 		<select id="search" style="height: 23px">
 			<option value="content"
 				<c:if test="${search == 'content'}">selected</c:if>>내용</option>
@@ -120,7 +133,7 @@ ul li {
 								<ul>
 									<li><a
 										href="javascript:sendMsg('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">쪽지보내기</a></li>
-									<li><a href="">신고하기</a></li>
+									<li><a href="javascript:sendReport('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">신고하기</a></li>
 								</ul>
 							</div>
 						</div>
@@ -130,10 +143,10 @@ ul li {
 		</table>
 		<c:choose>
 			<c:when test="${empty sessionScope.id}">
-				<button type="button" onclick="location.href = '/main/login.jsp';">로그인</button>
+				<button class="mybutton" type="button" onclick="location.href = '/main/login.jsp';">로그인</button>
 			</c:when>
 			<c:otherwise>
-				<button type="button"
+				<button type="button" class="mybutton"
 					onclick="location.href = '/semi/poke/main.jsp?page=/go/ginsert.jsp';">글쓰기</button>
 			</c:otherwise>
 		</c:choose>
@@ -171,7 +184,7 @@ ul li {
 		</div>
 	</div>
 </body>
-<script src="/semi/js/pantalk.js?ver=4" type="text/javascript"
+<script src="/semi/js/pantalk.js?ver=5" type="text/javascript"
 	charset="UTF-8"></script>
 <script type="text/javascript">
 	var pt = new pantalk("${sessionScope.id}", "${sessionScope.nic}");

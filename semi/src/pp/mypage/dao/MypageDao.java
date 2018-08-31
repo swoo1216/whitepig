@@ -54,33 +54,45 @@ public class MypageDao
 		}
 	}
 
-	public String countComment(String id)
+	public int countComment(String id)
 	{
 		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		PreparedStatement[] pstmt = new PreparedStatement[4];
+		ResultSet[] rs = new ResultSet[4];
+		
+		String[] sql = new String[4];
+		sql[0] = "select count(*) count from lcomment where id=?";
+		sql[1] = "select count(*) count from gcomment where id=?";
+		sql[2] = "select count(*) count from pcomment where id=?";
+		sql[3] = "select count(*) count from mcomment where id=?";
+		
+		int ctotal = 0;
 		try
 		{
 			con = DBConnection.conn();
-			String sql = "select count(*) count from lcomment where id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			if (rs.next())
+			for(int i = 0; i<4; i++)
 			{
-				String n = rs.getString("count");
-				return n;
-			} else
-			{
-				return null;
+				pstmt[i] = con.prepareStatement(sql[i]);
+				pstmt[i].setString(1, id);
+				
+				rs[i] = pstmt[i].executeQuery();
+				rs[i].next();
+				ctotal+= rs[i].getInt("count");
+				System.out.println("ctotal" + ctotal);
 			}
-		} catch (SQLException se)
+			return ctotal;
+		}
+		catch(SQLException se)
 		{
 			System.out.println(se.getMessage());
-			return null;
-		} finally
+			return -1;
+		}
+		finally
 		{
-			DBConnection.close(rs, pstmt, con);
+			for(int i=0; i<4; i++)
+			{
+				DBConnection.close(rs[i], pstmt[i], con);
+			}
 		}
 	}
 
@@ -363,22 +375,35 @@ public class MypageDao
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
-
-	public int hitup(int bnum)
+	public ArrayList<Integer> iconlist(String id)
 	{
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try
 		{
 			con = DBConnection.conn();
-			String sql = "update lboard set hit=hit+1 where bnum=?";
+			String sql = "select num from inven where id = ? order by num";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, bnum);
-			return pstmt.executeUpdate();
-		} catch (SQLException se)
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			ArrayList<Integer> iconlist = new ArrayList<>();
+			while(rs.next())
+			{
+				int num = rs.getInt("num");
+				iconlist.add(num);
+			}
+			System.out.println(iconlist);
+			return iconlist;
+		}
+		catch(SQLException se)
 		{
 			System.out.println(se.getMessage());
-			return -1;
 		}
+		finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+		return null;
 	}
 }

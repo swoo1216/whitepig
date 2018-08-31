@@ -415,6 +415,148 @@ function sendMsg(senderId, senderNic, receiverId, receiverNic) {
 	}
 }
 
+// 신고하기
+function sendReport(reporterId, reporterNic, suspectId, suspectNic) { 
+	if (!reporterId) {
+		var loginAlert = document.createElement("div");
+		loginAlert.className = "modal";
+		loginAlert.style.display = "block";
+
+		var modalContent = document.createElement("div");
+		modalContent.className = "modal_content";
+		var p = document.createElement("p");
+		var text = document.createTextNode("로그인해주세요");
+
+		p.appendChild(text);
+		modalContent.appendChild(p);
+		loginAlert.appendChild(modalContent);
+
+		document.body.appendChild(loginAlert);
+
+		setTimeout(function() {
+			loginAlert.style.display = "none";
+		}, 2000);
+		return;
+	} else { // 신고
+		var sendForm = document.createElement("div");
+		sendForm.className = "modal";
+		sendForm.style.display = "block";
+
+		var modalContent = document.createElement("div");
+		modalContent.className = "modal_content";
+
+		var userDiv = document.createElement("div");
+		
+		var table = document.createElement("table");
+		table.style.textAlign = "left";
+		var tbody = document.createElement("tbody");
+		
+		var tr1 = document.createElement("tr");
+		var tr2 = document.createElement("tr");
+		var tr3 = document.createElement("tr");
+		var tr4 = document.createElement("tr");
+		
+		var tr1_td1 = document.createElement("td");
+		var tr1_td2 = document.createElement("td");
+		
+		var tr2_td1 = document.createElement("td");
+		var tr2_td2 = document.createElement("td");
+		
+		var tr3_td1 = document.createElement("td");
+		var tr3_td2 = document.createElement("td");
+		
+		var tr4_td1 = document.createElement("td");
+		tr4_td1.colSpan = "2";
+		
+		var sText1 = document.createTextNode("신고자");
+		var sText2 = document.createTextNode(reporterNic);
+		var rText1 = document.createTextNode("피신고자");
+		var rText2 = document.createTextNode(suspectNic);
+		
+		var rtypeText = document.createTextNode("신고유형");
+		
+		var rtype = document.createElement("select");
+		
+		var optionText1 = document.createTextNode("욕설"); // rtype
+		var optionText2 = document.createTextNode("부적절한 내용");
+		var optionText3 = document.createTextNode("관리자 비난");
+		var optionText4 = document.createTextNode("Guitar");
+		
+		var option1 = document.createElement("option");
+		option1.value = "욕설"
+		var option2 = document.createElement("option");
+		option2.value = "부적절한 내용";
+		var option3 = document.createElement("option");
+		option3.value = "관리자 비난";
+		var option4 = document.createElement("option");
+		option4.value = "Guitar";
+		
+		option1.appendChild(optionText1);
+		option2.appendChild(optionText2);
+		option3.appendChild(optionText3);
+		option4.appendChild(optionText4);
+		
+		rtype.appendChild(option1);
+		rtype.appendChild(option2);
+		rtype.appendChild(option3);
+		rtype.appendChild(option4);
+		
+		
+		var input = document.createElement("textarea");
+
+		var inputBtn = document.createElement("button");
+		inputBtn.style.float = "none";
+		inputBtn.addEventListener("click", function () { // 쪽지
+			if(!input.value)
+				return;
+			xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function(){
+				if(this.readyState == 4 && this.status == 200){
+					sendForm.style.display = "none";
+				}
+			}
+			xhr.open("get", "/semi/go/InsertReport.do?reporter=" + reporterId + "&suspect=" + suspectId + "&rtype=" + rtype.value + "&content=" + input.value);
+			xhr.send();
+		}, false);
+		var btnText = document.createTextNode("전송");
+		inputBtn.appendChild(btnText);
+		
+		tr1_td1.appendChild(sText1);
+		tr1_td2.appendChild(sText2);
+		
+		tr2_td1.appendChild(rText1);
+		tr2_td2.appendChild(rText2);
+		
+		tr3_td1.appendChild(rtypeText);
+		tr3_td2.appendChild(rtype);
+		
+		tr4_td1.appendChild(input);
+		tr4_td1.appendChild(inputBtn);
+		
+		tr1.appendChild(tr1_td1);
+		tr1.appendChild(tr1_td2);
+		
+		tr2.appendChild(tr2_td1);
+		tr2.appendChild(tr2_td2);
+		
+		tr3.appendChild(tr3_td1);
+		tr3.appendChild(tr3_td2);
+		
+		tr4.appendChild(tr4_td1);
+		
+		tbody.appendChild(tr1);
+		tbody.appendChild(tr2);
+		tbody.appendChild(tr3);
+		tbody.appendChild(tr4);
+		
+		table.appendChild(tbody);
+		
+		modalContent.appendChild(table);
+		sendForm.appendChild(modalContent);
+		document.body.appendChild(sendForm);
+	}
+}
+
 function showPopup(popNum) { // 팝업띄우기
 	var popup = document.getElementsByClassName("popup");
 

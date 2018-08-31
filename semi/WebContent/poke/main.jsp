@@ -179,7 +179,7 @@
 				href="/semi/lol/lboard.do"><img alt=""
 				src="/semi/images/롤아이콘.png" style="width: 50px;">LoL</a>
 			<hr style="border-color: white;">
-			<a class="w3-bar-item w3-button w3-hover-white" href="#"><img
+			<a class="w3-bar-item w3-button w3-hover-white" href="/semi/mu/mlist.do"><img
 				alt="" src="/semi/images/음악아이콘.png" style="width: 50px;">Music</a>
 			<hr style="border-color: white;">
 
@@ -205,7 +205,7 @@
 			href="/semi/lol/lboard.do"><img alt=""
 			src="/semi/images/롤아이콘.png" style="width: 30px;"> LoL</a> <a
 			class="w3-button w3-block w3-left-align w3-hover-white w3-hide-large"
-			href="#"><img alt="" src="/semi/images/음악아이콘.png"
+			href="/semi/mu/mlist.do"><img alt="" src="/semi/images/음악아이콘.png"
 			style="width: 30px;"> Music</a>
 	</div>
 
@@ -258,16 +258,7 @@
 			%>
 
 			<jsp:include page="<%=contentpage%>" />
-
-
-
 		</div>
-
-		<footer class="w3-container w3-pale-red">
-			<div class="w3-right">
-				<h5>Footer</h5>
-			</div>
-		</footer>
 	</div>
 	<script type="text/javascript">
 		function openRightMenu() {
