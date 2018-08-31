@@ -149,5 +149,5 @@
 	</div>
 </div>
 
-
+<script src="/semi/js/showPop.js" charset="UTF-8"></script>
 

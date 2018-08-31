@@ -11,7 +11,7 @@
 		<span>${vo.nic }</span> <i
 			class="fa fa-check-square-o w3-right fa-lg w3-margin"> ${vo.hit }</i>
 		<i class="fa fa-twitch w3-right fa-lg w3-margin"> ${vo.commCnt }</i><br>
-		<i class="fa fa-warning w3-right fa-lg w3-margin"></i> ${vo.regdate }
+		${vo.regdate }
 
 		<hr style="border-color: teal;">
 		<div class="w3-margin">

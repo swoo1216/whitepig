@@ -5,23 +5,6 @@ window.onclick = function(event) { // 모달 닫기
 	}
 }
 
-window.onload = function(){
-	var clickPopup = document.getElementsByClassName("clickPopup"); // 마우스포인터 효과
-	for (var i = 0; i < clickPopup.length; i++) {
-		clickPopup[i].addEventListener("mouseover", function() { // 팝업
-			this.style.cursor = "pointer";
-		}, false);
-	}
-
-	var popup = document.getElementsByClassName("popup");
-
-	for (var i = 0; i < popup.length; i++) {  // 마우스 떠나면 꺼지기
-		popup[i].addEventListener("mouseleave", function() {
-			this.style.display = "none";
-		}, false);
-	}
-}
-
 function pantalk(receiverId, receiverNic) {
 	const top = window.innerHeight || document.body.clientHeight;
 	const left = window.innerWidth || document.body.clientWidth;
@@ -126,7 +109,7 @@ function pantalk(receiverId, receiverNic) {
 			}
 			xhr.open("get", "/semi/go/SenderList.do?receiver=" + receiverId, true);
 			xhr.send();
-		}, 3000);
+		}, 1000);
 	}
 	
 	this.chatList = document.createElement("div"); // 채팅u
@@ -220,6 +203,7 @@ function updateCount(json){ // 카운트 업데이트
 		var senderId = json.senderList[i].senderId;
 		
 		var text = document.createTextNode(j + " " + c);
+		
 		var childDiv = document.createElement("div");
 		var tdiv = document.createElement("div");
 		tdiv.id = "user" + i;
@@ -241,7 +225,7 @@ function updateCount(json){ // 카운트 업데이트
 			xhr.send();
 		}, false);
 		
-		tdiv.appendChild(text);	
+		tdiv.appendChild(text);
 		childDiv.appendChild(tdiv);
 		
 		childDiv.addEventListener("mouseover", function() {
@@ -555,18 +539,4 @@ function sendReport(reporterId, reporterNic, suspectId, suspectNic) {
 		sendForm.appendChild(modalContent);
 		document.body.appendChild(sendForm);
 	}
-}
-
-function showPopup(popNum) { // 팝업띄우기
-	var popup = document.getElementsByClassName("popup");
-
-	for (var i = 0; i < popup.length; i++) {
-		popup[i].style.display = "none";
-	}
-
-	var popNum = document.getElementById(popNum);
-	popNum.style.display = "block";
-	popNum.style.position = "absolute";
-	popNum.style.top = event.pageY + "px";
-	popNum.style.left = (event.pageX + 30) + "px";
 }

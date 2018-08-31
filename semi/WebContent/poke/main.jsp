@@ -73,7 +73,7 @@
 	function getInfiniteChat() {
 		setInterval(function() {
 			chatList(lastNum)
-		}, 1000);
+		}, 3000);
 	}
 	
 	function chatFocus() {
@@ -82,6 +82,7 @@
 
 	
 </script>
+
 </head>
 <body>
 	<div class="w3-bar w3-top w3-pale-red w3-large" style="z-index: 4;">
@@ -90,7 +91,10 @@
 			onclick="myFunction('Demo1')">
 			<i class="fa fa-bars"></i>  Menu
 		</button>
-		<span class="w3-bar-item w3-right">Logo</span>
+
+		<button
+			class="w3-btn w3-round w3-ripple w3-pale-red w3-large w3-right"
+			onclick="goGame()">open</button>
 
 		<!-- 전체채팅 -->
 		<button
@@ -125,7 +129,7 @@
 				</button>
 				<button
 					class="w3-bar-item w3-button w3-hide-large w3-hover-white w3-right"
-					onclick="location='/semi/main/login.jsp'">
+					onclick="location='/semi/poke/main.jsp?page=/semi/main/login.jsp'">
 					<i class="fa fa-sign-in"></i>
 				</button>
 			</c:otherwise>
@@ -158,9 +162,9 @@
 						style="display: flex; margin-top: 20px;">
 						<button
 							class="w3-border-right w3-border-white w3-bar-item w3-button w3-hover-white"
-							onclick="location='/semi/main/login.jsp'">로그인</button>
+							onclick="location.href='/semi/poke/main.jsp?page=/main/login.jsp';">로그인</button>
 						<button class="w3-bar-item w3-button w3-hover-white"
-							onclick="location='/semi/main/join.jsp'">회원가입</button>
+							onclick="location='/semi/poke/main.jsp?page=/main/join.jsp'">회원가입</button>
 						<hr style="border-color: white;">
 					</div>
 				</c:otherwise>
@@ -352,7 +356,202 @@
 		</script>
 		</c:when>
 	</c:choose>
-
+	<div id="game" class="modal" style="display: none;">
+		<div id="game_modal" class="game_content">
+			<canvas id="mycanvas"></canvas>
+			<div style="float: right">
+				방향키 이동<br> 스페이스바 시작
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	function goGame(){
+		document.getElementById("game").style.display = "block";
+	}
+	
+	var gaming = false;
+	var width = 1000, height = 500, range = 30;
+	var player = {x: 500, y: 250, width: 40, height: 40, spd:10};
+	var enemy = {x: 0, y: 0, width: 30, height: 30, spd:5};
+	var enemy2 =  {x: 10, y: 0, width: 30, height: 30, spd:5};
+	var enemy3 =  {x: 20, y: 0, width: 30, height: 30, spd:5};
+	
+	var enemy4 =  {x: 0, y: 0, width: 30, height: 30, spd:5};
+	var enemy5 =  {x: width, y: 0, width: 30, height: 30, spd:5};
+	
+	var enemy6 =  {x: 0, y: height, width: 30, height: 30, spd:5};
+	var score = 0, count = 0, key = [];
+	var canvas = document.getElementById("mycanvas");
+	canvas.width = width;
+	canvas.height = height;
+	canvas.style.border = "1px solid black";
+	canvas.style.margin = "0 auto";
+	var ctx = canvas.getContext("2d");
+	
+	
+	//var gdiv = document.createElement("div");
+	//gdiv.style.cssFloat = "right";
+	
+	//var gText = document.createTextNode("방향키 이동");
+	//var gBr = document.createElement("br");
+	//var gText2 = document.createTextNode("스페이스바 시작");
+	
+	//gdiv.appendChild(gText);
+	//gdiv.appendChild(gBr);
+	//gdiv.appendChild(gText2);
+	
+	
+	window.addEventListener("keydown", function(){
+		if(event.keyCode == 32){
+			startgame();
+		}
+	}, false);
+	//start
+	var end;
+	function startgame(){
+		if(gaming)
+			return;
+		gaming = true;
+		scroll(function() { return false; });
+		width = 1000, height = 500, range = 30;
+		player = {x: 500, y: 250, width: 40, height: 40, spd:10};
+		enemy = {x: 0, y: 0, width: 30, height: 30, spd:5};
+		enemy2 =  {x: 10, y: 0, width: 30, height: 30, spd:5};
+		enemy3 =  {x: 20, y: 0, width: 30, height: 30, spd:5};
+		
+		enemy4 =  {x: 0, y: 0, width: 30, height: 30, spd:5};
+		enemy5 =  {x: width, y: 0, width: 30, height: 30, spd:5};
+		
+		enemy6 =  {x: 0, y: height, width: 30, height: 30, spd:5};
+		score = 0
+		count = 0
+		key = [];
+		end = setInterval(function(){
+			  update();
+			  draw();
+			},10)
+	}
+	
+	function draw(){
+	  ctx.save();
+	  ctx.fillStyle = "white";
+	  ctx.fillRect(0,0,width,height);
+	  ctx.fillStyle = "red";
+	  ctx.fillRect(enemy.x-enemy.width/2, enemy.y-enemy.height/2, enemy.width, enemy.height);
+	  ctx.fillRect(enemy2.x-enemy2.width/2,enemy2.y-enemy2.height/2,enemy2.width,enemy2.height);
+	  ctx.fillRect(enemy3.x-enemy3.width/2,enemy3.y-enemy3.height/2,enemy3.width,enemy3.height);
+	  
+	  ctx.fillRect(enemy4.x-enemy4.width/2,enemy4.y-enemy4.height/2,enemy4.width,enemy4.height);
+	  ctx.fillRect(enemy5.x-enemy5.width/2,enemy5.y-enemy5.height/2,enemy5.width,enemy5.height);
+	  ctx.fillRect(enemy6.x-enemy6.width/2,enemy6.y-enemy6.height/2,enemy6.width,enemy6.height);
+	  ctx.fillStyle = "black";
+	  ctx.fillRect(player.x-player.width/2,player.y-player.height/2,player.width,player.height);
+	  ctx.font = "20px Arial";
+	  ctx.fillStyle = "black";
+	  ctx.fillText("Score: "+score,0,20);
+	  ctx.restore();
+	}
+	function update(){
+	  if(player.x >= enemy.x-range && player.x <= enemy.x+range && player.y >= enemy.y-range && player.y <= enemy.y+range ){
+	    gameover();
+	    gaming = false;
+	    
+	  }
+	  if(player.x >= enemy2.x-range && player.x <= enemy2.x+range && player.y >= enemy2.y-range && player.y <= enemy2.y+range ){
+		  gameover();
+		  gaming = false;
+		  }
+	  if(player.x >= enemy3.x-range && player.x <= enemy3.x+range && player.y >= enemy3.y-range && player.y <= enemy3.y+range ){
+		  gameover();
+		  gaming = false;
+		  }
+	  if(player.x >= enemy4.x-range && player.x <= enemy4.x+range && player.y >= enemy4.y-range && player.y <= enemy4.y+range ){
+		  gameover();
+		  gaming = false;
+		  }
+	  if(player.x >= enemy5.x-range && player.x <= enemy5.x+range && player.y >= enemy5.y-range && player.y <= enemy5.y+range ){
+		  gameover();
+		  gaming = false;
+		  }
+	  if(player.x >= enemy6.x-range && player.x <= enemy6.x+range && player.y >= enemy6.y-range && player.y <= enemy6.y+range ){
+		  gameover();
+		  gaming = false;
+		  }
+	  if(enemy.y > height){
+	    enemy.x = Math.ceil(Math.random()*width);
+	    enemy.y = 0;
+	    enemy.spd = 1;
+	    score = score + 10;
+	  }
+	  if(enemy2.y > height){
+		    enemy2.x = Math.ceil(Math.random()*width);
+		    enemy2.y = 0;
+		    enemy2.spd = 1;
+		    score = score + 1;
+	 }
+	 if(enemy3.y > height){
+		    enemy3.x = Math.ceil(Math.random()*width);
+		    enemy3.y = 0;
+		    enemy3.spd = 1;
+		    score = score + 1;
+	 }
+	  
+	  if(enemy4.x > width){
+		  enemy4.x = 0;
+		  enemy4.y = Math.ceil(Math.random()*height);
+		  enemy4.spd = 1;
+		  score = score + 10;
+	  }
+	  if(enemy5.x < 0){
+		  enemy5.x = width;
+		  enemy5.y = Math.ceil(Math.random()*height);
+		  enemy5.spd = 1;
+		  score = score + 10;
+	  }
+	  if(enemy6.y < 0){
+		  enemy6.x = Math.ceil(Math.random()*width);
+		  enemy6.y = height;
+		  enemy6.spd = 1;
+		  score = score + 10;
+	  }
+	  
+	  if(key[37]&&player.x-player.width/2>0) player.x -= player.spd;
+	  if(key[38]&&player.y-player.height/2>0) player.y -= player.spd;
+	  if(key[39]&&player.x+player.width/2<width) player.x += player.spd;
+	  if(key[40]&&player.y+player.height/2<height) player.y += player.spd;
+	  enemy.y += enemy.spd;
+	  enemy.spd += Math.floor(Math.random() * 50) / 100;
+	  enemy2.y += enemy2.spd;
+	  enemy2.spd += Math.floor(Math.random() * 50) / 100;
+	  enemy3.y += enemy3.spd;
+	  enemy3.spd += Math.floor(Math.random() * 50) / 100;
+	  
+	  enemy4.x += enemy4.spd;
+	  enemy4.spd += Math.floor(Math.random() * 50) / 100;
+	  enemy5.x -= enemy5.spd;
+	  enemy5.spd += Math.floor(Math.random() * 50) / 100;
+	  
+	  enemy6.y -= enemy6.spd;
+	  enemy6.spd += Math.floor(Math.random() * 50) / 100;
+	}
+	window.addEventListener("keydown", function(e){
+	  key[e.keyCode] = true;
+	});
+	window.addEventListener("keyup", function(e){
+	  key[e.keyCode] = false;
+	});
+	function gameover(){
+		clearInterval(end);
+		scroll(function() { return true; });
+		xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if(this.readyState == 4 && this.status == 200){
+			}
+		}
+		xhr.open("get", "/semi/go/getGamePoint.do?id=${sessionScope.id}&getPoint=" + score);
+		xhr.send();
+	}
+	</script>
 </body>
 <script src="/semi/js/pantalk.js?ver=4" type="text/javascript"
 	charset="UTF-8"></script>
