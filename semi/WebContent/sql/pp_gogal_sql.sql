@@ -104,5 +104,10 @@ create table report
 	content varchar2(1000)
 );
 
-
+create table gamescore
+(
+    gameNum number(5) primary key,
+    id varchar2(30),
+    getPoint number(10)
+);
 

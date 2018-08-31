@@ -64,7 +64,8 @@
 					<ul>
 						<li><a
 							href="javascript:sendMsg('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">쪽지보내기</a></li>
-						<li><a href="">신고하기</a></li>
+						<li><a
+										href="javascript:sendReport('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">신고하기</a></li>
 					</ul>
 				</div>
 			</div>
@@ -148,5 +149,5 @@
 	</div>
 </div>
 
-
+<script src="/semi/js/showPop.js" charset="UTF-8"></script>
 

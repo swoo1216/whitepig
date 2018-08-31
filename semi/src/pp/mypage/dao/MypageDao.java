@@ -816,6 +816,8 @@ public class MypageDao
 		String sql = "select * from(select aa.*,rownum rnum from(select"
 				+ " bnum, title, content, hit, recomm, id, regdate from"
 				+ " mboard order by bnum desc)aa) where rnum>=? and rnum<=? and id=?";
+//		String sql = "select * from(select aa.*,rownum rnum from(select * from"
+//				+ " lboard order by bnum desc)aa) where rnum>=? and rnum<=? and id=?";
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -830,7 +832,6 @@ public class MypageDao
 			
 			rs = pstmt.executeQuery();
 			ArrayList<MypageVo> list4 = new ArrayList<>();
-			System.out.println(list4);
 			while (rs.next())
 			{
 				int bnum = rs.getInt("bnum");

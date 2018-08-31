@@ -4,6 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/go_frm.css?ver=4">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/go_modal.css?ver=4">
 <title>Insert title here</title>
 <style type="text/css">
 * {

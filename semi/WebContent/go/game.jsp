@@ -5,29 +5,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/go_frm.css?ver=4">
+	href="<%=request.getContextPath()%>/css/go_frm.css?ver=7">
 <title>Insert title here</title>
-<script type="text/javascript">
-	window.onload = function() {
-		var size = window.innerHeight || document.body.clientHeight;
-		document.getElementById("wrapper").style.height = (size - 10) + "px";
-	}
-</script>
+
 </head>
 <body>
-	<div id="wrapper">
-		<div id="header"></div>
-		<div id="center">
-			<div id="nav"></div>
-			<div id="content">
-				<table>
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
+	<button type="button" onclick="goGame()">open</button>
+	<div id="game" class="modal" style="display: none;">
+		<div id="game_modal" class="game_content">
+			<canvas id="mycanvas"></canvas>
+			<div style="float: right">
+				방향키 이동 <br>
+				스페이스바 시작
 			</div>
 		</div>
 	</div>
 </body>
+
 </html>

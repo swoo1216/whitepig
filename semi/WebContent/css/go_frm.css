@@ -26,6 +26,10 @@ table {
 	margin-right: auto;
 }
 
+#gtable{
+	margin-top: 20px;
+	
+}
 
 
 .modal {
@@ -47,6 +51,14 @@ table {
 	padding: 20px;
 	border: 1px solid #888;
 	width: 20%;
+}
+
+.game_content {
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 65%;
 }
 
 .close {
