@@ -647,7 +647,7 @@ p {
 							<input type="hidden" name="nic" value="${sessionScope.nic}">
 						</c:otherwise>
 					</c:choose>
-					<td width="60%"><textarea rows="5" cols="130" name="content"
+					<td width="60%"><textarea rows="5" cols="100" name="content"
 							id="tarea"></textarea></td>
 					<td width="20%"><button class="mybutton" type="button"
 							onclick="getList()">작성</button></td>

@@ -1,14 +1,14 @@
 package pp.go.vo;
 
-public class GameScore {
+public class GameScoreVo {
 	private int gameNum;
 	private String id;
 	private int getPoint;
 
-	public GameScore() {
+	public GameScoreVo() {
 	}
 
-	public GameScore(int gameNum, String id, int getPoint) {
+	public GameScoreVo(int gameNum, String id, int getPoint) {
 		this.gameNum = gameNum;
 		this.id = id;
 		this.getPoint = getPoint;
