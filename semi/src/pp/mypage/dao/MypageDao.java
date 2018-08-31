@@ -827,6 +827,7 @@ public class MypageDao
 			pstmt.setString(3, id);
 			rs = pstmt.executeQuery();
 			ArrayList<MypageVo> list4 = new ArrayList<>();
+			System.out.println(list4);
 			while (rs.next())
 			{
 				int bnum = rs.getInt("bnum");
