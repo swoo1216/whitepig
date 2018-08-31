@@ -126,7 +126,7 @@ function pantalk(receiverId, receiverNic) {
 			}
 			xhr.open("get", "/semi/go/SenderList.do?receiver=" + receiverId, true);
 			xhr.send();
-		}, 5000);
+		}, 3000);
 	}
 	
 	this.chatList = document.createElement("div"); // 채팅u
