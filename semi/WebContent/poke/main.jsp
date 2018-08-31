@@ -114,8 +114,12 @@
 					onclick="location.href='/semi/mlogout.do'">
 					<i class="fa fa-sign-out"></i>
 				</button>
-				<img alt="" src="img/1.png" class="w3-right w3-hide-large"
-					style="width: 20px; margin-top: 10px;">
+				<button
+					class="w3-button w3-hide-large w3-large w3-hover-white w3-right"
+					onclick="location.href='/semi/mboardcount.do'">
+					<img alt="" src="/semi/poke/img/${num }.png" style="width: 30px;">
+				</button>
+				
 			</c:when>
 			<c:otherwise>
 				<button
@@ -176,7 +180,7 @@
 				src="/semi/images/포켓몬아이콘.png" style="width: 50px;">Poke</a>
 			<hr style="border-color: white;">
 			<a class="w3-bar-item w3-button w3-hover-white"
-				href="/semi/poke/list.do"><img alt="" src="/semi/lol/img/25.gif"
+				href="/semi/poke/list.do"><img alt="" src="/semi/poke/img/25.gif"
 				style="width: 50px;">Icon</a>
 			<hr style="border-color: white;">
 			<a class="w3-bar-item w3-button w3-hover-white"
