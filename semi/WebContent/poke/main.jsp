@@ -69,7 +69,7 @@
 	function getInfiniteChat() {
 		setInterval(function() {
 			chatList(lastNum)
-		}, 1000);
+		}, 3000);
 	}
 	
 	function chatFocus() {
@@ -121,7 +121,7 @@
 				</button>
 				<button
 					class="w3-bar-item w3-button w3-hide-large w3-hover-white w3-right"
-					onclick="location='/semi/main/login.jsp'">
+					onclick="location='/semi/poke/main.jsp?page=/semi/main/login.jsp'">
 					<i class="fa fa-sign-in"></i>
 				</button>
 			</c:otherwise>
@@ -154,9 +154,9 @@
 						style="display: flex; margin-top: 20px;">
 						<button
 							class="w3-border-right w3-border-white w3-bar-item w3-button w3-hover-white"
-							onclick="location='/semi/main/login.jsp'">로그인</button>
+							onclick="location.href='/semi/poke/main.jsp?page=/main/login.jsp';">로그인</button>
 						<button class="w3-bar-item w3-button w3-hover-white"
-							onclick="location='/semi/main/join.jsp'">회원가입</button>
+							onclick="location='/semi/poke/main.jsp?page=/main/join.jsp'">회원가입</button>
 						<hr style="border-color: white;">
 					</div>
 				</c:otherwise>
