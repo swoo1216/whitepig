@@ -14,10 +14,12 @@
 		var span = document.getElementById("pwdcheck");
 		if(pwd==pwd2)
 		{
+			span.style.color = "green";
 			span.innerHTML = "사용가능한 비밀번호입니다.";
 		}
 		else
-		{
+		{	
+			span.style.color = "red";
 			span.innerHTML = "비밀번호가 불일치합니다.";
 		}
 	}
@@ -32,7 +34,7 @@
 				<input type="hidden" name="id" value=<%=session.getAttribute("id") %>>
 				<input class="w3-input w3-border" type="password" placeholder="비밀번호" name="pwd" id="pwd" onkeyup="pwdchk()" required>
 				<input class="w3-input w3-border" type="password" placeholder="비밀번호확인" name="pwd2" id="pwd2" onkeyup="pwdchk()" required>
-				<span id="pwdcheck" style="color : red; font-size: 12px"></span><br>
+				<span id="pwdcheck" font-size: 12px"></span><br>
 				<button class="w3-button w3-block w3-pink w3-section w3-padding" type="submit">비밀번호변경</button>
 			</div>
 		</form>

@@ -542,17 +542,3 @@ function sendReport(reporterId, reporterNic, suspectId, suspectNic) {
 }
 
 
-function showPopup(popNum) { // 팝업띄우기
-	var popup = document.getElementsByClassName("popup");
-
-	for (var i = 0; i < popup.length; i++) {
-		popup[i].style.display = "none";
-	}
-
-	var popNum = document.getElementById(popNum);
-	popNum.style.display = "block";
-	popNum.style.position = "absolute";
-	popNum.style.top = (event.pageY+20) + "px";
-	popNum.style.left = (event.pageX -40) + "px";
-}
-

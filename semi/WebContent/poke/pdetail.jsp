@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/go_frm.css?ver=4">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/go_modal.css?ver=4">
 <div class="w3-container" style="min-height: 865px;">
 
 
@@ -135,7 +138,8 @@
 
 		<c:forEach var="vo" items="${list }">
 			<div class="w3-margin">
-				<img src="img/${vo.num }.png" style="width: 40px;"> ${vo.nic }
+				<img src="img/${vo.num }.png" style="width: 40px;"><span
+					class="clickPopup" onclick="showPopup('pop${vo.cnum}')">${vo.nic}</span>
 				<div class="w3-right w3-small" style="margin-top: 30px;">${vo.regdate }
 				</div>
 				<hr style="border-color: teal;">
@@ -164,6 +168,16 @@
 				</div>
 				<br>
 			</div>
+			<div class="popup" id="pop${vo.cnum}">
+				<div class="popstyle">
+					<ul>
+						<li><a
+							href="javascript:sendMsg('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">쪽지보내기</a></li>
+						<li><a
+										href="javascript:sendReport('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">신고하기</a></li>
+					</ul>
+				</div>
+			</div>
 		</c:forEach>
 
 
@@ -179,5 +193,5 @@
 		</div>
 	</div>
 </div>
-
+<script src="/semi/js/showPop.js" charset="UTF-8"></script>
 
