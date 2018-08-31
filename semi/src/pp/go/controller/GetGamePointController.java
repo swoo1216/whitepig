@@ -23,5 +23,9 @@ public class GetGamePointController extends HttpServlet {
 			getPoint = Integer.parseInt(sgetPoint);
 		}
 		GuserDao.getInstance().upPoint(id, getPoint);
+
+		int point = GuserDao.getInstance().select(id).getPoint();
+
+		request.getSession().setAttribute("point", point);
 	}
 }
