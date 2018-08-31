@@ -43,10 +43,10 @@ public class McommentVo {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public int getbnum() {
+	public int getBnum() {
 		return bnum;
 	}
-	public void setbnum(int bnum) {
+	public void setBnum(int bnum) {
 		this.bnum = bnum;
 	}
 	public Date getRegdate() {

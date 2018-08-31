@@ -19,11 +19,11 @@
 	}
 	
 	var xhrlist = null;
-	var mnum = '<c:out value="${vo.mnum}"/>'
+	var bnum = '<c:out value="${vo.bnum}"/>'
 	function mGetList() {
 		xhrlist = new XMLHttpRequest();
 		xhrlist.onreadystatechange = mCheckList;
-		xhrlist.open('get', 'mcommlist.do?mnum=' + mnum, true);
+		xhrlist.open('get', 'mcommlist.do?bnum=' + bnum, true);
 		xhrlist.send();
 	}
 	function mCheckList() {

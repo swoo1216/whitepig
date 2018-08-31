@@ -16,9 +16,9 @@ public class MdetailController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		MboardDao dao=MboardDao.getInstance();
-		int mnum=Integer.parseInt(request.getParameter("mnum"));
-		System.out.println("do:"+ mnum);
-		MboardVo vo=dao.muDetail(mnum);
+		int bnum=Integer.parseInt(request.getParameter("bnum"));
+		System.out.println("do:"+ bnum);
+		MboardVo vo=dao.muDetail(bnum);
 		request.setAttribute("vo", vo);
 		request.getRequestDispatcher("/poke/main.jsp?page=/mu/mudetail.jsp").forward(request, response);
 	}

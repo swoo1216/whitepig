@@ -189,7 +189,383 @@ public class MypageDao
 		}
 	}
 
-	public int getMaxNum()
+	public int getMaxNum1()
+	{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try
+		{
+			con = DBConnection.conn();
+			String sql = "select NVL(max(bnum),0) maxnum from gboard";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+			{
+				return rs.getInt("maxnum");
+			} else
+			{
+				return 0;
+			}
+		} catch (SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return -1;
+		} finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+	}
+	
+	public int getCount1()
+	{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try
+		{
+			con = DBConnection.conn();
+			String sql = "select NVL(count(bnum),0) cnt from gboard";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+			{
+				return rs.getInt("cnt");
+			} else
+			{
+				return 0;
+			}
+		} catch (SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return -1;
+		} finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+	}
+	
+	public ArrayList<MypageVo> list1(int startRow, int endRow,String id)
+	{
+		String sql = "select * from(select aa.*,rownum rnum from(select * from"
+				+ " gboard order by bnum desc)aa) where rnum>=? and rnum<=? and id=?";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try
+		{
+			con = DBConnection.conn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			pstmt.setString(3, id);
+			rs = pstmt.executeQuery();
+			ArrayList<MypageVo> list1 = new ArrayList<>();
+			while (rs.next())
+			{
+				int bnum = rs.getInt("bnum");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				int hit = rs.getInt("hit");
+				int recomm = rs.getInt("recomm");
+				id = rs.getString("id");
+				String regdate = rs.getString("regdate");
+				MypageVo vo = new MypageVo(bnum, title, content, hit, recomm, id, regdate);
+				System.out.println(vo);
+				list1.add(vo);
+			}
+			return list1;
+		} catch (SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return null;
+		} finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+	}
+	
+	public int getCommentMaxNum1()
+	{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try
+		{
+			con = DBConnection.conn();
+			String sql = "select NVL(max(cnum),0) maxnum from gcomment";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+			{
+				return rs.getInt("maxnum");
+			} else
+			{
+				return 0;
+			}
+		} catch (SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return -1;
+		} finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+	}
+	
+	public int getCommentCount1()
+	{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try
+		{
+			con = DBConnection.conn();
+			String sql = "select NVL(count(cnum),0) cnt from gcomment";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			System.out.println(rs);
+			if (rs.next())
+			{
+				return rs.getInt("cnt");
+			} else
+			{
+				return 0;
+			}
+		} catch (SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return -1;
+		} finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+	}
+	
+	public ArrayList<MypageVo> commentlist1(int startRow, int endRow,String id)
+	{
+		String sql = "select * from(select aa.*,rownum from(select * from"
+				+ " gcomment order by cnum desc)aa) where rownum>=? and rownum<=? and id=?";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try
+		{
+			con = DBConnection.conn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			pstmt.setString(3, id);
+			rs = pstmt.executeQuery();
+			ArrayList<MypageVo> commentlist1 = new ArrayList<>();
+			while (rs.next())
+			{
+				int cnum = rs.getInt("cnum");
+				String content = rs.getString("content");
+				String regdate = rs.getString("regdate");
+				MypageVo vo = new MypageVo(cnum, null, content, 0, 0, null, regdate);
+				System.out.println(vo);
+				commentlist1.add(vo);
+			}
+			return commentlist1;
+		} catch (SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return null;
+		} finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+	}
+	public int getMaxNum2()
+	{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try
+		{
+			con = DBConnection.conn();
+			String sql = "select NVL(max(bnum),0) maxnum from pboard";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+			{
+				return rs.getInt("maxnum");
+			} else
+			{
+				return 0;
+			}
+		} catch (SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return -1;
+		} finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+	}
+	
+	public int getCount2()
+	{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try
+		{
+			con = DBConnection.conn();
+			String sql = "select NVL(count(bnum),0) cnt from pboard";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+			{
+				return rs.getInt("cnt");
+			} else
+			{
+				return 0;
+			}
+		} catch (SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return -1;
+		} finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+	}
+	
+	public ArrayList<MypageVo> list2(int startRow, int endRow,String id)
+	{
+		String sql = "select * from(select aa.*,rownum rnum from(select * from"
+				+ " pboard order by bnum desc)aa) where rnum>=? and rnum<=? and id=?";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try
+		{
+			con = DBConnection.conn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			pstmt.setString(3, id);
+			rs = pstmt.executeQuery();
+			ArrayList<MypageVo> list2 = new ArrayList<>();
+			while (rs.next())
+			{
+				int bnum = rs.getInt("bnum");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				int hit = rs.getInt("hit");
+				int recomm = rs.getInt("recomm");
+				id = rs.getString("id");
+				String regdate = rs.getString("regdate");
+				MypageVo vo = new MypageVo(bnum, title, content, hit, recomm, id, regdate);
+				System.out.println(vo);
+				list2.add(vo);
+			}
+			return list2;
+		} catch (SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return null;
+		} finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+	}
+	
+	public int getCommentMaxNum2()
+	{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try
+		{
+			con = DBConnection.conn();
+			String sql = "select NVL(max(cnum),0) maxnum from pcomment";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+			{
+				return rs.getInt("maxnum");
+			} else
+			{
+				return 0;
+			}
+		} catch (SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return -1;
+		} finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+	}
+	
+	public int getCommentCount2()
+	{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try
+		{
+			con = DBConnection.conn();
+			String sql = "select NVL(count(cnum),0) cnt from pcomment";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			System.out.println(rs);
+			if (rs.next())
+			{
+				return rs.getInt("cnt");
+			} else
+			{
+				return 0;
+			}
+		} catch (SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return -1;
+		} finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+	}
+	
+	public ArrayList<MypageVo> commentlist2(int startRow, int endRow,String id)
+	{
+		String sql = "select * from(select aa.*,rownum from(select * from"
+				+ " pcomment order by cnum desc)aa) where rownum>=? and rownum<=? and id=?";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try
+		{
+			con = DBConnection.conn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			pstmt.setString(3, id);
+			rs = pstmt.executeQuery();
+			ArrayList<MypageVo> commentlist2 = new ArrayList<>();
+			while (rs.next())
+			{
+				int cnum = rs.getInt("cnum");
+				String content = rs.getString("content");
+				String regdate = rs.getString("regdate");
+				MypageVo vo = new MypageVo(cnum, null, content, 0, 0, null, regdate);
+				System.out.println(vo);
+				commentlist2.add(vo);
+			}
+			return commentlist2;
+		} catch (SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return null;
+		} finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+	}
+	public int getMaxNum3()
 	{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -216,8 +592,8 @@ public class MypageDao
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
-
-	public int getCount()
+	
+	public int getCount3()
 	{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -244,20 +620,22 @@ public class MypageDao
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
-
-	public ArrayList<MypageVo> list(int startRow, int endRow)
+	
+	public ArrayList<MypageVo> list3(int startRow, int endRow,String id)
 	{
 		String sql = "select * from(select aa.*,rownum rnum from(select * from"
-				+ " lboard order by bnum desc)aa) where rnum>=? and rnum<=?";
+				+ " lboard order by bnum desc)aa) where rnum>=? and rnum<=? and id=?";
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		System.out.println("list3 id: "+ id);
 		try
 		{
 			con = DBConnection.conn();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
+			pstmt.setString(3, id);
 			rs = pstmt.executeQuery();
 			ArrayList<MypageVo> list = new ArrayList<>();
 			while (rs.next())
@@ -267,7 +645,7 @@ public class MypageDao
 				String content = rs.getString("content");
 				int hit = rs.getInt("hit");
 				int recomm = rs.getInt("recomm");
-				String id = rs.getString("id");
+				id = rs.getString("id");
 				String regdate = rs.getString("regdate");
 				MypageVo vo = new MypageVo(bnum, title, content, hit, recomm, id, regdate);
 				System.out.println(vo);
@@ -283,8 +661,8 @@ public class MypageDao
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
-
-	public int getCommentMaxNum()
+	
+	public int getCommentMaxNum3()
 	{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -311,8 +689,8 @@ public class MypageDao
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
-
-	public int getCommentCount()
+	
+	public int getCommentCount3()
 	{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -340,11 +718,11 @@ public class MypageDao
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
-
-	public ArrayList<MypageVo> commentlist(int startRow, int endRow)
+	
+	public ArrayList<MypageVo> commentlist3(int startRow, int endRow,String id)
 	{
 		String sql = "select * from(select aa.*,rownum from(select * from"
-				+ " lcomment order by cnum desc)aa) where rownum>=? and rownum<=?";
+				+ " lcomment order by cnum desc)aa) where rownum>=? and rownum<=? and id=?";
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -354,18 +732,212 @@ public class MypageDao
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
+			pstmt.setString(3, id);
 			rs = pstmt.executeQuery();
-			ArrayList<MypageVo> commentlist = new ArrayList<>();
+			ArrayList<MypageVo> commentlist3 = new ArrayList<>();
 			while (rs.next())
 			{
-				int rnum = rs.getInt("rnum");
+				int bnum = rs.getInt("bnum");
 				String content = rs.getString("content");
 				String regdate = rs.getString("regdate");
-				MypageVo vo = new MypageVo(rnum, null, content, 0, 0, null, regdate);
+				MypageVo vo = new MypageVo(bnum, null, content, 0, 0, null, regdate);
 				System.out.println(vo);
-				commentlist.add(vo);
+				commentlist3.add(vo);
 			}
-			return commentlist;
+			return commentlist3;
+		} catch (SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return null;
+		} finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+	}
+
+	public int getMaxNum4()
+	{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try
+		{
+			con = DBConnection.conn();
+			String sql = "select NVL(max(bnum),0) maxnum from mboard";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+			{
+				return rs.getInt("maxnum");
+			} else
+			{
+				return 0;
+			}
+		} catch (SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return -1;
+		} finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+	}
+	
+	public int getCount4()
+	{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try
+		{
+			con = DBConnection.conn();
+			String sql = "select NVL(count(bnum),0) cnt from mboard";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+			{
+				return rs.getInt("cnt");
+			} else
+			{
+				return 0;
+			}
+		} catch (SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return -1;
+		} finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+	}
+	
+	public ArrayList<MypageVo> list4(int startRow, int endRow, String id)
+	{
+		String sql = "select * from(select aa.*,rownum rnum from(select"
+				+ " bnum, title, content, hit, recomm, id, regdate from"
+				+ " mboard order by bnum desc)aa) where rnum>=? and rnum<=? and id=?";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		System.out.println("list4 id: "+ id);
+		try
+		{
+			con = DBConnection.conn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			pstmt.setString(3, id);
+			
+			rs = pstmt.executeQuery();
+			ArrayList<MypageVo> list4 = new ArrayList<>();
+			System.out.println(list4);
+			while (rs.next())
+			{
+				int bnum = rs.getInt("bnum");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				int hit = rs.getInt("hit");
+				int recomm = rs.getInt("recomm");
+				id = rs.getString("id");
+				String regdate = rs.getString("regdate");
+				MypageVo vo = new MypageVo(bnum, title, content, hit, recomm, id, regdate);
+				System.out.println(vo);
+				list4.add(vo);
+			}
+			return list4;
+		} catch (SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return null;
+		} finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+	}
+	
+	public int getCommentMaxNum4()
+	{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try
+		{
+			con = DBConnection.conn();
+			String sql = "select NVL(max(cnum),0) maxnum from mcomment";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+			{
+				return rs.getInt("maxnum");
+			} else
+			{
+				return 0;
+			}
+		} catch (SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return -1;
+		} finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+	}
+	
+	public int getCommentCount4()
+	{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try
+		{
+			con = DBConnection.conn();
+			String sql = "select NVL(count(cnum),0) cnt from mcomment";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			System.out.println(rs);
+			if (rs.next())
+			{
+				return rs.getInt("cnt");
+			} else
+			{
+				return 0;
+			}
+		} catch (SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return -1;
+		} finally
+		{
+			DBConnection.close(rs, pstmt, con);
+		}
+	}
+	
+	public ArrayList<MypageVo> commentlist4(int startRow, int endRow,String id)
+	{
+		String sql = "select * from(select aa.*,rownum from(select * from"
+				+ " mcomment order by cnum desc)aa) where rownum>=? and rownum<=? and id=?";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try
+		{
+			con = DBConnection.conn();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			pstmt.setString(3, id);
+			rs = pstmt.executeQuery();
+			ArrayList<MypageVo> commentlist4 = new ArrayList<>();
+			while (rs.next())
+			{
+				int cnum = rs.getInt("cnum");
+				String content = rs.getString("content");
+				String regdate = rs.getString("regdate");
+				MypageVo vo = new MypageVo(cnum, null, content, 0, 0, null, regdate);
+				System.out.println(vo);
+				commentlist4.add(vo);
+			}
+			return commentlist4;
 		} catch (SQLException se)
 		{
 			System.out.println(se.getMessage());
