@@ -96,9 +96,9 @@
 			<div class="w3-container w3-margin">
 				<form action="pupdate.do?bnum=${vo.bnum }" method="post">
 					<input type="text" name="title" placeholder="title"
-						class="w3-round w3-margin"><br>
-					<textarea rows="10" cols="50" placeholder="content"
-						class="w3-round w3-margin" name="content"></textarea>
+						class="w3-round"><br>
+					<textarea rows="10" style="width: 100%;margin-top: 20px;" placeholder="content"
+						class="w3-round" name="content"></textarea>
 
 					<button
 						class="w3-btn w3-round w3-ripple w3-teal w3-margin w3-right">수정</button>
@@ -171,10 +171,18 @@
 			<form method="post" action="pcinsert.do">
 				<textarea rows="5" style="width: 100%" class="w3-round" placeholder="comment"
 					name="content"></textarea>
-
-				<button class="w3-btn w3-round w3-ripple w3-teal w3-right">등록</button>
-				<input type="hidden" name="id" value="${id }"> 
-				<input type="hidden" name="bnum" value="${vo.bnum }">
+			<c:choose>
+				<c:when test="${id!=null }">
+					<button class="w3-btn w3-round w3-ripple w3-teal w3-right">등록</button>
+					<input type="hidden" name="id" value="${id }"> 
+					<input type="hidden" name="bnum" value="${vo.bnum }">
+				</c:when>
+				<c:otherwise>
+					<button class="w3-btn w3-round w3-ripple w3-teal w3-right" disabled="disabled">등록</button>
+					<input type="hidden" name="id" value="${id }"> 
+					<input type="hidden" name="bnum" value="${vo.bnum }">
+				</c:otherwise>
+			</c:choose>
 			</form>
 		</div>
 	</div>
