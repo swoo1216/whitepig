@@ -23,10 +23,10 @@ public class MboardVo {
 		this.regdate = regdate;
 		this.path = path;
 	}
-	public int getbnum() {
+	public int getBnum() {
 		return bnum;
 	}
-	public void setbnum(int bnum) {
+	public void setBnum(int bnum) {
 		this.bnum = bnum;
 	}
 	public String getTitle() {

@@ -25,8 +25,8 @@
 				</tr>
 			</thead>
 			<c:forEach var="vo" items="${list }">
-				<tr onclick="location.href='mdetail.do?mnum=${vo.mnum }'" style = "cursor:pointer;">
-					<td>${vo.mnum }</td>
+				<tr onclick="location.href='mdetail.do?bnum=${vo.bnum }'" style = "cursor:pointer;">
+					<td>${vo.bnum }</td>
 					<td>${vo.title }</td>
 					<td>${vo.hit }</td>
 					<td>${vo.id }</td>
