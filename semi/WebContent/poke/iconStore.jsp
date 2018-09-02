@@ -94,6 +94,13 @@
 
 	}
 	
+	function egg(num) {
+		document.getElementById('egg').style.display = 'block';
+		document.getElementById("cart").value = num;
+
+	}
+
+	
 	window.onclick = function(e) {
 		var icon = e.target.id.substring(0, 4);
 		if (icon === 'icon') {
@@ -247,6 +254,9 @@
 							</p>
 						</div>
 						<p>
+						<button onclick="egg(${vo.num});enableAutoplay()" type="button" title="구매">
+										<i class="fa fa-money fa-lg"></i>
+									</button>
 							<c:choose>
 								<c:when test="${id==null }">
 									<button class="w3-btn w3-round w3-ripple w3-teal"
@@ -303,6 +313,52 @@
 
 </div>
 
+<!-- 뽑기 modal -->
+	<div class="w3-modal" id="egg">
+		<div class="w3-modal-content w3-animate-zoom w3-card-4"
+			style="width: 400px; margin-top: 100px;">
+			<header class="w3-container w3-teal">
+				<span
+					onclick="document.getElementById('egg').style.display='none'"
+					class="w3-btn w3-round w3-ripple w3-display-topright"><i
+					class="fa fa-close"></i></span>
+				<h2>뽑기</h2>
+			</header>
+			<video id="myVideo" width="320" height="176">
+			  <source src="https://www.w3schools.com/tags/mov_bbb.mp4">
+			 	 
+			</video>
+		</div>
+	</div>
+	
+
+<script>
+var vid = document.getElementById("myVideo");
+function enableAutoplay() { 
+    vid.autoplay = true;
+    vid.load();
+}
+
+
+vid.onended = function() {
+   var egg=document.getElementById("egg");
+   
+   var num = Math.floor(Math.random() * 151);
+   
+   egg.innerHTML= "";
+   egg.innerHTML+= 
+			   "<div class='w3-modal-content w3-animate-zoom w3-card-4 w3-center'" +
+					"style='width: 400px; margin-top: 100px;'>" +
+					"<div class='w3-container'>" +
+					"<img src='/semi/poke/img/"+ num +".gif'>" +
+				"<button class='w3-btn w3-round w3-ripple w3-teal'" +
+				"style='height: 38px;'>Search</button></div></div>"
+   
+   
+   
+   
+};
+</script>
 
 <div class="w3-center">
 	<form action="list.do?search=name" method="post">
