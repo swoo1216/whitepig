@@ -332,7 +332,7 @@
 		</c:when>
 		<c:when test="${requestScope.code=='esuccess'}">
 			<script type="text/javascript">
-		alert('당신의 아이디는' + ${id }+'입니다.');
+		alert('당신의 아이디는' + ${id1 }+'입니다.');
 		</script>
 		</c:when>
 		<c:when test="${requestScope.code=='efail'}">
