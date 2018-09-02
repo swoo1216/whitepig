@@ -1,6 +1,7 @@
+<%@page import="pp.main.vo.MainVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,38 +9,71 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	var xhrinsert = null;
-	function addMcomments(){
+	function addMcomments(commBnum, commId) {
+		var mcomments = document.getElementById("writecomm").value;
+		if (!mcomments) {
+			alert("내용을 입력");
+			return;
+		}
 		xhrinsert = new XMLHttpRequest();
-		xhrinsert.onreadystatechange=mCheckInsert;
-		xhrinsert.open('post','mcomminsert.do?id'+id,true);
-		xhrinsert.send();
+		xhrinsert.onreadystatechange = mCheckInsert;
+		xhrinsert.open('post', 'mcomminsert.do', true);
+		xhrinsert.setRequestHeader("Content-Type",
+				"application/x-www-form-urlencoded");
+		/*id  */
+		var param = "commid=" + commId + "&commbnum=" + commBnum
+				+ "&mcomments=" + mcomments;
+		xhrinsert.send(param);
 	}
 	function mCheckInsert() {
-		alert("aaa");
+		if (xhrinsert.readyState == 4 && xhrinsert.status == 200) {
+			var text = xhrinsert.responseText;
+			var jmcInsert = JSON.parse(text);
+			if (jmcInsert.mcommResult == 1) {
+				document.getElementById("writecomm").value = "";
+				document.getElementById("mcomment").style.display = "none";
+				mGetList();
+			} else {
+				alert("bb");
+			}
+		}
 	}
-	
 	var xhrlist = null;
-	var bnum = '<c:out value="${vo.bnum}"/>'
 	function mGetList() {
-		xhrlist = new XMLHttpRequest();
-		xhrlist.onreadystatechange = mCheckList;
-		xhrlist.open('get', 'mcommlist.do?bnum=' + bnum, true);
-		xhrlist.send();
 	}
 	function mCheckList() {
 		if (xhrlist.readyState == 4 && xhrlist.status == 200) {
+			mremoveAll();
 			var text = xhrlist.responseText;
-			var json = JSON.parse(text);
-			console.log(json);
-			var list = document.getElementById("commlist");
-			for (var i = 0; i < json.length; i++) {
-				var id=json[i].id;
-				var content = json[i].content;
+			var jmcList = JSON.parse(text);
+			console.log(jmcList);
+			var list = document.getElementById("commList");
+			for (var i = 0; i < jmcList.length; i++) {
+				var nic = jmcList[i].nic;
+				var num = jmcList[i].num;
+				var content = jmcList[i].content;
+				var regdate = jmcList[i].regdate;
 				var div = document.createElement("div");
-				div.className="w3-panel w3-round-xxlarge w3-light-grey w3-padding-large";
-				div.innerHTML=id+"<hr>"+content;
+				div.className = "w3-panel w3-round-xxlarge w3-light-grey w3-padding-large";
+				div.innerHTML = "<img src='../img/"+num+".png' style='height: 35px; float: left;'>"
+						+ "<h3>"
+						+ nic
+						+ "</h3>"
+						+ "<hr>"
+						+ "<p style='float: left;'>"
+						+ content
+						+ "</p>"
+						+ '<p class="w3-right">' + regdate + "</p>";
 				list.appendChild(div);
 			}
+		}
+	}
+	function mremoveAll() {
+		var mcommList = document.getElementById("commList");
+		var nodes = mcommList.childNodes;
+		for (var i = nodes.length - 1; i >= 0; i--) {//뒤에서부터 자식요소 지우기
+			var child = nodes.item(i);
+			mcommList.removeChild(child);
 		}
 	}
 </script>
@@ -48,13 +82,15 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body onload="mGetList()">
+
 	<div class="w3-dark-gray w3-container ">
-		<div class="w3-padding-64 w3-padding-large" id="commlist">
-			<div class="w3-button" style="float: left">
-				<h1>${vo.id }</h1>
-			</div>
-			<div>aaaa</div>
+		<div class="w3-padding-64 w3-padding-large">
+
+			<h1 class="w3-button" id="h1">${vo.id }</h1>
+
+
 			<p class="w3-opacity">GET IN TOUCH</p>
+
 			<form class="w3-container w3-card w3-padding-32 w3-white">
 				<div class="w3-section">
 					<input class="w3-input" style="width: 100%;" type="text"
@@ -64,10 +100,7 @@
 					<textarea class="w3-input" style="width: 100%;" rows="10"
 						type="text" readonly="readonly" required>${vo.content }</textarea>
 				</div>
-				<div class="w3-section">
-					<label></label> <input class="w3-input" style="width: 100%;"
-						type="text" required>
-				</div>
+
 				<div>
 					<audio controls> <source src="../music/${vo.path }"
 						type="audio/mpeg">
@@ -79,14 +112,13 @@
 				class="w3-panel w3-round-xxlarge w3-white w3-padding-large w3-bar"
 				id="mcomment" style="display: none">
 				<div>
+					<h3>${nic }</h3>
 					<hr>
-					<hr>
-					<textarea rows="5" style="width: 100%"></textarea>
+					<textarea rows="5" style="width: 100%" id="writecomm"></textarea>
 					<button type="button" class="w3-btn w3-right w3-dark-gray"
-						onclick="">작성</button>
+						onclick="addMcomments('${vo.bnum }','${id }')">작성</button>
 					<button type="button" class="w3-btn w3-right w3-dark-gray"
 						onclick="document.getElementById('mcomment').style.display='none'">닫기</button>
-
 					<br>
 					<button class="w3-btn w3-round w3-ripple w3-right"
 						onclick="document.getElementById('delete').style.display='block'">
@@ -113,46 +145,19 @@
 					</button>
 				</div>
 			</div>
+			<div id="commList"></div>
 		</div>
 
 	</div>
+
+
 </body>
-<script src="/semi/js/showPop.js" charset="UTF-8"></script>
 <script type="text/javascript">
-window.onclick = function(event) {
-    if (event.target.className == "modal") {
-    	event.target.style.display = "none";
-    }
-}
-
-var clickPopup = document.getElementsByClassName("clickPopup"); // 마우스포인터 효과
-for (var i = 0; i < clickPopup.length; i++) {
-	clickPopup[i].addEventListener("mouseover", function() { // 팝업
-		this.style.cursor = "pointer";
-	}, false);
-}
-
-var popup = document.getElementsByClassName("popup");
-
-for (var i = 0; i < popup.length; i++) { // 마우스 떠나면 꺼지기
-	popup[i].addEventListener("mouseleave", function() {
-		this.style.display = "none";
-	}, false);
-}
-
-function showPopup(popNum) { // 팝업띄우기
-	var popup = document.getElementsByClassName("popup");
-
-	for (var i = 0; i < popup.length; i++) {
-		popup[i].style.display = "none";
-	}
-
-	var popNum = document.getElementById(popNum);
-	popNum.style.display = "block";
-	popNum.style.position = "absolute";
-	popNum.style.top = (event.pageY + 20) + "px";
-	popNum.style.left = (event.pageX - 40) + "px";
-}
-
+	var bnum = ${vo.bnum};
+	alert(bnum);
+	xhrlist = new XMLHttpRequest();
+	xhrlist.onreadystatechange = mCheckList;
+	xhrlist.open('get', 'mcommlist.do?bnum=' + bnum, true);
+	xhrlist.send();
 </script>
 </html>

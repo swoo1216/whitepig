@@ -79,7 +79,6 @@ public class MboardDao {
 			pstmt.setInt(4, vo.getHit());
 			pstmt.setInt(5, vo.getRecomm());
 			pstmt.setString(6, vo.getId());			
-			System.out.println(sql);
 			int n = pstmt.executeUpdate();
 			return n;
 		} catch (SQLException se) {
@@ -185,6 +184,22 @@ public class MboardDao {
 			pstmt.setInt(1, bnum);
 			int hitup=pstmt.executeUpdate();
 			return hitup;
+		} catch (SQLException se) {
+			System.out.println(se.getMessage());
+			return -1;
+		} finally {
+			DBConnection.close(null, pstmt, con);
+		}
+	}
+	public int muDelete(int bnum) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con = DBConnection.conn();
+			String sql = "delete mboard where bnum=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, bnum);
+			return pstmt.executeUpdate();
 		} catch (SQLException se) {
 			System.out.println(se.getMessage());
 			return -1;

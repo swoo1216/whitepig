@@ -3,6 +3,7 @@ package pp.mu.vo;
 import java.sql.Date;
 
 public class McommentVo {
+
 	private int cnum;
 	private String content;
 	private int recomm;
