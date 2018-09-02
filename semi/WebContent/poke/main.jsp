@@ -91,7 +91,7 @@
 			<i class="fa fa-bars"></i>  Menu
 		</button>
 
-		<button class="w3-btn w3-round w3-ripple w3-pale-red w3-large w3-right" onclick="goGame()">open</button>
+		<button class="w3-btn w3-round w3-ripple w3-pale-red w3-large w3-right" onclick="goGame()">Game</button>
 
 		<!-- 전체채팅 -->
 		<button class="w3-btn w3-round w3-ripple w3-pale-red w3-large w3-right" onclick="document.getElementById('chat').style.display='block';chatFocus();">
@@ -209,7 +209,7 @@
 			<%
 				String contentpage = request.getParameter("page");
 				if (contentpage == null)
-					contentpage = "/poke/index.jsp";
+					contentpage = "/mmmain.do";
 			%>
 
 			<jsp:include page="<%=contentpage%>" />

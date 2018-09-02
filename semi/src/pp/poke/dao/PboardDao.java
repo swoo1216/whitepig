@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import pp.go.dao.GuserDao;
 import pp.go.db.DBConnection;
 import pp.poke.vo.PboardVo;
 
@@ -284,10 +285,10 @@ public class PboardDao {
 				int hit=rs.getInt("hit");
 				int recomm=rs.getInt("recomm");
 				String id=rs.getString("id");
-				String nic=rs.getString("nic");
+				String nic=GuserDao.getInstance().select(id).getNic();
 				int commCnt=PcommentDao.getInstance().getCount(bnum);
 				String regdate=rs.getString("regdate");
-				int num=rs.getInt("num");
+				int num=GuserDao.getInstance().select(id).getNum();
 				
 				PboardVo vo=new PboardVo(bnum, title, content, hit, recomm, id, nic, commCnt, regdate, num);
 				list.add(vo);

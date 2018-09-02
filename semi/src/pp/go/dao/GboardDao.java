@@ -310,20 +310,22 @@ public class GboardDao {
 			rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
-				int bNum = rs.getInt("bnum");
+				int bnum = rs.getInt("bnum");
 				String title = rs.getString("title");
 				String content = rs.getString("content");
 				int hit = rs.getInt("hit");
 				int recomm = rs.getInt("recomm");
 				String id = rs.getString("id");
-				String nic = rs.getString("nic");
+				String nic = GuserDao.getInstance().select(id).getNic();
 				Date regdate = rs.getDate("regdate");
-				int countComment = GcommentDao.getInstance().getCount(bNum, 0);
+				int countComment = GcommentDao.getInstance().getCount(bnum, 0);
 
-				list.add(new GboardVo(bNum, title, content, hit, recomm, id, nic, countComment, 0, regdate));
+				System.out.println(title);
+				list.add(new GboardVo(bnum, title, content, hit, recomm, id, nic, countComment, 0, regdate));
 			}
 			return list;
 		} catch (SQLException se) {
+			System.out.println(se.getMessage());
 			return null;
 		} finally {
 			DBConnection.close(rs, stmt, conn);
