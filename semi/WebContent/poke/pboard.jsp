@@ -80,14 +80,14 @@
 					</tr>
 				</c:otherwise>
 			</c:choose>
-			
+
 			<div class="popup" id="pop${vo.bnum}">
 				<div class="popstyle">
 					<ul>
 						<li><a
 							href="javascript:sendMsg('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">쪽지보내기</a></li>
 						<li><a
-										href="javascript:sendReport('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">신고하기</a></li>
+							href="javascript:sendReport('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">신고하기</a></li>
 					</ul>
 				</div>
 			</div>
@@ -114,8 +114,8 @@
 				<form action="pinsert.do?id=${sessionScope.id }" method="post">
 					<input type="text" name="title" placeholder="title"
 						class="w3-round"><br>
-					<textarea rows="10" style="width: 100%;margin-top: 20px;" placeholder="content"
-						class="w3-round" name="content"></textarea>
+					<textarea rows="10" style="width: 100%; margin-top: 20px;"
+						placeholder="content" class="w3-round" name="content"></textarea>
 
 					<button
 						class="w3-btn w3-round w3-ripple w3-teal w3-margin w3-right">등록</button>
@@ -172,4 +172,40 @@
 </div>
 
 <script src="/semi/js/showPop.js" charset="UTF-8"></script>
+<script type="text/javascript">
+	window.onclick = function(event) {
+		if (event.target.className == "modal") {
+			event.target.style.display = "none";
+		}
+	}
+
+	var clickPopup = document.getElementsByClassName("clickPopup"); // 마우스포인터 효과
+	for (var i = 0; i < clickPopup.length; i++) {
+		clickPopup[i].addEventListener("mouseover", function() { // 팝업
+			this.style.cursor = "pointer";
+		}, false);
+	}
+
+	var popup = document.getElementsByClassName("popup");
+
+	for (var i = 0; i < popup.length; i++) { // 마우스 떠나면 꺼지기
+		popup[i].addEventListener("mouseleave", function() {
+			this.style.display = "none";
+		}, false);
+	}
+
+	function showPopup(popNum) { // 팝업띄우기
+		var popup = document.getElementsByClassName("popup");
+
+		for (var i = 0; i < popup.length; i++) {
+			popup[i].style.display = "none";
+		}
+
+		var popNum = document.getElementById(popNum);
+		popNum.style.display = "block";
+		popNum.style.position = "absolute";
+		popNum.style.top = (event.pageY + 20) + "px";
+		popNum.style.left = (event.pageX - 40) + "px";
+	}
+</script>
 
