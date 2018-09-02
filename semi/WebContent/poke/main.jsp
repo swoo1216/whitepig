@@ -623,14 +623,5 @@
 		xhr.open("get", "/semi/go/GetGameRank.do", true);
 		xhr.send();
 	}
-	
-	var modal = document.getElementById('chat');
-
-	window.onclick = function(event) {
-	    if (event.target == modal) {
-	        modal.style.display = "none";
-	    }
-	}
-	
 </script>
 </html>
