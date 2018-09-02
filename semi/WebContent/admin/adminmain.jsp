@@ -34,7 +34,7 @@ body {
 }
 </style>
 <body>
-	<% MainVo infovo=(MainVo)session.getAttribute("infovo"); %>
+<%-- 	<% MainVo infovo=(MainVo)session.getAttribute("infovo"); %> --%>
 	<!-- Sidebar/menu -->
 	<nav
 		class="w3-sidebar w3-dark-gray w3-collapse w3-top w3-large w3-padding"
@@ -57,8 +57,8 @@ body {
 			</c:when>
 			<c:otherwise>
 				<div><a onclick="location.href='adminmain.jsp?page=mypage.jsp'" style="cursor: pointer;">
-				<img align="left" src="../img/<%=infovo.getNum()%>.png" style="height: 50px">
-				<h3><%=infovo.getNic()%></h3></a></div>
+	<%-- 			<img align="left" src="../img/<%=infovo.getNum()%>.png" style="height: 50px">
+				<h3><%=infovo.getNic()%></h3></a></div> --%>
 				<a href="mainlogout.do" class="w3-bar-item w3-button w3-right" ><span class="w3-xlarge"><i class="fa fa-times-rectangle"></i></span></a>
 			</c:otherwise>	
 		</c:choose>
