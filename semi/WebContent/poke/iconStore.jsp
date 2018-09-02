@@ -36,7 +36,7 @@
 				<c:otherwise>
 					wish.innerHTML="<button onclick='closeRightMenu()'" +
 					"class='w3-bar-item w3-btn w3-ripple w3-teal w3-large'>Close</button></div>" +
-					"<button class='w3-btn w3-round w3-ripple w3-teal w3-margin w3-large' style='width: 80px;' title='전체구매'><i class='fa fa-gbp'></i></button>" +
+					"<button class='w3-btn w3-round w3-ripple w3-teal w3-margin w3-large' style='width: 80px;' disabled='disabled' title='전체구매'><i class='fa fa-gbp'></i></button>" +
 					"<button class='w3-btn w3-round w3-ripple w3-teal w3-margin w3-large' style='width: 80px;' onclick='location="  + "\""+"wishList.do?cmd=remove"+"\""+  "' title='전체삭제'><i class='fa fa-trash'></i></button>";
 				</c:otherwise>
 				</c:choose>
