@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 //import pp.go.dao.GuserDao;
 import pp.admin.dao.ReportDao;
 import pp.admin.vo.ReportVo;
+import pp.go.dao.GuserDao;
 
 @WebServlet("/admin/DetailReport.do")
 public class DetailReportController extends HttpServlet {
@@ -22,7 +23,7 @@ public class DetailReportController extends HttpServlet {
 		ReportVo vo = ReportDao.getInstance().select(reportNum);
 
 		request.setAttribute("vo", vo);
-//		request.setAttribute("clss", GuserDao.getInstance().select(vo.getSuspect()).getClss());
+		request.setAttribute("clss", GuserDao.getInstance().select(vo.getSuspect()).getClss());
 		request.getRequestDispatcher("/admin/adminmain.jsp?page=DetailReport.jsp").forward(request, response);
 		
 	}

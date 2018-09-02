@@ -26,6 +26,8 @@ public class ChangeUserClassController extends HttpServlet {
 		
 		request.setAttribute("clss", GuserDao.getInstance().select(id).getClss());
 		request.setAttribute("vo", vo);
-		request.getRequestDispatcher("/go/DetailReport.do?reportNum=" + reportNum).forward(request, response);
+		
+		
+		request.getRequestDispatcher("/admin/DetailReport.do?reportNum=" + reportNum).forward(request, response);
 	}
 }

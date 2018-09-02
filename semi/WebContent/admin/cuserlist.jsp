@@ -57,13 +57,18 @@
 			<c:forEach var="vo" items="${adminlist }">
 				<tr>				
 					<!-- <td><input class="w3-check" style="height: 15px" type="checkbox"></td> -->
-					<td>${vo.id }</td>
+					<td onclick="document.getElementById('detailuser${vo.id}').style.display='block'"
+					style="cursor: pointer">${vo.id }</td>
 					<td onclick="document.getElementById('detailuser${vo.id}').style.display='block'"
 					style="cursor: pointer">${vo.nic }</td>
-					<td>${vo.email }</td>
-					<td>${vo.point }</td>
-					<td>${vo.clss }</td>
-					<td>${vo.regdate }</td>					
+					<td onclick="document.getElementById('detailuser${vo.id}').style.display='block'"
+					style="cursor: pointer">${vo.email }</td>
+					<td onclick="document.getElementById('detailuser${vo.id}').style.display='block'"
+					style="cursor: pointer">${vo.point }</td>
+					<td onclick="document.getElementById('detailuser${vo.id}').style.display='block'"
+					style="cursor: pointer">${vo.clss }</td>
+					<td onclick="document.getElementById('detailuser${vo.id}').style.display='block'"
+					style="cursor: pointer">${vo.regdate }</td>					
 					<td><a onclick="deleteCuser('${vo.id }')" class="w3-button" ><span class="w3-large"><i class="fa fa-times-rectangle"></i></span></a></td>
 				</tr>
 				<div class="w3-modal w3-margin" id="detailuser${vo.id}">

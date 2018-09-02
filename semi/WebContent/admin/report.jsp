@@ -26,7 +26,7 @@
 		</thead>
 		<c:forEach var="vo" items="${list}">
 			<tr>
-				<td><a href="DetailReport.do?reportNum=${vo.reportNum}">${vo.reportNum}</a></td>
+				<td onclick="DetailReport.do?reportNum=${vo.reportNum} style="cursor: pointer">${vo.reportNum}</td>
 				<td><a href="DetailReport.do?reportNum=${vo.reportNum}">${vo.reporter}</a></td>
 				<td><a href="DetailReport.do?reportNum=${vo.reportNum}">${vo.suspect}</a></td>
 				<td><a href="DetailReport.do?reportNum=${vo.reportNum}">${vo.rtype}</a></td>
