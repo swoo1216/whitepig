@@ -631,6 +631,14 @@
 	        modal.style.display = "none";
 	    }
 	}
+		if(event.target.className == "modal")
+		{
+			event.target.style.display = "none";
+			pt.imsee = false;
+			document.body.style.overflow = "hidden";
+			window.scroll(function() { return;});
+		}
+	}
 	
 </script>
 </html>
