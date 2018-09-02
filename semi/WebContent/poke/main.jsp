@@ -145,67 +145,66 @@
 	</div>
 
 	<div id="nav">
+			<nav
+				class="w3-sidebar w3-center w3-bar-block w3-collapse w3-animate-left w3-card w3-pale-red"
+				style="z-index: 3; width: 250px; height: 100%;" id="mySidebar">
+				<a class="w3-bar-item w3-button w3-large w3-hover-white"
+					href="/semi/mmain.do"><img src="/semi/바지.png"
+					style="height: 60px;">PANTS</a> 
 
-		<nav
-			class="w3-sidebar w3-center w3-bar-block w3-collapse w3-animate-left w3-card w3-pale-red"
-			style="z-index: 3; width: 250px; height: 100%;" id="mySidebar">
-			<a class="w3-bar-item w3-button w3-large w3-hover-white"
-				href="main.jsp"><img src="/semi/바지.png" style="height: 60px;">PANTS</a>
+				<!-- 로그인 회원가입 -->
+				<c:choose>
+					<c:when test="${id!=null }">
+						<div style="margin: 10px;">
+							<img alt="" src="/semi/poke/img/${num }.png" style="width: 50px;">
+							<a href="/semi/mboardcount.do">${nic}</a>님<br>환영합니다!
+							<button onclick="location.href='/semi/mlogout.do'"
+								style="background-color: pink;">로그아웃</button>
+						</div>
 
-
-			<!-- 로그인 회원가입 -->
-			<c:choose>
-				<c:when test="${id!=null }">
-					<div style="margin: 10px;">
-						<img alt="" src="/semi/poke/img/${num }.png" style="width: 50px;">
-						<a href="/semi/mboardcount.do">${nic}</a>님<br>환영합니다!
-						<button onclick="location.href='/semi/mlogout.do'"
-							style="background-color: pink;">로그아웃</button>
-					</div>
-
-					<hr style="border-color: white;">
-				</c:when>
-				<c:otherwise>
-					<div class="w3-bar w3-border w3-border-white"
-						style="display: flex; margin-top: 20px;">
-						<button
-							class="w3-border-right w3-border-white w3-bar-item w3-button w3-hover-white"
-							onclick="location.href='/semi/poke/main.jsp?page=/main/login.jsp';">로그인</button>
-						<button class="w3-bar-item w3-button w3-hover-white"
-							onclick="location='/semi/poke/main.jsp?page=/main/join.jsp'">회원가입</button>
 						<hr style="border-color: white;">
-					</div>
-				</c:otherwise>
-			</c:choose>
+					</c:when>
+					<c:otherwise>
+						<div class="w3-bar w3-border w3-border-white"
+							style="display: flex; margin-top: 20px;">
+							<button
+								class="w3-border-right w3-border-white w3-bar-item w3-button w3-hover-white"
+								onclick="location.href='/semi/poke/main.jsp?page=/main/login.jsp';">로그인</button>
+							<button class="w3-bar-item w3-button w3-hover-white"
+								onclick="location='/semi/poke/main.jsp?page=/main/join.jsp'">회원가입</button>
+							<hr style="border-color: white;">
+						</div>
+					</c:otherwise>
+				</c:choose>
 
 
 
-			<a class="w 3-bar-item w3-button w3-hover-white"
-				href="/semi/go/gboard.do"><img alt=""
-				src="/semi/images/슈퍼마리오아이콘.png" style="width: 50px;">Go</a>
+				<a class="w 3-bar-item w3-button w3-hover-white"
+					href="/semi/go/gboard.do"><img alt=""
+					src="/semi/images/슈퍼마리오아이콘.png" style="width: 50px;">Go</a>
 
-			<hr style="border-color: white;">
-			<a class="w3-bar-item w3-button w3-hover-white"
-				href="/semi/poke/pboard.do"><img alt=""
-				src="/semi/images/포켓몬아이콘.png" style="width: 50px;">Poke</a>
-			<hr style="border-color: white;">
-			<a class="w3-bar-item w3-button w3-hover-white"
-				href="/semi/poke/list.do"><img alt=""
-				src="/semi/poke/img/25.gif" style="width: 50px;">Icon</a>
-			<hr style="border-color: white;">
-			<a class="w3-bar-item w3-button w3-hover-white"
-				href="/semi/lol/lboard.do"><img alt=""
-				src="/semi/images/롤아이콘.png" style="width: 50px;">LoL</a>
-			<hr style="border-color: white;">
-			<a class="w3-bar-item w3-button w3-hover-white"
-				href="/semi/mu/mlist.do"><img alt=""
-				src="/semi/images/음악아이콘.png" style="width: 50px;">Music</a>
-			<hr style="border-color: white;">
+				<hr style="border-color: white;">
+				<a class="w3-bar-item w3-button w3-hover-white"
+					href="/semi/poke/pboard.do"><img alt=""
+					src="/semi/images/포켓몬아이콘.png" style="width: 50px;">Poke</a>
+				<hr style="border-color: white;">
+				<a class="w3-bar-item w3-button w3-hover-white"
+					href="/semi/poke/list.do"><img alt=""
+					src="/semi/poke/img/25.gif" style="width: 50px;">Icon</a>
+				<hr style="border-color: white;">
+				<a class="w3-bar-item w3-button w3-hover-white"
+					href="/semi/lol/lboard.do"><img alt=""
+					src="/semi/images/롤아이콘.png" style="width: 50px;">LoL</a>
+				<hr style="border-color: white;">
+				<a class="w3-bar-item w3-button w3-hover-white"
+					href="/semi/mu/mlist.do"><img alt=""
+					src="/semi/images/음악아이콘.png" style="width: 50px;">Music</a>
+				<hr style="border-color: white;">
 
-		</nav>
+			</nav>
 
-		<div class="w3-overlay w3-hide-large w3-animate-opacity"
-			onclick="w3_close()" style="cursor: pointer" id="myOverlay"></div>
+			<div class="w3-overlay w3-hide-large w3-animate-opacity"
+				onclick="w3_close()" style="cursor: pointer" id="myOverlay"></div>
 	</div>
 
 	<div id="Demo1" class="w3-hide w3-pale-red"
@@ -620,14 +619,6 @@
 	var pt = new pantalk("${sessionScope.id}", "${sessionScope.nic}");
 	pt.startCount();
 	
-	window.onclick = function(event) { // 모달 닫기
-		if (event.target.className == "modal") {
-			event.target.style.display = "none";
-			pt.imsee = false;
-			document.body.style.overflow = "hidden";
-			window.scroll(function() { return true; });
-		}
-	}
 	window.onload = function(){
 		xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function(){
@@ -687,5 +678,23 @@
 		xhr.open("get", "/semi/go/GetGameRank.do", true);
 		xhr.send();
 	}
+	
+	var modal = document.getElementById('chat');
+	
+
+	window.onclick = function(event) {
+		console.log("event", event.target);
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
+	    
+	    if (event.target.className == "modal") {
+			event.target.style.display = "none";
+			pt.imsee = false;
+			document.body.style.overflow = "hidden";
+			window.scroll(function() { return true; });
+		}
+	}
+	
 </script>
 </html>

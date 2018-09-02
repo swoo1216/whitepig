@@ -140,6 +140,39 @@ public class MainDao
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
+	public String clss(String id,String pwd)
+	{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try
+		{
+			conn = DBConnection.conn();
+			String sql = "select clss from cuser where id=? and pwd=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pwd);
+			rs = pstmt.executeQuery();
+			if(rs.next())
+			{
+				String clss = rs.getString("clss");
+				return clss;
+			}
+			else
+			{
+				return null;
+			}
+		}
+		catch(SQLException se)
+		{
+			System.out.println(se.getMessage());
+			return null;
+		}
+		finally
+		{
+			DBConnection.close(rs, pstmt, conn);
+		}
+	}
 	public String findid(String email)
 	{
 		Connection con=null;
