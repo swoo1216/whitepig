@@ -24,7 +24,7 @@ public class CuserlistController extends HttpServlet {
 		}
 		int startRow=(pageNum-1)*5+1;
 		int endRow=startRow+4;
-		ArrayList<AdminMainVo> adminlist=dao.adminlist(startRow, endRow);
+		ArrayList<AdminMainVo> adminlist=dao.adminList(startRow, endRow);
 		
 		int pageCount=(int)Math.ceil(dao.getUserCount()/5.0);
 		int startPage=((pageNum-1)/5*5)+1;
@@ -39,6 +39,6 @@ public class CuserlistController extends HttpServlet {
 		request.setAttribute("endPage",endPage);
 		request.setAttribute("pageNum",pageNum);
 		
-		request.getRequestDispatcher("adminmain.jsp?page=cuserlist.jsp" ).forward(request, response);
+		request.getRequestDispatcher("/admin/adminmain.jsp?page=cuserlist.jsp" ).forward(request, response);
 	}
 }
