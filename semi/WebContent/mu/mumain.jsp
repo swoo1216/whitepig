@@ -38,13 +38,13 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body>
-	<div class="w3-container w3-dark-gray">
+	<div class="w3-container w3-pale-red ">
 		<h1>Header</h1>
 	</div>
 	<div class="w3-container" >
 		<table class="w3-table-all w3-striped">
 			<thead>
-				<tr class="w3-dark-gray">
+				<tr class="w3-pale-red ">
 					<th style="width: 10%">글번호</th>
 					<th style="width: 60%">제목</th>
 					<th style="width: 10%">조회수</th>
@@ -92,7 +92,7 @@
 			</c:choose>
 		</div>
 		<div class="w3-right">
-			<div class="w3-bar w3-dark-gray" style="width: 200px; margin-top: 50px;">
+			<div class="w3-bar w3-pale-red " style="width: 200px; margin-top: 50px;">
 				<a
 					onclick="document.getElementById('writeboard').style.display='block'"
 					class="w3-bar-item w3-button" style="width: 50%">글작성</a> <a
@@ -104,7 +104,7 @@
 	<div id="writeboard" class="w3-modal">
 		<div class="w3-modal-content w3-animate-zoom" style="width: 60%">
 			<form action="minsert.do"
-				class="w3-container w3-card-4 w3-light-grey w3-text-w3-dark-gray">
+				class="w3-container w3-card-4 w3-light-grey w3-text-w3-pale-red ">
 				
 				<h2 class="w3-center w3-dark-grey w3-padding">글작성</h2>
 				
@@ -130,9 +130,9 @@
 					</div>
 				</div>
 				<button
-					class="w3-button w3-block w3-section w3-dark-gray w3-ripple w3-padding" type="submit">Write</button>
+					class="w3-button w3-block w3-section w3-pale-red  w3-ripple w3-padding" type="submit">Write</button>
 				<a onclick="document.getElementById('writeboard').style.display='none'"
-					class="w3-button w3-block w3-section w3-dark-gray w3-ripple w3-padding">닫기</a>					
+					class="w3-button w3-block w3-section w3-pale-red  w3-ripple w3-padding">닫기</a>					
 			</form>
 		</div>
 	</div>

@@ -55,7 +55,7 @@
 				var regdate = jmcList[i].regdate;
 				var div = document.createElement("div");
 				div.className = "w3-panel w3-round-xxlarge w3-light-grey w3-padding-large";
-				div.innerHTML = "<img src='../img/"+num+".png' style='height: 35px; float: left;'>"
+				div.innerHTML = "<img src='/semi/poke/img/"+num+".png' style='height: 35px; float: left;'>"
 						+ "<h3>"
 						+ nic
 						+ "</h3>"
@@ -83,7 +83,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body onload="mGetList()">
 
-	<div class="w3-dark-gray w3-container ">
+	<div class="w3-pale-red  w3-container ">
 		<div class="w3-padding-64 w3-padding-large">
 
 			<h1 class="w3-button" id="h1">${vo.id }</h1>
@@ -105,19 +105,20 @@
 					<audio controls> <source src="../music/${vo.path }"
 						type="audio/mpeg">
 				</div>
-				<button type="button" class="w3-btn w3-right w3-dark-gray"
+				<button type="button" class="w3-btn w3-right w3-pale-red "
 					onclick="document.getElementById('mcomment').style.display='block'">댓글</button>
 			</form>
 			<div
 				class="w3-panel w3-round-xxlarge w3-white w3-padding-large w3-bar"
 				id="mcomment" style="display: none">
 				<div>
+					<img alt=""  src='"/semi/poke/img/"+ ${num } + ".png"'> 
 					<h3>${nic }</h3>
 					<hr>
 					<textarea rows="5" style="width: 100%" id="writecomm"></textarea>
-					<button type="button" class="w3-btn w3-right w3-dark-gray"
+					<button type="button" class="w3-btn w3-right w3-pale-red "
 						onclick="addMcomments('${vo.bnum }','${id }')">작성</button>
-					<button type="button" class="w3-btn w3-right w3-dark-gray"
+					<button type="button" class="w3-btn w3-right w3-pale-red "
 						onclick="document.getElementById('mcomment').style.display='none'">닫기</button>
 					<br>
 					<button class="w3-btn w3-round w3-ripple w3-right"
@@ -154,7 +155,6 @@
 </body>
 <script type="text/javascript">
 	var bnum = ${vo.bnum};
-	alert(bnum);
 	xhrlist = new XMLHttpRequest();
 	xhrlist.onreadystatechange = mCheckList;
 	xhrlist.open('get', 'mcommlist.do?bnum=' + bnum, true);
