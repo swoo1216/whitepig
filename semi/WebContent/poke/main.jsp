@@ -551,7 +551,7 @@
 </body>
 
 
-<script src="/semi/js/pantalk.js?ver=4" type="text/javascript" charset="UTF-8"></script>
+<script src="/semi/js/pantalk.js?ver=5" type="text/javascript" charset="UTF-8"></script>
 <script type="text/javascript">
 	var pt = new pantalk("${sessionScope.id}", "${sessionScope.nic}");
 	pt.startCount();
@@ -639,6 +639,7 @@
 			window.scroll(function() { return;});
 		}
 	}
+
 	
 </script>
 </html>
