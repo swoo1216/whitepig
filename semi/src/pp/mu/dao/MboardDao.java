@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-
+import pp.go.dao.GuserDao;
 import pp.mu.vo.MboardVo;
 import pp.poke.dao.PcommentDao;
 import pp.poke.vo.PboardVo;
@@ -228,7 +228,7 @@ public class MboardDao {
 				String content=rs.getString("content");
 				int hit=rs.getInt("hit");
 				int recomm=rs.getInt("recomm");			
-				String id=rs.getString("id");
+				String id=GuserDao.getInstance().select(rs.getString("id")).getNic();
 				Date regdate=rs.getDate("regdate");
 				String path=rs.getString("path");	
 				MboardVo vo=new MboardVo(bnum, title, content, hit, recomm, id, regdate, path);

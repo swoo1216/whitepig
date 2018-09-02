@@ -316,7 +316,7 @@ public class GboardDao {
 				int hit = rs.getInt("hit");
 				int recomm = rs.getInt("recomm");
 				String id = rs.getString("id");
-				String nic = rs.getString("nic");
+				String nic = GuserDao.getInstance().select(id).getNic();
 				Date regdate = rs.getDate("regdate");
 				int countComment = GcommentDao.getInstance().getCount(bNum, 0);
 
@@ -324,6 +324,7 @@ public class GboardDao {
 			}
 			return list;
 		} catch (SQLException se) {
+			System.out.println( se.getMessage());
 			return null;
 		} finally {
 			DBConnection.close(rs, stmt, conn);
