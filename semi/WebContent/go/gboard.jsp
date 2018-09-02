@@ -2,9 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/go_frm.css?ver=4">
+	href="<%=request.getContextPath()%>/css/go_frm.css?ver=1">
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/go_modal.css?ver=4">
+	href="<%=request.getContextPath()%>/css/go_modal.css?ver=1">
 <style type="text/css">
 td, th {
 	border-spacing: 0px;
@@ -140,7 +140,7 @@ ul li {
 	</div>
 </div>
 
-<script src="/semi/js/showPop.js" charset="UTF-8"></script>
+<script src="/semi/js/showPop.js?ver=1" type="text/javascript" charset="UTF-8"></script>
 <script type="text/javascript">
 	var tr = document.getElementsByTagName("tr");
 	for (var i = 0; i < tr.length; i++) {
@@ -158,6 +158,26 @@ ul li {
 		if (event.keyCode == 13)
 			sendScontent()
 	}, false);
+	
+	var clickPopup = document.getElementsByClassName("clickPopup"); // 마우스포인터 효과
+	for (var i = 0; i < clickPopup.length; i++) {
+		clickPopup[i].addEventListener("mouseover", function() { // 팝업
+			this.style.cursor = "pointer";
+		}, false);
+	}
+
+	var popup = document.getElementsByClassName("popup");
+
+	for (var i = 0; i < popup.length; i++) { // 마우스 떠나면 꺼지기
+		popup[i].addEventListener("mouseleave", function() {
+			this.style.display = "none";
+		}, false);
+	}
+
+	if (event.target.className == "modal") {
+		event.target.style.display = "none";
+	}
+
 	function showPopup(popNum) { // 팝업띄우기
 		var popup = document.getElementsByClassName("popup");
 
@@ -168,8 +188,8 @@ ul li {
 		var popNum = document.getElementById(popNum);
 		popNum.style.display = "block";
 		popNum.style.position = "absolute";
-		popNum.style.top = event.clientY + "px";
-		popNum.style.left = (event.clientX + 30) + "px";
+		popNum.style.top = (event.pageY + 20) + "px";
+		popNum.style.left = (event.pageX - 40) + "px";
 	}
 	function sendSort(sort) {
 		location.href = "/semi/go/gboard.do?pageNum=${pageNum}&sort=" + sort

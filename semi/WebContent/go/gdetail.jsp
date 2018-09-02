@@ -1,10 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/go_frm.css?ver=6">
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/go_modal.css?ver=6">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/go_frm.css?ver=6">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/go_modal.css?ver=6">
 <style type="text/css">
 #gtable table tbody td, #gtable table tbody th {
 	border-spacing: 0px;
@@ -573,24 +570,19 @@ p {
 			<td>${vo.nic}&nbsp;|&nbsp;조회&nbsp;${vo.hit}&nbsp;|&nbsp;작성일&nbsp;${vo.regdate}&nbsp;|&nbsp;댓글&nbsp;${vo.countComment}</td>
 		</tr>
 		<tr>
-			<td height="500px" colspan="2"
-				style="text-align: left; vertical-align: top;">${vo.content}</td>
+			<td height="500px" colspan="2" style="text-align: left; vertical-align: top;">${vo.content}</td>
 		</tr>
 	</table>
 	<div id="detailFunc">
 		<button class="mybutton" type="button" onclick="golist()">목록</button>
-		<button class="mybutton" type="button"
-			onclick="godeleteModal('${vo.id}')">삭제</button>
-		<button class="mybutton" type="button"
-			onclick="gomodify('${vo.bNum}', '${vo.id}')">수정</button>
+		<button class="mybutton" type="button" onclick="godeleteModal('${vo.id}')">삭제</button>
+		<button class="mybutton" type="button" onclick="gomodify('${vo.bNum}', '${vo.id}')">수정</button>
 		<c:choose>
 			<c:when test="${isrecomm == 'false'}">
-				<button type="button" class="mybutton"
-					onclick="goRecomm('${sessionScope.id}', ${vo.bNum}, 0)">추천</button>
+				<button type="button" class="mybutton" onclick="goRecomm('${sessionScope.id}', ${vo.bNum}, 0)">추천</button>
 			</c:when>
 			<c:otherwise>
-				<button type="button" class="mybutton"
-					onclick="deleteRecomm('${sessionScope.id}', ${vo.bNum}, 0)">추천취소</button>
+				<button type="button" class="mybutton" onclick="deleteRecomm('${sessionScope.id}', ${vo.bNum}, 0)">추천취소</button>
 			</c:otherwise>
 		</c:choose>
 	</div>
@@ -598,32 +590,28 @@ p {
 		<c:forEach var="vo" items="${gclist}">
 			<table>
 				<tr>
-					<td width="5%"><span class="clickPopup"
-						onclick="showPopup('pop${vo.cNum}')">${vo.nic}</span></td>
+					<td width="5%"><span class="clickPopup" onclick="showPopup('pop${vo.cNum}')">${vo.nic}</span></td>
 					<td width="80%"><pre>${vo.content}</pre></td>
 					<!-- <td width="7%">${vo.recomm}</td> -->
 					<td width="15%">${vo.regdate}</td>
 					<!-- 닉네임으로 작성했으면 닉네임과 비밀번호로 조회후 삭제 -->
 					<!-- 로그인해서 작성했으면 아이디로 조회후 삭제 -->
-					<td><button class="mybutton" type="button"
-							onclick="removeRecomm('${vo.cNum}')" style="padding: 5px 10px;">X</button></td>
+					<td><button class="mybutton" type="button" onclick="removeRecomm('${vo.cNum}')" style="padding: 5px 10px;">X</button></td>
 				</tr>
 			</table>
 			<div id="inputPwd${vo.cNum}" class="modal" style="display: none;">
 				<div class="modal_content">
 					<p>작성한 비밀번호를 입력해주세요.</p>
 					<br> <input type="text" id="recommPwd${vo.cNum}"><br>
-					<button class="mybutton" type="button"
-						onclick="checkPwd('${vo.cNum}')">입력</button>
+					<button class="mybutton" type="button" onclick="checkPwd('${vo.cNum}')">입력</button>
 				</div>
 			</div>
 			<!-- popup -->
 			<div class="popup" id="pop${vo.cNum}">
 				<div class="popstyle">
 					<ul>
-						<li><a
-							href="javascript:sendMsg('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">쪽지보내기</a></li>
-						<li><a href="">신고하기</a></li>
+						<li><a href="javascript:sendMsg('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">쪽지보내기</a></li>
+						<li><a href="javascript:sendReport('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">신고하기</a></li>
 					</ul>
 				</div>
 			</div>
@@ -637,9 +625,7 @@ p {
 					<!-- 로그인 안되있으면 닉네임 입력하고 댓글 작성 -->
 					<c:choose>
 						<c:when test="${empty sessionScope.id}">
-							<td width="10%"><input type="text" name="nic" size="10"
-								placeholder="닉네임"> <br> <input type="password"
-								name="rPassword" size="10" placeholder="비밀번호"></td>
+							<td width="10%"><input type="text" name="nic" size="10" placeholder="닉네임"> <br> <input type="password" name="rPassword" size="10" placeholder="비밀번호"></td>
 						</c:when>
 						<c:otherwise>
 							<td width="10%">${sessionScope.nic}</td>
@@ -647,14 +633,11 @@ p {
 							<input type="hidden" name="nic" value="${sessionScope.nic}">
 						</c:otherwise>
 					</c:choose>
-					<td width="60%"><textarea rows="5" cols="100" name="content"
-							id="tarea"></textarea></td>
-					<td width="20%"><button class="mybutton" type="button"
-							onclick="getList()">작성</button></td>
+					<td width="60%"><textarea rows="5" cols="100" name="content" id="tarea"></textarea></td>
+					<td width="20%"><button class="mybutton" type="button" onclick="getList()">작성</button></td>
 				</tr>
 			</table>
-			<input type="hidden" name="bNum" value="${vo.bNum}"> <input
-				type="hidden" name="tNum" value="0">
+			<input type="hidden" name="bNum" value="${vo.bNum}"> <input type="hidden" name="tNum" value="0">
 		</form>
 	</div>
 </div>
@@ -663,8 +646,7 @@ p {
 	<div class="modal_content">
 		<span class="close">&times;</span>
 		<p>정말 삭제하실 꺼예요?</p>
-		<button type="button" onclick="godelete('${vo.bNum}')"
-			style="float: none;">확인</button>
+		<button type="button" onclick="godelete('${vo.bNum}')" style="float: none;">확인</button>
 	</div>
 </div>
 
@@ -721,6 +703,7 @@ p {
 		<p>비밀번호는 4자이상 20자 이하여야 합니다.</p>
 	</div>
 </div>
+<script src="/semi/js/showPop.js" charset="UTF-8"></script>
 <script type="text/javascript">
 var deleteModal = document.getElementById("delete_modal");
 document.getElementsByClassName("close")[0].onclick = function() {
@@ -732,5 +715,34 @@ window.onclick = function(event) {
     	event.target.style.display = "none";
     }
 }
+
+var clickPopup = document.getElementsByClassName("clickPopup"); // 마우스포인터 효과
+for (var i = 0; i < clickPopup.length; i++) {
+	clickPopup[i].addEventListener("mouseover", function() { // 팝업
+		this.style.cursor = "pointer";
+	}, false);
+}
+
+var popup = document.getElementsByClassName("popup");
+
+for (var i = 0; i < popup.length; i++) { // 마우스 떠나면 꺼지기
+	popup[i].addEventListener("mouseleave", function() {
+		this.style.display = "none";
+	}, false);
+}
+
+function showPopup(popNum) { // 팝업띄우기
+	var popup = document.getElementsByClassName("popup");
+
+	for (var i = 0; i < popup.length; i++) {
+		popup[i].style.display = "none";
+	}
+
+	var popNum = document.getElementById(popNum);
+	popNum.style.display = "block";
+	popNum.style.position = "absolute";
+	popNum.style.top = (event.pageY + 20) + "px";
+	popNum.style.left = (event.pageX - 40) + "px";
+}
+
 </script>
-<script src="/semi/js/showPop.js" charset="UTF-8"></script>

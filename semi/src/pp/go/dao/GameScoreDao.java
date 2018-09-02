@@ -74,7 +74,7 @@ public class GameScoreDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select * from (select aa.*, rownum rnum from (select * from gamescore order by getPoint)aa ) where rnum>=1 and rnum <=10";
+		String sql = "select * from (select aa.*, rownum rnum from (select * from gamescore order by getPoint desc)aa ) where rnum>=1 and rnum <=10";
 
 		try {
 			conn = DBConnection.conn();

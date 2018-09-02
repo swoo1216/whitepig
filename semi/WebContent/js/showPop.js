@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function(){
 	var clickPopup = document.getElementsByClassName("clickPopup"); // 마우스포인터 효과
 	for (var i = 0; i < clickPopup.length; i++) {
 		clickPopup[i].addEventListener("mouseover", function() { // 팝업
@@ -13,7 +13,7 @@ window.onload = function() {
 			this.style.display = "none";
 		}, false);
 	}
-	
+
 	if (event.target.className == "modal") {
 		event.target.style.display = "none";
 	}

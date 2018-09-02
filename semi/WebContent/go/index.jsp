@@ -35,6 +35,6 @@
 	<input type="button" value="100" onclick="selectAmount()">
 	<input type="button" value="1000" onclick="selectAmount()">
 	<input type="button" value="10000" onclick="selectAmount()">
-
+<%= request.getRealPath("/") %>
 </body>
 </html>
