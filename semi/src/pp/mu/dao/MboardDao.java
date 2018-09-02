@@ -227,8 +227,9 @@ public class MboardDao {
 				String title=rs.getString("title");
 				String content=rs.getString("content");
 				int hit=rs.getInt("hit");
-				int recomm=rs.getInt("recomm");			
-				String id=GuserDao.getInstance().select(rs.getString("id")).getNic();
+				int recomm=rs.getInt("recomm");
+				String id=rs.getString("id");
+				//String id=GuserDao.getInstance().select(rs.getString("id")).getNic();
 				Date regdate=rs.getDate("regdate");
 				String path=rs.getString("path");	
 				MboardVo vo=new MboardVo(bnum, title, content, hit, recomm, id, regdate, path);

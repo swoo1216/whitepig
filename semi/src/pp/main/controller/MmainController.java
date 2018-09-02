@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pp.go.dao.GboardDao;
-import pp.go.dao.GuserDao;
 import pp.go.vo.GboardVo;
-import pp.go.vo.GuserVo;
 import pp.lol.dao.LboardDao;
 import pp.lol.vo.LboardVo;
 import pp.mu.dao.MboardDao;
