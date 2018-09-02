@@ -14,7 +14,7 @@
 	<div class="w3-container w3-dark-gray">
 		<h1>Header</h1>
 	</div>
-	<div class="w3-container" >
+	<div class="w3-container">
 		<table class="w3-table-all w3-striped">
 			<thead>
 				<tr class="w3-dark-gray">
@@ -25,7 +25,8 @@
 				</tr>
 			</thead>
 			<c:forEach var="vo" items="${list }">
-				<tr onclick="location.href='mdetail.do?bnum=${vo.bnum }'" style = "cursor:pointer;">
+				<tr onclick="location.href='mdetail.do?bnum=${vo.bnum }'"
+					style="cursor: pointer;">
 					<td>${vo.bnum }</td>
 					<td>${vo.title }</td>
 					<td>${vo.hit }</td>
@@ -42,15 +43,16 @@
 					[이전]
 				</c:otherwise>
 			</c:choose>
-	<c:forEach var="i" begin="${startpage }" end="${endpage }">
-			<c:choose>
-				<c:when test="${pagenum==i }"><%-- 현재페이지인경우--%>
-					<a href="mlist.do?pagenum=${i }"><span style="color:red" >[${i }]</span></a>
-				</c:when>
-				<c:otherwise>
-					<a href="mlist.do?pagenum=${i }"><span style="color:#555" >[${i }]</span></a>
-				</c:otherwise>
-			</c:choose>	
+			<c:forEach var="i" begin="${startpage }" end="${endpage }">
+				<c:choose>
+					<c:when test="${pagenum==i }">
+						<%-- 현재페이지인경우--%>
+						<a href="mlist.do?pagenum=${i }"><span style="color: red">[${i }]</span></a>
+					</c:when>
+					<c:otherwise>
+						<a href="mlist.do?pagenum=${i }"><span style="color: #555">[${i }]</span></a>
+					</c:otherwise>
+				</c:choose>
 			</c:forEach>
 			<!-- 다음 -->
 			<c:choose>
@@ -63,7 +65,8 @@
 			</c:choose>
 		</div>
 		<div class="w3-right">
-			<div class="w3-bar w3-dark-gray" style="width: 200px; margin-top: 50px;">
+			<div class="w3-bar w3-dark-gray"
+				style="width: 200px; margin-top: 50px;">
 				<a
 					onclick="document.getElementById('writeboard').style.display='block'"
 					class="w3-bar-item w3-button" style="width: 50%">글작성</a> <a
@@ -76,36 +79,80 @@
 		<div class="w3-modal-content w3-animate-zoom" style="width: 60%">
 			<form action="minsert.do"
 				class="w3-container w3-card-4 w3-light-grey w3-text-w3-dark-gray">
-				
+
 				<h2 class="w3-center w3-dark-grey w3-padding">글작성</h2>
-				
+
 				<div class="w3-row w3-section">
-				
+
 					<div class="w3-rest">
 						<input class="w3-input w3-border" name="title" type="text"
 							placeholder="제목">
 					</div>
 				</div>
 				<div class="w3-row w3-section">
-				
+
 					<div class="w3-rest">
 						<textarea class="w3-input w3-border" name="content" rows="7"
 							cols="80" placeholder="내용"></textarea>
 					</div>
 				</div>
 				<div class="w3-row w3-section">
-				
+
 					<div class="w3-rest">
 						<input class="w3-input w3-border" name="id" type="text"
 							placeholder="작성자">
 					</div>
 				</div>
 				<button
-					class="w3-button w3-block w3-section w3-dark-gray w3-ripple w3-padding" type="submit">Write</button>
-				<a onclick="document.getElementById('writeboard').style.display='none'"
-					class="w3-button w3-block w3-section w3-dark-gray w3-ripple w3-padding">닫기</a>					
+					class="w3-button w3-block w3-section w3-dark-gray w3-ripple w3-padding"
+					type="submit">Write</button>
+				<a
+					onclick="document.getElementById('writeboard').style.display='none'"
+					class="w3-button w3-block w3-section w3-dark-gray w3-ripple w3-padding">닫기</a>
 			</form>
 		</div>
 	</div>
 </body>
+<script src="/semi/js/showPop.js" charset="UTF-8"></script>
+<script type="text/javascript">
+	var deleteModal = document.getElementById("delete_modal");
+	document.getElementsByClassName("close")[0].onclick = function() {
+		deleteModal.style.display = "none";
+	}
+
+	window.onclick = function(event) {
+		if (event.target.className == "modal") {
+			event.target.style.display = "none";
+		}
+	}
+
+	var clickPopup = document.getElementsByClassName("clickPopup"); // 마우스포인터 효과
+	for (var i = 0; i < clickPopup.length; i++) {
+		clickPopup[i].addEventListener("mouseover", function() { // 팝업
+			this.style.cursor = "pointer";
+		}, false);
+	}
+
+	var popup = document.getElementsByClassName("popup");
+
+	for (var i = 0; i < popup.length; i++) { // 마우스 떠나면 꺼지기
+		popup[i].addEventListener("mouseleave", function() {
+			this.style.display = "none";
+		}, false);
+	}
+
+	function showPopup(popNum) { // 팝업띄우기
+		var popup = document.getElementsByClassName("popup");
+
+		for (var i = 0; i < popup.length; i++) {
+			popup[i].style.display = "none";
+		}
+
+		var popNum = document.getElementById(popNum);
+		popNum.style.display = "block";
+		popNum.style.position = "absolute";
+		popNum.style.top = (event.pageY + 20) + "px";
+		popNum.style.left = (event.pageX - 40) + "px";
+	}
+</script>
 </html>
