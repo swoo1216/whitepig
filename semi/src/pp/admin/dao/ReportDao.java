@@ -142,9 +142,10 @@ public class ReportDao {
 				String rtype = rs.getString("rtype");
 				String content = rs.getString("content");
 				Date regdate = rs.getDate("regdate");
-
+				System.out.println(reportNum);
 				list.add(new ReportVo(reportNum, reporter, suspect, rtype, content, regdate));
 			}
+			
 			return list;
 		} catch (SQLException se) {
 			System.out.println(se.getMessage());

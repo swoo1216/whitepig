@@ -25,11 +25,11 @@
 		</tr>
 		<tr>
 			<td>용의자</td>
-<%-- 			<td>${vo.suspect}<select id="clss">
+			<td>${vo.suspect}<select id="clss">
 					<option value="user" <c:if test="${clss == 'user'}">selected</c:if>>user</option>
 					<option value="yellow" <c:if test="${clss == 'yellow'}">selected</c:if>>yellow</option>
 					<option value="red" <c:if test="${clss == 'red'}">selected</c:if>>red</option>
-			</select> --%>
+			</select>
 				<button type="button" onclick="sendChange()">등급변경</button></td>
 		</tr>
 		<tr>
