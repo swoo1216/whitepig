@@ -96,13 +96,7 @@
 			<i class="fa fa-bars"></i>  Menu
 		</button>
 
-<<<<<<< HEAD
-		<button
-			class="w3-btn w3-round w3-ripple w3-pale-red w3-large w3-right"
-			onclick="goGame()">open</button>
-=======
 		<button class="w3-btn w3-round w3-ripple w3-pale-red w3-large w3-right" onclick="goGame()">Game</button>
->>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
 
 		<!-- 전체채팅 -->
 		<button
@@ -617,12 +611,7 @@
 </body>
 
 
-<<<<<<< HEAD
-<script src="/semi/js/pantalk.js?ver=4" type="text/javascript"
-	charset="UTF-8"></script>
-=======
 <script src="/semi/js/pantalk.js?ver=5" type="text/javascript" charset="UTF-8"></script>
->>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
 <script type="text/javascript">
 	var pt = new pantalk("${sessionScope.id}", "${sessionScope.nic}");
 	pt.startCount();
@@ -686,7 +675,7 @@
 		xhr.open("get", "/semi/go/GetGameRank.do", true);
 		xhr.send();
 	}
-
+	
 	var modal = document.getElementById('chat');
 
 	window.onclick = function(event) {
@@ -701,6 +690,5 @@
 			window.scroll(function() { return true; });
 		}
 	}
-
 </script>
 </html>

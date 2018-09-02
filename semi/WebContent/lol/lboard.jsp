@@ -56,7 +56,7 @@
 				<td style="width: 10%; vertical-align: middle;"><i
 					class="fa fa-check-square-o"> ${vo.hit }</i></td>
 				<td style="width: 15%; vertical-align: middle;"><img
-					src="img/${vo.num }.gif" style="width: 40px;"><span
+					src="img/${vo.num }.gif" style="width: 50px;"><span
 					class="clickPopup" onclick="showPopup('pop${vo.bnum}')">${vo.nic}</span></td>
 			</tr>
 			<div class="popup" id="pop${vo.bnum}">
