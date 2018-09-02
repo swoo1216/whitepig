@@ -6,6 +6,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	var xhr=null;
+	function deleteMboard(bnum) {
+		var check = confirm("이 글을 삭제하시겠습니까?");
+		if(check == true){
+			xhr=new XMLHttpRequest();
+			xhr.onreadystatechange=deleteMboardOk;
+			xhr.open('get','mdelete.do?bnum='+bnum,true);
+			xhr.send();
+		}else {
+			alert("취소하셨습니다.");
+			return;
+		}
+	}
+	function deleteMboardOk(){
+		if(xhr.readyState==4 && xhr.status==200){
+			location.href="/mlist.do";
+			var text=xhr.responseText;
+			var json=JSON.parse(text);
+			if(json.result==1){
+				alert("삭제완료");
+			}else{
+				alert("삭제실패");
+			}
+		} 
+	}
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"
@@ -19,17 +46,19 @@
 			<thead>
 				<tr class="w3-dark-gray">
 					<th style="width: 10%">글번호</th>
-					<th style="width: 70%">제목</th>
+					<th style="width: 60%">제목</th>
 					<th style="width: 10%">조회수</th>
 					<th style="width: 10%">작성자</th>
+					<th style="width: 10%">삭제</th>
 				</tr>
 			</thead>
 			<c:forEach var="vo" items="${list }">
-				<tr onclick="location.href='mdetail.do?bnum=${vo.bnum }'" style = "cursor:pointer;">
+				<tr>
 					<td>${vo.bnum }</td>
-					<td>${vo.title }</td>
+					<td onclick="location.href='mdetail.do?bnum=${vo.bnum }'" style = "cursor:pointer;">${vo.title }</td>
 					<td>${vo.hit }</td>
 					<td>${vo.id }</td>
+					<td><a onclick="deleteMboard('${vo.bnum }')" class="w3-button" ><span class="w3-large"><i class="fa fa-times-rectangle"></i></span></a></td>
 				</tr>
 			</c:forEach>
 		</table>
