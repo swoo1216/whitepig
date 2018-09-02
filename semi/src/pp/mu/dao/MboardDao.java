@@ -5,10 +5,13 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
-
+import pp.go.dao.GuserDao;
 import pp.mu.vo.MboardVo;
+import pp.poke.dao.PcommentDao;
+import pp.poke.vo.PboardVo;
 import test.db.DBConnection;
 
 
@@ -205,6 +208,38 @@ public class MboardDao {
 			return -1;
 		} finally {
 			DBConnection.close(null, pstmt, con);
+		}
+	}
+	public ArrayList<MboardVo> mmainList()
+	{
+		ArrayList<MboardVo> list = new ArrayList<>();
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBConnection.conn();
+			String sql = "select * from(select * from mboard order by bnum desc) where rownum <=10";
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				int bnum=rs.getInt("bnum");
+				String title=rs.getString("title");
+				String content=rs.getString("content");
+				int hit=rs.getInt("hit");
+				int recomm=rs.getInt("recomm");			
+				String id=GuserDao.getInstance().select(rs.getString("id")).getNic();
+				Date regdate=rs.getDate("regdate");
+				String path=rs.getString("path");	
+				MboardVo vo=new MboardVo(bnum, title, content, hit, recomm, id, regdate, path);
+				list.add(vo);
+			}
+			return list;
+		}catch(SQLException se) {
+			System.out.println(se.getMessage());
+			return null;
+		}finally {
+			DBConnection.close(rs, stmt, conn);
 		}
 	}
 }

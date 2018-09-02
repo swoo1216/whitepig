@@ -19,7 +19,7 @@ public class CuserSearchController extends HttpServlet{
 		String sv=request.getParameter("searchvalue");
 		String si=request.getParameter("searchinfo");
 		AdminMainDao dao=AdminMainDao.getInstance();
-		ArrayList<AdminMainVo> adminlist=dao.searchuser(sv, si);
+		ArrayList<AdminMainVo> adminlist=dao.searchUser(sv, si);
 		System.out.println(adminlist);
 		request.setAttribute("adminlist", adminlist);
 		request.getRequestDispatcher("adminmain.jsp?page=cuserlist.jsp" ).forward(request, response);

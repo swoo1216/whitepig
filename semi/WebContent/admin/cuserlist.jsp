@@ -6,6 +6,32 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	var xhr=null;
+	function deleteCuser(id) {
+		var check = confirm(id+"를 삭제하시겠습니까?");
+		if(check == true){
+			xhr=new XMLHttpRequest();
+			xhr.onreadystatechange=deleteCuserOk;
+			xhr.open('get','userdelete.do?id='+id,true);
+			xhr.send();
+		}else {
+			alert("취소하셨습니다.");
+			return;
+		}
+	}
+	function deleteCuserOk(){
+		if(xhr.readyState==4 && xhr.status==200){
+			var text=xhr.responseText;
+			var json=JSON.parse(text);
+			if(json.result==1){
+				alert("삭제완료");
+			}else{
+				alert("삭제실패");
+			}
+		} 
+	}
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"
@@ -17,33 +43,37 @@
 	<div class="w3-container">
 		<table class="w3-table-all w3-striped">
 			<thead>
-				<tr class="w3-dark-gray">
+				<tr class="w3-dark-gray ">
+					<!-- <th><input class="w3-check" style="height: 15px" type="checkbox"></th> -->
 					<th style="width: 10%">ID</th>
-					<th style="width: 25%">Nick Name</th>
+					<th style="width: 20%">Nick Name</th>
 					<th style="width: 25%">E-Mail</th>
 					<th style="width: 10%">Point</th>
 					<th style="width: 10%">권한</th>
 					<th style="width: 20%">가입일</th>
+					<th style="width: 5%">삭제</th>
 				</tr>
 			</thead>
 			<c:forEach var="vo" items="${adminlist }">
-				<tr
-					onclick="document.getElementById('detailuser${vo.id}').style.display='block'"
-					style="cursor: pointer">
+				<tr>				
+					<!-- <td><input class="w3-check" style="height: 15px" type="checkbox"></td> -->
 					<td>${vo.id }</td>
-					<td>${vo.nic }</td>
+					<td onclick="document.getElementById('detailuser${vo.id}').style.display='block'"
+					style="cursor: pointer">${vo.nic }</td>
 					<td>${vo.email }</td>
 					<td>${vo.point }</td>
 					<td>${vo.clss }</td>
-					<td>${vo.regdate }</td>
+					<td>${vo.regdate }</td>					
+					<td><a onclick="deleteCuser('${vo.id }')" class="w3-button" ><span class="w3-large"><i class="fa fa-times-rectangle"></i></span></a></td>
 				</tr>
-				<div class="w3-modal" id="detailuser${vo.id}">
+				<div class="w3-modal w3-margin" id="detailuser${vo.id}">
 
 					<div
 						class="w3-modal-content w3-animate-zoom w3-margin-top w3-container"
 						style="width: 80%">
 						<div class="w3-dark-gray w3-container w3-margin-top">
-							<h3>회원정보</h3>
+							
+							<h3 >회원정보</h3>
 						</div>
 						<form class="w3-container" action="modifyuser.do">
 							<div class="w3-section">
@@ -91,9 +121,8 @@
 					name="searchinfo" id="searchinfo" required> <input
 					class="w3-button w3-bar-item w3-dark-gray" type="submit" value="조회">
 			</form>
-			<a href="main.jsp?page=join.jsp"
-				class="w3-bar-item w3-button w3-dark-gray w3-right">회원삭제</a> <a
-				onclick="document.getElementById('writeboard').style.display='block'"
+			<a class="w3-bar-item w3-button w3-dark-gray w3-right">회원삭제</a> 
+			<a onclick="document.getElementById('writeboard').style.display='block'"
 				class="w3-bar-item w3-button w3-dark-gray w3-right">회원추가</a>
 		</div>
 	</div>
@@ -135,7 +164,7 @@
 			<div class="w3-dark-gray w3-container w3-margin-top">
 				<h3>회원정보수정</h3>
 			</div>
-			<form class="w3-container" action="adminjoin.do">
+			<form class="w3-container" action="userinsert.do">
 				<div class="w3-section">
 					<label><b>id</b></label> <input class="w3-input w3-border"
 						type="text" placeholder="Enter Username" name="id" id="id"
@@ -152,7 +181,7 @@
 					<div id="niccheck" style="font-size: 12px; font-weight: bold;"></div>
 					<button
 						class="w3-button w3-block w3-light-gray w3-section w3-padding"
-						type="submit" onclick="return ckcommit()">Join</button>
+						type="submit">Join</button>
 					<button
 						onclick="document.getElementById('writeboard').style.display='none'"
 						type="button"

@@ -27,6 +27,7 @@ public class ModifyUserController extends HttpServlet{
 		AdminMainVo vo=new AdminMainVo(id, pwd, email, nic, clss, point, regdate, num);
 		AdminMainDao dao=AdminMainDao.getInstance();
 		int result=dao.modifyUser(vo);
-		response.sendRedirect("adminmain.jsp?page=userlist.do");
+		System.out.println(result);
+		
 	}
 }
