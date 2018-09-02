@@ -1,5 +1,7 @@
+<%@page import="pp.main.vo.MainVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,6 +10,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Poppins">
 <style>
@@ -31,7 +34,7 @@ body {
 }
 </style>
 <body>
-
+	<% MainVo infovo=(MainVo)session.getAttribute("infovo"); %>
 	<!-- Sidebar/menu -->
 	<nav
 		class="w3-sidebar w3-dark-gray w3-collapse w3-top w3-large w3-padding"
@@ -44,25 +47,40 @@ body {
 		<h3 class="w3-padding-64">
 			<b>Admin page </b>
 		</h3>
-	</div>
-	<div class="w3-bar-block">
-		<a href="adminmain.jsp?page=userlist.do" onclick="w3_close()"
-			class="w3-bar-item w3-button w3-hover-white">회원목록</a> <a
-			href="#services" onclick="w3_close()"
-			class="w3-bar-item w3-button w3-hover-white">pocket</a> <a
-			href="#services" onclick="w3_close()"
-			class="w3-bar-item w3-button w3-hover-white">oldgame</a> <a
-			href="#designers" onclick="w3_close()"
-			class="w3-bar-item w3-button w3-hover-white">lol</a> <a
-			href="#packages" onclick="w3_close()"
-			class="w3-bar-item w3-button w3-hover-white">music</a> <a
-			href="salsevolume.do" onclick="w3_close()"
-			class="w3-bar-item w3-button w3-hover-white">판매량</a> <a
-			href="#contact" onclick="w3_close()"
-			class="w3-bar-item w3-button w3-hover-white">사용자통계</a> <a
-			href="#contact" onclick="w3_close()"
-			class="w3-bar-item w3-button w3-hover-white">신고접수리스트</a>
-	</div>
+		<c:choose>
+			<c:when test="${empty sessionScope.id }">			
+				<div class="w3-bar w3-black" style="width: 100%; margin-top: 50px;">
+					<a href="adminmain.jsp?page=login.jsp" class="w3-bar-item w3-button"
+						style="width: 50%">로그인</a> <a href="adminmain.jsp?page=join.jsp"
+						class="w3-bar-item w3-button" style="width: 50%">회원가입</a>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div><a onclick="location.href='adminmain.jsp?page=mypage.jsp'" style="cursor: pointer;">
+				<img align="left" src="../img/<%=infovo.getNum()%>.png" style="height: 50px">
+				<h3><%=infovo.getNic()%></h3></a></div>
+				<a href="mainlogout.do" class="w3-bar-item w3-button w3-right" ><span class="w3-xlarge"><i class="fa fa-times-rectangle"></i></span></a>
+			</c:otherwise>	
+		</c:choose>
+
+		<div class="w3-bar-block">
+			<a href="adminmain.jsp?page=userlist.do" onclick="w3_close()"
+				class="w3-bar-item w3-button w3-hover-white">회원목록</a> <a
+				href="#services" onclick="w3_close()"
+				class="w3-bar-item w3-button w3-hover-white">pocket</a> <a
+				href="#services" onclick="w3_close()"
+				class="w3-bar-item w3-button w3-hover-white">oldgame</a> <a
+				href="#designers" onclick="w3_close()"
+				class="w3-bar-item w3-button w3-hover-white">lol</a> <a
+				href="adminmain.jsp?page=mlist.do" onclick="w3_close()"
+				class="w3-bar-item w3-button w3-hover-white">music</a> <a
+				href="adminmain.jsp?page=salsevolume.do" onclick="w3_close()"
+				class="w3-bar-item w3-button w3-hover-white">판매량</a> <a
+				href="salesvolume.jsp" onclick="w3_close()"
+				class="w3-bar-item w3-button w3-hover-white">사용자통계</a> <a
+				href="adminmain.jsp?page=ListReport.do" onclick="w3_close()"
+				class="w3-bar-item w3-button w3-hover-white">신고접수리스트</a>
+		</div>
 	</nav>
 
 	<!-- Top menu on small screens -->
