@@ -96,9 +96,13 @@
 			<i class="fa fa-bars"></i>  Menu
 		</button>
 
+<<<<<<< HEAD
 		<button
 			class="w3-btn w3-round w3-ripple w3-pale-red w3-large w3-right"
 			onclick="goGame()">open</button>
+=======
+		<button class="w3-btn w3-round w3-ripple w3-pale-red w3-large w3-right" onclick="goGame()">Game</button>
+>>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
 
 		<!-- 전체채팅 -->
 		<button
@@ -271,7 +275,7 @@
 			<%
 				String contentpage = request.getParameter("page");
 				if (contentpage == null)
-					contentpage = "/poke/index.jsp";
+					contentpage = "/mmmain.do";
 			%>
 
 			<jsp:include page="<%=contentpage%>" />
@@ -613,8 +617,12 @@
 </body>
 
 
+<<<<<<< HEAD
 <script src="/semi/js/pantalk.js?ver=4" type="text/javascript"
 	charset="UTF-8"></script>
+=======
+<script src="/semi/js/pantalk.js?ver=5" type="text/javascript" charset="UTF-8"></script>
+>>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
 <script type="text/javascript">
 	var pt = new pantalk("${sessionScope.id}", "${sessionScope.nic}");
 	pt.startCount();
@@ -693,5 +701,10 @@
 			window.scroll(function() { return true; });
 		}
 	}
+<<<<<<< HEAD
+=======
+
+	
+>>>>>>> branch 'master' of https://github.com/swoo1216/whitepig.git
 </script>
 </html>

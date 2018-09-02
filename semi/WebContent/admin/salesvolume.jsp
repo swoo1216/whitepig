@@ -19,8 +19,8 @@
 		String[] a=svolume.split(",");
 %>
 		<div class="w3-panel w3-light-gray w3-leftbar w3-border-gray">
-		    <img src="../img/<%=a[1] %>.png" style="height: 50px">
-		    <img src="../img/<%=a[1] %>.gif">
+		    <img src="/semi/poke/img/<%=a[1] %>.png" style="height: 50px">
+		    <img src="/semi/poke/img/<%=a[1] %>.gif">
 		    <p>판매량 :<%=a[0] %></p>
 	 	</div>	 	
 <%	 				

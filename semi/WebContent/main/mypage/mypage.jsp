@@ -97,7 +97,7 @@
 	</c:when>
 	<c:when test="${clss=='admin'}">
 	<div id="modifyInfo">
-		<a href="/semi/poke/main.jsp?page=/main/mypage/modifyInfo.jsp">[관리자페이지로 이동하기]</a>
+		<a href="admin/adminmain.jsp">[관리자페이지로 이동하기]</a>
 		<a href="/semi/poke/main.jsp?page=/main/mypage/modifyInfo.jsp">[회원정보 수정하기]</a>
 		<a href="<%=request.getContextPath()%>/mmain.do">[메인으로 가기]</a>
 		</div>

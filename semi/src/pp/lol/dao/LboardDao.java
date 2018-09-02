@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import pp.go.dao.GcommentDao;
+import pp.go.dao.GuserDao;
 import pp.go.db.DBConnection;
 import pp.go.vo.GboardVo;
 import pp.lol.vo.LboardVo;
@@ -291,10 +292,10 @@ public class LboardDao {
 				int hit=rs.getInt("hit");
 				int recomm=rs.getInt("recomm");
 				String id=rs.getString("id");
-				String nic=rs.getString("nic");
+				String nic=GuserDao.getInstance().select(id).getNic();
 				int commCnt=LcommentDao.getInstance().getCount(bnum);
 				String regdate=rs.getString("regdate");
-				int num=rs.getInt("num");
+				int num=GuserDao.getInstance().select(id).getNum();
 				
 				LboardVo vo=new LboardVo(bnum, title, content, hit, recomm, id, nic, commCnt, regdate, num);
 				list.add(vo);

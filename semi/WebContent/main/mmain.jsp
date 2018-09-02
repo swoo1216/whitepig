@@ -8,27 +8,142 @@
 	height: 100%;
 	grid-template-columns: repeat(2, 1fr);
 }
-
-div {
-	border: 1px solid black;
-}
-
-.items {
-	
-}
-
-.items2 {
-	margin: 5% 15% 5% 15%;
-}
 </style>
-<div id="main">
+<body>
+ <div class="w3-row-padding">
+    <div class="w3-half">
+      <table border="2" width="500" style="text-align: center;">
+	<tr><h1>고전게임게시판</h1></tr>
+	<tr>
+		<th>제목</th>
+		<th>닉네임</th>
+		<th>조회수</th>
+	</tr>
+	<c:forEach var="vo" items="${glist }">
+	<tr>
+		<td>${vo.title}</td>
+		<td>${vo.id}</td>
+		<td>${vo.hit }</td>
+	</tr>
+	</c:forEach>
+</table>
+<table border="2" width="500" style="text-align: center;">
+	<tr><h1>포켓몬게시판</h1></tr>
+	<tr>
+		<th>제목</th>
+		<th>닉네임</th>
+		<th>조회수</th>
+	</tr>
+	<c:forEach var="vo" items="${plist }">
+	<tr>
+		<td>${vo.title}</td>
+		<td>${vo.id}</td>
+		<td>${vo.hit }</td>
+	</tr>
+	</c:forEach>
+</table>
+    </div>
+
+    <div class="w3-half">
+     <table border="2" width="500" style="text-align: center;">
+	<tr><h1>롤게시판</h1></tr>
+	<tr>
+		<th>제목</th>
+		<th>닉네임</th>
+		<th>조회수</th>
+	</tr>
+	<c:forEach var="vo" items="${llist }">
+	<tr>
+		<td>${vo.title}</td>
+		<td>${vo.id}</td>
+		<td>${vo.hit }</td>
+	</tr>
+	</c:forEach>
+</table>
+<table border="2" width="500" style="text-align: center;">
+	<tr><h1>음악게시판</h1></tr>
+	<tr>
+		<th>제목</th>
+		<th>닉네임</th>
+		<th>조회수</th>
+	</tr>
+	<c:forEach var="vo" items="${mlist }">
+	<tr>
+		<td>${vo.title}</td>
+		<td>${vo.id}</td>
+		<td>${vo.hit }</td>
+	</tr>
+	</c:forEach>
+    </div>
+  </div>
+
+<%-- <table border="2" width="500" style="text-align: center;">
+	<tr>고전게임게시판</tr>
+	<tr>
+		<th>제목</th>
+		<th>닉네임</th>
+		<th>조회수</th>
+	</tr>
+	<c:forEach var="vo" items="${glist }">
+	<tr>
+		<td>${vo.title}</td>
+		<td>${vo.id}</td>
+		<td>${vo.hit }</td>
+	</tr>
+	</c:forEach>
+</table>
+<table border="2" width="500" style="text-align: center;">
+	<tr>포켓몬게시판</tr>
+	<tr>
+		<th>제목</th>
+		<th>닉네임</th>
+		<th>조회수</th>
+	</tr>
+	<c:forEach var="vo" items="${plist }">
+	<tr>
+		<td>${vo.title}</td>
+		<td>${vo.id}</td>
+		<td>${vo.hit }</td>
+	</tr>
+	</c:forEach>
+</table>
+<table border="2" width="500" style="text-align: center;">
+	<tr>롤게시판</tr>
+	<tr>
+		<th>제목</th>
+		<th>닉네임</th>
+		<th>조회수</th>
+	</tr>
+	<c:forEach var="vo" items="${llist }">
+	<tr>
+		<td>${vo.title}</td>
+		<td>${vo.id}</td>
+		<td>${vo.hit }</td>
+	</tr>
+	</c:forEach>
+</table>
+<table border="2" width="500" style="text-align: center;">
+	<tr>음악게시판</tr>
+	<tr>
+		<th>제목</th>
+		<th>닉네임</th>
+		<th>조회수</th>
+	</tr>
+	<c:forEach var="vo" items="${mlist }">
+	<tr>
+		<td>${vo.title}</td>
+		<td>${vo.id}</td>
+		<td>${vo.hit }</td>
+	</tr>
+	</c:forEach> --%>
+<%-- <div id="main">
 	<div class="items">
 		<div class=items2>
-			<div>
+			<div style="text-align: center">
 				<a href="#">고전게임갤러리</a>
 			</div>
 			<div>
-				<table>
+				<table border = "1" width = "100%" style="text-align: center;">
 					<tr>
 						<th>제목</th>
 						<th>닉네임</th>
@@ -66,4 +181,5 @@ div {
 			</div>
 		</div>
 	</div>
-</div>
+</div> --%>
+</body>

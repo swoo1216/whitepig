@@ -34,7 +34,7 @@ body {
 }
 </style>
 <body>
-	<% MainVo infovo=(MainVo)session.getAttribute("infovo"); %>
+<%-- 	<% MainVo infovo=(MainVo)session.getAttribute("infovo"); %> --%>
 	<!-- Sidebar/menu -->
 	<nav
 		class="w3-sidebar w3-dark-gray w3-collapse w3-top w3-large w3-padding"
@@ -57,8 +57,8 @@ body {
 			</c:when>
 			<c:otherwise>
 				<div><a onclick="location.href='adminmain.jsp?page=mypage.jsp'" style="cursor: pointer;">
-				<img align="left" src="../img/<%=infovo.getNum()%>.png" style="height: 50px">
-				<h3><%=infovo.getNic()%></h3></a></div>
+				<img align="left" src="/semi/poke/img/<%=session.getAttribute("num")%>.png" style="height: 50px">
+				<h3><%=session.getAttribute("nic")%></h3></a></div>
 				<a href="mainlogout.do" class="w3-bar-item w3-button w3-right" ><span class="w3-xlarge"><i class="fa fa-times-rectangle"></i></span></a>
 			</c:otherwise>	
 		</c:choose>
@@ -73,11 +73,14 @@ body {
 				href="#designers" onclick="w3_close()"
 				class="w3-bar-item w3-button w3-hover-white">lol</a> <a
 				href="adminmain.jsp?page=mlist.do" onclick="w3_close()"
-				class="w3-bar-item w3-button w3-hover-white">music</a> <a
+				class="w3-bar-item w3-button w3-hover-white">music</a> 
+				<a
+				href="/semi/mmmain.do" onclick="w3_close()"
+				class="w3-bar-item w3-button w3-hover-white">기본페이지</a>
+				
+				<a
 				href="adminmain.jsp?page=salsevolume.do" onclick="w3_close()"
-				class="w3-bar-item w3-button w3-hover-white">판매량</a> <a
-				href="salesvolume.jsp" onclick="w3_close()"
-				class="w3-bar-item w3-button w3-hover-white">사용자통계</a> <a
+				class="w3-bar-item w3-button w3-hover-white">판매량</a>  <a
 				href="adminmain.jsp?page=ListReport.do" onclick="w3_close()"
 				class="w3-bar-item w3-button w3-hover-white">신고접수리스트</a>
 		</div>

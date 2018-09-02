@@ -34,7 +34,6 @@ public class MmainController extends HttpServlet
 		request.setAttribute("plist", plist);
 		request.setAttribute("llist", llist);
 		request.setAttribute("mlist", mlist);
-		
-		request.getRequestDispatcher("/main/mmain.jsp").forward(request, response);
+		request.getRequestDispatcher("/poke/main.jsp?page=/main/mmain.jsp").forward(request, response);
 	}
 }
