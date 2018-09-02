@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import pp.admin.vo.AdminMainVo;
+import pp.main.vo.MainVo;
 import test.db.DBConnection;
 
 public class AdminMainDao {
@@ -38,7 +39,7 @@ public class AdminMainDao {
 			DBConnection.close(rs, pstmt, con);
 		}
 	}
-	public ArrayList<AdminMainVo> adminlist(int startRow, int endRow){
+	public ArrayList<AdminMainVo> adminList(int startRow, int endRow){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -60,9 +61,7 @@ public class AdminMainDao {
 				Date regdate=rs.getDate("regdate");
 				int num=rs.getInt("num");
 				AdminMainVo vo=new AdminMainVo(id, pwd, email, nic, clss, point, regdate, num);
-				System.out.println("dao"+vo);
 				adminlist.add(vo);
-				
 			}
 			return adminlist;
 		}catch(SQLException se) {
@@ -95,7 +94,7 @@ public class AdminMainDao {
 			DBConnection.close(null, pstmt, con);
 		}
 	}
-	public ArrayList<AdminMainVo> searchuser(String sv,String si) {
+	public ArrayList<AdminMainVo> searchUser(String sv,String si) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -154,6 +153,43 @@ public class AdminMainDao {
 			return null;
 		}finally {
 			DBConnection.close(rs, pstmt, con);
+		}
+	}
+	public int cUserDelete(String id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=DBConnection.conn();
+			String sql="delete cuser where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			return pstmt.executeUpdate();
+		}catch(SQLException se) {
+			System.out.println(se.getMessage());
+			return -1;
+		}finally {
+			DBConnection.close(null, pstmt, con);
+		}
+	}
+	public int insertUser(AdminMainVo vo) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = DBConnection.conn();
+			String sql = "insert into cuser values(?,?,?,?,'user',0,sysdate,1)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, vo.getId());
+			pstmt.setString(2, vo.getPwd());
+			pstmt.setString(3, vo.getEmail());
+			pstmt.setString(4, vo.getNic());
+			System.out.println(sql);
+			int n = pstmt.executeUpdate();
+			return n;
+		} catch (SQLException se) {
+			System.out.println(se.getMessage());
+			return -1;
+		} finally {
+			test.db.DBConnection.close(null, pstmt, con);
 		}
 	}
 }
