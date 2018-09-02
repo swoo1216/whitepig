@@ -115,11 +115,6 @@
 </body>
 <script src="/semi/js/showPop.js" charset="UTF-8"></script>
 <script type="text/javascript">
-	var deleteModal = document.getElementById("delete_modal");
-	document.getElementsByClassName("close")[0].onclick = function() {
-		deleteModal.style.display = "none";
-	}
-
 	window.onclick = function(event) {
 		if (event.target.className == "modal") {
 			event.target.style.display = "none";
