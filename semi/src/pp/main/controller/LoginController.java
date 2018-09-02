@@ -24,6 +24,7 @@ public class LoginController extends HttpServlet
 		String nic = dao.login(id, pwd);
 		int point = dao.point(nic);
 		int num = dao.num(id);
+		String clss = dao.clss(id,pwd);
 		System.out.println(num);
 		if(nic!=null)
 		{
@@ -33,6 +34,7 @@ public class LoginController extends HttpServlet
 			session.setAttribute("nic", nic);
 			session.setAttribute("point", point);
 			session.setAttribute("num", num);
+			session.setAttribute("clss", clss);
 		}
 		else
 		{

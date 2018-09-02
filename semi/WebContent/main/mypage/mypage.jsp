@@ -73,7 +73,51 @@
 }
 </style>
 <body>
+<c:choose>
+	<c:when test="${!(clss=='admin')}">
+		<div id="modifyInfo">
+		<a href="/semi/poke/main.jsp?page=/main/mypage/modifyInfo.jsp">[회원정보 수정하기]</a> <a
+			href="<%=request.getContextPath()%>/mmain.do">[메인으로 가기]</a>
+		</div>
+		<div id="nic">
+		<h1 style="text-align: center; margin-top: 30px; font-size: 120px;">
+			<img src="poke/img/<%=session.getAttribute("num")%>.png"
+				onclick="idcheck()" style="height: 120px;" id="fuck">
+			<!-- "document.getElementById('id01').style.display='block'" -->
+			<%=session.getAttribute("nic")%></h1>
+		<br> <br>
+	</div>
+	<div id="info">
+		[게시글 : <a href="/semi/mlist.do"><%=session.getAttribute("boardcount")%></a>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[댓
+		글 : <a href="/semi/mrlist.do"><%=session.getAttribute("commentcount")%></a>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[포인트
+		:
+		<%=session.getAttribute("point")%>]
+	</div>
+	<hr style="border-color: white;">
+	</c:when>
+	<c:when test="${clss=='admin'}">
 	<div id="modifyInfo">
+		<a href="/semi/poke/main.jsp?page=/main/mypage/modifyInfo.jsp">[관리자페이지로 이동하기]</a>
+		<a href="/semi/poke/main.jsp?page=/main/mypage/modifyInfo.jsp">[회원정보 수정하기]</a>
+		<a href="<%=request.getContextPath()%>/mmain.do">[메인으로 가기]</a>
+		</div>
+		<div id="nic">
+		<h1 style="text-align: center; margin-top: 30px; font-size: 120px;">
+			<img src="poke/img/<%=session.getAttribute("num")%>.png"
+				onclick="idcheck()" style="height: 120px;" id="fuck">
+			<!-- "document.getElementById('id01').style.display='block'" -->
+			<%=session.getAttribute("nic")%></h1>
+		<br> <br>
+	</div>
+	<div id="info">
+		[게시글 : <a href="/semi/mlist.do"><%=session.getAttribute("boardcount")%></a>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[댓
+		글 : <a href="/semi/mrlist.do"><%=session.getAttribute("commentcount")%></a>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[포인트
+		:
+		<%=session.getAttribute("point")%>]
+	</div>
+	</c:when>
+</c:choose>
+<%-- 	<div id="modifyInfo">
 		<a href="/semi/poke/main.jsp?page=/main/mypage/modifyInfo.jsp">[회원정보 수정하기]</a> <a
 			href="<%=request.getContextPath()%>/mmain.do">[메인으로 가기]</a>
 	</div>
@@ -90,7 +134,7 @@
 		글 : <a href="/semi/mrlist.do"><%=session.getAttribute("commentcount")%></a>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[포인트
 		:
 		<%=session.getAttribute("point")%>]
-	</div>
+	</div> --%>
 	<c:choose>
 		<c:when test="${requestScope.code =='success'}">
 			<script>

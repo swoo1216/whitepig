@@ -1,12 +1,16 @@
 package pp.lol.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
+import pp.go.dao.GcommentDao;
 import pp.go.db.DBConnection;
+import pp.go.vo.GboardVo;
 import pp.lol.vo.LboardVo;
 
 public class LboardDao {
@@ -132,6 +136,10 @@ public class LboardDao {
 		}catch(SQLException se) {
 			System.out.println(se.getMessage());
 			return null;
+		}
+		finally
+		{
+			DBConnection.close(rs, pstmt, conn);
 		}
 	}
 	public LboardVo select(int bnum) {
@@ -262,6 +270,43 @@ public class LboardDao {
 			return -1;
 		}finally {
 			DBConnection.close(null, pstmt, conn);
+		}
+	}
+	public ArrayList<LboardVo> lmainList()
+	{
+		ArrayList<LboardVo> list = new ArrayList<>();
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBConnection.conn();
+			String sql = "select * from(select * from lboard order by bnum desc) where rownum <=10";
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				int bnum=rs.getInt("bnum");
+				String title=rs.getString("title");
+				String content=rs.getString("content");
+				int hit=rs.getInt("hit");
+				int recomm=rs.getInt("recomm");
+				String id=rs.getString("id");
+				String nic=rs.getString("nic");
+				int commCnt=LcommentDao.getInstance().getCount(bnum);
+				String regdate=rs.getString("regdate");
+				int num=rs.getInt("num");
+				
+				LboardVo vo=new LboardVo(bnum, title, content, hit, recomm, id, nic, commCnt, regdate, num);
+				list.add(vo);
+			}
+			return list;
+		}catch(SQLException se) {
+			System.out.println(se.getMessage());
+			return null;
+		}
+		finally
+		{
+			DBConnection.close(rs, stmt, conn);
 		}
 	}
 }

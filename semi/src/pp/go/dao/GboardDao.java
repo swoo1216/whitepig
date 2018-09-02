@@ -296,5 +296,37 @@ public class GboardDao {
 			DBConnection.close(rs, stmt, conn);
 		}
 	}
+	//메인 10개리스트
+	public ArrayList<GboardVo> gmainList()
+	{
+		ArrayList<GboardVo> list = new ArrayList<>();
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBConnection.conn();
+			String sql = "select * from(select * from gboard order by bnum desc) where rownum <=10";
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
 
+			while (rs.next()) {
+				int bNum = rs.getInt("bnum");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				int hit = rs.getInt("hit");
+				int recomm = rs.getInt("recomm");
+				String id = rs.getString("id");
+				String nic = rs.getString("nic");
+				Date regdate = rs.getDate("regdate");
+				int countComment = GcommentDao.getInstance().getCount(bNum, 0);
+
+				list.add(new GboardVo(bNum, title, content, hit, recomm, id, nic, countComment, 0, regdate));
+			}
+			return list;
+		} catch (SQLException se) {
+			return null;
+		} finally {
+			DBConnection.close(rs, stmt, conn);
+		}
+	}
 }
