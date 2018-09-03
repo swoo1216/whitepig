@@ -47,7 +47,7 @@
 					<c:when test="${id==null }">
 					wish.innerHTML+=
 					"<div class='w3-container w3-margin'>"+
-					"<img src='img/"+json.list[i]+".gif' style='width: 60px'>"+
+					"<img src='img/"+json.list[i]+".gif'>"+
 					"<button class='w3-btn w3-round w3-ripple w3-teal w3-margin'"+
 					" disabled='disabled' title='구매'><i class='fa fa-money fa-lg'></i></button>"+
 					"<button class='w3-btn w3-round w3-rip w3-teal'"+
@@ -57,7 +57,7 @@
 					<c:otherwise>
 					wish.innerHTML+=
 					"<div class='w3-container w3-margin'>"+
-					"<img src='img/"+json.list[i]+".gif' style='width: 60px'>"+
+					"<img src='img/"+json.list[i]+".gif'>"+
 					"<button class='w3-btn w3-round w3-ripple w3-teal w3-margin'"+
 					"onclick='check("+json.list[i]+")' title='구매'><i class='fa fa-money fa-lg'></i></button>"+
 					"<button class='w3-btn w3-round w3-rip w3-teal'"+
@@ -143,7 +143,7 @@
 
 	<c:forEach var="list" items="${wishList }">
 		<div class="w3-container w3-margin">
-			<img src="img/${list }.gif" style="width: 60px">
+			<img src="img/${list }.gif">
 			<c:choose>
 				<c:when test="${id==null }">
 					<button class="w3-btn w3-round w3-ripple w3-teal w3-margin"
@@ -245,7 +245,7 @@
 					</div>
 
 					<div class="w3-container w3-margin w3-large">
-						<img src="img/${vo.num }.gif" style="width: 70px">
+						<div class="w3-margin"><img src="img/${vo.num }.gif"></div>
 						<div class="w3-panel w3-teal w3-round-large w3-padding-16">
 							<p class="w3-margin"><strong>${vo.name }</strong></p>
 							<p class="w3-margin">${vo.type }</p>
