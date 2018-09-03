@@ -23,12 +23,12 @@ public class FindidController extends HttpServlet
 		if(id!=null)
 		{
 			request.setAttribute("code", "esuccess");
-			request.setAttribute("id", id);
+			request.setAttribute("id1", id);
 		}
 		else
 		{
 			request.setAttribute("code", "efail");
 		}
-		request.getRequestDispatcher("/main/main.jsp").forward(request, response);
+		request.getRequestDispatcher("/poke/main.jsp").forward(request, response);
 	}
 }

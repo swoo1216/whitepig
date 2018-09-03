@@ -32,6 +32,6 @@ public class FindpwdController extends HttpServlet
 		{
 			request.setAttribute("code", "pfail");
 		}
-		request.getRequestDispatcher("/main/main.jsp").forward(request, response);
+		request.getRequestDispatcher("/poke/main.jsp").forward(request, response);
 	}
 }

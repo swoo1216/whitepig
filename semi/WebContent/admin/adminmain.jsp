@@ -65,7 +65,7 @@ body {
 
 		<div class="w3-bar-block">
 			<a href="adminmain.jsp?page=userlist.do" onclick="w3_close()"
-				class="w3-bar-item w3-button w3-hover-white">회원목록</a> <a
+				class="w3-bar-item w3-button w3-hover-white">회원목록</a> <!-- <a
 				href="#services" onclick="w3_close()"
 				class="w3-bar-item w3-button w3-hover-white">pocket</a> <a
 				href="#services" onclick="w3_close()"
@@ -73,7 +73,7 @@ body {
 				href="#designers" onclick="w3_close()"
 				class="w3-bar-item w3-button w3-hover-white">lol</a> <a
 				href="adminmain.jsp?page=mlist.do" onclick="w3_close()"
-				class="w3-bar-item w3-button w3-hover-white">music</a> 
+				class="w3-bar-item w3-button w3-hover-white">music</a>  -->
 				<a
 				href="/semi/mmmain.do" onclick="w3_close()"
 				class="w3-bar-item w3-button w3-hover-white">기본페이지</a>
@@ -103,7 +103,7 @@ body {
 		<%
 			String contentpage = request.getParameter("page");
 			if (contentpage == null)
-				contentpage = "test.jsp";
+				contentpage = "userlist.do";
 		%>
 		<div id="content" class="w3-white w3-cell"
 			style="width: 1000px; height: 1000px;">
