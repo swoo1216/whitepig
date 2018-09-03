@@ -64,7 +64,7 @@ body {
 		</c:choose>
 
 		<div class="w3-bar-block">
-			<a href="adminmain.jsp?page=userlist.do" onclick="w3_close()"
+			<a href="/semi/admin/adminmain.jsp?page=userlist.do" onclick="w3_close()"
 				class="w3-bar-item w3-button w3-hover-white">회원목록</a> <!-- <a
 				href="#services" onclick="w3_close()"
 				class="w3-bar-item w3-button w3-hover-white">pocket</a> <a
@@ -79,9 +79,9 @@ body {
 				class="w3-bar-item w3-button w3-hover-white">기본페이지</a>
 				
 				<a
-				href="adminmain.jsp?page=salsevolume.do" onclick="w3_close()"
+				href="/semi/admin/adminmain.jsp?page=salsevolume.do" onclick="w3_close()"
 				class="w3-bar-item w3-button w3-hover-white">판매량</a>  <a
-				href="adminmain.jsp?page=ListReport.do" onclick="w3_close()"
+				href="/semi/admin/adminmain.jsp?page=ListReport.do" onclick="w3_close()"
 				class="w3-bar-item w3-button w3-hover-white">신고접수리스트</a>
 		</div>
 	</nav>

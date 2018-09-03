@@ -28,6 +28,6 @@ public class ChangeUserClassController extends HttpServlet {
 		request.setAttribute("vo", vo);
 		
 		
-		request.getRequestDispatcher("/admin/DetailReport.do?reportNum=" + reportNum).forward(request, response);
+		request.getRequestDispatcher("/admin/adminmain.jsp?page=/admin/DetailReport.do?reportNum=" + reportNum).forward(request, response);
 	}
 }

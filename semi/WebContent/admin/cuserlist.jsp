@@ -126,7 +126,6 @@
 					name="searchinfo" id="searchinfo" required> <input
 					class="w3-button w3-bar-item w3-dark-gray" type="submit" value="조회">
 			</form>
-			<a class="w3-bar-item w3-button w3-dark-gray w3-right">회원삭제</a> 
 			<a onclick="document.getElementById('writeboard').style.display='block'"
 				class="w3-bar-item w3-button w3-dark-gray w3-right">회원추가</a>
 		</div>
