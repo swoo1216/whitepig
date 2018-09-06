@@ -18,20 +18,18 @@
 		<thead>
 			<tr class="w3-dark-gray">
 				<th style="width: 10%">신고번호</th>
-				<th style="width: 25%">신고자</th>
-				<th style="width: 25%">용의자</th>
+				<th style="width: 30%">신고자</th>
+				<th style="width: 30%">용의자</th>
 				<th style="width: 30%">신고유형</th>
-				<th style="width: 10%">삭제</th>
+				
 			</tr>
 		</thead>
 		<c:forEach var="vo" items="${list}">
 			<tr>
-				<td><a href="DetailReport.do?reportNum=${vo.reportNum}">${vo.reportNum}</a></td>
+				<td onclick="DetailReport.do?reportNum=${vo.reportNum} style="cursor: pointer">${vo.reportNum}</td>
 				<td><a href="DetailReport.do?reportNum=${vo.reportNum}">${vo.reporter}</a></td>
 				<td><a href="DetailReport.do?reportNum=${vo.reportNum}">${vo.suspect}</a></td>
 				<td><a href="DetailReport.do?reportNum=${vo.reportNum}">${vo.rtype}</a></td>
-				<td><a onclick="#" class="w3-button"><span
-						class="w3-large"><i class="fa fa-times-rectangle"></i></span></a></td>
 
 			</tr>
 		</c:forEach>

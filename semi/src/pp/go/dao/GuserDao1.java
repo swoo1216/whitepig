@@ -4,19 +4,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import pp.go.db.DBConnection;
 import pp.go.vo.GuserVo;
+import test.db.DBConnection;;
 
-public class GuserDao {
-	private static GuserDao instance = null;
+public class GuserDao1 {
+	private static GuserDao1 instance = null;
 
-	private GuserDao() {
+	private GuserDao1() {
 
 	}
 
-	public static GuserDao getInstance() {
+	public static GuserDao1 getInstance() {
 		if (instance == null)
-			instance = new GuserDao();
+			instance = new GuserDao1();
 		return instance;
 	}
 

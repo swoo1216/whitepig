@@ -1,10 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/go_frm.css?ver=1">
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/go_modal.css?ver=1">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/go_frm.css?ver=1">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/go_modal.css?ver=1">
 <style type="text/css">
 td, th {
 	border-spacing: 0px;
@@ -47,13 +44,10 @@ ul li {
 	<button class="mybutton" onclick="sendSort('recomm')">추천순</button>
 	<button class="mybutton" onclick="sendScontent()">검색^^</button>
 	<select id="search" style="height: 23px">
-		<option value="content"
-			<c:if test="${search == 'content'}">selected</c:if>>내용</option>
+		<option value="content" <c:if test="${search == 'content'}">selected</c:if>>내용</option>
 		<option value="nic" <c:if test="${search == 'nic'}">selected</c:if>>글쓴이</option>
-		<option value="title"
-			<c:if test="${search == 'title'}">selected</c:if>>제목</option>
-	</select> <input type="text" id="scontent" value="${scontent}"
-		style="height: 20px">
+		<option value="title" <c:if test="${search == 'title'}">selected</c:if>>제목</option>
+	</select> <input type="text" id="scontent" value="${scontent}" style="height: 20px">
 	<table>
 		<tr>
 			<th width="7%">번호</th>
@@ -73,11 +67,8 @@ ul li {
 				<c:forEach var="vo" items="${list}">
 					<tr>
 						<td>${vo.bNum}</td>
-						<td style="text-align: left;"><a
-							href="gdetail.do?bNum=${vo.bNum}&tNum=0">${vo.title}</a>
-							&nbsp;[${vo.countComment}]</td>
-						<td><span class="clickPopup"
-							onclick="showPopup('pop${vo.bNum}')">${vo.nic}</span></td>
+						<td style="text-align: left;"><a href="gdetail.do?bNum=${vo.bNum}&tNum=0">${vo.title}</a> &nbsp;[${vo.countComment}]</td>
+						<td><span class="clickPopup" onclick="showPopup('pop${vo.bNum}')">${vo.nic}</span></td>
 						<td>${vo.regdate}</td>
 						<td>${vo.hit}</td>
 						<td>${vo.recomm}</td>
@@ -85,10 +76,8 @@ ul li {
 					<div class="popup" id="pop${vo.bNum}">
 						<div class="popstyle">
 							<ul>
-								<li><a
-									href="javascript:sendMsg('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">쪽지보내기</a></li>
-								<li><a
-									href="javascript:sendReport('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">신고하기</a></li>
+								<li><a href="javascript:sendMsg('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">쪽지보내기</a></li>
+								<li><a href="javascript:sendReport('${sessionScope.id}','${sessionScope.nic}', '${vo.id}', '${vo.nic}')">신고하기</a></li>
 							</ul>
 						</div>
 					</div>
@@ -98,44 +87,38 @@ ul li {
 	</table>
 	<c:choose>
 		<c:when test="${empty sessionScope.id}">
-			<button class="mybutton" type="button"
-				onclick="location.href='/semi/poke/main.jsp?page=/main/login.jsp';">로그인</button>
+			<button class="mybutton" type="button" onclick="location.href='/semi/poke/main.jsp?page=/main/login.jsp';">로그인</button>
 		</c:when>
 		<c:otherwise>
-			<button type="button" class="mybutton"
-				onclick="location.href = '/semi/poke/main.jsp?page=/go/ginsert.jsp';">글쓰기</button>
+			<button type="button" class="mybutton" onclick="location.href = '/semi/poke/main.jsp?page=/go/ginsert.jsp';">글쓰기</button>
 		</c:otherwise>
 	</c:choose>
 	<div style="text-align: center">
 		<c:choose>
 			<c:when test="${startPage>10}">
-				<a
-					href="/go/gboard.do?pageNum=${startPage-1}&sort=${sort}&search=${search}&scontent=${scontent}">[&lt;]</a>
+				<a href="/go/gboard.do?pageNum=${startPage-1}&sort=${sort}&search=${search}&scontent=${scontent}">[&lt;]</a>
 			</c:when>
 			<c:otherwise>
-								[&lt;]
-							</c:otherwise>
+				[&lt;]
+			</c:otherwise>
 		</c:choose>
 		<c:forEach var="i" begin="${startPage}" end="${endPage}">
 			<c:choose>
 				<c:when test="${pageNum == i}">
-							[<a
-						href="/semi/go/gboard.do?pageNum=${i}&sort=${sort}&search=${search}&scontent=${scontent}">${i}</a>]
+							[<a href="/semi/go/gboard.do?pageNum=${i}&sort=${sort}&search=${search}&scontent=${scontent}">${i}</a>]
 						</c:when>
 				<c:otherwise>
-							[<a
-						href="/semi/go/gboard.do?pageNum=${i}&sort=${sort}&search=${search}&scontent=${scontent}">${i}</a>]
-						</c:otherwise>
+							[<a href="/semi/go/gboard.do?pageNum=${i}&sort=${sort}&search=${search}&scontent=${scontent}">${i}</a>]
+				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		<c:choose>
 			<c:when test="${endPage<pageCount}">
-				<a
-					href="/semi/go/gboard.do?pageNum=${endPage+1}&sort=${sort}&search=${search}&scontent=${scontent}">[&gt;]</a>
+				<a href="/semi/go/gboard.do?pageNum=${endPage+1}&sort=${sort}&search=${search}&scontent=${scontent}">[&gt;]</a>
 			</c:when>
 			<c:otherwise>
-								[&gt;]
-							</c:otherwise>
+				[&gt;]
+			</c:otherwise>
 		</c:choose>
 	</div>
 </div>
@@ -158,7 +141,7 @@ ul li {
 		if (event.keyCode == 13)
 			sendScontent()
 	}, false);
-	
+
 	var clickPopup = document.getElementsByClassName("clickPopup"); // 마우스포인터 효과
 	for (var i = 0; i < clickPopup.length; i++) {
 		clickPopup[i].addEventListener("mouseover", function() { // 팝업

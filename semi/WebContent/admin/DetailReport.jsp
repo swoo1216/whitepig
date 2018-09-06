@@ -6,6 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Poppins">
 </head>
 <script type="text/javascript">
 	function sendChange() {
@@ -14,7 +20,9 @@
 	}
 </script>
 <body>
-	<table>
+<div class="w3-container">
+	<table  class="w3-table-all w3-striped">
+		<th class="w3-dark-grey" colspan="2"><h1>세부내용</h1></th>
 		<tr>
 			<td>신고번호</td>
 			<td>${vo.reportNum}</td>
@@ -40,7 +48,10 @@
 			<td>내용</td>
 			<td>${vo.content}</td>
 		</tr>
+		<tr >
+			<td colspan="2"><a href="/semi/go/DeleteReport.do?reportNum=${vo.reportNum}">삭제</a></td>
+		</tr>
 	</table>
-	<a href="/semi/go/DeleteReport.do?reportNum=${vo.reportNum}">삭제</a>
+	</div>
 </body>
 </html>

@@ -17,7 +17,6 @@ public class ListReportController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		ArrayList<ReportVo> list = ReportDao.getInstance().list();
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/admin/adminmain.jsp?page=report.jsp").forward(request, response);
