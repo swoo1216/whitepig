@@ -106,7 +106,7 @@
 			<form action="minsert.do"
 				class="w3-container w3-card-4 w3-light-grey w3-text-w3-pale-red ">
 				
-				<h2 class="w3-center w3-dark-grey w3-padding">글작성</h2>
+				<h2 class="w3-center w3-pale-red w3-padding">글작성</h2>
 				
 				<div class="w3-row w3-section">
 				
